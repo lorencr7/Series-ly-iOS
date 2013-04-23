@@ -23,9 +23,9 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        self.season = [pendingDictionary objectForKey:@"season"];
-        self.episode = [pendingDictionary objectForKey:@"episode"];
-        NSString * full = [pendingDictionary objectForKey:@"full"];
+        self.season = [dictionary objectForKey:@"season"];
+        self.episode = [dictionary objectForKey:@"episode"];
+        self.full = [dictionary objectForKey:@"full"];
     }
     return self;
 }

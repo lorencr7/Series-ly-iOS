@@ -16,7 +16,7 @@
 //-(AuthToken *) getAuthTokenFromDictionary: (NSDictionary *) dictionary;
 //-(UserToken *) getUserTokenFromDictionary: (NSDictionary *) dictionary;
 //-(UserInfo *) getUserInfoFromDictionary: (NSDictionary *) dictionary;
--(MediaElementUserPending *) getMediaElementUserPendingFromDictionary: (NSDictionary *) dictionary;
+//-(MediaElementUserPending *) getMediaElementUserPendingFromDictionary: (NSDictionary *) dictionary;
 -(MediaElementUser *) getMediaElementUserFromDictionary: (NSDictionary *) dictionary;
 -(Links *) getLinksFromDictionary: (NSDictionary *) dictionary;
 -(FullInfo *) getFullInfoFromDictionary: (NSDictionary *) dictionary;

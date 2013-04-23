@@ -35,7 +35,8 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        self.pending = [dictionary objectForKey:@"status"];
+        NSDictionary * pendingDictionary = [dictionary objectForKey:@"pending"];
+        self.pending = [[Pending alloc] initWithDictionary:pendingDictionary];
     }
     return self;
 }

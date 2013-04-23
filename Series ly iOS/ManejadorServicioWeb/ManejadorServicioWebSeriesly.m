@@ -14,6 +14,7 @@
 #import "TraductorClases.h"
 #import "UserInfo.h"
 #import "ManejadorBaseDeDatosBackup.h"
+#import "MediaElementUserPending.h"
 
 static ManejadorServicioWebSeriesly * instance;
 static NSString * appId = @"1040";
@@ -162,16 +163,20 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSMutableArray * arrayOfMovies = [NSMutableArray array];
         NSMutableArray * arrayOfDocumentaries = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfSeries addObject:[traductorClases getMediaElementUserPendingFromDictionary:serieDictionary]];
+            //[arrayOfSeries addObject:[traductorClases getMediaElementUserPendingFromDictionary:serieDictionary]];
+            [arrayOfSeries addObject:[[MediaElementUserPending alloc] initWithDictionary:serieDictionary]];
         }
         for (NSDictionary * tvShowDictionary in tvShowsArray) {
-            [arrayOfTvShows addObject:[traductorClases getMediaElementUserPendingFromDictionary:tvShowDictionary]];
+            //[arrayOfTvShows addObject:[traductorClases getMediaElementUserPendingFromDictionary:tvShowDictionary]];
+            [arrayOfTvShows addObject:[[MediaElementUserPending alloc] initWithDictionary:tvShowDictionary]];
         }
         for (NSDictionary * movieDictionary in moviesArray) {
-            [arrayOfMovies addObject:[traductorClases getMediaElementUserPendingFromDictionary:movieDictionary]];
+            //[arrayOfMovies addObject:[traductorClases getMediaElementUserPendingFromDictionary:movieDictionary]];
+            [arrayOfMovies addObject:[[MediaElementUserPending alloc] initWithDictionary:movieDictionary]];
         }
         for (NSDictionary * documentaryDictionary in documentariesArray) {
-            [arrayOfDocumentaries addObject:[traductorClases getMediaElementUserPendingFromDictionary:documentaryDictionary]];
+            //[arrayOfDocumentaries addObject:[traductorClases getMediaElementUserPendingFromDictionary:documentaryDictionary]];
+            [arrayOfDocumentaries addObject:[[MediaElementUserPending alloc] initWithDictionary:documentaryDictionary]];
         }
         /*NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {

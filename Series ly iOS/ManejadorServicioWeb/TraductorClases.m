@@ -106,7 +106,7 @@ static TraductorClases * instance;
 }*/
 
 
--(MediaElementUserPending *) getMediaElementUserPendingFromDictionary: (NSDictionary *) dictionary {
+/*-(MediaElementUserPending *) getMediaElementUserPendingFromDictionary: (NSDictionary *) dictionary {
     NSString * idm = [dictionary objectForKey:@"idm"];
     NSString * idMedia = [dictionary objectForKey:@"id_media"];
     NSString * mediaType = [dictionary objectForKey:@"mediaType"];
@@ -130,7 +130,7 @@ static TraductorClases * instance;
     Pending * pending = [[Pending alloc] initWithSeason:season Episode:episode Full:full];
     
     return [[MediaElementUserPending alloc] initWithIdm:idm IdMedia:idMedia MediaType:mediaType Name:name MainGenre:mainGenre Year:year Seasons:seasons Episodes:episodes Url:url Poster:poster Pending:pending];
-}
+}*/
 
 -(MediaElementUser *) getMediaElementUserFromDictionary: (NSDictionary *) dictionary {
     NSString * idm = [dictionary objectForKey:@"idm"];
