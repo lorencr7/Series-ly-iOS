@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface UserImgUser : NSObject
+@interface UserImgUser : Serializable
 
 @property (strong,nonatomic) NSString * big;
 @property (strong,nonatomic) NSString * small;

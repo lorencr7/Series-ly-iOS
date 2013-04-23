@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface UserToken : NSObject
+@interface UserToken : Serializable
 
 @property (strong, nonatomic) NSString * userToken;
 @property (assign, nonatomic) long userExpiresDate;

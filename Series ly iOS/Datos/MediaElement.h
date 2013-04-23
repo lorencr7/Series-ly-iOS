@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "Serializable.h"
 @class Poster;
-@interface MediaElement : NSObject
+@interface MediaElement : Serializable
 
 @property (strong, nonatomic) NSString * idm;
 @property (strong, nonatomic) NSString * idMedia;

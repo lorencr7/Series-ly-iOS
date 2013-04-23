@@ -20,4 +20,14 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.season = [pendingDictionary objectForKey:@"season"];
+        self.episode = [pendingDictionary objectForKey:@"episode"];
+        NSString * full = [pendingDictionary objectForKey:@"full"];
+    }
+    return self;
+}
+
 @end

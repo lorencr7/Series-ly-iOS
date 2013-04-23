@@ -91,7 +91,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         return nil;
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        return [[TraductorClases getInstance] getAuthTokenFromDictionary:response];
+        //return [[TraductorClases getInstance] getAuthTokenFromDictionary:response];
+        return [[AuthToken alloc] initWithDictionary:response];
     }
 }
 
@@ -109,7 +110,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         return nil;
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        return [[TraductorClases getInstance] getUserTokenFromDictionary:response];
+        //return [[TraductorClases getInstance] getUserTokenFromDictionary:response];
+        return [[UserToken alloc] initWithDictionary:response];
     }
 }
 
@@ -128,7 +130,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        return [[TraductorClases getInstance] getUserInfoFromDictionary:response];
+        //return [[TraductorClases getInstance] getUserInfoFromDictionary:response];
+        return [[UserInfo alloc] initWithDictionary:response];
     }
 }
 

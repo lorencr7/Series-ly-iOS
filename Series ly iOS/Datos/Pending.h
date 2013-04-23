@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface Pending : NSObject
+#import "Serializable.h"
+@interface Pending : Serializable
 
 @property (strong, nonatomic) NSString * season;
 @property (strong, nonatomic) NSString * episode;

@@ -27,4 +27,22 @@
     return self;
 }
 
+-(id) initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.cp = [dictionary objectForKey:@"cp"];
+        self.nom = [dictionary objectForKey:@"nom"];
+        self.cognoms = [dictionary objectForKey:@"cognoms"];
+        self.dataNaixement = [dictionary objectForKey:@"data_naixement"];
+        self.sexe = [dictionary objectForKey:@"sexe"];
+        self.veureNom = [dictionary objectForKey:@"veure_nom"];
+        self.veureEmail = [dictionary objectForKey:@"veure_email"];
+        self.lang = [dictionary objectForKey:@"lang"];
+        self.userDescription = [dictionary objectForKey:@"user_description"];
+        self.profesion = [dictionary objectForKey:@"profesion"];
+    }
+    return self;
+    
+}
+
 @end

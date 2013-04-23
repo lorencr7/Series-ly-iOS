@@ -28,4 +28,12 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.status = [dictionary objectForKey:@"status"];
+    }
+    return self;
+}
+
 @end

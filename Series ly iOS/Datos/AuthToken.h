@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface AuthToken : NSObject
+@interface AuthToken : Serializable
 
 @property (strong, nonatomic) NSString * authToken;
 @property (assign, nonatomic) long authExpiresDate;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface Poster : NSObject
+@interface Poster : Serializable
 
 @property (strong, nonatomic) NSString * large;
 @property (strong, nonatomic) NSString * medium;

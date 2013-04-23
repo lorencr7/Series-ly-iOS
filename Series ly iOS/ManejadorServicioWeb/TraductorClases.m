@@ -41,25 +41,25 @@ static TraductorClases * instance;
     return instance;
 }
 
--(AuthToken *) getAuthTokenFromDictionary: (NSDictionary *) dictionary {
+/*-(AuthToken *) getAuthTokenFromDictionary: (NSDictionary *) dictionary {
     NSString * authToken = [dictionary objectForKey:@"auth_token"];
     NSString * authExpiresDateString = [dictionary objectForKey:@"auth_expires_date"];
     long authExpiresDate = [authExpiresDateString longLongValue];
     NSString * authErrorString = [dictionary objectForKey:@"error"];
     int authError = [authErrorString intValue];
     return [[AuthToken alloc] initWithAuthToken:authToken AuthExpiresDate:authExpiresDate Error:authError];
-}
+}*/
 
--(UserToken *) getUserTokenFromDictionary: (NSDictionary *) dictionary {
+/*-(UserToken *) getUserTokenFromDictionary: (NSDictionary *) dictionary {
     NSString * userToken = [dictionary objectForKey:@"user_token"];
     NSString * userExpiresDateString = [dictionary objectForKey:@"user_expires_date"];
     long userExpiresDate = [userExpiresDateString longLongValue];
     NSString * userErrorString = [dictionary objectForKey:@"error"];
     int userError = [userErrorString intValue];
     return [[UserToken alloc] initWithUserToken:userToken UserExpiresDate:userExpiresDate Error:userError];
-}
+}*/
 
--(UserInfo *) getUserInfoFromDictionary: (NSDictionary *) dictionary {
+/*-(UserInfo *) getUserInfoFromDictionary: (NSDictionary *) dictionary {
     
     NSString * uid = [dictionary objectForKey:@"uid"];
     
@@ -103,7 +103,7 @@ static TraductorClases * instance;
     }
     
     return [[UserInfo alloc] initWithUid:uid ExiInfo:extInfo UserData:userData Error:error];
-}
+}*/
 
 
 -(MediaElementUserPending *) getMediaElementUserPendingFromDictionary: (NSDictionary *) dictionary {

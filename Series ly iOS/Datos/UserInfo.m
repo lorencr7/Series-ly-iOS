@@ -7,6 +7,8 @@
 //
 
 #import "UserInfo.h"
+#import "UserExtInfo.h"
+#import "UserData.h"
 
 @implementation UserInfo
 
@@ -17,6 +19,26 @@
         self.extInfo = extInfo;
         self.userData = userData;
         self.error = error;
+    }
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.uid = [dictionary objectForKey:@"uid"];
+        
+        NSDictionary * extInfoDictionary =  [dictionary objectForKey:@"extInfo"];
+        self.extInfo = [[UserExtInfo alloc] initWithDictionary:extInfoDictionary];
+        
+        NSDictionary * userDataDictionary =  [dictionary objectForKey:@"userdata"];
+        self.userData = [[UserData alloc] initWithDictionary:userDataDictionary];
+        
+        NSString * error2 = [dictionary objectForKey:@"error"];
+        self.error = [error2 intValue];
+        if (self.error != 0) {
+            NSLog(@"error %d grabbing userInfo",self.error);
+        }
     }
     return self;
 }

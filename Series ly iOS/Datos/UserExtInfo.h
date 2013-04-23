@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface UserExtInfo : NSObject
+@interface UserExtInfo : Serializable
 
 @property (strong,nonatomic) NSString * cp;
 @property (strong,nonatomic) NSString * nom;

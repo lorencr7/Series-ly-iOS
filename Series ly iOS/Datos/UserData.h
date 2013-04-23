@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
 @class UserImgUser,UserCountry;
-@interface UserData : NSObject
+@interface UserData : Serializable
 
 @property (strong,nonatomic) NSString * uid;
 @property (strong,nonatomic) NSString * uidCodi;

@@ -19,4 +19,13 @@
     return self;
 }
 
+-(id) initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.iso = [dictionary objectForKey:@"iso"];
+        self.name = [dictionary objectForKey:@"name"];
+    }
+    return self;
+}
+
 @end

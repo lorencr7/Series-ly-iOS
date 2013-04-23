@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface UserCountry : NSObject
+@interface UserCountry : Serializable
 
 @property (strong,nonatomic) NSString * iso;
 @property (strong,nonatomic) NSString * name;

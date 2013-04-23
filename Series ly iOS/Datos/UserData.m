@@ -7,6 +7,8 @@
 //
 
 #import "UserData.h"
+#import "UserImgUser.h"
+#import "UserCountry.h"
 
 @implementation UserData
 
@@ -24,6 +26,27 @@
         self.country = country;
     }
     return self;
+}
+
+-(id) initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.uid = [dictionary objectForKey:@"uid"];
+        self.uidCodi = [dictionary objectForKey:@"uid_codi"];
+        self.nick = [dictionary objectForKey:@"nick"];
+        self.email = [dictionary objectForKey:@"email"];
+        self.dataAlta = [dictionary objectForKey:@"data_alta"];
+        self.punts = [dictionary objectForKey:@"punts"];
+        self.userAgentHash = [dictionary objectForKey:@"user_agent_hash"];
+        
+        NSDictionary * imgUserDictionary = [dictionary objectForKey:@"img_user"];
+        self.imgUser = [[UserImgUser alloc] initWithDictionary:imgUserDictionary];
+        
+        NSDictionary * countryDictionary = [dictionary objectForKey:@"country"];
+        self.country = [[UserCountry alloc] initWithDictionary:countryDictionary];
+    }
+    return self;
+    
 }
 
 @end

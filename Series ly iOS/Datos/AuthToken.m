@@ -20,6 +20,20 @@
     return self;
 }
 
+- (id)initWithDictionary: (NSDictionary *) dictionary{
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.authToken = [dictionary objectForKey:@"auth_token"];
+        
+        NSString * authExpiresDateString = [dictionary objectForKey:@"auth_expires_date"];
+        self.authExpiresDate = [authExpiresDateString longLongValue];
+        
+        NSString * authErrorString = [dictionary objectForKey:@"error"];
+        self.error = [authErrorString intValue];
+    }
+    return self;
+}
+
 -(NSString *) description {
     return [NSString stringWithFormat:@"AuthToken = %@, AuthExpiresDate = %ld, AuthError = %d",self.authToken,self.authExpiresDate,self.error];
 }

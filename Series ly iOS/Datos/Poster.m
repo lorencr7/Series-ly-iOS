@@ -20,4 +20,14 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super init];
+    if (self) {
+        self.large = [dictionary objectForKey:@"large"];
+        self.medium = [dictionary objectForKey:@"medium"];
+        self.small = [dictionary objectForKey:@"small"];
+    }
+    return self;
+}
+
 @end

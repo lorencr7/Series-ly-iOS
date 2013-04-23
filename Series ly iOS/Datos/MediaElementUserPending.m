@@ -7,6 +7,7 @@
 //
 
 #import "MediaElementUserPending.h"
+#import "Pending.h"
 
 @implementation MediaElementUserPending
 
@@ -27,6 +28,14 @@
         self.url = [NSString stringWithFormat:@"%@",url];
         self.poster = poster;
         self.pending = pending;
+    }
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.pending = [dictionary objectForKey:@"status"];
     }
     return self;
 }
