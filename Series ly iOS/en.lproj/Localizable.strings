@@ -1,0 +1,189 @@
+
+// *********************** strings of all the pictures and icons ***********************
+//NSLocalizedString(@"ImageWriteMessageMultimediaTabHighlighted", nil)
+"FacebookLogoLarge" = "facebookLogo60x60.png";
+"FacebookLogoSmall" = "facebookLogo20x20.png";
+"TwitterLogoLarge" = "twitterLogo60x60.png";
+"TwitterLogoSmall" = "twitterLogo20x20.png";
+"ImageWriteMessageWriteTabNormal" = "imagenRedactarNormal.png";
+"ImageWriteMessageWriteTabHighlighted" = "imagenRedactarHighlighted.png";
+"ImageWriteMessageSocialTabNormal" = "imagenSocialNormal.png";
+"ImageWriteMessageSocialTabHighlighted" = "imagenSocialHighlighted.png";
+"ImageWriteMessageMultimediaTabNormal" = "imagenMultimediaNormal.png";
+"ImageWriteMessageMultimediaTabHighlighted" = "imagenMultimediaHighlighted.png";
+"iPhoneDeleteButton" = "iPhoneDeleteButton.png";
+"HorizontalStripe" = "raya.png";
+
+// *********************** strings in the tabs of rootViewVontroller horizontalPagedScroll ***********************
+
+// string of the bar button "write"
+"BarButtonWrite" = "Write";
+
+// *********************** strings in the Page RootMenuPageNoticiasViewController ***********************
+
+//The title of the page of the news
+"NewsPageTitle" = "News";
+
+//The text of the header of news
+"TextHeaderNews" = "News";
+
+//The text of the cell of all messages
+"TextCellAllMessages" = "All";
+
+//The text of the cell of published messages
+"TextCellPublishedMessages" = "Published";
+
+//The text of the cell of pending messages
+"TextCellPendingMessages" = "Pending";
+
+//The text of the cell of not published messages
+"TextCellNotPublishedMessages" = "Not published";
+
+//The text of the header of activity
+"TextHeaderActivity" = "Activity";
+
+//The text of the cell of Twitter
+"TextCellTwitterMessages" = "Twitter";
+
+//The text of the cell of Facebook
+"TextCellFacebookMessages" = "Facebook";
+
+//The text of the cell of published messages
+"StatusMessagePublished" = "Published";
+"kPublicado" = "Publicado";
+
+//The text of the cell of pending messages
+"StatusMessagePending" = "Pending";
+"kPendiente" = "Pendiente";
+
+//The text of the cell of not published messages
+"StatusMessageNotPublished" = "Not published";
+"kNotPublished" = "No Publicado";
+
+// *********************** strings in the Page RootMenuPagePerfilViewController ***********************
+
+//The title of the page of the profile
+"ProfilePageTitle" = "Profile";
+
+//
+"ProfilePublish" = "Publish";
+"ProfilePending" = "Pending";
+"ProfileNotPublish" = "Not Published";
+
+//The text of unlink button
+"UnlinkButtonText" = "Unlink";
+
+//Texts on the action sheet of unlink
+"UnlinkActionSheetTitle" = "Do you want to unlink your account?";
+"UnlinkActionSheetCancel" = "Cancel";
+"UnlinkActionSheetUnlink" = "Unlink";
+
+// *********************** strings in the Page RootMenuPageAjustesViewController ***********************
+
+//The title of the page of the settings
+"SettingsPageTitle" = "Settings";
+
+// ****************** Ventana Redactar ******************
+
+// Title of the bar button Cancel
+"BarButtonWriteCancel" = "Cancel";
+// Title of the bar button Send
+"BarButtonWriteSend" = "Send";
+
+// Titulos bajo las fotos
+
+"TitleWrite" = "Write";
+"TitleSocial" = "Social";
+"TitleMultimedia" = "Multimedia";
+
+// Contenido de los diferentes apartados
+
+"SocialQuestion" = "¿Do you want to share the message?";
+"SocialTwitter" = "Twitter";
+"SocialTwitterButtonEditTweet" = "Edit Tweet";
+"SocialTwitterButtonRestore" = "Restore";
+"SocialFacebook" = "Facebook";
+
+"MultimediaQuestion" = "¿Add Photo?";
+"MultimediaButtonTakePhotoFromCamera" = "Take picture";
+"MultimediaButtonPickPhotoFromGallery" = "Select from library";
+"MultimediaButtonDelete" = "Delete";
+"MultimediaErrorSavingPictureTitle" = "Error at saving";
+"MultimediaErrorSavingPictureMessage" = "The image could not be stored";
+"MultimediaErrorSavingPictureAccept" = "Accept";
+
+"CancelWriteActionSheetTitle" = "¿Do you want to save the draft?";
+"CancelWriteActionSheetSave" = "Save";
+"CancelWriteActionSheetDontSave" = "Discard";
+"CancelWriteActionSheetCancel" = "Cancel";
+
+
+// ****************** AlertView (No Internet) ******************
+
+"AlertViewNoInternetTitle" = "Conexion not available";
+"AlertViewNoInternetMessage" = "It has been impossible to send the message";
+"AlertViewNoInternetAccept" = "Accept";
+
+// ****************** No hay mensajes ******************
+"NoMessagesAvailable" = "There are no messages";
+
+
+
+// ****************** Codigo Botones ******************
+
+"1" = "ApartadoAjustes - BotonTabBar";
+"2" = "ApartadoAjustes - TwitterSwitch";
+"3" = "ApartadoAjustes - FacebookSwitch";
+"4" = "ApartadoMensajes - BotonTabBar";
+"5" = "ApartadoMensajes - Todos";
+"6" = "ApartadoMensajes - Publicados";
+"7" = "ApartadoMensajes - Pendientes";
+"8" = "ApartadoMensajes - No Publicados";
+"9" = "ApartadoMensajes - Twitter";
+"10" = "ApartadoMensajes - Facebook";
+"11" = "ApartadoMensajes - Mensaje Pulsado";
+"12" = "ApartadoMensajes - Volver a ListadoMensajes";
+"13" = "ApartadoMensajes - Volver a Mensajes";
+"14" = "ApartadoPerfil - BotonTabBar";
+"15" = "Redactar - EstamosEnLaVentanaRedactar";
+"16" = "Redactar - Atrás";
+"17" = "Redactar - AtrásDecartar";
+"18" = "Redactar - AtrásGuardar";
+"19" = "Redactar - AtrásCancelar";
+"20" = "Redactar - Enviar";
+"21" = "Redactar - BotonApartadoRedactar";
+"22" = "Redactar - ScrollHastaRedactar";
+"23" = "Redactar - ApartadoRedactarEscribe";
+"24" = "Redactar - BotonAparatadoSocial";
+"25" = "Redactar - ScrollHastaSocial";
+"26" = "Redactar - ApartadoSocialTwitterSwitch";
+"27" = "Redactar - ApartadoSocialFacebookSwitch";
+"28" = "Redactar - ApartadoSocialVerTweet";
+"29" = "Redactar - ApartadoSocialRestaurarTweet";
+"30" = "Redactar - ApartadoSocialEditandoTweet";
+"31" = "Redactar - ApartadoSocialCerrarTweet";
+"32" = "Redactar - BotonApartadoMultimedia";
+"33" = "Redactar - ScrollHastaMultimedia";
+"34" = "Redactar - ApartadoMultimediaTomarFoto";
+"35" = "Redactar - ApartadoMultimediaSeleccionarFoto";
+"36" = "Redactar - ApartadoMultimediaBorrarFoto";
+"37" = "Fallo de Conexión a Internet";
+
+
+// ****************** Email Backup ******************
+
+//"SendLogDataBaseViaEmailCode" = "SendDataBase pt5gd23k65";
+"SendLogDataBaseViaEmailCode" = "hhh";
+"RestoreLogDataBaseCode" = "RestoreDataBase jb12km613i";
+
+"EmailSendLogDatabaseSubject" = "BBDD";
+"EmailSendLogDatabaseBody" = "Backup de la base de datos";
+
+"EmailNoAccountAlertTitle" = "Conexion error";
+"EmailNoAccountAlertMessage" = "You didn't configure any e-mail account in your iPhone.";
+"EmailNoAccountAlertAccept" = "Accept";
+
+"RestoredDatabaseAlertTitle" = "BBDD restored";
+"RestoredDatabaseAlertMessage" = "The database of logs has been restored";
+"RestoredDatabaseAlertAccept" = "Accept";
+
