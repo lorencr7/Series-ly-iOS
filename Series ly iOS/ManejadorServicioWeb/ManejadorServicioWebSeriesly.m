@@ -151,7 +151,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error getUserPendingInfoWithAuthToken %@",error);
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"series"];
