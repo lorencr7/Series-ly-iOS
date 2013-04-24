@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface Link : NSObject
+#import "Serializable.h"
+@interface Link : Serializable
 
 @property(strong,nonatomic) NSString * idv;
 @property(strong,nonatomic) NSString * host;

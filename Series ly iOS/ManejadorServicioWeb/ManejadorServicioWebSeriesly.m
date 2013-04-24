@@ -15,6 +15,8 @@
 #import "UserInfo.h"
 #import "ManejadorBaseDeDatosBackup.h"
 #import "MediaElementUserPending.h"
+#import "MediaElementUser.h"
+#import "Links.h"
 
 static ManejadorServicioWebSeriesly * instance;
 static NSString * appId = @"1040";
@@ -300,13 +302,14 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error getUserFollowingSeriesWithAuthToken %@",error);
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"series"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -325,13 +328,14 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"tvshows"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -351,13 +355,14 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"movies"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -376,13 +381,14 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"documentaries"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -402,10 +408,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo los links");
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        return [traductorClases getLinksFromDictionary:response];
+        //return [traductorClases getLinksFromDictionary:response];
+        return [[Links alloc] initWithDictionary:response];
     }
     
 }

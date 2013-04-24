@@ -26,4 +26,20 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.idv = [dictionary objectForKey:@"idv"];
+        self.host = [dictionary objectForKey:@"host"];
+        self.lang = [dictionary objectForKey:@"lang"];
+        self.subtitles = [dictionary objectForKey:@"subtitles"];
+        self.videoUrl = [dictionary objectForKey:@"video_url"];
+        self.dateCreated = [dictionary objectForKey:@"date_created"];
+        self.price = [dictionary objectForKey:@"price"];
+        self.quality = [dictionary objectForKey:@"quality"];
+        self.addedBy = [dictionary objectForKey:@"added_by"];
+    }
+    return self;
+}
+
 @end

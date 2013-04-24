@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Serializable.h"
 
-@interface Links : NSObject
+@interface Links : Serializable
 
 @property(strong,nonatomic) NSMutableArray * officialServer;
 @property(strong,nonatomic) NSMutableArray * streaming;

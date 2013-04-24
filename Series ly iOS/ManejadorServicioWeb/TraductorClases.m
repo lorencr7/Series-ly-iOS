@@ -132,7 +132,7 @@ static TraductorClases * instance;
     return [[MediaElementUserPending alloc] initWithIdm:idm IdMedia:idMedia MediaType:mediaType Name:name MainGenre:mainGenre Year:year Seasons:seasons Episodes:episodes Url:url Poster:poster Pending:pending];
 }*/
 
--(MediaElementUser *) getMediaElementUserFromDictionary: (NSDictionary *) dictionary {
+/*-(MediaElementUser *) getMediaElementUserFromDictionary: (NSDictionary *) dictionary {
     NSString * idm = [dictionary objectForKey:@"idm"];
     NSString * idMedia = [dictionary objectForKey:@"id_media"];
     NSString * mediaType = [dictionary objectForKey:@"mediaType"];
@@ -152,12 +152,12 @@ static TraductorClases * instance;
     NSString * status = [dictionary objectForKey:@"status"];
     
     return [[MediaElementUser alloc] initWithIdm:idm IdMedia:idMedia MediaType:mediaType Name:name MainGenre:mainGenre Year:year Seasons:seasons Episodes:episodes Url:url Poster:poster Status:status];
-}
+}*/
 
--(Links *) getLinksFromDictionary: (NSDictionary *) dictionary {
-    NSDictionary * offialServerDictionary = [dictionary objectForKey:@"officialServer"];
-    NSDictionary * streamingDictionary = [dictionary objectForKey:@"streaming"];
-    NSDictionary * directDownloadDictionary = [dictionary objectForKey:@"direct_download"];
+/*-(Links *) getLinksFromDictionary: (NSDictionary *) dictionary {
+    NSArray * offialServerDictionary = [dictionary objectForKey:@"officialServer"];
+    NSArray * streamingDictionary = [dictionary objectForKey:@"streaming"];
+    NSArray * directDownloadDictionary = [dictionary objectForKey:@"direct_download"];
     NSString * error2 = [dictionary objectForKey:@"error"];
     int error = [error2 intValue];
     if (error != 0) {
@@ -215,7 +215,7 @@ static TraductorClases * instance;
     links.error = error;
     return links;
     
-}
+}*/
 
 -(FullInfo *) getFullInfoFromDictionary: (NSDictionary *) dictionary {
     FullInfo * fullInfo = [[FullInfo alloc] init];
