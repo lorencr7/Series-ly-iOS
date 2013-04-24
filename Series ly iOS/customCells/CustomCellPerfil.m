@@ -16,8 +16,13 @@
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
-        PerfilViewControllerIpad * perfilViewControllerIpad = [[PerfilViewControllerIpad alloc] init];
-        [detailViewController setDetailItem:perfilViewControllerIpad];
+        PerfilViewController * perfilViewController;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            perfilViewController = [[PerfilViewControllerIphone alloc] init];
+        } else {
+            perfilViewController = [[PerfilViewControllerIpad alloc] init];
+        }
+        [detailViewController setDetailItem:perfilViewController];
     }
 }
 

@@ -16,9 +16,13 @@
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
-        AjustesViewControllerIpad * ajustesViewControllerIpad = [[AjustesViewControllerIpad alloc] init];
-        //perfilViewControllerIpad.view.frame = detailViewController.view.frame;
-        [detailViewController setDetailItem:ajustesViewControllerIpad];
+        AjustesViewController * ajustesViewController;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            ajustesViewController = [[AjustesViewController alloc] init];
+        } else {
+            ajustesViewController = [[AjustesViewController alloc] init];
+        }
+        [detailViewController setDetailItem:ajustesViewController];
     }
 }
 

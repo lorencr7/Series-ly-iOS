@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 #import "CustomSplitViewController.h"
+#import "AppDelegate.h"
+#import "DrawerViewController.h"
 
 @interface DetailViewController ()
 //@property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -29,8 +31,15 @@
         // Update the view.
         [self configureView];
     }
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        [[CustomSplitViewController getInstance] hideMaster];
+    AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [appDelegate.drawerViewController hideDrawer];
+    } else {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            
+            [appDelegate.splitViewController hideMaster];
+            //[[CustomSplitViewController getInstance] hideMaster];
+        }
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CustomSplitViewController;
+@class CustomSplitViewController, DrawerViewController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -16,6 +16,7 @@
 //@property (strong, nonatomic) UISplitViewController *splitViewController;
 @property (strong, nonatomic) CustomSplitViewController *splitViewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) DrawerViewController *drawerViewController;
 
 -(void) loadContentControllers;
 -(void) loadLogInController;

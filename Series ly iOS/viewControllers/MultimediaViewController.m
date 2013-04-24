@@ -24,6 +24,14 @@
 
 @implementation MultimediaViewController
 
+- (id)initWithTitle: (NSString *) title {
+    self = [super init];
+    if (self) {
+        self.title = title;
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,13 +59,7 @@
 @implementation MultimediaViewControllerIpad
 
 
-- (id)initWithTitle: (NSString *) title {
-    self = [super init];
-    if (self) {
-        self.title = title;
-    }
-    return self;
-}
+
 /*- (id)initWithSourceInformation: (NSMutableArray *) sourceInformation Title: (NSString *) title {
     self = [super init];
     if (self) {

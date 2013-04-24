@@ -100,33 +100,19 @@
     
     CustomCellPerfil *customCellPerfil = [[CustomCellPerfil alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPerfil ImageName:@"perfil.png" CellText:NSLocalizedString(@"TableViewPerfilCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewPerfilCellText", nil) selectionType:YES customCell:customCellPerfil];
-    [cells addObject:customCellPerfil];*/
-    
-    //CustomCellAmigos *customCellAmigos = [[CustomCellAmigos alloc] init];
-    //[cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAmigos ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewAmigosCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewAmigosCellText", nil) selectionType:YES customCell:customCellAmigos];
-    //[cells addObject:customCellAmigos];*/
 
     CustomCellSeries *customCellSeries = [[CustomCellSeries alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellSeries ImageName:@"series.png" CellText:NSLocalizedString(@"TableViewSeriesCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewSeriesCellText", nil) selectionType:YES customCell:customCellSeries];
-    [cells addObject:customCellSeries];*/
     
     CustomCellPeliculas *customCellPeliculas = [[CustomCellPeliculas alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPeliculas ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewPeliculasCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewProgramasCellText", nil) selectionType:YES customCell:customCellPeliculas];
-    [cells addObject:customCellPeliculas];*/
     
     CustomCellProgramas *customCellProgramas = [[CustomCellProgramas alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewPeliculasCellText", nil) selectionType:YES customCell:customCellProgramas];
-    [cells addObject:customCellProgramas];*/
+
 
     CustomCellDocumentales *customCellDocumentales = [[CustomCellDocumentales alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellDocumentales ImageName:@"documentales.png" CellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil)]];
-    /*[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil) selectionType:YES customCell:customCellDocumentales];
-    [cells addObject:customCellDocumentales];*/
     
     CustomCellAjustes *customCellAjustes = [[CustomCellAjustes alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"ajustes.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
@@ -144,14 +130,21 @@
     
     // Creamos el tableView y lo anadimos a la subvista
     CGRect tableViewFrame = self.view.frame;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self title:nil];
+    self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
+    [customCellPerfil executeAction:self.detailViewController];
+    /*[customCellPerfil customSelect];
+    [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];*/
+    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
+        [customCellPerfil executeAction:self.detailViewController];
+        [customCellPerfil customSelect];
+        [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     } else {
        self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
         [customCellPerfil executeAction:self.detailViewController];
         [customCellPerfil customSelect];
         [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    }
+    }*/
     
     
     

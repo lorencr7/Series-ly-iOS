@@ -11,6 +11,8 @@
 @class CustomTableViewController;
 @interface MultimediaViewController : UIViewController
 
+- (id)initWithTitle: (NSString *) title;
+
 @end
 
 @interface MultimediaViewControllerIpad : MultimediaViewController
@@ -24,7 +26,7 @@
 @property (strong, nonatomic) NSMutableArray * sourceInformation;
 
 //- (id)initWithSourceInformation: (NSMutableArray *) sourceInformation Title: (NSString *) title;
-- (id)initWithTitle: (NSString *) title;
+
 
 -(void) loadData;
 -(void) loadListadoSeries;

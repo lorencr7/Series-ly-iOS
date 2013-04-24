@@ -17,9 +17,14 @@
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
-        //MultimediaViewControllerIpad * multimediaViewControllerIpad = [[MultimediaViewControllerIpad alloc] initWithSourceInformation:usuario.peliculasFollowing Title:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
-        MultimediaViewControllerIpad * multimediaViewControllerIpad = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
-        [detailViewController setDetailItem:multimediaViewControllerIpad];
+        MultimediaViewController * multimediaViewController;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
+        } else {
+            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
+        }
+        
+        [detailViewController setDetailItem:multimediaViewController];
     }
 }
 

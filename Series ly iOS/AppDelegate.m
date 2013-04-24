@@ -16,6 +16,7 @@
 #import "CustomSplitViewController.h"
 #import "MultimediaViewController.h"
 #import "AjustesViewController.h"
+#import "DrawerViewController.h"
 
 @implementation AppDelegate
 
@@ -85,11 +86,31 @@
         /*MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController_iPhone" bundle:nil];
         self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
         self.window.rootViewController = self.navigationController;*/
-        [self loadTabBarController];
+        //[self loadTabBarController];
+        [self loadDrawerViewController];
     } else {
         [self loadSplitViewController];
     }
     [self.window makeKeyAndVisible];
+}
+
+-(void) loadDrawerViewController {
+    MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController_iPad" bundle:nil];
+    UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+    masterNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    
+    DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil];
+    UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    detailNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    
+    masterViewController.detailViewController = detailViewController;
+    
+    //self.splitViewController = [[UISplitViewController alloc] init];
+    self.drawerViewController = [[DrawerViewController alloc] init];
+    //self.splitViewController.delegate = detailViewController;
+    self.drawerViewController.viewControllers = @[masterNavigationController, detailNavigationController];
+    
+    self.window.rootViewController = self.drawerViewController;
 }
 
 -(void) loadSplitViewController {

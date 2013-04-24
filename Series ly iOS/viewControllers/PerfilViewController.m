@@ -259,8 +259,6 @@ static UserCredentials * userCredentials;
     NSMutableArray * cells = [NSMutableArray array];
     for (MediaElementUserPending * mediaElementUserPending in source) {
         [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
-        //[cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
-        //[cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
     }
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
@@ -270,17 +268,6 @@ static UserCredentials * userCredentials;
     [self.tableViewEpisodios reloadData];
     //solo se hace la animacion si la tabla contiene contenido
     if (cells.count > 0) {
-        /*CGRect oldFrame = self.viewEpisodios.frame;
-        CGRect newFrame = self.viewEpisodios.frame;
-        newFrame.origin.x = newFrame.origin.x + newFrame.size.width/3;
-        self.viewEpisodios.frame = newFrame;
-        
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.viewEpisodios.alpha = 1.0;
-            self.viewEpisodios.frame = oldFrame;
-        } completion:^(BOOL finished){
-            
-        }];*/
         CGRect newFrame = self.viewEpisodios.frame;
         newFrame.origin.x = self.viewSeleccion.frame.origin.x + self.viewSeleccion.frame.size.width;
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -390,13 +377,8 @@ static UserCredentials * userCredentials;
 - (void) configureUserInfo {
     [super configureUserInfo];
     [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        /*self.imagenPerfil.alpha = 1.0;
-         self.labelNombreUsuario.alpha = 1.0;
-         self.labelNombreUsuarioCompleto.alpha = 1.0;
-         self.labelNombreUsuarioAlta.alpha = 1.0;*/
         self.viewPerfil.alpha = 1.0;
         self.viewSeleccion.alpha = 1.0;
-        //self.viewEpisodios.alpha = 1.0;
     } completion:^(BOOL finished){
         
     }];
@@ -513,10 +495,6 @@ static UserCredentials * userCredentials;
     [self.view addSubview:self.labelSeriesPendientes];
     
     [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        /*self.imagenPerfil.alpha = 1.0;
-         self.labelNombreUsuario.alpha = 1.0;
-         self.labelNombreUsuarioCompleto.alpha = 1.0;
-         self.labelNombreUsuarioAlta.alpha = 1.0;*/
         self.viewSeleccion.alpha = 1.0;
     } completion:^(BOOL finished){
         
