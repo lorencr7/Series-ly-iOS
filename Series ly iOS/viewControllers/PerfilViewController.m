@@ -227,7 +227,8 @@ static UserCredentials * userCredentials;
     labelSerie.numberOfLines = 2;
     [labelSerie sizeToFit];
     UILabel * labelEpisodio;
-    if (![mediaElementUserPending.pending.full isEqualToString:@"(null)"]) {
+    //if (![mediaElementUserPending.pending.full isEqualToString:@"(null)"]) {
+    if (mediaElementUserPending.pending.full) {
         labelEpisodio = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster, labelSerie.frame.origin.y + labelSerie.frame.size.height, 0, 0)];
         labelEpisodio.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.pending.full];
         labelEpisodio.backgroundColor = [UIColor clearColor];
