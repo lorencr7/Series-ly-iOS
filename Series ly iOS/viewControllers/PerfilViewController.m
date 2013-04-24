@@ -458,7 +458,7 @@ static UserCredentials * userCredentials;
                                                 frameViewEpisodios.size.width,
                                                 frameViewEpisodios.size.height);
     
-    NSMutableArray *sections = [NSMutableArray array];
+    NSMutableArray *sections;
     SectionElement *sectionElement;
     NSMutableArray *cells;
     

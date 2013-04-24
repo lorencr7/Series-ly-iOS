@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface EpisodeMedia : NSObject
+#import "Serializable.h"
+@interface EpisodeMedia : Serializable
 
 @property (strong,nonatomic) NSString * idm;
 @property (strong,nonatomic) NSString * mediaType;

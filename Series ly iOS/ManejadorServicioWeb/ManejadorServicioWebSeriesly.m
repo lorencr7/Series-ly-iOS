@@ -11,12 +11,12 @@
 #import "UserToken.h"
 #import "UserCredentials.h"
 #import "PerfilViewController.h"
-#import "TraductorClases.h"
 #import "UserInfo.h"
 #import "ManejadorBaseDeDatosBackup.h"
 #import "MediaElementUserPending.h"
 #import "MediaElementUser.h"
 #import "Links.h"
+#import "FullInfo.h"
 
 static ManejadorServicioWebSeriesly * instance;
 static NSString * appId = @"1040";
@@ -430,10 +430,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo los links");
         return nil;
     } else {
-        TraductorClases * traductorClases = [TraductorClases getInstance];
+        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        return [traductorClases getFullInfoFromDictionary:response];
+        //return [traductorClases getFullInfoFromDictionary:response];
+        return [[FullInfo alloc] initWithDictionary:response];
     }
 }
 

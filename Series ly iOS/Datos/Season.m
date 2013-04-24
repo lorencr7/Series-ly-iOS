@@ -10,6 +10,12 @@
 
 @implementation Season
 
-
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        
+    }
+    return self;
+}
 
 @end

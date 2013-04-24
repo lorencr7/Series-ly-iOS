@@ -10,4 +10,14 @@
 
 @implementation Cast
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.imdb = [dictionary objectForKey:@"imdb"];
+        self.name = [dictionary objectForKey:@"name"];
+        self.role = [dictionary objectForKey:@"role"];
+    }
+    return self;
+}
+
 @end

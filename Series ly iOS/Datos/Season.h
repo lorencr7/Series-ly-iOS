@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface Season : NSObject
+#import "Serializable.h"
+@interface Season : Serializable
 
 @property (strong,nonatomic) NSMutableArray * episodes;
 

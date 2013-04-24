@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface Cast : NSObject
+#import "Serializable.h"
+@interface Cast : Serializable
 
 @property (strong,nonatomic) NSString * imdb;
 @property (strong,nonatomic) NSString * name;

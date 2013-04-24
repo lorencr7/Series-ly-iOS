@@ -10,4 +10,13 @@
 
 @implementation EpisodeMedia
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        self.idm = [dictionary objectForKey:@"idm"];
+        self.mediaType = [dictionary objectForKey:@"mediaType"];
+    }
+    return self;
+}
+
 @end

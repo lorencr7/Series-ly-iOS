@@ -88,7 +88,7 @@
     self.viewTableViewLinks.alpha = 0.0;
     
     
-    NSMutableArray *sections = [NSMutableArray array];
+    NSMutableArray *sections;
     SectionElement *sectionElement;
     NSMutableArray *cells;
     
