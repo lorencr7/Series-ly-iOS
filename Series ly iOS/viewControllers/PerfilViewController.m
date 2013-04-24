@@ -163,7 +163,7 @@ static UserCredentials * userCredentials;
     if (!userPendingInfo) {
         NSLog(@"error descargando la info de pendientes del usuario: %@",nombreUser);
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //[alertView show];
+        [alertView show];
     } else {
         //NSLog(@"info pendiente descargada");
         usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
@@ -182,6 +182,8 @@ static UserCredentials * userCredentials;
         [customCellPerfilSeleccionSeriesPendiente customSelect];
         
         [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    } else {
+        
     }
     
 }
@@ -268,7 +270,7 @@ static UserCredentials * userCredentials;
     [self.tableViewEpisodios reloadData];
     //solo se hace la animacion si la tabla contiene contenido
     if (cells.count > 0) {
-        CGRect oldFrame = self.viewEpisodios.frame;
+        /*CGRect oldFrame = self.viewEpisodios.frame;
         CGRect newFrame = self.viewEpisodios.frame;
         newFrame.origin.x = newFrame.origin.x + newFrame.size.width/3;
         self.viewEpisodios.frame = newFrame;
@@ -276,6 +278,14 @@ static UserCredentials * userCredentials;
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.viewEpisodios.alpha = 1.0;
             self.viewEpisodios.frame = oldFrame;
+        } completion:^(BOOL finished){
+            
+        }];*/
+        CGRect newFrame = self.viewEpisodios.frame;
+        newFrame.origin.x = self.viewSeleccion.frame.origin.x + self.viewSeleccion.frame.size.width;
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.viewEpisodios.alpha = 1.0;
+            self.viewEpisodios.frame = newFrame;
         } completion:^(BOOL finished){
             
         }];
@@ -449,7 +459,7 @@ static UserCredentials * userCredentials;
                                                 0,
                                                 frameViewSeleccion.size.width,
                                                 frameViewSeleccion.size.height);
-    CGRect frameViewEpisodios = CGRectMake(self.tableViewSeleccion.frame.origin.x + frameTableViewSeleccion.size.width,
+    CGRect frameViewEpisodios = CGRectMake(frameViewSeleccion.origin.x + frameViewSeleccion.size.width + self.view.frame.size.width/6,
                                            self.imagenPerfil.frame.origin.y + self.imagenPerfil.frame.size.height + separacion,
                                            self.view.frame.size.width/2 + anchoDiferente,
                                            self.view.frame.size.height - (self.imagenPerfil.frame.origin.y + self.imagenPerfil.frame.size.height + separacion));
