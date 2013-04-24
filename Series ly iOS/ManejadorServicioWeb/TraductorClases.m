@@ -93,7 +93,7 @@ static TraductorClases * instance;
     NSDictionary * countryDictionary = [userDataDictionary objectForKey:@"country"];
     NSString * iso = [countryDictionary objectForKey:@"iso"];
     NSString * name = [countryDictionary objectForKey:@"name"];
-    UserCountry * country = [[UserCountry alloc] initWithIso:iso Name:name];
+    UserCountry * country =/Users/lorenzov/Documents/series-ly-iOS/Series ly iOS/MasterViewController.m [[UserCountry alloc] initWithIso:iso Name:name];
     
     UserData * userData = [[UserData alloc] initWithUid:uidUserData UidCodi:uidCodi Nick:nick Email:email DataAlta:dataAlta Punts:punts UserAgentHash:userAgentHash ImgUser:imgUser Country:country];
     NSString * error2 = [dictionary objectForKey:@"error"];

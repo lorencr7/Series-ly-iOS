@@ -11,8 +11,8 @@
 @implementation Serializable
 
 - (id)initWithDictionary: (NSDictionary *) dictionary{
-    
-    return nil;
+    self = [super init];
+    return self;
 }
 
 @end

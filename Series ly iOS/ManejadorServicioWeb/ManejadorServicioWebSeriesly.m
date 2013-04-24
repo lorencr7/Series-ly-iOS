@@ -92,6 +92,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         return nil;
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"%@",response);
         //return [[TraductorClases getInstance] getAuthTokenFromDictionary:response];
         return [[AuthToken alloc] initWithDictionary:response];
     }
