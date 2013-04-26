@@ -73,14 +73,19 @@
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     int sesion = [self.mediaElementUserPending.pending.season intValue];
     int capitulo = [self.mediaElementUserPending.pending.episode intValue];
-    NSLog(@"%d,%d",sesion,capitulo);
-    self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithAuthToken:[PerfilViewController getUserCredentials].authToken UserToken:[PerfilViewController getUserCredentials].userToken Idm:self.mediaElementUserPending.idm MediaType:self.mediaElementUserPending.mediaType];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithAuthToken:userCredentials.authToken
+                                                              UserToken:userCredentials.userToken
+                                                                    Idm:self.mediaElementUserPending.idm
+                                                              MediaType:self.mediaElementUserPending.mediaType];
     Season * season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
     
     Episode * episode = [season.episodes objectAtIndex:capitulo-1];
     
     //self.links = [manejadorServicioWeb getLinksWithAuthToken:[PerfilViewController getUserCredentials].authToken Idm:self.mediaElementUserPending.idm MediaType:@"5"];
-    self.links = [manejadorServicioWeb getLinksWithAuthToken:[PerfilViewController getUserCredentials].authToken Idm:episode.idm MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
+    self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
+                                                         Idm:episode.idm
+                                                   MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
     
     self.viewTableViewLinks = [[UIView alloc] initWithFrame:self.view.frame];
     self.viewTableViewLinks.backgroundColor = [UIColor whiteColor];

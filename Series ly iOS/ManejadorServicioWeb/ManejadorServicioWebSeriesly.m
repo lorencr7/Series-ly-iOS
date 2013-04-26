@@ -10,7 +10,7 @@
 #import "AuthToken.h"
 #import "UserToken.h"
 #import "UserCredentials.h"
-#import "PerfilViewController.h"
+//#import "PerfilViewController.h"
 #import "UserInfo.h"
 #import "ManejadorBaseDeDatosBackup.h"
 #import "MediaElementUserPending.h"
@@ -31,6 +31,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
     return instance;
 }
+/*User * usuario = [User getInstance];
+ UserCredentials * userCredentials = [UserCredentials getInstance];*/
 
 -(AuthToken *) checkAuthToken: (AuthToken *) authToken {
     NSDate * fecha = [NSDate date];
@@ -39,14 +41,17 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     //NSLog(@"%d",expireDate - currentDate);
     if (currentDate > expireDate) {
         NSLog(@"authToken invalido, pidiendo nuevo authToken");
-        UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+        //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+        UserCredentials * userCredentials = [UserCredentials getInstance];
         AuthToken * newAuthToken = [self getAuthToken];
+        userCredentials.authToken = newAuthToken;
+        /*AuthToken * newAuthToken = [self getAuthToken];
         UserToken * userToken = userCredentials.userToken;
         userCredentials = [[UserCredentials alloc] initWithAuthToken:newAuthToken UserToken:userToken];
-        [PerfilViewController setUserCredentials:userCredentials];
+        [PerfilViewController setUserCredentials:userCredentials];*/
         ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
         [manejadorBaseDeDatosBackup borrarUserCredentials];
-        [manejadorBaseDeDatosBackup guardarUserCredentials:[PerfilViewController getUserCredentials]];
+        [manejadorBaseDeDatosBackup guardarUserCredentials:userCredentials];
         return newAuthToken;
 
     } else {

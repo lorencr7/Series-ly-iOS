@@ -100,8 +100,10 @@
 
 - (void) downloadUserInfo {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    User * usuario = [PerfilViewController getUsuario];
-    UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+    //User * usuario = [PerfilViewController getUsuario];
+    //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+    User * usuario = [User getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     if ([self.title isEqualToString:NSLocalizedString(@"TableViewSeriesCellText", nil)]) {
         usuario.seriesFollowing = [manejadorServicioWebSeriesly getUserFollowingSeriesWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
         self.sourceInformation = usuario.seriesFollowing;

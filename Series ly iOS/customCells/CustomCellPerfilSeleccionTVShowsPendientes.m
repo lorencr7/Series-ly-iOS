@@ -17,7 +17,8 @@
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             
         } else {
-            User * usuario = [PerfilViewController getUsuario];
+            //User * usuario = [PerfilViewController getUsuario];
+            User * usuario = [User getInstance];
             PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
             [perfilViewControllerIpad fillTableViewFromSource:usuario.tvShowsPendientes];
         }

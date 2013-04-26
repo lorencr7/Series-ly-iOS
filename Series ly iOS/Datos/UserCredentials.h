@@ -16,4 +16,7 @@
 
 - (id)initWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
 
++(UserCredentials *) getInstance;
++(void) resetInstance;
+
 @end

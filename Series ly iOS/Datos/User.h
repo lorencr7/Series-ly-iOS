@@ -11,6 +11,8 @@
 @class UserInfo;
 @interface User : NSObject
 
+
+
 @property (strong,nonatomic) UserInfo * userInfo;
 @property (strong,nonatomic) NSMutableArray * seriesPendientes;
 @property (strong,nonatomic) NSMutableArray * peliculasPendientes;
@@ -21,6 +23,7 @@
 @property (strong,nonatomic) NSMutableArray * tvShowsFollowing;
 @property (strong,nonatomic) NSMutableArray * documentalesFollowing;
 
-
++(User *) getInstance;
++(void) resetInstance;
 
 @end

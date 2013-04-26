@@ -27,12 +27,6 @@
 
 @property(strong, nonatomic) UILabel * labelSeriesPendientes;
 
-
-+(User *) getUsuario;
-+(void) setUsuario: (User *) user;
-+(UserCredentials *) getUserCredentials;
-+(void) setUserCredentials: (UserCredentials *) credentials;
-
 +(void) logout;
 
 - (void) fillTableViewFromSource: (NSMutableArray *) source;

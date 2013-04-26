@@ -8,6 +8,20 @@
 
 #import "User.h"
 
+static User * instance;
+
 @implementation User
+
++(User *) getInstance {
+    if (instance == nil) {
+        instance = [[User alloc] init];
+    }
+    
+    return instance;
+}
+
++(void) resetInstance {
+    instance = nil;
+}
 
 @end

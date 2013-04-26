@@ -24,10 +24,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
-    UserCredentials * userCredentials = [manejadorBaseDeDatosBackup cargarUserCredentials];
+    UserCredentials * oldUserCredentials = [manejadorBaseDeDatosBackup cargarUserCredentials];
     //User * usuario = [manejadorBaseDeDatosBackup cargarInformacionUsuario];
-    if (userCredentials) {
-        [PerfilViewController setUserCredentials:userCredentials];
+    if (oldUserCredentials) {
+        UserCredentials * userCredentials = [UserCredentials getInstance];
+        userCredentials.authToken = oldUserCredentials.authToken;
+        userCredentials.userToken = oldUserCredentials.userToken;
+        //[PerfilViewController setUserCredentials:userCredentials];
         [self loadContentControllers];
     } else {
         [self loadLogInController];
@@ -48,14 +51,22 @@
     //[manejadorBaseDeDatosBackup borrarInformacionUsuario];
     //[manejadorBaseDeDatosBackup guardarInformacionUsuario:[PerfilViewController getUsuario]];
     [manejadorBaseDeDatosBackup borrarUserCredentials];
-    [manejadorBaseDeDatosBackup guardarUserCredentials:[PerfilViewController getUserCredentials]];
+    //[manejadorBaseDeDatosBackup guardarUserCredentials:[PerfilViewController getUserCredentials]];
+    [manejadorBaseDeDatosBackup guardarUserCredentials:[UserCredentials getInstance]];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
     //[PerfilViewController setUsuario:[manejadorBaseDeDatosBackup cargarInformacionUsuario]];
-    [PerfilViewController setUserCredentials:[manejadorBaseDeDatosBackup cargarUserCredentials]];
+    //[PerfilViewController setUserCredentials:[manejadorBaseDeDatosBackup cargarUserCredentials]];
+    UserCredentials * oldUserCredentials = [manejadorBaseDeDatosBackup cargarUserCredentials];
+    if (oldUserCredentials) {
+        UserCredentials * userCredentials = [UserCredentials getInstance];
+        userCredentials.authToken = oldUserCredentials.authToken;
+        userCredentials.userToken = oldUserCredentials.userToken;
+        //[PerfilViewController setUserCredentials:userCredentials];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

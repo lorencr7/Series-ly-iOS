@@ -102,44 +102,23 @@
 -(void) handlerLogging {
     NSThread * threadActivateFeedback = [[NSThread alloc] initWithTarget:self selector:@selector(startFeedback) object:nil];
     NSThread * threadstopFeedback = [[NSThread alloc] initWithTarget:self selector:@selector(stopFeedback) object:nil];
-    //ManejadorServicioWeb * manejadorServicioWeb = [ManejadorServicioWeb getInstance];
     [threadActivateFeedback start];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     AuthToken * authToken = [manejadorServicioWebSeriesly getAuthToken];
     UserToken * userToken = [manejadorServicioWebSeriesly getUserTokenWithAuthToken:authToken UserName:self.userTextField.text Password:self.passwordTextField.text Remember:@"1"];
-    NSLog(@"%@",authToken.authToken);//1363255507
-    //1394705378
-    //NSLog(@"%@",authToken.description);
-    //NSLog(@"%@",userToken.description);
     if (userToken.userToken) {
-        UserCredentials * userCredentials = [[UserCredentials alloc] initWithAuthToken:authToken UserToken:userToken];
+        //UserCredentials * userCredentials = [[UserCredentials alloc] initWithAuthToken:authToken UserToken:userToken];
+        UserCredentials * userCredentials = [UserCredentials getInstance];
+        userCredentials.authToken = authToken;
+        userCredentials.userToken = userToken;
+        //[PerfilViewController setUserCredentials:userCredentials];
         [[ManejadorBaseDeDatosBackup getInstance] guardarUserCredentials:userCredentials];
-        [PerfilViewController setUserCredentials: userCredentials];
+        //[PerfilViewController setUserCredentials: userCredentials];
         AppDelegate * appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
         [appDelegate loadContentControllers];
     } else {
         NSLog(@"Login incorrecto");
     }
-    //Usuario * usuario = [manejadorServicioWeb getUsuarioByUserName:self.userTextField.text];
-    
-    /*if (usuario) {
-     if ([self.passwordTextField.text isEqualToString:usuario.password]) {//login succesful
-     //[self dismissViewControllerAnimated:YES completion:nil];
-     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
-     [manejadorBaseDeDatosBackup guardarInformacionUsuario:usuario];
-     
-     [RootMenuPagesPerfilViewController setUser:usuario];
-     
-     RootAppDelegate *rootAppDelegate = (RootAppDelegate *) [UIApplication sharedApplication].delegate;
-     [rootAppDelegate loadTabBarController];
-     } else {//login incorrect (password mal)
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LogInAlertTitle", nil) message:NSLocalizedString(@"LogInAlertMessagePassword", nil)  delegate:nil cancelButtonTitle:@"Ok"  otherButtonTitles:nil];
-     [alert show];
-     }
-     } else { // si usuario incorrecto
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LogInAlertTitle", nil) message:NSLocalizedString(@"LogInAlertMessageUser", nil)  delegate:nil cancelButtonTitle:@"Ok"  otherButtonTitles:nil];
-     [alert show];
-     }*/
     [threadstopFeedback start];
 }
 

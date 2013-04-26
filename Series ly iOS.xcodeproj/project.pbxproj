@@ -28,6 +28,8 @@
 		451C93DF16DE17BF001C4E89 /* CustomCellPeliculas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93DE16DE17BF001C4E89 /* CustomCellPeliculas.m */; };
 		451C93E216DE17CB001C4E89 /* CustomCellProgramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E116DE17CB001C4E89 /* CustomCellProgramas.m */; };
 		451C93E516DE17D9001C4E89 /* CustomCellDocumentales.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */; };
+		45213F70172B1D4C0047900C /* drawer.png in Resources */ = {isa = PBXBuildFile; fileRef = 45213F6E172B1D4C0047900C /* drawer.png */; };
+		45213F71172B1D4C0047900C /* logo256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 45213F6F172B1D4C0047900C /* logo256x256.png */; };
 		4521406617004A7F0045A4A5 /* LinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4521406517004A7F0045A4A5 /* LinksViewController.m */; };
 		45226CFF1728872800A88843 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45226CFE1728872800A88843 /* DrawerViewController.m */; };
 		45267E1816E0144A00337D53 /* AjustesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45267E1716E0144A00337D53 /* AjustesViewController.m */; };
@@ -170,6 +172,8 @@
 		451C93E316DE17D9001C4E89 /* CustomCellDocumentales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellDocumentales.h; sourceTree = "<group>"; };
 		451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellDocumentales.m; sourceTree = "<group>"; };
 		451C93E616DE1866001C4E89 /* CustomCellsMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsMaster.h; sourceTree = "<group>"; };
+		45213F6E172B1D4C0047900C /* drawer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawer.png; sourceTree = "<group>"; };
+		45213F6F172B1D4C0047900C /* logo256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo256x256.png; sourceTree = "<group>"; };
 		4521406417004A7F0045A4A5 /* LinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksViewController.h; sourceTree = "<group>"; };
 		4521406517004A7F0045A4A5 /* LinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksViewController.m; sourceTree = "<group>"; };
 		45226CFD1728872800A88843 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 		4544C1A116DED285006828EF /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				45213F6E172B1D4C0047900C /* drawer.png */,
+				45213F6F172B1D4C0047900C /* logo256x256.png */,
 				454A837C1700C456007600C1 /* ajustes.png */,
 				451ABD2216EA2AF200681EA6 /* perfil.png */,
 				451ABD1A16EA23A700681EA6 /* documentales.png */,
@@ -830,6 +836,8 @@
 				451ABD2116EA23A700681EA6 /* tvshows.png in Resources */,
 				451ABD2316EA2AF200681EA6 /* perfil.png in Resources */,
 				454A837D1700C456007600C1 /* ajustes.png in Resources */,
+				45213F70172B1D4C0047900C /* drawer.png in Resources */,
+				45213F71172B1D4C0047900C /* logo256x256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

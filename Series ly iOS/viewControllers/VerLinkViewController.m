@@ -69,8 +69,9 @@
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self
                                                                             action:@selector(cancelarButtonPressed:)];
-    
-    UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+
+    //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];
     NSURL * url = [NSURL URLWithString:urlString];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];

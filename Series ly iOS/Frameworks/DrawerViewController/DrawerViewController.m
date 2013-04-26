@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         panApplied = 0;
-        self.buttons = [NSMutableArray array];
+        //self.buttons = [NSMutableArray array];
     }
     return self;
 }
@@ -40,7 +40,7 @@
 	// Do any additional setup after loading the view.
     UIViewController * drawerViewController;
     UIViewController * mainViewController;
-   
+    
     
     CGSize screenSize = [self currentSize];
     CGFloat screenHeight = screenSize.height;
@@ -60,39 +60,87 @@
     mainViewController = [self.viewControllers objectAtIndex:1];
     mainViewController.view.frame = self.mainView.frame;
     
-    if ([mainViewController class] == [UITabBarController class]) {//TabBarController
-        UITabBarController * tabBarController = (UITabBarController *) mainViewController;
-        for (UIViewController * viewController in tabBarController.viewControllers) {
-            if ([viewController class] == [UINavigationController class]) {
-                UINavigationController * navigationController = (UINavigationController *) viewController;
-                UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
-                UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithTitle:@"D"
-                                                                            style:UIBarButtonItemStyleBordered
-                                                                           target:self
-                                                                           action:@selector(showDrawer)];
-                rootViewController.navigationItem.leftBarButtonItem = button;
-                [self.buttons addObject:button];
-                
-            }
-        }
-    } else if ([mainViewController class] == [UINavigationController class]) {//NavigationController
-        UINavigationController * navigationController = (UINavigationController *) mainViewController;
-        UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
-        UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithTitle:@"D"
-                                                                    style:UIBarButtonItemStyleBordered
-                                                                   target:self
-                                                                   action:@selector(showDrawer)];
-        rootViewController.navigationItem.leftBarButtonItem = button;
-        [self.buttons addObject:button];
-    }
+    [self ponerBotonesOpenDrawer];
     
     [self.drawerView addSubview:drawerViewController.view];
     [self.mainView addSubview:mainViewController.view];
     
     [self configureGestures];
-        
+    
     [self.view addSubview:self.drawerView];
     [self.view addSubview:self.mainView];
+}
+
+-(void) ponerBotonesOpenDrawer {
+    self.buttons = [NSMutableArray array];
+    UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
+    if ([mainViewController class] == [UITabBarController class]) {//TabBarController
+        UITabBarController * tabBarController = (UITabBarController *) mainViewController;
+        for (UIViewController * viewController in tabBarController.viewControllers) {
+            if ([viewController class] == [UINavigationController class]) {
+                UINavigationController * navigationController = (UINavigationController *) viewController;
+                if (navigationController.viewControllers.count == 1) {
+                    UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+                    UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+                    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+                    [aButtonFavorite addTarget:self action:@selector(showDrawer) forControlEvents:UIControlEventTouchUpInside];
+                    rootViewController.navigationItem.leftBarButtonItem = button;
+                    [self.buttons addObject:button];
+                }
+            }
+        }
+    } else if ([mainViewController class] == [UINavigationController class]) {//NavigationController
+        UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        if (navigationController.viewControllers.count == 1) {
+            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+            [aButtonFavorite addTarget:self action:@selector(showDrawer) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+            rootViewController.navigationItem.leftBarButtonItem = button;
+            [self.buttons addObject:button];
+        }
+    }
+}
+
+-(void) ponerBotonesCerrarDrawer {
+    self.buttons = [NSMutableArray array];
+    UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
+    if ([mainViewController class] == [UITabBarController class]) {//TabBarController
+        UITabBarController * tabBarController = (UITabBarController *) mainViewController;
+        for (UIViewController * viewController in tabBarController.viewControllers) {
+            if ([viewController class] == [UINavigationController class]) {
+                UINavigationController * navigationController = (UINavigationController *) viewController;
+                if (navigationController.viewControllers.count == 1) {
+                    UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+                    UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+                    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+                    [aButtonFavorite addTarget:self action:@selector(hideDrawer) forControlEvents:UIControlEventTouchUpInside];
+                    rootViewController.navigationItem.leftBarButtonItem = button;
+                    [self.buttons addObject:button];
+                }
+            }
+        }
+    } else if ([mainViewController class] == [UINavigationController class]) {//NavigationController
+        UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        if (navigationController.viewControllers.count == 1) {
+            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+            
+            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+            [aButtonFavorite addTarget:self action:@selector(hideDrawer) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+            rootViewController.navigationItem.leftBarButtonItem = button;
+            [self.buttons addObject:button];
+        }
+        
+    }
+}
+
+-(UIButton *) crearBarButtonBoton: (NSString *) image {
+    UIImage *buttonImageFavorite = [UIImage imageNamed:image];
+    UIButton *aButtonFavorite = [UIButton buttonWithType:UIButtonTypeCustom];
+    aButtonFavorite.bounds = CGRectMake(0.0, 0.0, 32, 32);
+    [aButtonFavorite setImage:buttonImageFavorite forState:UIControlStateNormal];
+    return aButtonFavorite;
 }
 
 -(void) configureGestures {
@@ -156,8 +204,10 @@
 }
 
 -(void) showDrawer{
-    for (UIBarButtonItem * button in self.buttons) {
-        [button setAction:@selector(hideDrawer)];
+    NSArray * botones = [NSArray arrayWithArray:self.buttons];
+    for (UIBarButtonItem * button in botones) {
+        //[button setAction:@selector(hideDrawer)];
+        [self ponerBotonesCerrarDrawer];
     }
     [self.mainView addGestureRecognizer:self.oneFingerOneTap];
     CGRect frame = self.mainView.frame;
@@ -172,8 +222,10 @@
 
 
 -(void) hideDrawer{
-    for (UIBarButtonItem * button in self.buttons) {
-        [button setAction:@selector(showDrawer)];
+    NSArray * botones = [NSArray arrayWithArray:self.buttons];
+    for (UIBarButtonItem * button in botones) {
+        //[button setAction:@selector(showDrawer)];
+        [self ponerBotonesOpenDrawer];
     }
     [self.mainView removeGestureRecognizer:self.oneFingerOneTap];
     CGRect frame = self.mainView.frame;
@@ -181,7 +233,7 @@
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.mainView.frame = frame;
     } completion:^(BOOL finished){
-
+        
     }];
 }
 
@@ -193,7 +245,7 @@
     // Do any additional setup after loading the view.
     UIViewController * drawerViewController = [self.viewControllers objectAtIndex:0];
     UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
-
+    
 	//[super willAnimateRotationToInterfaceOrientation:orientation duration:duration];
     if ([mainViewController class] == [UITabBarController class]) {//TabBarController
         UITabBarController * tabBarController = (UITabBarController *) mainViewController;

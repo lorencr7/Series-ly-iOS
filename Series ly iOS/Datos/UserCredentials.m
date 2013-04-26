@@ -8,7 +8,22 @@
 
 #import "UserCredentials.h"
 
+UserCredentials * instance;
+
 @implementation UserCredentials
+
++(UserCredentials *) getInstance {
+    if (instance == nil) {
+        instance = [[UserCredentials alloc] init];
+    }
+    
+    return instance;
+}
+
++(void) resetInstance {
+    instance = nil;
+}
+
 
 - (id)initWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
     self = [super init];

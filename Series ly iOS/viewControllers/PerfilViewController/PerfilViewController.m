@@ -31,30 +31,14 @@
 #import "UserInfo.h"
 
 
-static User * usuario;
+/*static User * usuario;
 static UserCredentials * userCredentials;
-
+*/
 @interface PerfilViewController ()
 
 @end
 
 @implementation PerfilViewController
-
-+(User *) getUsuario {
-    return usuario;
-}
-
-+(void) setUsuario: (User *) user {
-    usuario = user;
-}
-
-+(UserCredentials *) getUserCredentials {
-    return userCredentials;
-}
-
-+(void) setUserCredentials: (UserCredentials *) credentials {
-    userCredentials = credentials;
-}
 
 //Codigo principal de logout. Esta funcion hace un logout de verdad
 +(void) logout {
@@ -68,10 +52,13 @@ static UserCredentials * userCredentials;
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
     //Hacemos logout en la API
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     [manejadorServicioWeb logoutWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     //Borramos la informacion guardada
-    userCredentials = nil;
-    usuario = nil;
+    [UserCredentials resetInstance];
+    [User resetInstance];
+    //userCredentials = nil;
+    //usuario = nil;
     //[manejadorBaseDeDatosBackup borrarInformacionUsuario];
     [manejadorBaseDeDatosBackup borrarUserCredentials];
     //Cargamos la ventana de log in
@@ -95,9 +82,8 @@ static UserCredentials * userCredentials;
 }
 
 -(void) downloadUserInfo {
-    if (!usuario) {
-        usuario = [[User alloc] init];
-    }
+    User * usuario = [User getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //Descargamos la informacion del usuario
     UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
@@ -114,6 +100,7 @@ static UserCredentials * userCredentials;
 }
 
 - (void) configureUserInfo {
+    User * usuario = [User getInstance];
     if (usuario.userInfo.userData.imgUser.big) {//Si hay url para la imagen de perfil, la descargamos
         NSMutableDictionary * arguments = [[NSMutableDictionary alloc] init];
         [arguments setObject:self.imagenPerfil forKey:@"imageView"];
@@ -146,21 +133,22 @@ static UserCredentials * userCredentials;
 
 -(void) downloadUserPendingInfo {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    
+    User * usuario = [User getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     NSString * nombreUser = usuario.userInfo.userData.nick;
-    BOOL nuevaInfo = NO;
-    if (usuario.seriesPendientes) {
-        [self fillTableViewFromSource:usuario.seriesPendientes];
-        SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
-        CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
-        [customCellPerfilSeleccionSeriesPendiente customSelect];
-        
-        [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
-    }
+    
     //Descargamos los capitulos de las series pendientes del usuario
     //NSLog(@"iniciando descarga info pendiente");
     NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     if (!userPendingInfo) {
+        if (usuario.seriesPendientes) {
+            [self fillTableViewFromSource:usuario.seriesPendientes];
+            SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
+            CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
+            [customCellPerfilSeleccionSeriesPendiente customSelect];
+            
+            [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        }
         NSLog(@"error descargando la info de pendientes del usuario: %@",nombreUser);
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
@@ -170,11 +158,7 @@ static UserCredentials * userCredentials;
         usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];
         usuario.documentalesPendientes = [userPendingInfo objectForKey:@"documentaries"];
         usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
-        nuevaInfo = YES;
         //Rellenamos el tableView de la derecha con los capitulos de series pendientes
-        
-    }
-    if (nuevaInfo) {
         [self fillTableViewFromSource:usuario.seriesPendientes];
         //Le decimos al tableView de la izquierda que su primera celda es la que ha sido pulsada (series pendientes)
         SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
@@ -182,9 +166,8 @@ static UserCredentials * userCredentials;
         [customCellPerfilSeleccionSeriesPendiente customSelect];
         
         [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    } else {
-        
     }
+
     
 }
 
