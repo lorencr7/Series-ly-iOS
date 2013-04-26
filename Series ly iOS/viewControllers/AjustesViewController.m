@@ -31,6 +31,24 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+#define UNSELECTEDCOLORAPARIENCIAAJUSTES [UIColor whiteColor]
+#define SELECTEDCOLORAPARIENCIAAJUSTES [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]
+#define TEXTUNSELECTEDCOLORAPARIENCIAAJUSTES [UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(100/255.0) alpha:1]
+#define TEXTSELECTEDCOLORAPARIENCIAAJUSTES [UIColor whiteColor]
+#define UNSELECTEDFONTAPARIENCIAAJUSTES [UIFont systemFontOfSize:20.0]
+#define SELECTEDFONTAPARIENCIAAJUSTES [UIFont systemFontOfSize:20.0]
+#define BORDERCOLORAJUSTES [UIColor whiteColor]
+#define BORDERWIDTHAJUSTES 0.8
+#define CORNERRADIUSAJUSTES 0
+#define TEXTALIGNMENTAJUSTES NSTextAlignmentLeft
+#define ACCESORYTYPEAJUSTES UITableViewCellAccessoryDisclosureIndicator
+#define LINEBREAKMODEAJUSTES NSLineBreakByWordWrapping
+#define NUMBEROFLINESAJUSTES 0
+#define ACCESORYVIEWAJUSTES nil
+#define HEIGHTCELLAJUSTES 90
+
+#define APARIENCIAAJUSTES [[CustomCellAppearance alloc] initWithAppearanceWithUnselectedColor:UNSELECTEDCOLORAPARIENCIAAJUSTES selectedColor:SELECTEDCOLORAPARIENCIAAJUSTES unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIAAJUSTES selectedTextColor:TEXTSELECTEDCOLORAPARIENCIAAJUSTES unselectedTextFont:UNSELECTEDFONTAPARIENCIAAJUSTES selectedTextFont:SELECTEDFONTAPARIENCIAAJUSTES borderColor:BORDERCOLORAJUSTES borderWidth:BORDERWIDTHAJUSTES cornerRadius:CORNERRADIUSAJUSTES textAlignment:TEXTALIGNMENTAJUSTES accesoryType:ACCESORYTYPEAJUSTES lineBreakMode:LINEBREAKMODEAJUSTES numberOfLines:NUMBEROFLINESAJUSTES accesoryView:ACCESORYVIEWAJUSTES heightCell:HEIGHTCELLAJUSTES]
+
 -(void) configureAjustesWindow {
     
     NSMutableArray *sections = [NSMutableArray array];
@@ -46,13 +64,13 @@
     labelHeader.textColor = [UIColor blackColor];
     
     CustomCellAjustesAutores *customCellAjustesAutores = [[CustomCellAjustesAutores alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAPERFILSELECCION cellText:NSLocalizedString(@"TextCellAutores", @"The string in the first cell") selectionType:YES customCell:customCellAjustesAutores];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAJUSTES cellText:NSLocalizedString(@"TextCellAutores", @"The string in the first cell") selectionType:YES customCell:customCellAjustesAutores];
     //customCellAjustesAutores.cell.accessoryType = UITableViewCellAccessoryNone;
     //customCellAjustesAutores.cell.textLabel.textAlignment = NSTextAlignmentCenter;
     [cells addObject:customCellAjustesAutores];
     
     CustomCell *customCellAjustesVersion = [[CustomCell alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAPERFILSELECCION cellText:NSLocalizedString(@"TextCellVersion", @"The string in the first cell") selectionType:NO customCell:customCellAjustesVersion];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAJUSTES cellText:NSLocalizedString(@"TextCellVersion", @"The string in the first cell") selectionType:NO customCell:customCellAjustesVersion];
     customCellAjustesVersion.cell.accessoryType = UITableViewCellAccessoryNone;
     customCellAjustesVersion.cell.textLabel.textAlignment = NSTextAlignmentRight;
     [cells addObject:customCellAjustesVersion];
@@ -68,13 +86,13 @@
     labelHeader.textColor = [UIColor blackColor];
     
     CustomCell *customCellAjustesRate = [[CustomCell alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAPERFILSELECCION cellText:NSLocalizedString(@"TextCellRate", @"The string in the first cell") selectionType:YES customCell:customCellAjustesRate];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAJUSTES cellText:NSLocalizedString(@"TextCellRate", @"The string in the first cell") selectionType:YES customCell:customCellAjustesRate];
     customCellAjustesRate.cell.accessoryType = UITableViewCellAccessoryNone;
     customCellAjustesRate.cell.textLabel.textAlignment = NSTextAlignmentCenter;
     [cells addObject:customCellAjustesRate];
     
     CustomCell *customCellAjustesFeedback = [[CustomCell alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAPERFILSELECCION cellText:NSLocalizedString(@"TextCellFeedback", @"The string in the first cell") selectionType:YES customCell:customCellAjustesFeedback];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAJUSTES cellText:NSLocalizedString(@"TextCellFeedback", @"The string in the first cell") selectionType:YES customCell:customCellAjustesFeedback];
     customCellAjustesFeedback.cell.accessoryType = UITableViewCellAccessoryNone;
     customCellAjustesFeedback.cell.textLabel.textAlignment = NSTextAlignmentCenter;
     [cells addObject:customCellAjustesFeedback];

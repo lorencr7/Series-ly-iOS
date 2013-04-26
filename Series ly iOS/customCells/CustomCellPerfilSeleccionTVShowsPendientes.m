@@ -7,16 +7,20 @@
 //
 
 #import "CustomCellPerfilSeleccionTVShowsPendientes.h"
-#import "PerfilViewController.h"    
+#import "PerfilViewControllerIpad.h"    
 #import "User.h"
 
 @implementation CustomCellPerfilSeleccionTVShowsPendientes
 
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [PerfilViewControllerIpad class]) {
-        User * usuario = [PerfilViewController getUsuario];
-        PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-        [perfilViewControllerIpad fillTableViewFromSource:usuario.tvShowsPendientes];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            
+        } else {
+            User * usuario = [PerfilViewController getUsuario];
+            PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
+            [perfilViewControllerIpad fillTableViewFromSource:usuario.tvShowsPendientes];
+        }
     }
 }
 

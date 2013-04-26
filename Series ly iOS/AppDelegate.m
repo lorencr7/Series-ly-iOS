@@ -132,7 +132,7 @@
     self.window.rootViewController = self.splitViewController;
 }
 
--(void) loadTabBarController {
+/*-(void) loadTabBarController {
     MultimediaViewController *multimediaViewController = [[MultimediaViewController alloc] init];
     PerfilViewControllerIphone * perfilViewController = [[PerfilViewControllerIphone alloc] init];
     AjustesViewControllerIphone *ajustesViewController = [[AjustesViewControllerIphone alloc] init];
@@ -185,9 +185,9 @@
     [[UITabBar appearance] setBackgroundImage:tabBarBackground];
     
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"selection-tab.png"]];
-}
+}*/
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     /*if ([viewController.title isEqualToString:NSLocalizedString(@"NewsPageTitle", @"The string in the navigation bar")]) {
         [[ManejadorBaseDeDatosLogs getInstance] insertarBotonWithCodigo:@"4"];
     } else if([viewController.title isEqualToString:NSLocalizedString(@"SettingsPageTitle", @"The string in the navigation bar")]) {
@@ -195,7 +195,7 @@
     } else if([viewController.title isEqualToString:NSLocalizedString(@"ProfilePageTitle", @"The string in the navigation bar")]) {
         [[ManejadorBaseDeDatosLogs getInstance] insertarBotonWithCodigo:@"14"];
     }*/
-}
+//}
 
 
 @end

@@ -7,16 +7,21 @@
 //
 
 #import "CustomCellPerfilSeleccionSeriesPendientes.h"
-#import "PerfilViewController.h"
+#import "PerfilViewControllerIpad.h"
 #import "User.h"
 
 @implementation CustomCellPerfilSeleccionSeriesPendientes
 
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [PerfilViewControllerIpad class]) {
-        User * usuario = [PerfilViewController getUsuario];
-        PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-        [perfilViewControllerIpad fillTableViewFromSource:usuario.seriesPendientes];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            
+        } else {
+            User * usuario = [PerfilViewController getUsuario];
+            PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
+            [perfilViewControllerIpad fillTableViewFromSource:usuario.seriesPendientes];
+        }
+        
     }
     
 }

@@ -8,6 +8,8 @@
 
 #import "CustomCellPerfil.h"
 #import "PerfilViewController.h"
+#import "PerfilViewControllerIpad.h"
+#import "PerfilViewControllerIphone.h"
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 

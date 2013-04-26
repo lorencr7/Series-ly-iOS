@@ -27,4 +27,7 @@
 -(void) showDrawer;
 -(void) hideDrawer;
 
+-(UIViewController *) getDrawerViewController;
+-(UIViewController *) getMainViewController;
+
 @end

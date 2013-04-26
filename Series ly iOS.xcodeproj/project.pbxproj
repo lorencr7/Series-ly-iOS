@@ -28,8 +28,8 @@
 		451C93DF16DE17BF001C4E89 /* CustomCellPeliculas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93DE16DE17BF001C4E89 /* CustomCellPeliculas.m */; };
 		451C93E216DE17CB001C4E89 /* CustomCellProgramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E116DE17CB001C4E89 /* CustomCellProgramas.m */; };
 		451C93E516DE17D9001C4E89 /* CustomCellDocumentales.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */; };
-		451C93EF16DE1B45001C4E89 /* PerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93EE16DE1B45001C4E89 /* PerfilViewController.m */; };
 		4521406617004A7F0045A4A5 /* LinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4521406517004A7F0045A4A5 /* LinksViewController.m */; };
+		45226CFF1728872800A88843 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45226CFE1728872800A88843 /* DrawerViewController.m */; };
 		45267E1816E0144A00337D53 /* AjustesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45267E1716E0144A00337D53 /* AjustesViewController.m */; };
 		45267E1B16E0145A00337D53 /* MultimediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45267E1A16E0145A00337D53 /* MultimediaViewController.m */; };
 		452AC8781700571A0085D0A1 /* Link.m in Sources */ = {isa = PBXBuildFile; fileRef = 452AC8771700571A0085D0A1 /* Link.m */; };
@@ -40,6 +40,9 @@
 		452C195616F08F63008A2C63 /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 452C195516F08F63008A2C63 /* Season.m */; };
 		452C195916F08FBA008A2C63 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 452C195816F08FBA008A2C63 /* Episode.m */; };
 		452C195C16F09052008A2C63 /* EpisodeMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 452C195B16F09052008A2C63 /* EpisodeMedia.m */; };
+		452D3051172AF5800035080F /* PerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D3050172AF5800035080F /* PerfilViewController.m */; };
+		452D3054172AF59F0035080F /* PerfilViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D3053172AF59F0035080F /* PerfilViewControllerIpad.m */; };
+		452D3057172AF5B30035080F /* PerfilViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D3056172AF5B30035080F /* PerfilViewControllerIphone.m */; };
 		453829F216E00EB500B2F04A /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453829F116E00EB500B2F04A /* CustomSplitViewController.m */; };
 		453D9B5E16E006FD00338C44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B5416E006FD00338C44 /* InfoPlist.strings */; };
 		453D9B5F16E006FD00338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B5616E006FD00338C44 /* Localizable.strings */; };
@@ -85,7 +88,6 @@
 		4577AB4516DD8CC800B089B2 /* UserImgUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB3816DD8CC800B089B2 /* UserImgUser.m */; };
 		4577AB4616DD8CC800B089B2 /* UserToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB3A16DD8CC800B089B2 /* UserToken.m */; };
 		4577AB4716DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB3D16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m */; };
-		4577AB4816DD8CC800B089B2 /* TraductorClases.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB3F16DD8CC800B089B2 /* TraductorClases.m */; };
 		4577AB6816DD8DB600B089B2 /* HorizontalPagedScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB4C16DD8DB600B089B2 /* HorizontalPagedScrollViewController.m */; };
 		4577AB6916DD8DB600B089B2 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB4E16DD8DB600B089B2 /* Page.m */; };
 		4577AB6A16DD8DB600B089B2 /* LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5116DD8DB600B089B2 /* LinkedList.m */; };
@@ -99,6 +101,7 @@
 		4577AB7216DD8DB600B089B2 /* FabricaCeldas.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB6216DD8DB600B089B2 /* FabricaCeldas.m */; };
 		4577AB7316DD8DB600B089B2 /* FabricaHeaderFooterSecciones.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB6416DD8DB600B089B2 /* FabricaHeaderFooterSecciones.m */; };
 		4577AB7416DD8DB600B089B2 /* SectionElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB6616DD8DB600B089B2 /* SectionElement.m */; };
+		459FE00D17271F8700AEA455 /* Serializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 459FE00C17271F8700AEA455 /* Serializable.m */; };
 		45A7187317006E3A007E3A80 /* VerLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A7187217006E3A007E3A80 /* VerLinkViewController.m */; };
 		45AC4EAE16DE5E7D00BA0379 /* ScreenSizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC4EAD16DE5E7D00BA0379 /* ScreenSizeManager.m */; };
 		45C581B116EF51ED00D8EC3C /* PeliculasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C581B016EF51ED00D8EC3C /* PeliculasViewController.m */; };
@@ -167,10 +170,10 @@
 		451C93E316DE17D9001C4E89 /* CustomCellDocumentales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellDocumentales.h; sourceTree = "<group>"; };
 		451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellDocumentales.m; sourceTree = "<group>"; };
 		451C93E616DE1866001C4E89 /* CustomCellsMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsMaster.h; sourceTree = "<group>"; };
-		451C93ED16DE1B45001C4E89 /* PerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewController.h; sourceTree = "<group>"; };
-		451C93EE16DE1B45001C4E89 /* PerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewController.m; sourceTree = "<group>"; };
 		4521406417004A7F0045A4A5 /* LinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksViewController.h; sourceTree = "<group>"; };
 		4521406517004A7F0045A4A5 /* LinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksViewController.m; sourceTree = "<group>"; };
+		45226CFD1728872800A88843 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
+		45226CFE1728872800A88843 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		45267E1616E0144A00337D53 /* AjustesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewController.h; sourceTree = "<group>"; };
 		45267E1716E0144A00337D53 /* AjustesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewController.m; sourceTree = "<group>"; };
 		45267E1916E0145A00337D53 /* MultimediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewController.h; sourceTree = "<group>"; };
@@ -191,6 +194,12 @@
 		452C195816F08FBA008A2C63 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		452C195A16F09051008A2C63 /* EpisodeMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpisodeMedia.h; sourceTree = "<group>"; };
 		452C195B16F09052008A2C63 /* EpisodeMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpisodeMedia.m; sourceTree = "<group>"; };
+		452D304F172AF5800035080F /* PerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewController.h; sourceTree = "<group>"; };
+		452D3050172AF5800035080F /* PerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewController.m; sourceTree = "<group>"; };
+		452D3052172AF59F0035080F /* PerfilViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewControllerIpad.h; sourceTree = "<group>"; };
+		452D3053172AF59F0035080F /* PerfilViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewControllerIpad.m; sourceTree = "<group>"; };
+		452D3055172AF5B30035080F /* PerfilViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewControllerIphone.h; sourceTree = "<group>"; };
+		452D3056172AF5B30035080F /* PerfilViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewControllerIphone.m; sourceTree = "<group>"; };
 		453829F016E00EB500B2F04A /* CustomSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSplitViewController.h; sourceTree = "<group>"; };
 		453829F116E00EB500B2F04A /* CustomSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSplitViewController.m; sourceTree = "<group>"; };
 		453D9B5516E006FD00338C44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -260,8 +269,6 @@
 		4577AB3A16DD8CC800B089B2 /* UserToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserToken.m; sourceTree = "<group>"; };
 		4577AB3C16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManejadorServicioWebSeriesly.h; sourceTree = "<group>"; };
 		4577AB3D16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManejadorServicioWebSeriesly.m; sourceTree = "<group>"; };
-		4577AB3E16DD8CC800B089B2 /* TraductorClases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraductorClases.h; sourceTree = "<group>"; };
-		4577AB3F16DD8CC800B089B2 /* TraductorClases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraductorClases.m; sourceTree = "<group>"; };
 		4577AB4B16DD8DB600B089B2 /* HorizontalPagedScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalPagedScrollViewController.h; sourceTree = "<group>"; };
 		4577AB4C16DD8DB600B089B2 /* HorizontalPagedScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalPagedScrollViewController.m; sourceTree = "<group>"; };
 		4577AB4D16DD8DB600B089B2 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
@@ -289,6 +296,8 @@
 		4577AB6516DD8DB600B089B2 /* SectionElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionElement.h; sourceTree = "<group>"; };
 		4577AB6616DD8DB600B089B2 /* SectionElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionElement.m; sourceTree = "<group>"; };
 		4577AB6716DD8DB600B089B2 /* TVFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVFramework.h; sourceTree = "<group>"; };
+		459FE00B17271F8700AEA455 /* Serializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serializable.h; sourceTree = "<group>"; };
+		459FE00C17271F8700AEA455 /* Serializable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serializable.m; sourceTree = "<group>"; };
 		45A7187117006E3A007E3A80 /* VerLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerLinkViewController.h; sourceTree = "<group>"; };
 		45A7187217006E3A007E3A80 /* VerLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerLinkViewController.m; sourceTree = "<group>"; };
 		45AC4EAC16DE5E7D00BA0379 /* ScreenSizeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenSizeManager.h; sourceTree = "<group>"; };
@@ -385,8 +394,7 @@
 		451C93E916DE1AF3001C4E89 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				451C93ED16DE1B45001C4E89 /* PerfilViewController.h */,
-				451C93EE16DE1B45001C4E89 /* PerfilViewController.m */,
+				452D304E172AF5800035080F /* PerfilViewController */,
 				45267E1616E0144A00337D53 /* AjustesViewController.h */,
 				45267E1716E0144A00337D53 /* AjustesViewController.m */,
 				45267E1916E0145A00337D53 /* MultimediaViewController.h */,
@@ -405,6 +413,28 @@
 				45A7187217006E3A007E3A80 /* VerLinkViewController.m */,
 			);
 			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		45226CFC1728872800A88843 /* DrawerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				45226CFD1728872800A88843 /* DrawerViewController.h */,
+				45226CFE1728872800A88843 /* DrawerViewController.m */,
+			);
+			path = DrawerViewController;
+			sourceTree = "<group>";
+		};
+		452D304E172AF5800035080F /* PerfilViewController */ = {
+			isa = PBXGroup;
+			children = (
+				452D304F172AF5800035080F /* PerfilViewController.h */,
+				452D3050172AF5800035080F /* PerfilViewController.m */,
+				452D3052172AF59F0035080F /* PerfilViewControllerIpad.h */,
+				452D3053172AF59F0035080F /* PerfilViewControllerIpad.m */,
+				452D3055172AF5B30035080F /* PerfilViewControllerIphone.h */,
+				452D3056172AF5B30035080F /* PerfilViewControllerIphone.m */,
+			);
+			path = PerfilViewController;
 			sourceTree = "<group>";
 		};
 		453829EF16E00EB500B2F04A /* CustomSplitViewController */ = {
@@ -552,6 +582,8 @@
 		4577AB2C16DD8CC800B089B2 /* Datos */ = {
 			isa = PBXGroup;
 			children = (
+				459FE00B17271F8700AEA455 /* Serializable.h */,
+				459FE00C17271F8700AEA455 /* Serializable.m */,
 				4577AB2D16DD8CC800B089B2 /* AuthToken.h */,
 				4577AB2E16DD8CC800B089B2 /* AuthToken.m */,
 				452C195116F08DAE008A2C63 /* Cast.h */,
@@ -607,8 +639,6 @@
 			children = (
 				4577AB3C16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.h */,
 				4577AB3D16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m */,
-				4577AB3E16DD8CC800B089B2 /* TraductorClases.h */,
-				4577AB3F16DD8CC800B089B2 /* TraductorClases.m */,
 			);
 			path = ManejadorServicioWeb;
 			sourceTree = "<group>";
@@ -616,6 +646,7 @@
 		4577AB4916DD8DB600B089B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45226CFC1728872800A88843 /* DrawerViewController */,
 				453829EF16E00EB500B2F04A /* CustomSplitViewController */,
 				4577AB4A16DD8DB600B089B2 /* HorizontalScrollFrameworkClasses */,
 				4577AB4F16DD8DB600B089B2 /* LinkedList */,
@@ -845,7 +876,6 @@
 				4577AB4516DD8CC800B089B2 /* UserImgUser.m in Sources */,
 				4577AB4616DD8CC800B089B2 /* UserToken.m in Sources */,
 				4577AB4716DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m in Sources */,
-				4577AB4816DD8CC800B089B2 /* TraductorClases.m in Sources */,
 				4577AB6816DD8DB600B089B2 /* HorizontalPagedScrollViewController.m in Sources */,
 				4577AB6916DD8DB600B089B2 /* Page.m in Sources */,
 				4577AB6A16DD8DB600B089B2 /* LinkedList.m in Sources */,
@@ -865,7 +895,6 @@
 				451C93DF16DE17BF001C4E89 /* CustomCellPeliculas.m in Sources */,
 				451C93E216DE17CB001C4E89 /* CustomCellProgramas.m in Sources */,
 				451C93E516DE17D9001C4E89 /* CustomCellDocumentales.m in Sources */,
-				451C93EF16DE1B45001C4E89 /* PerfilViewController.m in Sources */,
 				45AC4EAE16DE5E7D00BA0379 /* ScreenSizeManager.m in Sources */,
 				45F79BF416DEA65A00AD108D /* ManejadorBaseDeDatosBackup.m in Sources */,
 				45F79BFA16DEA81F00AD108D /* UserCredentials.m in Sources */,
@@ -904,6 +933,11 @@
 				452AC8781700571A0085D0A1 /* Link.m in Sources */,
 				4554D0FF1700600B00AAA1CA /* CustomCellLinksLink.m in Sources */,
 				45A7187317006E3A007E3A80 /* VerLinkViewController.m in Sources */,
+				459FE00D17271F8700AEA455 /* Serializable.m in Sources */,
+				45226CFF1728872800A88843 /* DrawerViewController.m in Sources */,
+				452D3051172AF5800035080F /* PerfilViewController.m in Sources */,
+				452D3054172AF59F0035080F /* PerfilViewControllerIpad.m in Sources */,
+				452D3057172AF5B30035080F /* PerfilViewControllerIphone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

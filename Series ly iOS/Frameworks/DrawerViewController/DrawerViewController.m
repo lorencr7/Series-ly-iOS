@@ -27,6 +27,14 @@
     return self;
 }
 
+-(UIViewController *) getDrawerViewController {
+    return [self.viewControllers objectAtIndex:0];
+}
+
+-(UIViewController *) getMainViewController {
+    return [self.viewControllers objectAtIndex:1];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
