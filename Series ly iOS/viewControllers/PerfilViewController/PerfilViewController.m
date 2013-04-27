@@ -31,9 +31,6 @@
 #import "UserInfo.h"
 
 
-/*static User * usuario;
-static UserCredentials * userCredentials;
-*/
 @interface PerfilViewController ()
 
 @end
@@ -57,9 +54,6 @@ static UserCredentials * userCredentials;
     //Borramos la informacion guardada
     [UserCredentials resetInstance];
     [User resetInstance];
-    //userCredentials = nil;
-    //usuario = nil;
-    //[manejadorBaseDeDatosBackup borrarInformacionUsuario];
     [manejadorBaseDeDatosBackup borrarUserCredentials];
     //Cargamos la ventana de log in
     AppDelegate * appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
@@ -131,46 +125,6 @@ static UserCredentials * userCredentials;
 	
 }
 
--(void) downloadUserPendingInfo {
-    ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    User * usuario = [User getInstance];
-    UserCredentials * userCredentials = [UserCredentials getInstance];
-    NSString * nombreUser = usuario.userInfo.userData.nick;
-    
-    //Descargamos los capitulos de las series pendientes del usuario
-    //NSLog(@"iniciando descarga info pendiente");
-    NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
-    if (!userPendingInfo) {
-        if (usuario.seriesPendientes) {
-            [self fillTableViewFromSource:usuario.seriesPendientes];
-            SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
-            CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
-            [customCellPerfilSeleccionSeriesPendiente customSelect];
-            
-            [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
-        }
-        NSLog(@"error descargando la info de pendientes del usuario: %@",nombreUser);
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    } else {
-        //NSLog(@"info pendiente descargada");
-        usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
-        usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];
-        usuario.documentalesPendientes = [userPendingInfo objectForKey:@"documentaries"];
-        usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
-        //Rellenamos el tableView de la derecha con los capitulos de series pendientes
-        [self fillTableViewFromSource:usuario.seriesPendientes];
-        //Le decimos al tableView de la izquierda que su primera celda es la que ha sido pulsada (series pendientes)
-        SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
-        CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
-        [customCellPerfilSeleccionSeriesPendiente customSelect];
-        
-        [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    }
-
-    
-}
-
 //Este metodo se descarga una imagen de internet y la asigna a su imageView correspondiente
 -(void) configureImageView: (NSMutableDictionary *) arguments {
     UIImageView * imageView = [arguments objectForKey:@"imageView"];
@@ -183,90 +137,6 @@ static UserCredentials * userCredentials;
     
 }
 
-//Este metodo crea una celda del tableView de la derecha a partir de un mediaElement
--(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
-    UIView * backgroundView = [[UIView alloc] init];
-    int altoCelda = 0;
-    int margen = 15;
-    int separacionDelPoster = 25;
-    UIImageView * poster = [[UIImageView alloc] initWithFrame:CGRectMake(margen, margen, 87.5, 130)];
-    poster.layer.cornerRadius = 6.0f;
-    poster.clipsToBounds = YES;
-    NSString * urlImagen = mediaElementUserPending.poster.large;
-    if (urlImagen) {
-        NSMutableDictionary * arguments = [[NSMutableDictionary alloc] init];
-        [arguments setObject:poster forKey:@"imageView"];
-        [arguments setObject:urlImagen forKey:@"url"];
-        NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(configureImageView:) object:arguments];
-        [thread start];
-    }
-    
-    
-    UILabel * labelSerie = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster,
-                                                                     poster.frame.origin.y + poster.frame.size.height/2 - 22/2 - 30,
-                                                                     self.tableViewEpisodios.frame.size.width - poster.frame.size.width - separacionDelPoster - 80,
-                                                                     0)];
-    labelSerie.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.name];
-    labelSerie.backgroundColor = [UIColor clearColor];
-    labelSerie.font = [UIFont boldSystemFontOfSize:18];
-    labelSerie.numberOfLines = 2;
-    [labelSerie sizeToFit];
-    UILabel * labelEpisodio;
-    //if (![mediaElementUserPending.pending.full isEqualToString:@"(null)"]) {
-    if (mediaElementUserPending.pending.full) {
-        labelEpisodio = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster, labelSerie.frame.origin.y + labelSerie.frame.size.height, 0, 0)];
-        labelEpisodio.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.pending.full];
-        labelEpisodio.backgroundColor = [UIColor clearColor];
-        labelEpisodio.font = [UIFont systemFontOfSize:17];
-        [labelEpisodio sizeToFit];
-    }
-    
-    
-    altoCelda = poster.frame.origin.y + poster.frame.size.height + margen;
-    
-    [backgroundView addSubview:poster];
-    [backgroundView addSubview:labelSerie];
-    [backgroundView addSubview:labelEpisodio];
-    
-    
-    CustomCellPerfilListadoCapitulos * customCellPerfilListadoCapitulos = [[CustomCellPerfilListadoCapitulos alloc] initWithMediaElementUserPending:mediaElementUserPending];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellPerfilListadoCapitulos];
-    return customCellPerfilListadoCapitulos;
-}
-
-//Metodo que rellena el tableView de la derecha a partir de un array de mediaElements y lo muestra con una animacion
-//No se debe llamar a este metodo, llamar en su lugar a: -(void) fillTableViewFromSource:
--(void) fillTableViewInBackgroundFromSource:(NSMutableArray *)source {
-    NSMutableArray * sections = [NSMutableArray array];
-    SectionElement * sectionElement;
-    NSMutableArray * cells = [NSMutableArray array];
-    for (MediaElementUserPending * mediaElementUserPending in source) {
-        [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
-    }
-    
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
-    [sections addObject:sectionElement];
-    self.tableViewEpisodios.section.sections = sections;
-    [self.tableViewEpisodios reloadData];
-    //solo se hace la animacion si la tabla contiene contenido
-    if (cells.count > 0) {
-        CGRect newFrame = self.viewEpisodios.frame;
-        newFrame.origin.x = self.viewSeleccion.frame.origin.x + self.viewSeleccion.frame.size.width;
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.viewEpisodios.alpha = 1.0;
-            self.viewEpisodios.frame = newFrame;
-        } completion:^(BOOL finished){
-            
-        }];
-    }
-}
-
-//idem que metodo anterior pero lanzando un thread. Se debe llamar a este metodo
-- (void) fillTableViewFromSource: (NSMutableArray *) source {
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
-    [thread start];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -285,44 +155,3 @@ static UserCredentials * userCredentials;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-/************************************************************************************************************************
- ************************************************************************************************************************
- ****************************** PerfilViewControllerIpad ****************************************************************
- ************************************************************************************************************************
- ************************************************************************************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/************************************************************************************************************************
- ************************************************************************************************************************
- ****************************** PerfilViewControllerIphone **************************************************************
- ************************************************************************************************************************
- ************************************************************************************************************************/
-
-
-

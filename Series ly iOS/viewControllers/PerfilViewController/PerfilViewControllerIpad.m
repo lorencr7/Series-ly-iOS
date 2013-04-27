@@ -29,6 +29,7 @@
 #import "Poster.h"
 #import "AppDelegate.h"
 #import "UserInfo.h"
+#import "ListadoCapitulosPendientesViewController.h"
 
 @interface PerfilViewControllerIpad ()
 
@@ -60,8 +61,6 @@
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
-    NSThread * thread2 = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
-    [thread2 start];
 }
 
 
@@ -91,9 +90,6 @@
     } completion:^(BOOL finished){
         
     }];
-    //[self downloadUserPendingInfo];
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
-    //[thread start];
 }
 
 -(void) loadUserInfo {
@@ -151,18 +147,12 @@
                                                 frameViewSeleccion.size.width,
                                                 frameViewSeleccion.size.height);
     
-    CGRect frameViewEpisodios = CGRectMake(frameViewSeleccion.origin.x + frameViewSeleccion.size.width + self.view.frame.size.width/6,
+    CGRect frameViewEpisodios = CGRectMake(frameViewSeleccion.origin.x + frameViewSeleccion.size.width,
                                            self.viewPerfil.frame.origin.y + self.viewPerfil.frame.size.height,
                                            self.view.frame.size.width/2 + anchoDiferente,
                                            self.view.frame.size.height - (self.viewPerfil.frame.origin.y + self.viewPerfil.frame.size.height));
     
-    CGRect frameTableViewEpisodios = CGRectMake(0,
-                                                0,
-                                                frameViewEpisodios.size.width,
-                                                frameViewEpisodios.size.height);
-    
     NSMutableArray *sections;
-    SectionElement *sectionElement;
     NSMutableArray *cells;
     
     cells = [NSMutableArray array];
@@ -174,36 +164,23 @@
     self.tableViewSeleccion.bounces = YES;
     self.tableViewSeleccion.layer.borderColor = [[UIColor grayColor] CGColor];
     
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
+    SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
+    CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
+    [customCellPerfilSeleccionSeriesPendiente customSelect];
+    
+    [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     
     self.viewSeleccion = [[UIView alloc] initWithFrame:frameViewSeleccion];
     self.viewSeleccion.backgroundColor = [UIColor whiteColor];
     self.viewSeleccion.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.viewSeleccion.alpha = 0.0;
     
-    sections = [NSMutableArray array];
-    cells = [NSMutableArray array];
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
-    self.tableViewEpisodios = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.tableViewEpisodios.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
-    
-    self.viewEpisodios = [[UIView alloc] initWithFrame:frameViewEpisodios];
-    self.viewEpisodios.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.viewEpisodios.layer.shadowOffset = CGSizeMake(-3,5);
-    self.viewEpisodios.layer.shadowRadius = 3;
-    self.viewEpisodios.layer.shadowOpacity = 0.3;
-    self.viewEpisodios.backgroundColor = [UIColor whiteColor];
-    self.viewEpisodios.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.viewEpisodios.alpha = 0.0;
+    self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:frameViewEpisodios SourceData:SourceSeriesPendientes];
     
     [self.viewSeleccion addSubview:self.tableViewSeleccion];
     [self.view addSubview:self.self.viewSeleccion];
-    [self.viewEpisodios addSubview:self.tableViewEpisodios];
-    [self.view addSubview:self.viewEpisodios];
-    [self.view addSubview:self.labelSeriesPendientes];
+    
+    [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
     
     [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.viewSeleccion.alpha = 1.0;
@@ -254,6 +231,7 @@
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
+    
     return sections;
 }
 

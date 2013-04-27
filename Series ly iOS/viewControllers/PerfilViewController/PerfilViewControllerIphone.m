@@ -55,7 +55,6 @@
     }
     
     CGSize screenSize = [ScreenSizeManager currentSize];
-    //NSLog(@"adios %.2f",self.navigationController.tabBarController.tabBar.frame.size.height);
     
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y = 0;
@@ -70,8 +69,12 @@
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
-    //NSThread * thread2 = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
-    //[thread2 start];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.tableViewSeleccion.lastCellPressed) {
+        [self.tableViewSeleccion.lastCellPressed customDeselect];
+    }
 }
 
 - (void) configureUserInfo {
@@ -197,7 +200,6 @@
     
     CustomCellPerfilSeleccionSeriesPendientes *customCellPerfilSeleccionSeriesPendiente = [[CustomCellPerfilSeleccionSeriesPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAPERFILSELECCIONIPHONE cellText:@"Series pendientes" selectionType:YES customCell:customCellPerfilSeleccionSeriesPendiente];
-    //[customCellPerfilSeleccionSeriesPendiente customSelect];
     [cells addObject:customCellPerfilSeleccionSeriesPendiente];
     
     CustomCellPerfilSeleccionPeliculasPendientes *customCellPerfilSeleccionPeliculasPendientes = [[CustomCellPerfilSeleccionPeliculasPendientes alloc] init];
@@ -215,6 +217,14 @@
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
     return sections;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
+        
+    } else {
+        
+    }
 }
 
 @end

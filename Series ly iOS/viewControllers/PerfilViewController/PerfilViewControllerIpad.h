@@ -10,4 +10,7 @@
 
 @interface PerfilViewControllerIpad : PerfilViewController
 
+@property (strong, nonatomic) ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController;
+
+
 @end

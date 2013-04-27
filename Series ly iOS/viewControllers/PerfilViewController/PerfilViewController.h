@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@class User,UserCredentials, CustomTableViewController;
+@class User,UserCredentials, CustomTableViewController, ListadoCapitulosPendientesViewController;
 @interface PerfilViewController : UIViewController
 
-@property (strong, nonatomic) CustomTableViewController *tableViewEpisodios;
-@property (strong, nonatomic) UIView * viewEpisodios;
 
 @property (strong, nonatomic) CustomTableViewController *tableViewSeleccion;
 @property (strong, nonatomic) UIView * viewSeleccion;
@@ -27,9 +25,8 @@
 
 @property(strong, nonatomic) UILabel * labelSeriesPendientes;
 
-+(void) logout;
++ (void) logout;
 
-- (void) fillTableViewFromSource: (NSMutableArray *) source;
 - (void) downloadUserInfo;
 - (void) configureUserInfo;
 

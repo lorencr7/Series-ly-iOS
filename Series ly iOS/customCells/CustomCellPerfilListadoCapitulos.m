@@ -8,6 +8,8 @@
 
 #import "CustomCellPerfilListadoCapitulos.h"
 #import "LinksViewController.h"
+#import "AppDelegate.h"
+#import "DrawerViewController.h"
 #import "MediaElementUserPending.h"
 
 @implementation CustomCellPerfilListadoCapitulos
@@ -26,8 +28,12 @@
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
     navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
-    [viewController presentViewController:navigationController animated:YES completion:nil];
-    //[viewController presentModalViewController:ajustesViewController animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate.drawerViewController presentViewController:navigationController animated:YES completion:nil];
+    } else {
+        [viewController presentViewController:navigationController animated:YES completion:nil];
+    }
 }
 
 @end
