@@ -96,9 +96,6 @@
         [self configureUserInfo];
     }
     
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(configureUserInfo) object:nil];
-    //[thread start];
-    
 }
 
 - (void) configureUserInfo {

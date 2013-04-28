@@ -25,17 +25,14 @@
     // Override point for customization after application launch.
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
     UserCredentials * oldUserCredentials = [manejadorBaseDeDatosBackup cargarUserCredentials];
-    //User * usuario = [manejadorBaseDeDatosBackup cargarInformacionUsuario];
     if (oldUserCredentials) {
         UserCredentials * userCredentials = [UserCredentials getInstance];
         userCredentials.authToken = oldUserCredentials.authToken;
         userCredentials.userToken = oldUserCredentials.userToken;
-        //[PerfilViewController setUserCredentials:userCredentials];
         [self loadContentControllers];
     } else {
         [self loadLogInController];
     }
-    //[self loadLogInController];
     return YES;
 }
 
@@ -48,24 +45,18 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
-    //[manejadorBaseDeDatosBackup borrarInformacionUsuario];
-    //[manejadorBaseDeDatosBackup guardarInformacionUsuario:[PerfilViewController getUsuario]];
     [manejadorBaseDeDatosBackup borrarUserCredentials];
-    //[manejadorBaseDeDatosBackup guardarUserCredentials:[PerfilViewController getUserCredentials]];
     [manejadorBaseDeDatosBackup guardarUserCredentials:[UserCredentials getInstance]];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
-    //[PerfilViewController setUsuario:[manejadorBaseDeDatosBackup cargarInformacionUsuario]];
-    //[PerfilViewController setUserCredentials:[manejadorBaseDeDatosBackup cargarUserCredentials]];
     UserCredentials * oldUserCredentials = [manejadorBaseDeDatosBackup cargarUserCredentials];
     if (oldUserCredentials) {
         UserCredentials * userCredentials = [UserCredentials getInstance];
         userCredentials.authToken = oldUserCredentials.authToken;
         userCredentials.userToken = oldUserCredentials.userToken;
-        //[PerfilViewController setUserCredentials:userCredentials];
     }
 }
 
@@ -84,9 +75,6 @@
     } else {
         LogInViewControllerIpad *logInViewController = [[LogInViewControllerIpad alloc] init];
         self.window.rootViewController = logInViewController;
-        /*LogInViewController *logInViewController = [[LogInViewController alloc] init];
-        self.window.rootViewController = logInViewController;
-        [self.window makeKeyAndVisible];*/
     }
     [self.window makeKeyAndVisible];
     
@@ -94,10 +82,6 @@
 
 -(void) loadContentControllers {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        /*MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController_iPhone" bundle:nil];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-        self.window.rootViewController = self.navigationController;*/
-        //[self loadTabBarController];
         [self loadDrawerViewController];
     } else {
         [self loadSplitViewController];
@@ -116,9 +100,7 @@
     
     masterViewController.detailViewController = detailViewController;
     
-    //self.splitViewController = [[UISplitViewController alloc] init];
     self.drawerViewController = [[DrawerViewController alloc] init];
-    //self.splitViewController.delegate = detailViewController;
     self.drawerViewController.viewControllers = @[masterNavigationController, detailNavigationController];
     
     self.window.rootViewController = self.drawerViewController;
@@ -135,78 +117,11 @@
     
     masterViewController.detailViewController = detailViewController;
     
-    //self.splitViewController = [[UISplitViewController alloc] init];
     self.splitViewController = [[CustomSplitViewController alloc] init];
-    //self.splitViewController.delegate = detailViewController;
     self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
     
     self.window.rootViewController = self.splitViewController;
 }
-
-/*-(void) loadTabBarController {
-    MultimediaViewController *multimediaViewController = [[MultimediaViewController alloc] init];
-    PerfilViewControllerIphone * perfilViewController = [[PerfilViewControllerIphone alloc] init];
-    AjustesViewControllerIphone *ajustesViewController = [[AjustesViewControllerIphone alloc] init];
-
-    
-    UINavigationController * navigationController1 = [[UINavigationController alloc] initWithRootViewController:multimediaViewController];
-    UINavigationController * navigationController2 = [[UINavigationController alloc] initWithRootViewController:perfilViewController];
-    UINavigationController * navigationController3 = [[UINavigationController alloc] initWithRootViewController:ajustesViewController];
-    
-    NSMutableDictionary * mutableDictionaryNormal = [[NSMutableDictionary alloc] init];
-    [mutableDictionaryNormal setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    [mutableDictionaryNormal setObject:[UIFont systemFontOfSize:10] forKey:UITextAttributeFont];
-    NSDictionary * dictionaryNormal = [NSDictionary dictionaryWithDictionary:mutableDictionaryNormal];
-    
-    NSMutableDictionary * mutableDictionaryPressed = [[NSMutableDictionary alloc] init];
-    [mutableDictionaryPressed setObject:[UIColor colorWithRed:(169/255.0) green:(212/255.0) blue:(252/255.0) alpha:1] forKey:UITextAttributeTextColor];
-    [mutableDictionaryPressed setObject:[UIFont systemFontOfSize:10] forKey:UITextAttributeFont];
-    NSDictionary * dictionaryPressed = [NSDictionary dictionaryWithDictionary:mutableDictionaryPressed];
-    
-    [navigationController1.tabBarItem setTitleTextAttributes:dictionaryNormal forState:UIControlStateNormal];
-    [navigationController1.tabBarItem setTitleTextAttributes:dictionaryPressed forState:UIControlStateSelected];
-    
-    [navigationController2.tabBarItem setTitleTextAttributes:dictionaryNormal forState:UIControlStateNormal];
-    [navigationController2.tabBarItem setTitleTextAttributes:dictionaryPressed forState:UIControlStateSelected];
-    
-    [navigationController3.tabBarItem setTitleTextAttributes:dictionaryNormal forState:UIControlStateNormal];
-    [navigationController3.tabBarItem setTitleTextAttributes:dictionaryPressed forState:UIControlStateSelected];
-    
-    navigationController1.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
-    navigationController2.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
-    navigationController3.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
-    
-    [navigationController1.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:NSLocalizedString(@"iconNews", nil)] withFinishedUnselectedImage:[UIImage imageNamed:NSLocalizedString(@"iconNews", nil)]];
-    [navigationController2.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:NSLocalizedString(@"iconProfile", nil)] withFinishedUnselectedImage:[UIImage imageNamed:NSLocalizedString(@"iconProfile", nil)]];
-    [navigationController3.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:NSLocalizedString(@"iconSettings", nil)] withFinishedUnselectedImage:[UIImage imageNamed:NSLocalizedString(@"iconSettings", nil)]];
-    
-    self.tabBarController = [[UITabBarController alloc] init];
-    
-    [self customizeInterface];
-    
-    self.tabBarController.viewControllers = @[navigationController1,navigationController2,navigationController3];
-    [self.tabBarController setDelegate:self];
-    
-    self.window.rootViewController = self.tabBarController;
-    //self.window.rootViewController = self.navigationController2;
-}
-
-- (void)customizeInterface {
-    UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
-    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-    
-    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"selection-tab.png"]];
-}*/
-
-//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    /*if ([viewController.title isEqualToString:NSLocalizedString(@"NewsPageTitle", @"The string in the navigation bar")]) {
-        [[ManejadorBaseDeDatosLogs getInstance] insertarBotonWithCodigo:@"4"];
-    } else if([viewController.title isEqualToString:NSLocalizedString(@"SettingsPageTitle", @"The string in the navigation bar")]) {
-        [[ManejadorBaseDeDatosLogs getInstance] insertarBotonWithCodigo:@"1"];
-    } else if([viewController.title isEqualToString:NSLocalizedString(@"ProfilePageTitle", @"The string in the navigation bar")]) {
-        [[ManejadorBaseDeDatosLogs getInstance] insertarBotonWithCodigo:@"14"];
-    }*/
-//}
 
 
 

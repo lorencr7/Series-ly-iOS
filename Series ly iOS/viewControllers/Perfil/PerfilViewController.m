@@ -39,7 +39,6 @@
 
 //Codigo principal de logout. Esta funcion hace un logout de verdad
 +(void) logout {
-
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(logoutApi) object:nil];
     [thread start];
     
@@ -79,10 +78,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-/*-(void) handlerLogout {
-    [PerfilViewController logout];
-}*/
 
 @end

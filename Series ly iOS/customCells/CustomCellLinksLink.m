@@ -16,6 +16,7 @@
 #import "AuthToken.h"
 #import "UserToken.h"
 
+
 @implementation CustomCellLinksLink
 
 -(id) initWithLink: (Link *) link {
@@ -27,10 +28,12 @@
 }
 
 -(void) executeAction:(UIViewController *)viewController {
+    //NSMutableArray * hostsForSafari = [NSMutableArray arrayWithObjects:@"AllMyVideos",@"Youtube" ,nil];
     VerLinkViewControllerIpad * verLinkViewController = [[VerLinkViewControllerIpad alloc] initWithLink:self.link];
     if ([self.link.host isEqualToString:@"AllMyVideos"]) {
          UserCredentials * userCredentials = [UserCredentials getInstance];
         NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.link.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];
+        NSLog(@"url %@",urlString);
         NSURL * url = [NSURL URLWithString:urlString];
         [[UIApplication sharedApplication] openURL:url];
     } else {

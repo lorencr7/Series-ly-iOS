@@ -18,6 +18,8 @@
 		450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */; };
 		450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */; };
 		450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F854E172D8F60008523A5 /* DatosPerfilViewController.m */; };
+		450F8552172DA197008523A5 /* ListadoOpcionesPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8551172DA196008523A5 /* ListadoOpcionesPerfilViewController.m */; };
+		450F8558172DAF82008523A5 /* VerCapitulosPendientesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8557172DAF81008523A5 /* VerCapitulosPendientesViewController.m */; };
 		45126FDC16F2306B0037BDDF /* CustomCellAjustesAutores.m in Sources */ = {isa = PBXBuildFile; fileRef = 45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */; };
 		451ABD1E16EA23A700681EA6 /* documentales.png in Resources */ = {isa = PBXBuildFile; fileRef = 451ABD1A16EA23A700681EA6 /* documentales.png */; };
 		451ABD1F16EA23A700681EA6 /* peliculas.png in Resources */ = {isa = PBXBuildFile; fileRef = 451ABD1B16EA23A700681EA6 /* peliculas.png */; };
@@ -154,6 +156,10 @@
 		450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewControllerIphone.m; sourceTree = "<group>"; };
 		450F854D172D8F60008523A5 /* DatosPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosPerfilViewController.h; sourceTree = "<group>"; };
 		450F854E172D8F60008523A5 /* DatosPerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatosPerfilViewController.m; sourceTree = "<group>"; };
+		450F8550172DA196008523A5 /* ListadoOpcionesPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListadoOpcionesPerfilViewController.h; sourceTree = "<group>"; };
+		450F8551172DA196008523A5 /* ListadoOpcionesPerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListadoOpcionesPerfilViewController.m; sourceTree = "<group>"; };
+		450F8556172DAF81008523A5 /* VerCapitulosPendientesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerCapitulosPendientesViewController.h; sourceTree = "<group>"; };
+		450F8557172DAF81008523A5 /* VerCapitulosPendientesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerCapitulosPendientesViewController.m; sourceTree = "<group>"; };
 		45126FDA16F2306B0037BDDF /* CustomCellAjustesAutores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellAjustesAutores.h; sourceTree = "<group>"; };
 		45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellAjustesAutores.m; sourceTree = "<group>"; };
 		45126FDD16F2307B0037BDDF /* CustomCellsAjustes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsAjustes.h; sourceTree = "<group>"; };
@@ -360,6 +366,8 @@
 				450F854E172D8F60008523A5 /* DatosPerfilViewController.m */,
 				450F8525172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.h */,
 				450F8526172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m */,
+				450F8550172DA196008523A5 /* ListadoOpcionesPerfilViewController.h */,
+				450F8551172DA196008523A5 /* ListadoOpcionesPerfilViewController.m */,
 				450F8527172D8C9F008523A5 /* PerfilViewController.h */,
 				450F8528172D8C9F008523A5 /* PerfilViewController.m */,
 				450F8529172D8C9F008523A5 /* PerfilViewControllerIpad.h */,
@@ -444,6 +452,8 @@
 				4521406517004A7F0045A4A5 /* LinksViewController.m */,
 				45A7187117006E3A007E3A80 /* VerLinkViewController.h */,
 				45A7187217006E3A007E3A80 /* VerLinkViewController.m */,
+				450F8556172DAF81008523A5 /* VerCapitulosPendientesViewController.h */,
+				450F8557172DAF81008523A5 /* VerCapitulosPendientesViewController.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -962,6 +972,8 @@
 				450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */,
 				450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */,
 				450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */,
+				450F8552172DA197008523A5 /* ListadoOpcionesPerfilViewController.m in Sources */,
+				450F8558172DAF82008523A5 /* VerCapitulosPendientesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

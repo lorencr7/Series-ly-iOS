@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@class User,UserCredentials, CustomTableViewController, ListadoCapitulosPendientesViewController,DatosPerfilViewController;
+@class CustomTableViewController, ListadoCapitulosPendientesViewController,DatosPerfilViewController, ListadoOpcionesPerfilViewController;
 @interface PerfilViewController : UIViewController
 
 
-@property (strong, nonatomic) CustomTableViewController *tableViewSeleccion;
-@property (strong, nonatomic) UIView * viewSeleccion;
+//@property (strong, nonatomic) CustomTableViewController *tableViewSeleccion;
+//@property (strong, nonatomic) UIView * viewSeleccion;
+@property (strong, nonatomic) ListadoOpcionesPerfilViewController * listadoOpcionesPerfilViewController;
 
 /*@property(strong, nonatomic) UIImageView * imagenPerfil;
 @property(strong, nonatomic) UILabel * labelNombreUsuario;

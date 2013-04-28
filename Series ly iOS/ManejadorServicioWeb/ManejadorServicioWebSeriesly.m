@@ -19,6 +19,7 @@
 #import "FullInfo.h"
 
 static ManejadorServicioWebSeriesly * instance;
+
 static NSString * appId = @"1040";
 static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 
@@ -31,8 +32,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
     return instance;
 }
-/*User * usuario = [User getInstance];
- UserCredentials * userCredentials = [UserCredentials getInstance];*/
 
 -(AuthToken *) checkAuthToken: (AuthToken *) authToken {
     NSDate * fecha = [NSDate date];
@@ -41,14 +40,9 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     //NSLog(@"%d",expireDate - currentDate);
     if (currentDate > expireDate) {
         NSLog(@"authToken invalido, pidiendo nuevo authToken");
-        //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
         UserCredentials * userCredentials = [UserCredentials getInstance];
         AuthToken * newAuthToken = [self getAuthToken];
         userCredentials.authToken = newAuthToken;
-        /*AuthToken * newAuthToken = [self getAuthToken];
-        UserToken * userToken = userCredentials.userToken;
-        userCredentials = [[UserCredentials alloc] initWithAuthToken:newAuthToken UserToken:userToken];
-        [PerfilViewController setUserCredentials:userCredentials];*/
         ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
         [manejadorBaseDeDatosBackup borrarUserCredentials];
         [manejadorBaseDeDatosBackup guardarUserCredentials:userCredentials];
@@ -64,7 +58,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(NSData *) performRequestWithURL: (NSString *) url Error: (NSError *) error{
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
-    [request setTimeoutInterval:5.0];
+    [request setTimeoutInterval:10.0];
     NSHTTPURLResponse* urlResponse = nil;
     return [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 }
@@ -100,7 +94,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        //return [[TraductorClases getInstance] getAuthTokenFromDictionary:response];
         return [[AuthToken alloc] initWithDictionary:response];
     }
 }
@@ -119,7 +112,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         return nil;
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        //return [[TraductorClases getInstance] getUserTokenFromDictionary:response];
         return [[UserToken alloc] initWithDictionary:response];
     }
 }
@@ -139,7 +131,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     } else {
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        //return [[TraductorClases getInstance] getUserInfoFromDictionary:response];
         return [[UserInfo alloc] initWithDictionary:response];
     }
 }
@@ -170,25 +161,17 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSMutableArray * arrayOfMovies = [NSMutableArray array];
         NSMutableArray * arrayOfDocumentaries = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            //[arrayOfSeries addObject:[traductorClases getMediaElementUserPendingFromDictionary:serieDictionary]];
             [arrayOfSeries addObject:[[MediaElementUserPending alloc] initWithDictionary:serieDictionary]];
         }
         for (NSDictionary * tvShowDictionary in tvShowsArray) {
-            //[arrayOfTvShows addObject:[traductorClases getMediaElementUserPendingFromDictionary:tvShowDictionary]];
             [arrayOfTvShows addObject:[[MediaElementUserPending alloc] initWithDictionary:tvShowDictionary]];
         }
         for (NSDictionary * movieDictionary in moviesArray) {
-            //[arrayOfMovies addObject:[traductorClases getMediaElementUserPendingFromDictionary:movieDictionary]];
             [arrayOfMovies addObject:[[MediaElementUserPending alloc] initWithDictionary:movieDictionary]];
         }
         for (NSDictionary * documentaryDictionary in documentariesArray) {
-            //[arrayOfDocumentaries addObject:[traductorClases getMediaElementUserPendingFromDictionary:documentaryDictionary]];
             [arrayOfDocumentaries addObject:[[MediaElementUserPending alloc] initWithDictionary:documentaryDictionary]];
         }
-        /*NSMutableArray * arrayOfElements = [NSMutableArray array];
-        for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[TraductorClases getInstance] getMediaElementUserPendingFromDictionary:serieDictionary]];
-        }*/
         NSMutableDictionary * infoDictionary = [[NSMutableDictionary alloc] init];
         [infoDictionary setObject:arrayOfSeries forKey:@"series"];
         [infoDictionary setObject:arrayOfTvShows forKey:@"tvshows"];
@@ -197,102 +180,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         return infoDictionary;
     }
 }
-/*
--(NSMutableArray *) getUserPendingSeriesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
-    AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending/series?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
-    if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
-        return nil;
-    } else {
-        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        //NSLog(@"%@",response);
-        NSArray * seriesArray = [response objectForKey:@"series"];
-        NSMutableArray * arrayOfElements = [NSMutableArray array];
-        for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[TraductorClases getInstance] getMediaElementUserPendingFromDictionary:serieDictionary]];
-        }
-        return arrayOfElements;
-    }
-}
-
--(NSMutableArray *) getUserPendingTvShowsWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
-    AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending/tvshows?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
-    if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
-        return nil;
-    } else {
-        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        //NSLog(@"%@",response);
-        NSArray * seriesArray = [response objectForKey:@"tvshows"];
-        NSMutableArray * arrayOfElements = [NSMutableArray array];
-        for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[TraductorClases getInstance] getMediaElementUserPendingFromDictionary:serieDictionary]];
-        }
-        return arrayOfElements;
-    }
-}
-
--(NSMutableArray *) getUserPendingMoviesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
-    AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending/movies?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
-    if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
-        return nil;
-    } else {
-        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        //NSLog(@"%@",response);
-        NSArray * seriesArray = [response objectForKey:@"movies"];
-        NSMutableArray * arrayOfElements = [NSMutableArray array];
-        for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[TraductorClases getInstance] getMediaElementUserPendingFromDictionary:serieDictionary]];
-        }
-        return arrayOfElements;
-    }
-}
-
--(NSMutableArray *) getUserPendingDocumentariesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
-    AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending/documentaries?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
-    if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
-        return nil;
-    } else {
-        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        //NSLog(@"%@",response);
-        NSArray * seriesArray = [response objectForKey:@"documentaries"];
-        NSMutableArray * arrayOfElements = [NSMutableArray array];
-        for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[TraductorClases getInstance] getMediaElementUserPendingFromDictionary:serieDictionary]];
-        }
-        return arrayOfElements;
-    }
-}*/
 
 -(NSMutableArray *) getUserFollowingSeriesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
@@ -307,13 +194,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error getUserFollowingSeriesWithAuthToken %@",error);
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"series"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
             [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
@@ -333,13 +218,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"tvshows"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
             [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
@@ -349,7 +232,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(NSMutableArray *) getUserFollowingMoviesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/movies?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    //NSLog(@"%@",urlString);
     NSError *error;
     NSData *responseData = [self performRequestWithURL:urlString Error:error];
     if (!responseData) {
@@ -360,13 +242,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"movies"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
             [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
@@ -386,13 +266,11 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"documentaries"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            //[arrayOfElements addObject:[traductorClases getMediaElementUserFromDictionary:serieDictionary]];
             [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
@@ -402,7 +280,6 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(Links *) getLinksWithAuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/episode/links?auth_token=%@&idm=%@&mediaType=%@",newAuthToken.authToken,idm,mediaType];
-    NSLog(@"%@",urlString);
     NSError *error;
     NSData *responseData = [self performRequestWithURL:urlString Error:error];
     if (!responseData) {
@@ -413,10 +290,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo los links");
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        //return [traductorClases getLinksFromDictionary:response];
         return [[Links alloc] initWithDictionary:response];
     }
     
@@ -435,10 +310,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSLog(@"Error cogiendo los links");
         return nil;
     } else {
-        //TraductorClases * traductorClases = [TraductorClases getInstance];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
-        //return [traductorClases getFullInfoFromDictionary:response];
         return [[FullInfo alloc] initWithDictionary:response];
     }
 }

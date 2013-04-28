@@ -84,8 +84,6 @@
     Season * season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
     
     Episode * episode = [season.episodes objectAtIndex:capitulo-1];
-    
-    //self.links = [manejadorServicioWeb getLinksWithAuthToken:[PerfilViewController getUserCredentials].authToken Idm:self.mediaElementUserPending.idm MediaType:@"5"];
     self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
                                                          Idm:episode.idm
                                                    MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
@@ -97,7 +95,6 @@
     
     
     NSMutableArray *sections;
-    //SectionElement *sectionElement;
     NSMutableArray *cells;
     
     cells = [NSMutableArray array];
@@ -106,9 +103,6 @@
     
     self.tableViewLinks = [[CustomTableViewController alloc] initWithFrame:self.viewTableViewLinks.frame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    //sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    //[sections addObject:sectionElement];
     
     [self.viewTableViewLinks addSubview:self.tableViewLinks];
     [self.view addSubview:self.viewTableViewLinks];
@@ -126,16 +120,11 @@
     NSMutableArray * cells = [NSMutableArray array];
     
     for (Link * link in links) {
-        
-        
-        //[customCellPerfilSeleccionSeriesPendiente customSelect];
         [cells addObject:[self createCellLinksLinkWithLink:link]];
     }
     if (cells.count == 0) {
         CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] init];
-        //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAELMUNDOPEQUENO cellText: selectionType:YES customCell:customCellLinksLink];
         [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(nil, 44) cellText:@"No hay Links compatibles" selectionType:YES customCell:customCellLinksLink];
-        //[customCellPerfilSeleccionSeriesPendiente customSelect];
         [cells addObject:customCellLinksLink];
     }
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
@@ -163,7 +152,6 @@
                             initWithItems:[NSArray arrayWithObjects:
                                            @"Streaming",@"Oficial", nil]];
     
-    //self.segmentedControl.frame = CGRectMake(35, 15, self.view.frame.size.width-2*35, 35);
     self.segmentedControl.selectedSegmentIndex = 0;
     
     // Ponemos el manejador
@@ -196,7 +184,6 @@
                                                      [UIFont systemFontOfSize:12.5f],
                                                      UITextAttributeFont,
                                                      nil]  forState:UIControlStateSelected];
-    //[self.view addSubview:self.segmentedControl];
     self.navigationItem.titleView = self.segmentedControl;
 }
 
@@ -209,9 +196,6 @@
         case 1:
             sections = [self crearSectionsLinksWithLinks:self.links.officialServer];
             break;
-        /*case 2:
-            sections = [self crearSectionsLinksWithLinks:self.links.directDownload];
-            break;*/
         default:
             break;
     }

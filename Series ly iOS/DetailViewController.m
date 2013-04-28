@@ -36,7 +36,6 @@
         [appDelegate.drawerViewController hideDrawer];
     } else {
         if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-            
             [appDelegate.splitViewController hideMaster];
             //[[CustomSplitViewController getInstance] hideMaster];
         }
@@ -60,6 +59,22 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [self.detailItem viewDidAppear:animated];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [self.detailItem viewWillAppear:animated];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    //[self.detailItem viewDidDisappear:animated];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    //[self.detailItem viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
