@@ -13,8 +13,11 @@
 		450F852E172D8C9F008523A5 /* PerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8528172D8C9F008523A5 /* PerfilViewController.m */; };
 		450F852F172D8C9F008523A5 /* PerfilViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F852A172D8C9F008523A5 /* PerfilViewControllerIpad.m */; };
 		450F8530172D8C9F008523A5 /* PerfilViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F852C172D8C9F008523A5 /* PerfilViewControllerIphone.m */; };
-		450F8537172D8D06008523A5 /* AjustesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8533172D8D06008523A5 /* AjustesViewController.m */; };
-		450F8538172D8D06008523A5 /* MultimediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8536172D8D06008523A5 /* MultimediaViewController.m */; };
+		450F8549172D8E3B008523A5 /* AjustesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8541172D8E3B008523A5 /* AjustesViewController.m */; };
+		450F854A172D8E3B008523A5 /* MultimediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8544172D8E3B008523A5 /* MultimediaViewController.m */; };
+		450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */; };
+		450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */; };
+		450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F854E172D8F60008523A5 /* DatosPerfilViewController.m */; };
 		45126FDC16F2306B0037BDDF /* CustomCellAjustesAutores.m in Sources */ = {isa = PBXBuildFile; fileRef = 45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */; };
 		451ABD1E16EA23A700681EA6 /* documentales.png in Resources */ = {isa = PBXBuildFile; fileRef = 451ABD1A16EA23A700681EA6 /* documentales.png */; };
 		451ABD1F16EA23A700681EA6 /* peliculas.png in Resources */ = {isa = PBXBuildFile; fileRef = 451ABD1B16EA23A700681EA6 /* peliculas.png */; };
@@ -141,10 +144,16 @@
 		450F852A172D8C9F008523A5 /* PerfilViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewControllerIpad.m; sourceTree = "<group>"; };
 		450F852B172D8C9F008523A5 /* PerfilViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewControllerIphone.h; sourceTree = "<group>"; };
 		450F852C172D8C9F008523A5 /* PerfilViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewControllerIphone.m; sourceTree = "<group>"; };
-		450F8532172D8D06008523A5 /* AjustesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewController.h; sourceTree = "<group>"; };
-		450F8533172D8D06008523A5 /* AjustesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewController.m; sourceTree = "<group>"; };
-		450F8535172D8D06008523A5 /* MultimediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewController.h; sourceTree = "<group>"; };
-		450F8536172D8D06008523A5 /* MultimediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewController.m; sourceTree = "<group>"; };
+		450F8540172D8E3B008523A5 /* AjustesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewController.h; sourceTree = "<group>"; };
+		450F8541172D8E3B008523A5 /* AjustesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewController.m; sourceTree = "<group>"; };
+		450F8543172D8E3B008523A5 /* MultimediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewController.h; sourceTree = "<group>"; };
+		450F8544172D8E3B008523A5 /* MultimediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewController.m; sourceTree = "<group>"; };
+		450F8545172D8E3B008523A5 /* MultimediaViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewControllerIpad.h; sourceTree = "<group>"; };
+		450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewControllerIpad.m; sourceTree = "<group>"; };
+		450F8547172D8E3B008523A5 /* MultimediaViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewControllerIphone.h; sourceTree = "<group>"; };
+		450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewControllerIphone.m; sourceTree = "<group>"; };
+		450F854D172D8F60008523A5 /* DatosPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosPerfilViewController.h; sourceTree = "<group>"; };
+		450F854E172D8F60008523A5 /* DatosPerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatosPerfilViewController.m; sourceTree = "<group>"; };
 		45126FDA16F2306B0037BDDF /* CustomCellAjustesAutores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellAjustesAutores.h; sourceTree = "<group>"; };
 		45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellAjustesAutores.m; sourceTree = "<group>"; };
 		45126FDD16F2307B0037BDDF /* CustomCellsAjustes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsAjustes.h; sourceTree = "<group>"; };
@@ -347,8 +356,8 @@
 		450F8524172D8C9F008523A5 /* Perfil */ = {
 			isa = PBXGroup;
 			children = (
-				450F8531172D8D06008523A5 /* Ajustes */,
-				450F8534172D8D06008523A5 /* Multimedia */,
+				450F854D172D8F60008523A5 /* DatosPerfilViewController.h */,
+				450F854E172D8F60008523A5 /* DatosPerfilViewController.m */,
 				450F8525172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.h */,
 				450F8526172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m */,
 				450F8527172D8C9F008523A5 /* PerfilViewController.h */,
@@ -361,25 +370,27 @@
 			path = Perfil;
 			sourceTree = "<group>";
 		};
-		450F8531172D8D06008523A5 /* Ajustes */ = {
+		450F853F172D8E3B008523A5 /* Ajustes */ = {
 			isa = PBXGroup;
 			children = (
-				450F8532172D8D06008523A5 /* AjustesViewController.h */,
-				450F8533172D8D06008523A5 /* AjustesViewController.m */,
+				450F8540172D8E3B008523A5 /* AjustesViewController.h */,
+				450F8541172D8E3B008523A5 /* AjustesViewController.m */,
 			);
-			name = Ajustes;
-			path = "Series ly iOS/viewControllers/Ajustes";
-			sourceTree = SOURCE_ROOT;
+			path = Ajustes;
+			sourceTree = "<group>";
 		};
-		450F8534172D8D06008523A5 /* Multimedia */ = {
+		450F8542172D8E3B008523A5 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
-				450F8535172D8D06008523A5 /* MultimediaViewController.h */,
-				450F8536172D8D06008523A5 /* MultimediaViewController.m */,
+				450F8543172D8E3B008523A5 /* MultimediaViewController.h */,
+				450F8544172D8E3B008523A5 /* MultimediaViewController.m */,
+				450F8545172D8E3B008523A5 /* MultimediaViewControllerIpad.h */,
+				450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */,
+				450F8547172D8E3B008523A5 /* MultimediaViewControllerIphone.h */,
+				450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */,
 			);
-			name = Multimedia;
-			path = "Series ly iOS/viewControllers/Multimedia";
-			sourceTree = SOURCE_ROOT;
+			path = Multimedia;
+			sourceTree = "<group>";
 		};
 		451C93D316DE175B001C4E89 /* customCells */ = {
 			isa = PBXGroup;
@@ -426,6 +437,8 @@
 		451C93E916DE1AF3001C4E89 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				450F853F172D8E3B008523A5 /* Ajustes */,
+				450F8542172D8E3B008523A5 /* Multimedia */,
 				450F8524172D8C9F008523A5 /* Perfil */,
 				4521406417004A7F0045A4A5 /* LinksViewController.h */,
 				4521406517004A7F0045A4A5 /* LinksViewController.m */,
@@ -944,8 +957,11 @@
 				450F852E172D8C9F008523A5 /* PerfilViewController.m in Sources */,
 				450F852F172D8C9F008523A5 /* PerfilViewControllerIpad.m in Sources */,
 				450F8530172D8C9F008523A5 /* PerfilViewControllerIphone.m in Sources */,
-				450F8537172D8D06008523A5 /* AjustesViewController.m in Sources */,
-				450F8538172D8D06008523A5 /* MultimediaViewController.m in Sources */,
+				450F8549172D8E3B008523A5 /* AjustesViewController.m in Sources */,
+				450F854A172D8E3B008523A5 /* MultimediaViewController.m in Sources */,
+				450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */,
+				450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */,
+				450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

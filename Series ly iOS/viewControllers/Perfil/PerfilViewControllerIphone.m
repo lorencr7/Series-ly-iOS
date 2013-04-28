@@ -28,6 +28,7 @@
 #import "ManejadorBaseDeDatosBackup.h"
 #import "Poster.h"
 #import "UserInfo.h"
+#import "DatosPerfilViewController.h"
 
 @interface PerfilViewControllerIphone ()
 
@@ -67,8 +68,8 @@
     [self loadUserInfo];
     [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
     
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
-    [thread start];
+    /*NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
+    [thread start];*/
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -77,7 +78,7 @@
     }
 }
 
-- (void) configureUserInfo {
+/*- (void) configureUserInfo {
     [super configureUserInfo];
     [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.viewPerfil.alpha = 1.0;
@@ -88,20 +89,26 @@
     //[self downloadUserPendingInfo];
     //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
     //[thread start];
-}
+}*/
 
 -(void) loadUserInfo {
-    self.viewPerfil = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 15 + 105)];
+    CGRect datosPerfilFrame = CGRectMake(0,
+                                         0,
+                                         self.view.frame.size.width,
+                                         120);
+    self.datosPerfilViewController = [[DatosPerfilViewController alloc] initWithFrame:datosPerfilFrame];
+    [self.view addSubview:self.datosPerfilViewController.view];
+    /*self.viewPerfil = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 15 + 105)];
     self.viewPerfil.backgroundColor = [UIColor clearColor];
     self.viewPerfil.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.viewPerfil.alpha = 0.0;
     [self.view addSubview:self.viewPerfil];
     
     [self loadImage];//Inicializamos la imagen del usuario
-    [self loadUserInformation];//Inicializamos los labels de la informacion de usuario
+    [self loadUserInformation];//Inicializamos los labels de la informacion de usuario*/
 }
 
--(void) loadImage {
+/*-(void) loadImage {
     //Asignamos el frame a la imagen de perfil. Las medidas no cambian (100x105)
     self.imagenPerfil = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 105)];
     
@@ -130,14 +137,14 @@
     self.labelNombreUsuarioAlta.font = [UIFont systemFontOfSize:14];
     self.labelNombreUsuarioAlta.backgroundColor = [UIColor clearColor];
     [self.viewPerfil addSubview:self.labelNombreUsuarioAlta];
-}
+}*/
 
 -(void) loadEpisodes {
 
     CGRect frameViewSeleccion = CGRectMake(0,
-                                           self.viewPerfil.frame.origin.y + self.viewPerfil.frame.size.height,
+                                           self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
                                            self.view.frame.size.width,
-                                           self.view.frame.size.height - (self.viewPerfil.frame.origin.y + self.viewPerfil.frame.size.height));
+                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     CGRect frameTableViewSeleccion = CGRectMake(0,
                                                 0,
                                                 frameViewSeleccion.size.width,

@@ -7,7 +7,8 @@
 //
 
 #import "CustomCellPeliculas.h"
-#import "MultimediaViewController.h"
+#import "MultimediaViewControllerIphone.h"
+#import "MultimediaViewControllerIpad.h"
 #import "DetailViewController.h"
 
 @implementation CustomCellPeliculas
