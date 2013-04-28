@@ -8,10 +8,11 @@
 
 #import "CustomCell.h"
 
+@class Link;
 @interface CustomCellLinksLink : CustomCell
 
-@property(strong,nonatomic) NSString * idv;
+@property(strong,nonatomic) Link * link;
 
--(id) initWithIdv: (NSString *) idv;
+-(id) initWithLink: (Link *) link;
 
 @end

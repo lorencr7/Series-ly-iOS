@@ -401,7 +401,7 @@
 		451C93E916DE1AF3001C4E89 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				452D304E172AF5800035080F /* PerfilViewController */,
+				452D304E172AF5800035080F /* Perfil */,
 				45267E1616E0144A00337D53 /* AjustesViewController.h */,
 				45267E1716E0144A00337D53 /* AjustesViewController.m */,
 				45267E1916E0145A00337D53 /* MultimediaViewController.h */,
@@ -431,7 +431,7 @@
 			path = DrawerViewController;
 			sourceTree = "<group>";
 		};
-		452D304E172AF5800035080F /* PerfilViewController */ = {
+		452D304E172AF5800035080F /* Perfil */ = {
 			isa = PBXGroup;
 			children = (
 				452D304F172AF5800035080F /* PerfilViewController.h */,
@@ -443,6 +443,7 @@
 				4552A11E172BD8BA00B0C98E /* ListadoCapitulosPendientesViewController.h */,
 				4552A11F172BD8BA00B0C98E /* ListadoCapitulosPendientesViewController.m */,
 			);
+			name = Perfil;
 			path = PerfilViewController;
 			sourceTree = "<group>";
 		};

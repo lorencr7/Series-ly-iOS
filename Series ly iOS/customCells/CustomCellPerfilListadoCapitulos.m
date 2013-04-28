@@ -10,6 +10,7 @@
 #import "LinksViewController.h"
 #import "AppDelegate.h"
 #import "DrawerViewController.h"
+#import "CustomSplitViewController.h"
 #import "MediaElementUserPending.h"
 
 @implementation CustomCellPerfilListadoCapitulos
@@ -30,9 +31,14 @@
     navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [appDelegate.drawerViewController presentViewController:navigationController animated:YES completion:nil];
+        UINavigationController * rootNavigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
+        [rootNavigationController pushViewController:linksViewController animated:YES];
+        //[appDelegate.drawerViewController presentViewController:navigationController animated:YES completion:nil];
     } else {
-        [viewController presentViewController:navigationController animated:YES completion:nil];
+        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate.splitViewController presentViewController:navigationController animated:YES completion:nil];
+        //[rootNavigationController pushViewController:linksViewController animated:YES];
+        //[viewController presentViewController:navigationController animated:YES completion:nil];
     }
 }
 

@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Link;
 @interface VerLinkViewController : UIViewController
 
-@property(strong,nonatomic) NSString * idv;
+@property(strong,nonatomic) Link * link;
 @property(strong,nonatomic) UIWebView * webView;
 
--(id) initWithIdv: (NSString *) idv;
+-(id) initWithLink: (Link *) link;
 
 @end
 

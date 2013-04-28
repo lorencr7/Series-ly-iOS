@@ -45,15 +45,18 @@
 }
 
 -(void) loadData {
-    self.view.frame = CGRectMake(0, 0, 540, 620 - self.navigationController.navigationBar.frame.size.height);
-    NSLog(@"Viendo enlaces de: %@",self.mediaElementUserPending.name);
+    //self.view.frame = CGRectMake(0, 0, 540, 620 - self.navigationController.navigationBar.frame.size.height);
+    //NSLog(@"Viendo enlaces de: %@",self.mediaElementUserPending.name);
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadSegmentedControl];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar"
-                                                                             style:UIBarButtonItemStyleBordered
-                                                                            target:self
-                                                                            action:@selector(cancelarButtonPressed:)];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar"
+                                                                                 style:UIBarButtonItemStyleBordered
+                                                                                target:self
+                                                                                action:@selector(cancelarButtonPressed:)];
+    }
+    
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadLinks) object:nil];
     [thread start];
     
@@ -94,7 +97,7 @@
     
     
     NSMutableArray *sections;
-    SectionElement *sectionElement;
+    //SectionElement *sectionElement;
     NSMutableArray *cells;
     
     cells = [NSMutableArray array];
@@ -102,10 +105,10 @@
     sections = [self crearSectionsLinksWithLinks:self.links.streaming];
     
     self.tableViewLinks = [[CustomTableViewController alloc] initWithFrame:self.viewTableViewLinks.frame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.tableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
+    //sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    //[sections addObject:sectionElement];
     
     [self.viewTableViewLinks addSubview:self.tableViewLinks];
     [self.view addSubview:self.viewTableViewLinks];
@@ -141,7 +144,7 @@
 }
 
 -(CustomCellLinksLink *) createCellLinksLinkWithLink: (Link *) link {
-    CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] initWithIdv:link.idv];
+    CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] initWithLink:link];
     UIView * view = [[UIView alloc] init];
     int heightCell = 44;
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
@@ -158,7 +161,7 @@
 -(void) loadSegmentedControl {
     self.segmentedControl =[[UISegmentedControl alloc]
                             initWithItems:[NSArray arrayWithObjects:
-                                           @"Streaming",@"Oficial",@"Descarga Directa", nil]];
+                                           @"Streaming",@"Oficial", nil]];
     
     //self.segmentedControl.frame = CGRectMake(35, 15, self.view.frame.size.width-2*35, 35);
     self.segmentedControl.selectedSegmentIndex = 0;
@@ -206,9 +209,9 @@
         case 1:
             sections = [self crearSectionsLinksWithLinks:self.links.officialServer];
             break;
-        case 2:
+        /*case 2:
             sections = [self crearSectionsLinksWithLinks:self.links.directDownload];
-            break;
+            break;*/
         default:
             break;
     }

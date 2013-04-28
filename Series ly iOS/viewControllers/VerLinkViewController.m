@@ -12,6 +12,7 @@
 #import "UserCredentials.h"
 #import "AuthToken.h"
 #import "UserToken.h"
+#import "Link.h"
 
 @interface VerLinkViewController ()
 
@@ -19,10 +20,10 @@
 
 @implementation VerLinkViewController
 
--(id) initWithIdv: (NSString *) idv {
+-(id) initWithLink: (Link *) link {
     self = [super init];
     if (self) {
-        self.idv = idv;
+        self.link = link;
     }
     return self;
 }
@@ -51,6 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.navigationController.navigationBarHidden = YES;
     [self loadData];
 	// Do any additional setup after loading the view.
 }
@@ -72,9 +74,16 @@
     UserCredentials * userCredentials = [UserCredentials getInstance];
 
     //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.link.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];
+    //NSLog(@"url de webview: %@",self.link.idv);
+    
     NSURL * url = [NSURL URLWithString:urlString];
-    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    //[[UIApplication sharedApplication] openURL:url];
+    NSMutableURLRequest * request = [NSURLRequest requestWithURL:url];
+    //[request setValue:@"User-Agent Safari/528.16"  forHTTPHeaderField:@"User_Agent"];
+    //[request setValue:@"User-Agent Safari/528.16" forKey:@"User_Agent"];
+    //request setva
+     //[request setValue:[NSString stringWithFormat:@"%@ Safari/528.16", [request valueForHTTPHeaderField:@"User-Agent"]] forHTTPHeaderField:@"User_Agent"];
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
