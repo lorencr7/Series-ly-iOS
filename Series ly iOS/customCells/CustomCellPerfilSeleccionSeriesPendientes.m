@@ -21,7 +21,7 @@
     
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        VerCapitulosPendientesViewController * verCapitulosPendientesViewController = [[VerCapitulosPendientesViewController alloc] initWithTitle:@"Capítulos pendientes"];
+        VerCapitulosPendientesViewController * verCapitulosPendientesViewController = [[VerCapitulosPendientesViewController alloc] initWithTitle:@"Capítulos pendientes" SourceData:SourceSeriesPendientes];
         AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
         [navigationController pushViewController:verCapitulosPendientesViewController animated:YES];

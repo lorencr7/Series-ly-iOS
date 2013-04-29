@@ -19,7 +19,7 @@
 
 -(void) executeAction: (UIViewController *) viewController {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        VerCapitulosPendientesViewController * verCapitulosPendientesViewController = [[VerCapitulosPendientesViewController alloc] initWithTitle:@"Películas pendientes"];
+        VerCapitulosPendientesViewController * verCapitulosPendientesViewController = [[VerCapitulosPendientesViewController alloc] initWithTitle:@"Películas pendientes" SourceData:SourcePeliculasPendientes];
         AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
         [navigationController pushViewController:verCapitulosPendientesViewController animated:YES];
@@ -27,7 +27,7 @@
         if ([viewController class] == [ListadoCapitulosPendientesViewController class]) {
             User * usuario = [User getInstance];
             PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-            [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.seriesPendientes];
+            [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
         }
     }
     /*User * usuario = [User getInstance];

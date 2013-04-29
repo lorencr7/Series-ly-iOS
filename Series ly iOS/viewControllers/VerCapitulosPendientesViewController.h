@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListadoCapitulosPendientesViewController.h"
 
-@class ListadoCapitulosPendientesViewController;
+//@class ListadoCapitulosPendientesViewController;
 @interface VerCapitulosPendientesViewController : UIViewController
 
 @property(strong, nonatomic) ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController;
+@property (assign, nonatomic) TipoSourceData tipoSourceData;
 
-- (id)initWithTitle: (NSString *) title;
+- (id)initWithTitle: (NSString *) title SourceData: (TipoSourceData) sourceData;
 
 @end

@@ -17,10 +17,11 @@
 
 @implementation VerCapitulosPendientesViewController
 
-- (id)initWithTitle: (NSString *) title {
+- (id)initWithTitle: (NSString *) title SourceData: (TipoSourceData) sourceData {
     self = [super init];
     if (self) {
         self.title = title;
+        self.tipoSourceData = sourceData;
     }
     return self;
 }
@@ -30,7 +31,7 @@
     [self configureFrame];
     
 
-    self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:self.view.frame SourceData:SourceSeriesPendientes];
+    self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:self.view.frame SourceData:self.tipoSourceData];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 	// Do any additional setup after loading the view.
 }

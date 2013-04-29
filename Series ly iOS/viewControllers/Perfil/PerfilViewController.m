@@ -44,7 +44,7 @@
     
 }
 
--(void) logoutApi {
++(void) logoutApi {
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
     //Hacemos logout en la API
