@@ -156,7 +156,7 @@
     //
     
     labelSerie.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.name];
-    labelSerie.backgroundColor = [UIColor greenColor];
+    labelSerie.backgroundColor = [UIColor clearColor];
     labelSerie.font = [UIFont boldSystemFontOfSize:18];
     labelSerie.numberOfLines = 2;
     //
