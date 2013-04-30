@@ -7,30 +7,9 @@
 //
 
 #import "PerfilViewControllerIpad.h"
-#import "ManejadorServicioWebSeriesly.h"
-#import "UserToken.h"
-#import "AuthToken.h"
-#import "User.h"
-#import "UserExtInfo.h"
-#import "UserData.h"
-#import "UserImgUser.h"
-#import "UserCountry.h"
-#import "UserCredentials.h"
-#import "ScreenSizeManager.h"
-#import <QuartzCore/QuartzCore.h>
-#import "TVFramework.h"
-#import "MediaElementUserPending.h"
-#import "Pending.h"
 #import "ConstantsCustomSplitViewController.h"
-#import "CustomCellsSeleccionPerfil.h"
-#import <QuartzCore/QuartzCore.h>
-#import "CustomCellPerfilListadoCapitulos.h"
-#import "ManejadorBaseDeDatosBackup.h"
-#import "Poster.h"
-#import "AppDelegate.h"
-#import "UserInfo.h"
-#import "ListadoCapitulosPendientesViewController.h"
 #import "DatosPerfilViewController.h"
+#import "ListadoCapitulosPendientesViewController.h"
 #import "ListadoOpcionesPerfilViewController.h"
 
 @interface PerfilViewControllerIpad ()

@@ -7,16 +7,16 @@
 //
 
 #import "ListadoCapitulosPendientesViewController.h"
+#import "TVFramework.h"
 #import "ManejadorServicioWebSeriesly.h"
 #import "User.h"
 #import "UserCredentials.h"
-#import "TVFramework.h"
-#import "CustomCellPerfilSeleccionSeriesPendientes.h"
-#import "MediaElementUserPending.h"
-#import <QuartzCore/QuartzCore.h>
-#import "Pending.h"
 #import "CustomCellPerfilListadoCapitulos.h"
+#import <QuartzCore/QuartzCore.h>
+#import "MediaElementUserPending.h"
+#import "Pending.h"
 #import "Poster.h"
+
 
 
 @interface ListadoCapitulosPendientesViewController ()
@@ -30,6 +30,7 @@
     if (self) {
         self.frame = frame;
         self.tipoSourceData = tipoSourceData;
+
     }
     return self;
 }
@@ -37,17 +38,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.frame = self.frame;
-    self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.view.layer.shadowOffset = CGSizeMake(-3,5);
-    self.view.layer.shadowRadius = 3;
-    self.view.layer.shadowOpacity = 0.3;
+    /*self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
+     self.view.layer.shadowOffset = CGSizeMake(-3,5);
+     self.view.layer.shadowRadius = 3;
+     self.view.layer.shadowOpacity = 0.3;
+     CGRect shadowFrame = self.view.layer.bounds;
+     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+     self.view.layer.shadowPath = shadowPath;*/
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    
     [self iniciarTableViewEpisodiosPendientes];
-    NSThread * thread2 = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
-    [thread2 start];
+    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
+    [thread start];
+    //[self downloadUserPendingInfo];
 	// Do any additional setup after loading the view.
 }
 
@@ -71,7 +76,7 @@
     [sections addObject:sectionElement];
     self.tableViewEpisodios = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewEpisodios.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
+    //self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
     [self.view addSubview:self.tableViewEpisodios];
 }
 
@@ -116,17 +121,21 @@
             break;
     }
     if (sourceData) {
-        [self fillTableViewFromSource:sourceData];
+        [self fillTableViewInBackgroundFromSource:sourceData];
     }
 }
 
 //Este metodo crea una celda del tableView de la derecha a partir de un mediaElement
 -(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
-    UIView * backgroundView = [[UIView alloc] init];
+    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       300,
+                                                                       0)];
     int altoCelda = 0;
-    int margen = 15;
-    int separacionDelPoster = 25;
-    UIImageView * poster = [[UIImageView alloc] initWithFrame:CGRectMake(margen, margen, 87.5, 130)];
+    int margenX = 5;
+    int margenY = 10;
+    int separacionDelPoster = 10;
+    UIImageView * poster = [[UIImageView alloc] initWithFrame:CGRectMake(margenX, margenY, 87.5, 130)];
     poster.layer.cornerRadius = 6.0f;
     poster.clipsToBounds = YES;
     NSString * urlImagen = mediaElementUserPending.poster.large;
@@ -139,15 +148,22 @@
     }
     
     
-    UILabel * labelSerie = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster,
-                                                                     poster.frame.origin.y + poster.frame.size.height/2 - 22/2 - 30,
-                                                                     self.tableViewEpisodios.frame.size.width - poster.frame.size.width - separacionDelPoster - 80,
-                                                                     0)];
+    UILabel * labelSerie = [[UILabel alloc] initWithFrame:
+                            CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster,
+                                       poster.frame.origin.y + poster.frame.size.height/2 - 22/2 - 30,
+                                       backgroundView.frame.size.width - poster.frame.size.width - separacionDelPoster - 35,
+                                       0)];
+    //
+    
     labelSerie.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.name];
-    labelSerie.backgroundColor = [UIColor clearColor];
+    labelSerie.backgroundColor = [UIColor greenColor];
     labelSerie.font = [UIFont boldSystemFontOfSize:18];
     labelSerie.numberOfLines = 2;
+    //
     [labelSerie sizeToFit];
+    labelSerie.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+    
     UILabel * labelEpisodio;
     if (mediaElementUserPending.pending.full) {
         labelEpisodio = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster, labelSerie.frame.origin.y + labelSerie.frame.size.height, 0, 0)];
@@ -158,7 +174,7 @@
     }
     
     
-    altoCelda = poster.frame.origin.y + poster.frame.size.height + margen;
+    altoCelda = poster.frame.origin.y + poster.frame.size.height + margenY;
     
     [backgroundView addSubview:poster];
     [backgroundView addSubview:labelSerie];

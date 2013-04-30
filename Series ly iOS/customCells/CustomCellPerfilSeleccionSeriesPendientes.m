@@ -26,11 +26,9 @@
         UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
         [navigationController pushViewController:verCapitulosPendientesViewController animated:YES];
     } else {
-        if ([viewController class] == [ListadoCapitulosPendientesViewController class]) {
-            User * usuario = [User getInstance];
-            PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-            [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.seriesPendientes];
-        }
+        User * usuario = [User getInstance];
+        ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = (ListadoCapitulosPendientesViewController*) viewController;
+        [listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.seriesPendientes];
     }
     
     

@@ -24,24 +24,22 @@
         UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
         [navigationController pushViewController:verCapitulosPendientesViewController animated:YES];
     } else {
-        if ([viewController class] == [ListadoCapitulosPendientesViewController class]) {
-            User * usuario = [User getInstance];
-            PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-            [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
-        }
+        User * usuario = [User getInstance];
+        ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = (ListadoCapitulosPendientesViewController*) viewController;
+        [listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
     }
     /*User * usuario = [User getInstance];
-    if ([viewController class] == [PerfilViewControllerIphone class]) {
-        PerfilViewControllerIphone * perfilViewControllerIphone = (PerfilViewControllerIphone *) viewController;
-        ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:perfilViewControllerIphone.view.frame SourceData:SourcePeliculasPendientes];
-        listadoCapitulosPendientesViewController.title = @"Películas pendientes";
-        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-        [navigationController pushViewController:listadoCapitulosPendientesViewController animated:YES];
-    } else if([viewController class] == [PerfilViewControllerIpad class]) {
-        PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-        [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
-    }*/
+     if ([viewController class] == [PerfilViewControllerIphone class]) {
+     PerfilViewControllerIphone * perfilViewControllerIphone = (PerfilViewControllerIphone *) viewController;
+     ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:perfilViewControllerIphone.view.frame SourceData:SourcePeliculasPendientes];
+     listadoCapitulosPendientesViewController.title = @"Películas pendientes";
+     AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+     UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
+     [navigationController pushViewController:listadoCapitulosPendientesViewController animated:YES];
+     } else if([viewController class] == [PerfilViewControllerIpad class]) {
+     PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
+     [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
+     }*/
 }
 
 @end

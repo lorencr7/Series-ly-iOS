@@ -9,6 +9,7 @@
 #import "UserInfo.h"
 #import "UserExtInfo.h"
 #import "UserData.h"
+#import "PerfilViewController.h"
 
 @implementation UserInfo
 
@@ -37,6 +38,9 @@
         NSString * error2 = [dictionary objectForKey:@"error"];
         self.error = [error2 intValue];
         if (self.error != 0) {
+            if (self.error == 7) {
+                [PerfilViewController logout];
+            }
             NSLog(@"error %d grabbing userInfo",self.error);
         }
     }

@@ -7,29 +7,10 @@
 //
 
 #import "PerfilViewControllerIphone.h"
-#import "ManejadorServicioWebSeriesly.h"
-#import "UserToken.h"
-#import "AuthToken.h"
-#import "User.h"
-#import "UserExtInfo.h"
-#import "UserData.h"
-#import "UserImgUser.h"
-#import "UserCountry.h"
-#import "UserCredentials.h"
-#import "ScreenSizeManager.h"
-#import <QuartzCore/QuartzCore.h>
-#import "TVFramework.h"
-#import "MediaElementUserPending.h"
-#import "Pending.h"
-#import "ConstantsCustomSplitViewController.h"
-#import "CustomCellsSeleccionPerfil.h"
-#import <QuartzCore/QuartzCore.h>
-#import "CustomCellPerfilListadoCapitulos.h"
-#import "ManejadorBaseDeDatosBackup.h"
-#import "Poster.h"
-#import "UserInfo.h"
 #import "DatosPerfilViewController.h"
 #import "ListadoOpcionesPerfilViewController.h"
+#import "ScreenSizeManager.h"
+#import "TVFramework.h"
 
 @interface PerfilViewControllerIphone ()
 
