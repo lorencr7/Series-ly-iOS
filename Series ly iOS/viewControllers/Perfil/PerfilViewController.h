@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import "RootViewController.h"
 
 @class CustomTableViewController, ListadoCapitulosPendientesViewController,DatosPerfilViewController, ListadoOpcionesPerfilViewController;
-@interface PerfilViewController : UIViewController 
+@interface PerfilViewController : RootViewController
 
 @property (strong, nonatomic) ListadoOpcionesPerfilViewController * listadoOpcionesPerfilViewController;
 

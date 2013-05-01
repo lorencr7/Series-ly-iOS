@@ -15,11 +15,19 @@
 
 @implementation MultimediaViewControllerIphone
 
+- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
+    self = [super initWithTitle:title TipoSourceData:tipoSourceData];
+    if (self) {
+        [self configureFrame];
+        [self loadListadoSeries];
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self configureFrame];
-    [self loadListadoSeries];
 }
 
 -(void) configureFrame {
@@ -32,22 +40,24 @@
     
     CGSize screenSize = [ScreenSizeManager currentSize];
     
-    CGRect viewFrame = self.view.frame;
+    CGRect viewFrame = self.contenido.frame;
     viewFrame.origin.y = 0;
     viewFrame.origin.x = 0;
     viewFrame.size.height = screenSize.height - altoNavigationBar;
     viewFrame.size.width = screenSize.width;
     
-    self.view.frame = viewFrame;
+    self.contenido.frame = viewFrame;
 }
 
 -(void) loadListadoSeries {
     CGRect listadoSeriesFrame = CGRectMake(0,
                                            0,
-                                           self.view.frame.size.width,
-                                           self.view.frame.size.height);
+                                           self.contenido.frame.size.width,
+                                           self.contenido.frame.size.height);
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData];
-    [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
+    [self.contenido addSubview:self.listadoElementosSiguiendoViewController.view];
+    NSLog(@"2");
+
 }
 
 

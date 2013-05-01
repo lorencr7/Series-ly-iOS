@@ -24,7 +24,11 @@
 - (id)init {
     self = [super init];
     if (self) {
+        [self configureFrame];
         
+        [self loadUserInfo];
+        [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
+        [self loadInterstitialBanner];
     }
     return self;
 }
@@ -32,16 +36,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void) configureFrame {
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-        self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+        self.contenido.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
     } else {
-        self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+        self.contenido.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
     }
-    
-    [self loadUserInfo];
-    [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-    [self loadInterstitialBanner];
-    //[self loadiADBanner];
 }
 
 
@@ -56,20 +58,20 @@
 }
 
 - (void) rotateToLandscape: (NSNotification *) notification {//llamado cuando se gira a landscape
-    self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+    self.contenido.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
 }
 
 - (void) rotateToPortrait: (NSNotification *) notification {//llamado cuando se gira a portrait
-    self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+    self.contenido.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
 }
 
 -(void) loadUserInfo {
     CGRect datosPerfilFrame = CGRectMake(0,
                                          0,
-                                         self.view.frame.size.width,
+                                         self.contenido.frame.size.width,
                                          120);
     self.datosPerfilViewController = [[DatosPerfilViewController alloc] initWithFrame:datosPerfilFrame];
-    [self.view addSubview:self.datosPerfilViewController.view];
+    [self.contenido addSubview:self.datosPerfilViewController.view];
     
 }
 
@@ -79,19 +81,19 @@
     
     CGRect frameViewSeleccion = CGRectMake(0,
                                            self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
-                                           self.view.frame.size.width/2 - anchoDiferente,
-                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
+                                           self.contenido.frame.size.width/2 - anchoDiferente,
+                                           self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     
     CGRect frameViewEpisodios = CGRectMake(frameViewSeleccion.origin.x + frameViewSeleccion.size.width,
                                            self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
-                                           self.view.frame.size.width/2 + anchoDiferente,
-                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
+                                           self.contenido.frame.size.width/2 + anchoDiferente,
+                                           self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     
     self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:frameViewEpisodios SourceData:SourceSeriesPendientes];
     self.listadoOpcionesPerfilViewController = [[ListadoOpcionesPerfilViewController alloc] initWithFrame:frameViewSeleccion ListadoCapitulosPendientes:self.listadoCapitulosPendientesViewController];
     
-    [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
-    [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
+    [self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
+    [self.contenido addSubview:self.listadoCapitulosPendientesViewController.view];
 }
 
 -(void) loadInterstitialBanner {

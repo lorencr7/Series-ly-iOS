@@ -126,12 +126,12 @@
 -(void) showInterstitialBanner {
     self.interstitial = [[ADInterstitialAd alloc] init];
     self.interstitial.delegate = self;
-    
 }
 
 - (void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd {
-    [interstitialAd presentFromViewController:self.splitViewController];
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+        [interstitialAd presentFromViewController:self.splitViewController];
+    }
 }
 
 - (void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd {

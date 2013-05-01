@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 
 @class CustomTableViewController;
-@interface MultimediaViewController : UIViewController
+@interface MultimediaViewController : RootViewController
 
 @property(assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;
 

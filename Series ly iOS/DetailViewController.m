@@ -10,7 +10,7 @@
 #import "CustomSplitViewController.h"
 #import "AppDelegate.h"
 #import "DrawerViewController.h"
-
+#import "RootViewController.h"
 @interface DetailViewController ()
 //@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -23,11 +23,11 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        UIView * view;
+        /*UIView * view;
         for (view in self.view.subviews) {
             [view removeFromSuperview];
             view = nil;
-        }
+        }*/
         // Update the view.
         [self configureView];
     }
@@ -47,7 +47,8 @@
 
     if (self.detailItem) {
         self.title = self.detailItem.title;
-        [self.view addSubview:self.detailItem.view];
+        RootViewController * rootViewController = (RootViewController *) self.detailItem;
+        self.view = rootViewController.contenido;
         self.navigationItem.rightBarButtonItem = self.detailItem.navigationItem.rightBarButtonItem;
         
         //self.detailDescriptionLabel.text = [self.detailItem description];

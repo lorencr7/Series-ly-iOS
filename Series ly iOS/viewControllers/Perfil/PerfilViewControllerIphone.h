@@ -7,9 +7,10 @@
 //
 
 #import "PerfilViewController.h"
+#import <iAd/iAd.h>
 
-@interface PerfilViewControllerIphone : PerfilViewController 
+@interface PerfilViewControllerIphone : PerfilViewController <ADBannerViewDelegate>
 
-
+@property (strong, nonatomic) ADBannerView *bannerView;
 
 @end
