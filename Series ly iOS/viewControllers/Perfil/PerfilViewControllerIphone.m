@@ -111,6 +111,7 @@
     }
     self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, originY, 0, 0)];
     self.bannerView.delegate = self;
+    self.bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {

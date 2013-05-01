@@ -113,10 +113,6 @@
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
     
-    CustomCellPerfilSeleccionSeriesPendientes *customCellPerfilSeleccionSeriesPendiente = [[CustomCellPerfilSeleccionSeriesPendientes alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Series pendientes" selectionType:YES customCell:customCellPerfilSeleccionSeriesPendiente];
-    [cells addObject:customCellPerfilSeleccionSeriesPendiente];
-    
     CustomCellPerfilSeleccionPeliculasPendientes *customCellPerfilSeleccionPeliculasPendientes = [[CustomCellPerfilSeleccionPeliculasPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Películas pendientes" selectionType:YES customCell:customCellPerfilSeleccionPeliculasPendientes];
     [cells addObject:customCellPerfilSeleccionPeliculasPendientes];
@@ -128,6 +124,10 @@
     CustomCellPerfilSeleccionTVShowsPendientes *customCellPerfilSeleccionTVShowsPendientes = [[CustomCellPerfilSeleccionTVShowsPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"TVShows pendientes" selectionType:YES customCell:customCellPerfilSeleccionTVShowsPendientes];
     [cells addObject:customCellPerfilSeleccionTVShowsPendientes];
+    
+    CustomCellPerfilSeleccionSeriesPendientes *customCellPerfilSeleccionSeriesPendiente = [[CustomCellPerfilSeleccionSeriesPendientes alloc] init];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Series pendientes" selectionType:YES customCell:customCellPerfilSeleccionSeriesPendiente];
+    [cells addObject:customCellPerfilSeleccionSeriesPendiente];
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
