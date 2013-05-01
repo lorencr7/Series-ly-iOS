@@ -43,12 +43,32 @@
     }
 }
 
+#define SELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
+#define TEXTSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
+#define UNSELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
+#define SELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
+#define TEXTALIGNMENTMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
+#define ACCESORYTYPEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE UITableViewCellAccessoryNone
+#define LINEBREAKMODEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
+#define NUMBEROFLINESMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
+#define ACCESORYVIEWMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
+//#define CUSTOMHEIGHTCELLMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 80
+
+#define APARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE selectedTextColor:TEXTSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE unselectedTextFont:UNSELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE selectedTextFont:SELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE textAlignment:TEXTALIGNMENTMASTERTABLEVIEWMASTERTABLEVIEWIPHONE accesoryType:ACCESORYTYPEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE lineBreakMode:LINEBREAKMODEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE numberOfLines:NUMBEROFLINESMASTERTABLEVIEWMASTERTABLEVIEWIPHONE accesoryView:ACCESORYVIEWMASTERTABLEVIEWMASTERTABLEVIEWIPHONE backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
+
 -(CustomCell *) createCellListadoCapitulosWithMediaElementUserPending: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
     UIView * backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor whiteColor];
     backgroundView.layer.borderWidth = 1;
     backgroundView.layer.borderColor = [[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] CGColor];
     int altoCelda = 0;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        altoCelda = 54;
+    } else {
+        altoCelda = 94;
+    }
     UIImage * imagen = [UIImage imageNamed:imageName];
     UIImageView * imageView = [[UIImageView alloc] init];
     
@@ -64,12 +84,12 @@
     [label sizeToFit];
     
     CGRect frame = imageView.frame;
-    frame.origin.y = 15;
-    frame.origin.x = 15;
+    frame.origin.y = altoCelda*0.16;
+    frame.origin.x = altoCelda*0.16;
     //frame.size.height = imageView.frame.size.height;
     //frame.size.width = imageView.frame.size.width;
-    frame.size.height = 64;
-    frame.size.width = 64;
+    frame.size.height = altoCelda*0.68;
+    frame.size.width = altoCelda*0.68;
     imageView.frame = frame;
     
     frame = label.frame;
@@ -77,16 +97,35 @@
     frame.origin.x = imageView.frame.origin.x + imageView.frame.size.width + 15;
     label.frame = frame;
 
-    altoCelda = imageView.frame.origin.y + imageView.frame.size.height + 15;
+    //altoCelda = imageView.frame.origin.y + imageView.frame.size.height + 15;
+    //NSLog(@"%d",altoCelda);
     
     [backgroundView addSubview:imageView];
     [backgroundView addSubview:label];
     
     
     
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMASTERTABLEVIEW(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCell];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCell];
     return customCell;
 }
+
+#define UNSELECTEDCOLORAPARIENCIASALIR [UIColor redColor]
+#define SELECTEDCOLORAPARIENCIASALIR [UIColor redColor]
+#define TEXTUNSELECTEDCOLORAPARIENCIASALIR [UIColor whiteColor]
+#define TEXTSELECTEDCOLORAPARIENCIASALIR [UIColor whiteColor]
+#define UNSELECTEDFONTAPARIENCIASALIR [UIFont boldSystemFontOfSize:18.0]
+#define SELECTEDFONTAPARIENCIASALIR [UIFont boldSystemFontOfSize:18.0]
+#define BORDERCOLORSALIR [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]
+#define BORDERWIDTHSALIR 0.8
+#define CORNERRADIUSSALIR 0
+#define TEXTALIGNMENTSALIR NSTextAlignmentCenter
+#define ACCESORYTYPESALIR UITableViewCellAccessoryNone
+#define LINEBREAKMODESALIR NSLineBreakByWordWrapping
+#define NUMBEROFLINESSALIR 0
+#define ACCESORYVIEWSALIR nil
+#define HEIGHTCELLSALIR 47
+
+#define APARIENCIASALIR [[CustomCellAppearance alloc] initWithAppearanceWithUnselectedColor:UNSELECTEDCOLORAPARIENCIASALIR selectedColor:SELECTEDCOLORAPARIENCIASALIR unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIASALIR selectedTextColor:TEXTSELECTEDCOLORAPARIENCIASALIR unselectedTextFont:UNSELECTEDFONTAPARIENCIASALIR selectedTextFont:SELECTEDFONTAPARIENCIASALIR borderColor:BORDERCOLORSALIR borderWidth:BORDERWIDTHSALIR cornerRadius:CORNERRADIUSSALIR textAlignment:TEXTALIGNMENTSALIR accesoryType:ACCESORYTYPESALIR lineBreakMode:LINEBREAKMODESALIR numberOfLines:NUMBEROFLINESSALIR accesoryView:ACCESORYVIEWSALIR heightCell:HEIGHTCELLSALIR]
 
 -(void) configureTableView {
     NSMutableArray *sections = [NSMutableArray array];
@@ -124,28 +163,21 @@
     CustomCellUnLogin *customCellUnLogin = [[CustomCellUnLogin alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIASALIR cellText:@"Salir" selectionType:YES customCell:customCellUnLogin];
     [cells addObject:customCellUnLogin];
+
+    int salirHeaderHeight;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        salirHeaderHeight = 17;
+    } else {
+        salirHeaderHeight = 60;
+    }
     
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:60 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:salirHeaderHeight labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
     
     // Creamos el tableView y lo anadimos a la subvista
     CGRect tableViewFrame = self.view.frame;
     self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
     [customCellPerfil executeAction:self.detailViewController];
-    /*[customCellPerfil customSelect];
-    [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];*/
-    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
-        [customCellPerfil executeAction:self.detailViewController];
-        [customCellPerfil customSelect];
-        [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    } else {
-       self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
-        [customCellPerfil executeAction:self.detailViewController];
-        [customCellPerfil customSelect];
-        [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    }*/
-    
     
     
     //[self.view addSubview:self.customTableViewController];

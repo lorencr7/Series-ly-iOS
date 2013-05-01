@@ -10,6 +10,7 @@
 #import "MultimediaViewControllerIphone.h"
 #import "MultimediaViewControllerIpad.h"
 #import "DetailViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
 @implementation CustomCellDocumentales
 
@@ -18,9 +19,9 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewDocumentalesCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewDocumentalesCellText", nil)TipoSourceData:SourceDocumentalesSiguiendo];
         } else {
-            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewDocumentalesCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewDocumentalesCellText", nil) TipoSourceData:SourceDocumentalesSiguiendo];
         }
         
         [detailViewController setDetailItem:multimediaViewController];

@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UIViewController <ADBannerViewDelegate>
 
 @property (strong, nonatomic) UIViewController * detailItem;
+@property (strong, nonatomic) ADBannerView *bannerView;
+
 
 - (void)configureView;
+
+- (void) showiADBanner;
 
 @end

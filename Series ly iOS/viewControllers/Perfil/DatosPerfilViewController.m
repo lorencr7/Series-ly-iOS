@@ -57,10 +57,13 @@
     self.imagenPerfil = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 105)];
     
     // Editamos la apariencia de la foto de perfil
-    self.imagenPerfil.layer.shadowColor = [[UIColor blackColor] CGColor];
+    /*self.imagenPerfil.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.imagenPerfil.layer.shadowOffset = CGSizeMake(3,3);
     self.imagenPerfil.layer.shadowRadius = 2;
     self.imagenPerfil.layer.shadowOpacity = 0.6;
+    CGRect shadowFrame = self.imagenPerfil.layer.bounds;
+    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+    self.imagenPerfil.layer.shadowPath = shadowPath;*/
     
     
     [self.view addSubview:self.imagenPerfil];
@@ -139,6 +142,7 @@
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
     imagen = [UIImage imageWithData:imageData];
     imageView.image = imagen;
+    //[self.view addSubview:imageView];
     
 }
 

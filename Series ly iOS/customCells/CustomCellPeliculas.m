@@ -10,6 +10,7 @@
 #import "MultimediaViewControllerIphone.h"
 #import "MultimediaViewControllerIpad.h"
 #import "DetailViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
 @implementation CustomCellPeliculas
 
@@ -20,9 +21,9 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)TipoSourceData:SourcePeliculasSiguiendo];
         } else {
-            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)TipoSourceData:SourcePeliculasSiguiendo];
         }
         
         [detailViewController setDetailItem:multimediaViewController];

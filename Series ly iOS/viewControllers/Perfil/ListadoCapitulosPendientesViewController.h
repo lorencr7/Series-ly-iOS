@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-
-
-@class CustomTableViewController;
-
 typedef enum {
     SourceSeriesPendientes,
     SourcePeliculasPendientes,
@@ -20,6 +16,7 @@ typedef enum {
     SourceDocumentalesPendientes,
 }TipoSourceData;
 
+@class CustomTableViewController;
 @interface ListadoCapitulosPendientesViewController : UIViewController
 
 

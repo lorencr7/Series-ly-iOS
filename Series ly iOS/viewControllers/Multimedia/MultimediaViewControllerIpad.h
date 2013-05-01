@@ -8,9 +8,13 @@
 
 #import "MultimediaViewController.h"
 
+
+//@class ListadoElementsSiguiendoViewController;
 @interface MultimediaViewControllerIpad : MultimediaViewController
 
-@property (strong, nonatomic) UIView * viewListadoSeries;
+
+
+/*@property (strong, nonatomic) UIView * viewListadoSeries;
 @property (strong, nonatomic) CustomTableViewController * tableViewListadoSeries;
 
 @property (strong, nonatomic) UIView * viewDetalleSeries;
@@ -25,7 +29,7 @@
 -(void) loadListadoSeries;
 -(void) loadDetalleSeries;
 -(void) configureUserInfo;
--(void) fillTableViewListadoWithSource: (NSMutableArray *) source ;
+-(void) fillTableViewListadoWithSource: (NSMutableArray *) source ;*/
 
 
 

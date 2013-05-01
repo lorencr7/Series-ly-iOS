@@ -15,7 +15,6 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        NSLog(@"numberOfSeasons: %d",dictionary.count);
         
         self.seasons = [NSMutableArray array];
         int seasons = dictionary.count , i;

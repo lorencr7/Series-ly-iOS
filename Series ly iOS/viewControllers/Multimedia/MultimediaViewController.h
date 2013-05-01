@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListadoElementsSiguiendoViewController.h"
 
 @class CustomTableViewController;
 @interface MultimediaViewController : UIViewController
 
-- (id)initWithTitle: (NSString *) title;
+@property(assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;
+
+@property(strong, nonatomic) ListadoElementsSiguiendoViewController * listadoElementosSiguiendoViewController;
+
+- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData;
 
 @end
 

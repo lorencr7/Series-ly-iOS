@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45019FD3173158130002DA29 /* ListadoElementsSiguiendoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45019FD2173158130002DA29 /* ListadoElementsSiguiendoViewController.m */; };
+		45019FD5173166FF0002DA29 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45019FD4173166FF0002DA29 /* iAd.framework */; };
 		4508CDFD16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */; };
 		45091CA616EC0A7A006517A4 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 45091CA516EC0A7A006517A4 /* UserInfo.m */; };
 		450F852D172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8526172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m */; };
@@ -134,6 +136,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45019FD1173158130002DA29 /* ListadoElementsSiguiendoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListadoElementsSiguiendoViewController.h; sourceTree = "<group>"; };
+		45019FD2173158130002DA29 /* ListadoElementsSiguiendoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListadoElementsSiguiendoViewController.m; sourceTree = "<group>"; };
+		45019FD4173166FF0002DA29 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4508CDFB16ED0CB100495CBD /* CustomCellSeriesListadoSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellSeriesListadoSeries.h; sourceTree = "<group>"; };
 		4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellSeriesListadoSeries.m; sourceTree = "<group>"; };
 		45091CA416EC0A7A006517A4 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -339,6 +344,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45019FD5173166FF0002DA29 /* iAd.framework in Frameworks */,
 				45F79BF116DEA5D800AD108D /* libsqlite3.0.dylib in Frameworks */,
 				4577AAC916DD8C5E00B089B2 /* UIKit.framework in Frameworks */,
 				4577AACB16DD8C5E00B089B2 /* Foundation.framework in Frameworks */,
@@ -390,6 +396,8 @@
 		450F8542172D8E3B008523A5 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
+				45019FD1173158130002DA29 /* ListadoElementsSiguiendoViewController.h */,
+				45019FD2173158130002DA29 /* ListadoElementsSiguiendoViewController.m */,
 				450F8543172D8E3B008523A5 /* MultimediaViewController.h */,
 				450F8544172D8E3B008523A5 /* MultimediaViewController.m */,
 				450F8545172D8E3B008523A5 /* MultimediaViewControllerIpad.h */,
@@ -541,6 +549,7 @@
 		4577AAC716DD8C5E00B089B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45019FD4173166FF0002DA29 /* iAd.framework */,
 				45F79BF016DEA5D800AD108D /* libsqlite3.0.dylib */,
 				4577AAC816DD8C5E00B089B2 /* UIKit.framework */,
 				4577AACA16DD8C5E00B089B2 /* Foundation.framework */,
@@ -614,16 +623,22 @@
 		4577AB2C16DD8CC800B089B2 /* Datos */ = {
 			isa = PBXGroup;
 			children = (
-				459FE00B17271F8700AEA455 /* Serializable.h */,
-				459FE00C17271F8700AEA455 /* Serializable.m */,
 				4577AB2D16DD8CC800B089B2 /* AuthToken.h */,
 				4577AB2E16DD8CC800B089B2 /* AuthToken.m */,
 				452C195116F08DAE008A2C63 /* Cast.h */,
 				452C195216F08DAE008A2C63 /* Cast.m */,
 				452C194B16F08CC1008A2C63 /* Director.h */,
 				452C194C16F08CC1008A2C63 /* Director.m */,
+				452C195716F08FBA008A2C63 /* Episode.h */,
+				452C195816F08FBA008A2C63 /* Episode.m */,
+				452C195A16F09051008A2C63 /* EpisodeMedia.h */,
+				452C195B16F09052008A2C63 /* EpisodeMedia.m */,
 				452C194816F08C64008A2C63 /* FullInfo.h */,
 				452C194916F08C64008A2C63 /* FullInfo.m */,
+				452AC8761700571A0085D0A1 /* Link.h */,
+				452AC8771700571A0085D0A1 /* Link.m */,
+				4572FFEE16FFB57F009E1F4A /* Links.h */,
+				4572FFEF16FFB57F009E1F4A /* Links.m */,
 				454B576416E0D6C400F1A046 /* MediaElement.h */,
 				454B576516E0D6C400F1A046 /* MediaElement.m */,
 				454B576716E0D73F00F1A046 /* MediaElementUser.h */,
@@ -634,8 +649,12 @@
 				454B577116E0D7E900F1A046 /* Pending.m */,
 				454B576D16E0D7A000F1A046 /* Poster.h */,
 				454B576E16E0D7A000F1A046 /* Poster.m */,
+				452C195416F08F62008A2C63 /* Season.h */,
+				452C195516F08F63008A2C63 /* Season.m */,
 				452C194E16F08D5A008A2C63 /* SeasonsEpisodes.h */,
 				452C194F16F08D5A008A2C63 /* SeasonsEpisodes.m */,
+				459FE00B17271F8700AEA455 /* Serializable.h */,
+				459FE00C17271F8700AEA455 /* Serializable.m */,
 				4577AB2F16DD8CC800B089B2 /* User.h */,
 				4577AB3016DD8CC800B089B2 /* User.m */,
 				4577AB3116DD8CC800B089B2 /* UserCountry.h */,
@@ -652,16 +671,6 @@
 				45091CA516EC0A7A006517A4 /* UserInfo.m */,
 				4577AB3916DD8CC800B089B2 /* UserToken.h */,
 				4577AB3A16DD8CC800B089B2 /* UserToken.m */,
-				452C195416F08F62008A2C63 /* Season.h */,
-				452C195516F08F63008A2C63 /* Season.m */,
-				452C195716F08FBA008A2C63 /* Episode.h */,
-				452C195816F08FBA008A2C63 /* Episode.m */,
-				452C195A16F09051008A2C63 /* EpisodeMedia.h */,
-				452C195B16F09052008A2C63 /* EpisodeMedia.m */,
-				4572FFEE16FFB57F009E1F4A /* Links.h */,
-				4572FFEF16FFB57F009E1F4A /* Links.m */,
-				452AC8761700571A0085D0A1 /* Link.h */,
-				452AC8771700571A0085D0A1 /* Link.m */,
 			);
 			path = Datos;
 			sourceTree = "<group>";
@@ -974,6 +983,7 @@
 				450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */,
 				450F8552172DA197008523A5 /* ListadoOpcionesPerfilViewController.m in Sources */,
 				450F8558172DAF82008523A5 /* VerCapitulosPendientesViewController.m in Sources */,
+				45019FD3173158130002DA29 /* ListadoElementsSiguiendoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,10 +15,11 @@
 
 @implementation MultimediaViewController
 
-- (id)initWithTitle: (NSString *) title {
+- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
     self = [super init];
     if (self) {
         self.title = title;
+        self.tipoSourceData = tipoSourceData;
     }
     return self;
 }

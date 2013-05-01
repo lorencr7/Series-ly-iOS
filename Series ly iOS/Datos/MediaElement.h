@@ -16,8 +16,8 @@
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * mainGenre;
 @property (strong, nonatomic) NSString * year;
-@property (strong, nonatomic) NSString * seasons;
-@property (strong, nonatomic) NSString * episodes;
+@property (assign, nonatomic) int seasons;
+@property (assign, nonatomic) int episodes;
 @property (strong, nonatomic) NSString * url;
 @property (strong, nonatomic) Poster * poster;
 

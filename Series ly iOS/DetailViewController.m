@@ -89,6 +89,33 @@
     }
     return self;
 }
-							
+
+- (void) showiADBanner {
+    int originY;
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        originY = self.view.frame.size.height - 44;
+    } else {
+        originY = self.view.frame.size.height - 32;
+    }
+    self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, originY, 0, 0)];
+    self.bannerView.delegate = self;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    [self.view addSubview:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    NSLog(@"%@",error);
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+
+}
 
 @end

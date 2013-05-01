@@ -8,6 +8,8 @@
 
 #import "PerfilViewController.h"
 
-@interface PerfilViewControllerIphone : PerfilViewController
+@interface PerfilViewControllerIphone : PerfilViewController 
+
+
 
 @end

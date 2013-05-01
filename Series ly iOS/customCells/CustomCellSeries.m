@@ -9,6 +9,7 @@
 #import "CustomCellSeries.h"
 #import "MultimediaViewControllerIphone.h"
 #import "MultimediaViewControllerIpad.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
 #import "DetailViewController.h"
 
@@ -19,9 +20,9 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewSeriesCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewSeriesCellText", nil) TipoSourceData:SourceSeriesSiguiendo];
         } else {
-            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewSeriesCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewSeriesCellText", nil) TipoSourceData:SourceSeriesSiguiendo];
         }
          
         [detailViewController setDetailItem:multimediaViewController];

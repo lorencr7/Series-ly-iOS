@@ -23,8 +23,8 @@
         self.name = [NSString stringWithFormat:@"%@",name];
         self.mainGenre = [NSString stringWithFormat:@"%@",mainGenre];
         self.year = [NSString stringWithFormat:@"%@",year];
-        self.seasons = [NSString stringWithFormat:@"%@",seasons];
-        self.episodes = [NSString stringWithFormat:@"%@",episodes];
+        //self.seasons = [NSString stringWithFormat:@"%@",seasons];
+        //self.episodes = [NSString stringWithFormat:@"%@",episodes];
         self.url = [NSString stringWithFormat:@"%@",url];
         self.poster = poster;
         self.pending = pending;

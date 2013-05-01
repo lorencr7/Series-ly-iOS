@@ -11,6 +11,7 @@
 #import "DatosPerfilViewController.h"
 #import "ListadoCapitulosPendientesViewController.h"
 #import "ListadoOpcionesPerfilViewController.h"
+#import "AppDelegate.h"
 
 @interface PerfilViewControllerIpad ()
 
@@ -39,6 +40,8 @@
     
     [self loadUserInfo];
     [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
+    [self loadInterstitialBanner];
+    //[self loadiADBanner];
 }
 
 
@@ -89,6 +92,11 @@
     
     [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
+}
+
+-(void) loadInterstitialBanner {
+    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showInterstitialBanner];
 }
 
 @end

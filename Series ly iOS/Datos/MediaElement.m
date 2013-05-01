@@ -20,8 +20,10 @@
         self.name = [dictionary objectForKey:@"name"];
         self.mainGenre = [dictionary objectForKey:@"maingenre"];
         self.year = [dictionary objectForKey:@"year"];
-        self.seasons = [dictionary objectForKey:@"seasons"];
-        self.episodes = [dictionary objectForKey:@"episodes"];
+        NSString * seasons2 = [dictionary objectForKey:@"seasons"];
+        self.seasons = [seasons2 intValue];
+        NSString * episodes2 = [dictionary objectForKey:@"episodes"];
+        self.episodes = [episodes2 intValue];
         self.url = [dictionary objectForKey:@"url"];
         
         NSDictionary * posterDictionary = [dictionary objectForKey:@"poster"];

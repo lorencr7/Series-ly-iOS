@@ -73,17 +73,66 @@
 }
 
 -(void) downloadLinks {
+
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
-    int sesion = [self.mediaElementUserPending.pending.season intValue];
-    int capitulo = [self.mediaElementUserPending.pending.episode intValue];
+
     UserCredentials * userCredentials = [UserCredentials getInstance];
     self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithAuthToken:userCredentials.authToken
                                                               UserToken:userCredentials.userToken
                                                                     Idm:self.mediaElementUserPending.idm
                                                               MediaType:self.mediaElementUserPending.mediaType];
-    Season * season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
+    switch ([self.fullInfo.mediaType intValue]) {
+        case 1:
+            //NSLog(@"Serie");
+            [self cargarLinksSeries];
+            break;
+        case 2:
+            //NSLog(@"Pelicula");
+            break;
+        case 3:
+            //NSLog(@"Documental");
+            break;
+        case 4:
+            //NSLog(@"TVShow");
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void) cargarLinksSeries {
+    BOOL hayTemporadaZero = NO;
+    BOOL hayEpisodioZero = NO;
+    int sesion = [self.mediaElementUserPending.pending.season intValue];
+    int capitulo = [self.mediaElementUserPending.pending.episode intValue];
+    ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     
-    Episode * episode = [season.episodes objectAtIndex:capitulo-1];
+    if (self.fullInfo.seasonsEpisodes.seasons.count == (self.fullInfo.seasons + 1)) {
+        hayTemporadaZero = YES;
+    }
+    //NSLog(@"numberOfSeasons: %d vs %d",self.fullInfo.seasons,self.fullInfo.seasonsEpisodes.seasons.count);
+    Season * season;
+    if (hayTemporadaZero) {
+        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
+    } else {
+        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion - 1];
+    }
+    
+    
+    
+    Episode * firstEpisode = [season.episodes objectAtIndex:0];
+    if ([firstEpisode.episode intValue] == 0) {
+        hayEpisodioZero = YES;
+    }
+    Episode * episode;
+    if (hayEpisodioZero) {
+        episode = [season.episodes objectAtIndex:capitulo];
+    } else {
+        episode = [season.episodes objectAtIndex:capitulo - 1];
+    }
+    
     self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
                                                          Idm:episode.idm
                                                    MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
@@ -111,7 +160,6 @@
     } completion:^(BOOL finished){
         
     }];
-    
 }
 
 - (NSMutableArray *) crearSectionsLinksWithLinks: (NSMutableArray *) links {

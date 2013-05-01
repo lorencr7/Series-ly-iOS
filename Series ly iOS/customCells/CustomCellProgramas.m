@@ -10,6 +10,7 @@
 #import "MultimediaViewControllerIphone.h"
 #import "MultimediaViewControllerIpad.h"
 #import "DetailViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
 @implementation CustomCellProgramas
 
@@ -18,9 +19,9 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewProgramasCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewProgramasCellText", nil)TipoSourceData:SourceTVShowsSiguiendo];
         } else {
-            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewProgramasCellText", nil)];
+            multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewProgramasCellText", nil)TipoSourceData:SourceTVShowsSiguiendo];
         }
         
         [detailViewController setDetailItem:multimediaViewController];

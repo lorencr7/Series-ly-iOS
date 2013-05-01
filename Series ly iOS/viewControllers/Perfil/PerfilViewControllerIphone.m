@@ -12,6 +12,10 @@
 #import "ScreenSizeManager.h"
 #import "TVFramework.h"
 
+#import "AppDelegate.h"
+#import "DrawerViewController.h"
+#import "DetailViewController.h"
+
 @interface PerfilViewControllerIphone ()
 
 @end
@@ -34,6 +38,7 @@
     
     [self loadUserInfo];
     [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
+    [self loadiADBanner];
 }
 
 -(void) configureFrame {
@@ -89,5 +94,13 @@
         
     }
 }
+
+-(void) loadiADBanner {
+    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UINavigationController * navController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
+    DetailViewController * detailViewController = [navController.viewControllers objectAtIndex:0];
+    [detailViewController showiADBanner];
+}
+
 
 @end
