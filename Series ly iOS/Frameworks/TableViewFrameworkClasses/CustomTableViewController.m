@@ -153,7 +153,7 @@
 
 
 -(int) getNumberOfSections{
-    return self.numberOfSections;
+    return self.sections.count;
 }
 
 -(int) getNumberOfCells:(int) section {

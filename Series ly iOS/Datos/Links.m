@@ -14,7 +14,7 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        NSArray * offialServerDictionary = [dictionary objectForKey:@"officialServer"];
+        NSArray * offialServerDictionary = [dictionary objectForKey:@"oficialServer"];
         NSArray * streamingDictionary = [dictionary objectForKey:@"streaming"];
         NSArray * directDownloadDictionary = [dictionary objectForKey:@"direct_download"];
         NSString * error2 = [dictionary objectForKey:@"error"];

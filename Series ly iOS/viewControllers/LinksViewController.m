@@ -87,18 +87,30 @@
             [self cargarLinksSeries];
             break;
         case 2:
+            [self cargarLinksPeliculas];
             //NSLog(@"Pelicula");
             break;
         case 3:
+            [self cargarLinksPeliculas];
             //NSLog(@"Documental");
             break;
         case 4:
+            [self cargarLinksSeries];
             //NSLog(@"TVShow");
             break;
             
         default:
             break;
     }
+}
+
+-(void) cargarLinksPeliculas {
+    ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
+                                                         Idm:self.fullInfo.idm
+                                                   MediaType:[NSString stringWithFormat:@"%d",[self.fullInfo.mediaType intValue]]];
+    [self loadTableViewWithLinks:self.links];
 }
 
 -(void) cargarLinksSeries {
@@ -136,7 +148,11 @@
     self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
                                                          Idm:episode.idm
                                                    MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
+    [self loadTableViewWithLinks:self.links];
     
+}
+
+-(void) loadTableViewWithLinks: (Links *) links {
     self.viewTableViewLinks = [[UIView alloc] initWithFrame:self.view.frame];
     self.viewTableViewLinks.backgroundColor = [UIColor whiteColor];
     self.viewTableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -148,7 +164,7 @@
     
     cells = [NSMutableArray array];
     
-    sections = [self crearSectionsLinksWithLinks:self.links.streaming];
+    sections = [self crearSectionsLinksWithLinks:links.streaming];
     
     self.tableViewLinks = [[CustomTableViewController alloc] initWithFrame:self.viewTableViewLinks.frame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

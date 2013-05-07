@@ -198,7 +198,6 @@
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    [sections addObject:sectionElement];
     self.tableViewEpisodios.section.sections = sections;
     [self.tableViewEpisodios reloadData];
 }

@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import "RootViewController.h"
 @class CustomTableViewController;
-@interface AjustesViewController : UIViewController
+@interface AjustesViewController : RootViewController
 
 @property (strong, nonatomic) CustomTableViewController *tableViewAjustes;
 

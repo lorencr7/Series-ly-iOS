@@ -301,7 +301,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(FullInfo *) getMediaFullInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType{
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/full_info/?idm=%@&mediaType=%@&auth_token=%@&user_token=%@",idm ,mediaType ,newAuthToken.authToken,userToken.userToken];
-    //NSLog(@"%@",urlString);
+    NSLog(@"%@",urlString);
     NSError *error;
     NSData *responseData = [self performRequestWithURL:urlString Error:error];
     if (!responseData) {

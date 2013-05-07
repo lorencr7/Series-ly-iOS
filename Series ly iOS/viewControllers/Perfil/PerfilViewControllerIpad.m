@@ -28,7 +28,7 @@
         
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        [self loadInterstitialBanner];
+        //[self loadInterstitialBanner];
     }
     return self;
 }

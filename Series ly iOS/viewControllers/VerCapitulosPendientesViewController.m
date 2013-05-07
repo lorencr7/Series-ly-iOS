@@ -9,6 +9,7 @@
 #import "VerCapitulosPendientesViewController.h"
 #import "ScreenSizeManager.h"
 #import "ListadoCapitulosPendientesViewController.h"
+#import "TVFramework.h"
 #import "User.h"
 
 @interface VerCapitulosPendientesViewController ()
@@ -34,6 +35,12 @@
     self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:self.view.frame SourceData:self.tipoSourceData];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 	// Do any additional setup after loading the view.
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.listadoCapitulosPendientesViewController.tableViewEpisodios.lastCellPressed) {
+        [self.listadoCapitulosPendientesViewController.tableViewEpisodios.lastCellPressed customDeselect];
+    }
 }
 
 -(void) configureFrame {

@@ -28,8 +28,7 @@
         [self configureFrame];
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        //[self loadiADBanner];
-        [self showiADBanner];
+        //[self showiADBanner];
     }
     return self;
 }
@@ -73,7 +72,7 @@
                                          120);
     self.datosPerfilViewController = [[DatosPerfilViewController alloc] initWithFrame:datosPerfilFrame];
     [self.contenido addSubview:self.datosPerfilViewController.view];
-    [self.contenido addSubview:self.datosPerfilViewController.view];
+    //[self.contenido addSubview:self.datosPerfilViewController.view];
 }
 
 -(void) loadEpisodes {
@@ -83,7 +82,7 @@
                                            self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     self.listadoOpcionesPerfilViewController = [[ListadoOpcionesPerfilViewController alloc] initWithFrame:frameViewSeleccion ListadoCapitulosPendientes:nil];
     [self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
-    [self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
+    //[self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
 }
 
 

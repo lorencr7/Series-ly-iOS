@@ -56,8 +56,6 @@
                                            self.contenido.frame.size.height);
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData];
     [self.contenido addSubview:self.listadoElementosSiguiendoViewController.view];
-    NSLog(@"2");
-
 }
 
 
