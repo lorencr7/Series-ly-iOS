@@ -73,19 +73,19 @@
     
     switch (self.tipoSourceData) {
         case SourceSeriesSiguiendo:
-            usuario.seriesFollowing = [manejadorServicioWebSeriesly getUserFollowingSeriesWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.seriesFollowing = [manejadorServicioWebSeriesly getUserFollowingSeriesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.seriesFollowing;
             break;
         case SourcePeliculasSiguiendo:
-            usuario.peliculasFollowing = [manejadorServicioWebSeriesly getUserFollowingMoviesWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.peliculasFollowing = [manejadorServicioWebSeriesly getUserFollowingMoviesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.peliculasFollowing;
             break;
         case SourceTVShowsSiguiendo:
-            usuario.tvShowsFollowing = [manejadorServicioWebSeriesly getUserFollowingTvShowsWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.tvShowsFollowing = [manejadorServicioWebSeriesly getUserFollowingTvShowsWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.tvShowsFollowing;
             break;
         case SourceDocumentalesSiguiendo:
-            usuario.documentalesFollowing = [manejadorServicioWebSeriesly getUserFollowingDocumentariesWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.documentalesFollowing = [manejadorServicioWebSeriesly getUserFollowingDocumentariesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.documentalesFollowing;
             break;
             

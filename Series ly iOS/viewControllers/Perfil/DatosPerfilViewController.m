@@ -91,7 +91,7 @@
     UserCredentials * userCredentials = [UserCredentials getInstance];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //Descargamos la informacion del usuario
-    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:nil ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     if (!userInfo) {
         NSLog(@"error descargando la info del usuario");
     } else {

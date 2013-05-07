@@ -30,7 +30,7 @@
 -(void) executeAction:(UIViewController *)viewController {
     //NSMutableArray * hostsForSafari = [NSMutableArray arrayWithObjects:@"AllMyVideos",@"Youtube" ,nil];
     VerLinkViewControllerIpad * verLinkViewController = [[VerLinkViewControllerIpad alloc] initWithLink:self.link];
-    NSString * host = [self.link.host lowercaseString];;
+    NSString * host = [self.link.host lowercaseString];
     if ([host isEqualToString:@"allmyvideos"]) {
          UserCredentials * userCredentials = [UserCredentials getInstance];
         NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.link.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];

@@ -44,6 +44,12 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.tableViewLinks.lastCellPressed) {
+        [self.tableViewLinks.lastCellPressed customDeselect];
+    }
+}
+
 -(void) loadData {
     //self.view.frame = CGRectMake(0, 0, 540, 620 - self.navigationController.navigationBar.frame.size.height);
     //NSLog(@"Viendo enlaces de: %@",self.mediaElementUserPending.name);
@@ -73,14 +79,16 @@
 }
 
 -(void) downloadLinks {
-
+    
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
-
+    
     UserCredentials * userCredentials = [UserCredentials getInstance];
-    self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithAuthToken:userCredentials.authToken
-                                                              UserToken:userCredentials.userToken
-                                                                    Idm:self.mediaElementUserPending.idm
-                                                              MediaType:self.mediaElementUserPending.mediaType];
+    self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithRequest:nil
+                                                         ProgressView:nil
+                                                            AuthToken:userCredentials.authToken
+                                                            UserToken:userCredentials.userToken
+                                                                  Idm:self.mediaElementUserPending.idm
+                                                            MediaType:self.mediaElementUserPending.mediaType];
     switch ([self.fullInfo.mediaType intValue]) {
         case 1:
             //NSLog(@"Serie");
@@ -107,9 +115,11 @@
 -(void) cargarLinksPeliculas {
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
-    self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
-                                                         Idm:self.fullInfo.idm
-                                                   MediaType:[NSString stringWithFormat:@"%d",[self.fullInfo.mediaType intValue]]];
+    self.links = [manejadorServicioWeb getLinksWithRequest:nil
+                                              ProgressView:nil
+                                                 AuthToken:userCredentials.authToken
+                                                       Idm:self.fullInfo.idm
+                                                 MediaType:[NSString stringWithFormat:@"%d",[self.fullInfo.mediaType intValue]]];
     [self loadTableViewWithLinks:self.links];
 }
 
@@ -145,9 +155,11 @@
         episode = [season.episodes objectAtIndex:capitulo - 1];
     }
     
-    self.links = [manejadorServicioWeb getLinksWithAuthToken:userCredentials.authToken
-                                                         Idm:episode.idm
-                                                   MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
+    self.links = [manejadorServicioWeb getLinksWithRequest:nil
+                                              ProgressView:nil
+                                                 AuthToken:userCredentials.authToken
+                                                       Idm:episode.idm
+                                                 MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
     [self loadTableViewWithLinks:self.links];
     
 }
@@ -184,7 +196,11 @@
     NSMutableArray * cells = [NSMutableArray array];
     
     for (Link * link in links) {
-        [cells addObject:[self createCellLinksLinkWithLink:link]];
+        NSString * host = [link.host lowercaseString];
+        if (![host isEqualToString:@"moevideos"] && ! [host isEqualToString:@"nowvideo"] && ! [host isEqualToString:@"magnovideo"] && ! [host isEqualToString:@"vidxden"]) {
+            [cells addObject:[self createCellLinksLinkWithLink:link]];
+        }
+        
     }
     if (cells.count == 0) {
         CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] init];

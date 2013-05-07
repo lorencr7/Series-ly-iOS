@@ -85,7 +85,7 @@
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     //Descargamos los capitulos de las series pendientes del usuario
-    NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     if (!userPendingInfo) {
         NSLog(@"error descargando la info de pendientes del usuario");
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

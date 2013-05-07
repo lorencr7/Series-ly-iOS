@@ -8,32 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-@class AuthToken,UserToken,UserInfo,Links,FullInfo;
+@class AuthToken,UserToken,UserInfo,Links,FullInfo, ASIHTTPRequest;
 @interface ManejadorServicioWebSeriesly : NSObject
 
 +(ManejadorServicioWebSeriesly *) getInstance;
 
 -(AuthToken *) checkAuthToken: (AuthToken *) authToken;
 
--(void) logoutWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(AuthToken *) getAuthToken;
--(UserToken *) getUserTokenWithAuthToken: (AuthToken *) authToken UserName: (NSString *) userName Password: (NSString *) password Remember: (NSString *) remember;
--(UserInfo *) getUserInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
-
-/*-(NSMutableArray *) getUserPendingSeriesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserPendingTvShowsWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserPendingMoviesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserPendingDocumentariesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;*/
-
--(NSMutableDictionary *) getUserPendingInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
-
--(NSMutableArray *) getUserFollowingSeriesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserFollowingTvShowsWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserFollowingMoviesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
--(NSMutableArray *) getUserFollowingDocumentariesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+-(void) logoutWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
 
 
--(Links *) getLinksWithAuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
--(FullInfo *) getMediaFullInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
+-(AuthToken *) getAuthTokenWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView;
+
+-(UserToken *) getUserTokenWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserName: (NSString *) userName Password: (NSString *) password Remember: (NSString *) remember;
+-(UserInfo *) getUserInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+
+-(NSMutableDictionary *) getUserPendingInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+
+-(NSMutableArray *) getUserFollowingSeriesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+-(NSMutableArray *) getUserFollowingTvShowsWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+-(NSMutableArray *) getUserFollowingMoviesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+-(NSMutableArray *) getUserFollowingDocumentariesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken;
+
+
+-(Links *) getLinksWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
+-(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
+
+
 
 @end

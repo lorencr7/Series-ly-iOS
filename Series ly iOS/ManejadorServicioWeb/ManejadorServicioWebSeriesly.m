@@ -17,6 +17,7 @@
 #import "MediaElementUser.h"
 #import "Links.h"
 #import "FullInfo.h"
+#import "ASIHTTPRequest.h"
 
 static ManejadorServicioWebSeriesly * instance;
 
@@ -41,13 +42,13 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     if (currentDate > expireDate) {
         NSLog(@"authToken invalido, pidiendo nuevo authToken");
         UserCredentials * userCredentials = [UserCredentials getInstance];
-        AuthToken * newAuthToken = [self getAuthToken];
+        AuthToken * newAuthToken = [self getAuthTokenWithRequest:nil ProgressView:nil];
         userCredentials.authToken = newAuthToken;
         ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
         [manejadorBaseDeDatosBackup borrarUserCredentials];
         [manejadorBaseDeDatosBackup guardarUserCredentials:userCredentials];
         return newAuthToken;
-
+        
     } else {
         //NSLog(@"authToken valido");
     }
@@ -63,93 +64,98 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     return [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 }
 
--(void) logoutWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(void) logoutWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/logout?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return;
-    }
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error logout");
+        NSLog(@"%@",error);
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"%@",response);
     }
 }
 
--(AuthToken *) getAuthToken {
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/auth_token/?id_api=%@&secret=%@&response=json",appId,appSecret];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto getAuthToken");
-        return nil;
+-(ASIHTTPRequest *) configureRequest:(ASIHTTPRequest *) request URL: (NSString *) urlString ProgressView: (UIProgressView *) progressView {
+    NSURL *url = [NSURL URLWithString:urlString];
+    if (!request) {
+        request = [ASIHTTPRequest requestWithURL:url];
+    } else {
+        [request setURL:url];
     }
+    if (progressView) {
+        [request setDownloadProgressDelegate:progressView];
+    }
+    return request;
+    
+}
+
+-(AuthToken *) getAuthTokenWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView {
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/auth_token/?id_api=%@&secret=%@&response=json",appId,appSecret];
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error getAuthToken %@",error);
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         return [[AuthToken alloc] initWithDictionary:response];
     }
+    
 }
 
--(UserToken *) getUserTokenWithAuthToken: (AuthToken *) authToken UserName: (NSString *) userName Password: (NSString *) password Remember: (NSString *) remember  {
+-(UserToken *) getUserTokenWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserName: (NSString *) userName Password: (NSString *) password Remember: (NSString *) remember {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/user_token?auth_token=%@&username=%@&password=%@&remember=%@&user_agent=HTTP_USER_AGENT&response=json",newAuthToken.authToken,userName,password,remember];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto getUserTokenWithAuthToken");
-        return nil;
-    }
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error getUserTokenWithAuthToken %@",error);
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         return [[UserToken alloc] initWithDictionary:response];
     }
+    
 }
 
--(UserInfo *) getUserInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(UserInfo *) getUserInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto getUserInfoWithAuthToken");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error getUserInfoWithAuthToken %@",error);
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         return [[UserInfo alloc] initWithDictionary:response];
     }
+    
 }
-
-
--(NSMutableDictionary *) getUserPendingInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(NSMutableDictionary *) getUserPendingInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    //NSLog(@"%@",urlString);
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto getUserPendingInfoWithAuthToken");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error getUserPendingInfoWithAuthToken %@",error);
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"series"];
@@ -179,21 +185,21 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         [infoDictionary setObject:arrayOfDocumentaries forKey:@"documentaries"];
         return infoDictionary;
     }
+    
 }
 
--(NSMutableArray *) getUserFollowingSeriesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(NSMutableArray *) getUserFollowingSeriesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/series?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto getUserFollowingSeriesWithAuthToken");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error getUserFollowingSeriesWithAuthToken %@",error);
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"series"];
@@ -203,21 +209,21 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         }
         return arrayOfElements;
     }
+    
 }
 
--(NSMutableArray *) getUserFollowingTvShowsWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(NSMutableArray *) getUserFollowingTvShowsWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/tvshows?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"tvshows"];
@@ -227,21 +233,21 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         }
         return arrayOfElements;
     }
+    
 }
 
--(NSMutableArray *) getUserFollowingMoviesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(NSMutableArray *) getUserFollowingMoviesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/movies?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"movies"];
@@ -251,21 +257,21 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         }
         return arrayOfElements;
     }
+    
 }
 
--(NSMutableArray *) getUserFollowingDocumentariesWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+-(NSMutableArray *) getUserFollowingDocumentariesWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/documentaries?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error cogiendo la info del usuario");
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         NSArray * seriesArray = [response objectForKey:@"documentaries"];
@@ -275,22 +281,21 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         }
         return arrayOfElements;
     }
+    
 }
 
--(Links *) getLinksWithAuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
+-(Links *) getLinksWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/episode/links?auth_token=%@&idm=%@&mediaType=%@",newAuthToken.authToken,idm,mediaType];
-    NSLog(@"%@",urlString);
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
+     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/episode/links?auth_token=%@&idm=%@&mediaType=%@",newAuthToken.authToken,idm,mediaType];
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error cogiendo los links");
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         return [[Links alloc] initWithDictionary:response];
@@ -298,25 +303,26 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
 }
 
--(FullInfo *) getMediaFullInfoWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType{
+
+-(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
+    
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/full_info/?idm=%@&mediaType=%@&auth_token=%@&user_token=%@",idm ,mediaType ,newAuthToken.authToken,userToken.userToken];
-    NSLog(@"%@",urlString);
-    NSError *error;
-    NSData *responseData = [self performRequestWithURL:urlString Error:error];
-    if (!responseData) {
-        NSLog(@"No hay data devuelto");
-        return nil;
-    }
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
     if (error) {
-        NSLog(@"Error cogiendo los links");
         return nil;
     } else {
+        NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
         //NSLog(@"%@",response);
         return [[FullInfo alloc] initWithDictionary:response];
     }
+    
 }
+
 
 
 @end

@@ -104,8 +104,8 @@
     NSThread * threadstopFeedback = [[NSThread alloc] initWithTarget:self selector:@selector(stopFeedback) object:nil];
     [threadActivateFeedback start];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    AuthToken * authToken = [manejadorServicioWebSeriesly getAuthToken];
-    UserToken * userToken = [manejadorServicioWebSeriesly getUserTokenWithAuthToken:authToken UserName:self.userTextField.text Password:self.passwordTextField.text Remember:@"1"];
+    AuthToken * authToken = [manejadorServicioWebSeriesly getAuthTokenWithRequest:nil ProgressView:nil];
+    UserToken * userToken = [manejadorServicioWebSeriesly getUserTokenWithRequest:nil ProgressView:nil  AuthToken:authToken UserName:self.userTextField.text Password:self.passwordTextField.text Remember:@"1"];
     if (userToken.userToken) {
         //UserCredentials * userCredentials = [[UserCredentials alloc] initWithAuthToken:authToken UserToken:userToken];
         UserCredentials * userCredentials = [UserCredentials getInstance];

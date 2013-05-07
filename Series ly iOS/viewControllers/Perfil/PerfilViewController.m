@@ -33,7 +33,7 @@
     ManejadorBaseDeDatosBackup * manejadorBaseDeDatosBackup = [ManejadorBaseDeDatosBackup getInstance];
     //Hacemos logout en la API
     UserCredentials * userCredentials = [UserCredentials getInstance];
-    [manejadorServicioWeb logoutWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    [manejadorServicioWeb logoutWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     //Borramos la informacion guardada
     [UserCredentials resetInstance];
     [User resetInstance];
