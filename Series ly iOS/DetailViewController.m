@@ -31,9 +31,11 @@
         // Update the view.
         [self configureView];
     }
+    [self.navigationController popToRootViewControllerAnimated:NO];
     AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [appDelegate.drawerViewController hideDrawer];
+        
     } else {
         if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
             [appDelegate.splitViewController hideMaster];

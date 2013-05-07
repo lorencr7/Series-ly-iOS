@@ -190,6 +190,20 @@
     }];
 }
 
+#define SELECTEDCOLORAPARIENCIALISTADOLINKS [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOLINKS nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOLINKS nil
+#define UNSELECTEDFONTAPARIENCIALISTADOLINKS nil
+#define SELECTEDFONTAPARIENCIALISTADOLINKS nil
+#define TEXTALIGNMENTLISTADOLINKS 0
+#define ACCESORYTYPELISTADOLINKS UITableViewCellAccessoryNone
+#define LINEBREAKMODELISTADOLINKS 0
+#define NUMBEROFLINESLISTADOLINKS 0
+#define ACCESORYVIEWLISTADOLINKS nil
+//#define CUSTOMHEIGHTCELLLISTADOLINKS 80
+
+#define APARIENCIALISTADOLINKS(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOLINKS unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOLINKS selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOLINKS unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOLINKS selectedTextFont:SELECTEDFONTAPARIENCIALISTADOLINKS textAlignment:TEXTALIGNMENTLISTADOLINKS accesoryType:ACCESORYTYPELISTADOLINKS lineBreakMode:LINEBREAKMODELISTADOLINKS numberOfLines:NUMBEROFLINESLISTADOLINKS accesoryView:ACCESORYVIEWLISTADOLINKS backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
 - (NSMutableArray *) crearSectionsLinksWithLinks: (NSMutableArray *) links {
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
@@ -204,7 +218,7 @@
     }
     if (cells.count == 0) {
         CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] init];
-        [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(nil, 44) cellText:@"No hay Links compatibles" selectionType:YES customCell:customCellLinksLink];
+        [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(nil, 44) cellText:@"No hay Links compatibles" selectionType:YES customCell:customCellLinksLink];
         [cells addObject:customCellLinksLink];
     }
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
@@ -222,7 +236,7 @@
     [label sizeToFit];
     [view addSubview:label];
     
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(view, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(view, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
     return customCellLinksLink;
 }
 

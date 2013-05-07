@@ -118,6 +118,20 @@
     [self.tableViewMultimedia reloadData];
 }
 
+#define SELECTEDCOLORAPARIENCIALISTADOSIGUIENDO [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO nil
+#define UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDO nil
+#define SELECTEDFONTAPARIENCIALISTADOSIGUIENDO nil
+#define TEXTALIGNMENTLISTADOSIGUIENDO 0
+#define ACCESORYTYPELISTADOSIGUIENDO UITableViewCellAccessoryNone
+#define LINEBREAKMODELISTADOSIGUIENDO 0
+#define NUMBEROFLINESLISTADOSIGUIENDO 0
+#define ACCESORYVIEWLISTADOSIGUIENDO nil
+//#define CUSTOMHEIGHTCELLLISTADOSIGUIENDO 80
+
+#define APARIENCIALISTADOSIGUIENDO(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOSIGUIENDO unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDO selectedTextFont:SELECTEDFONTAPARIENCIALISTADOSIGUIENDO textAlignment:TEXTALIGNMENTLISTADOSIGUIENDO accesoryType:ACCESORYTYPELISTADOSIGUIENDO lineBreakMode:LINEBREAKMODELISTADOSIGUIENDO numberOfLines:NUMBEROFLINESLISTADOSIGUIENDO accesoryView:ACCESORYVIEWLISTADOSIGUIENDO backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
 -(CustomCellSeriesListadoSeries *) createCellListadoSeriesWithMediaElementUserPending: (MediaElementUser *) mediaElementUser {
     
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
@@ -165,7 +179,7 @@
     
     
     CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOSIGUIENDO(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
     return customCellSeriesListadoSeries;
     
     /*UIView * backgroundView = [[UIView alloc] init];
