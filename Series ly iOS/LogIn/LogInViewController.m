@@ -690,7 +690,7 @@
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [activityIndicator setCenter:CGPointMake(self.view.frame.size.width/1.5, self.view.frame.size.height/2.0)];
     activityIndicator.color = [UIColor whiteColor];
-    [activityIndicator setFrame:CGRectMake(self.view.frame.size.width/1.5 - 70, self.view.frame.size.height/4.0 - 70, 140, 140)];
+    [activityIndicator setFrame:CGRectMake(self.view.frame.size.width/2.0 - 70, self.view.frame.size.height/4.0 - 70, 140, 140)];
     [activityIndicator.layer setBackgroundColor:[[UIColor colorWithWhite:0.0 alpha:0.75] CGColor]];
     [activityIndicator.layer setCornerRadius: 10];
     [self.view addSubview:activityIndicator];

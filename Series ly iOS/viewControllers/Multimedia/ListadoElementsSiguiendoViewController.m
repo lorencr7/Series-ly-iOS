@@ -15,6 +15,7 @@
 #import "MediaElementUser.h"
 #import "CustomCellSeriesListadoSeries.h"
 #import "Poster.h"
+#import "ASIHTTPRequest.h"
 
 @interface ListadoElementsSiguiendoViewController ()
 
@@ -220,9 +221,17 @@
     NSString * url = [arguments objectForKey:@"url"];
     UIImage * imagen;
     NSURL * imageURL = [NSURL URLWithString:url];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    imagen = [UIImage imageWithData:imageData];
-    imageView.image = imagen;
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    if (!error) {
+        NSData * imageData = [request responseData];
+        imagen = [UIImage imageWithData:imageData];
+        imageView.image = imagen;
+    }
+    
 }
 
 
