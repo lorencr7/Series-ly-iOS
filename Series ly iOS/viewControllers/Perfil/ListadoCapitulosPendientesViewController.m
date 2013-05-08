@@ -62,8 +62,8 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-    if (self.tableViewEpisodios.lastCellPressed) {
-        [self.tableViewEpisodios.lastCellPressed customDeselect];
+    if (self.customTableView.lastCellPressed) {
+        [self.customTableView.lastCellPressed customDeselect];
     }
 }
 
@@ -79,14 +79,20 @@
     cells = [NSMutableArray array];
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    self.tableViewEpisodios = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.tableViewEpisodios.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-    [self iniciarRefreshControl];
-    [self.tableViewEpisodios addSubview:self.refreshControl];
     
-    //self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
-    [self.view addSubview:self.tableViewEpisodios];
+
+    
+    self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    
+    
+    [self iniciarRefreshControl];
+    //[self.customTableView addSubview:self.refreshControl];
+   
+    
+    [self.view addSubview:self.tableViewController.view];
+    //[self.view addSubview:self.customTableView];
 }
 
 
@@ -277,8 +283,8 @@
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    self.tableViewEpisodios.section.sections = sections;
-    [self.tableViewEpisodios reloadData];
+    self.customTableView.section.sections = sections;
+    [self.customTableView reloadData];
 }
 
 //idem que metodo anterior pero lanzando un thread. Se debe llamar a este metodo

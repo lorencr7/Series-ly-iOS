@@ -36,12 +36,15 @@
 }
 
 -(void) iniciarRefreshControl {
+    self.tableViewController = [[UITableViewController alloc] init];
+    self.tableViewController.tableView = (UITableView *)self.customTableView;
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Actualizar"];
     self.refreshControl.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
     [self.refreshControl addTarget:self
                             action:@selector(pullToRefreshHandler)
                   forControlEvents:UIControlEventValueChanged];
+     self.tableViewController.refreshControl = self.refreshControl;
 }
 
 -(void) pullToRefreshHandler {

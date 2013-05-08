@@ -7,7 +7,12 @@
 //
 
 #import "DownloadableViewController.h"
+
+@class CustomTableViewController;
 @interface RefreshableAndDownloadableViewController : DownloadableViewController
+
+@property (strong, nonatomic) UITableViewController *tableViewController;
+@property (strong, nonatomic) CustomTableViewController *customTableView;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 

@@ -38,8 +38,8 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-    if (self.listadoCapitulosPendientesViewController.tableViewEpisodios.lastCellPressed) {
-        [self.listadoCapitulosPendientesViewController.tableViewEpisodios.lastCellPressed customDeselect];
+    if (self.listadoCapitulosPendientesViewController.customTableView.lastCellPressed) {
+        [self.listadoCapitulosPendientesViewController.customTableView.lastCellPressed customDeselect];
     }
 }
 

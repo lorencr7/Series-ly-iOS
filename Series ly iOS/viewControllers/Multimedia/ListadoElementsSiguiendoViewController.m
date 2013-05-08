@@ -61,13 +61,13 @@
     cells = [NSMutableArray array];
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    self.tableViewMultimedia = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.tableViewMultimedia.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self iniciarRefreshControl];
-    [self.tableViewMultimedia addSubview:self.refreshControl];
+    //[self.customTableView addSubview:self.refreshControl];
     
-    [self.view addSubview:self.tableViewMultimedia];
+    [self.view addSubview:self.tableViewController.view];
 }
 
 -(void) refresh {
@@ -144,8 +144,8 @@
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    self.tableViewMultimedia.section.sections = sections;
-    [self.tableViewMultimedia reloadData];
+    self.customTableView.section.sections = sections;
+    [self.customTableView reloadData];
 }
 
 #define SELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]

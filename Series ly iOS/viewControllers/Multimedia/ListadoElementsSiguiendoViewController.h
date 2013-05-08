@@ -18,7 +18,7 @@ typedef enum {
 @class CustomTableViewController;
 @interface ListadoElementsSiguiendoViewController : RefreshableAndDownloadableViewController
 
-@property (strong, nonatomic) CustomTableViewController *tableViewMultimedia;
+//@property (strong, nonatomic) CustomTableViewController *tableViewMultimedia;
 //@property (strong, nonatomic) UIView * viewEpisodios;
 @property (assign, nonatomic) CGRect frame;
 @property (strong, nonatomic) NSMutableArray * sourceData;
