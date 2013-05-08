@@ -69,6 +69,7 @@
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //User * usuario = [PerfilViewController getUsuario];
     //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
+    
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     
