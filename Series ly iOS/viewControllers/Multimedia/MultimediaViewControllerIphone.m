@@ -7,6 +7,7 @@
 //
 
 #import "MultimediaViewControllerIphone.h"
+#import "TVFramework.h"
 #import "ScreenSizeManager.h"
 
 @interface MultimediaViewControllerIphone ()
@@ -28,6 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed) {
+        [self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed customDeselect];
+    }
 }
 
 -(void) configureFrame {
