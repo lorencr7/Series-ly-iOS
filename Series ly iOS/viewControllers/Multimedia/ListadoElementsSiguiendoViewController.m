@@ -42,6 +42,9 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self iniciarTableViewMultimedia];
+    [self iniciarActivityIndicator];
+    [self.activityIndicatorView startAnimating];
+    
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
 }
@@ -60,8 +63,16 @@
     [sections addObject:sectionElement];
     self.tableViewMultimedia = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewMultimedia.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    //self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+    [self iniciarRefreshControl];
+    [self.tableViewMultimedia addSubview:self.refreshControl];
+    
     [self.view addSubview:self.tableViewMultimedia];
+}
+
+-(void) refresh {
+    [self downloadUserInfo];
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
 }
 
 - (void) downloadUserInfo {
@@ -72,6 +83,8 @@
     
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
+    BOOL hayNuevosDatos = NO;
+    
     
     switch (self.tipoSourceData) {
         case SourceSeriesSiguiendo:
@@ -94,13 +107,28 @@
         default:
             break;
     }
-    if (!self.sourceData) {
+    
+    if (self.lastSourceData) {
+        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
+            hayNuevosDatos = YES;
+        }
+    } else {
+        hayNuevosDatos = YES;
+    }
+    
+    if (self.sourceData ) {
+        if (hayNuevosDatos) {
+            self.lastSourceData = self.sourceData;
+            [self fillTableViewInBackgroundFromSource:self.sourceData];
+        }
+    } else {
         NSLog(@"error descargando la info de siguiendo del usuario");
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar la información que sigues" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-    } else {
-        [self fillTableViewInBackgroundFromSource:self.sourceData];
     }
+    
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
     
 }
 
@@ -108,6 +136,7 @@
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
+
     
     for (MediaElementUser * mediaElementUser in source) {
         [cells addObject:[self createCellListadoSeriesWithMediaElementUserPending:mediaElementUser]];
@@ -119,19 +148,43 @@
     [self.tableViewMultimedia reloadData];
 }
 
-#define SELECTEDCOLORAPARIENCIALISTADOSIGUIENDO [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO nil
-#define TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO nil
-#define UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDO nil
-#define SELECTEDFONTAPARIENCIALISTADOSIGUIENDO nil
-#define TEXTALIGNMENTLISTADOSIGUIENDO 0
-#define ACCESORYTYPELISTADOSIGUIENDO UITableViewCellAccessoryNone
-#define LINEBREAKMODELISTADOSIGUIENDO 0
-#define NUMBEROFLINESLISTADOSIGUIENDO 0
-#define ACCESORYVIEWLISTADOSIGUIENDO nil
-//#define CUSTOMHEIGHTCELLLISTADOSIGUIENDO 80
+#define SELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD nil
+#define UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPAD nil
+#define SELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPAD nil
+#define TEXTALIGNMENTLISTADOSIGUIENDOIPAD 0
+#define ACCESORYTYPELISTADOSIGUIENDOIPAD UITableViewCellAccessoryNone
+#define LINEBREAKMODELISTADOSIGUIENDOIPAD 0
+#define NUMBEROFLINESLISTADOSIGUIENDOIPAD 0
+#define ACCESORYVIEWLISTADOSIGUIENDOIPAD nil
+//#define CUSTOMHEIGHTCELLLISTADOSIGUIENDOIPAD 80
 
-#define APARIENCIALISTADOSIGUIENDO(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOSIGUIENDO unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDO unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDO selectedTextFont:SELECTEDFONTAPARIENCIALISTADOSIGUIENDO textAlignment:TEXTALIGNMENTLISTADOSIGUIENDO accesoryType:ACCESORYTYPELISTADOSIGUIENDO lineBreakMode:LINEBREAKMODELISTADOSIGUIENDO numberOfLines:NUMBEROFLINESLISTADOSIGUIENDO accesoryView:ACCESORYVIEWLISTADOSIGUIENDO backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+#define APARIENCIALISTADOSIGUIENDOIPAD(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPAD unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPAD selectedTextFont:SELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPAD textAlignment:TEXTALIGNMENTLISTADOSIGUIENDOIPAD accesoryType:ACCESORYTYPELISTADOSIGUIENDOIPAD lineBreakMode:LINEBREAKMODELISTADOSIGUIENDOIPAD numberOfLines:NUMBEROFLINESLISTADOSIGUIENDOIPAD accesoryView:ACCESORYVIEWLISTADOSIGUIENDOIPAD backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
+#define SELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE nil
+#define UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPHONE nil
+#define SELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPHONE nil
+#define TEXTALIGNMENTLISTADOSIGUIENDOIPHONE 0
+#define ACCESORYTYPELISTADOSIGUIENDOIPHONE UITableViewCellAccessoryDisclosureIndicator
+#define LINEBREAKMODELISTADOSIGUIENDOIPHONE 0
+#define NUMBEROFLINESLISTADOSIGUIENDOIPHONE 0
+#define ACCESORYVIEWLISTADOSIGUIENDOIPHONE nil
+//#define CUSTOMHEIGHTCELLLISTADOSIGUIENDOIPHONE 80
+
+#define APARIENCIALISTADOSIGUIENDOIPHONE(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOSIGUIENDOIPHONE unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPHONE selectedTextFont:SELECTEDFONTAPARIENCIALISTADOSIGUIENDOIPHONE textAlignment:TEXTALIGNMENTLISTADOSIGUIENDOIPHONE accesoryType:ACCESORYTYPELISTADOSIGUIENDOIPHONE lineBreakMode:LINEBREAKMODELISTADOSIGUIENDOIPHONE numberOfLines:NUMBEROFLINESLISTADOSIGUIENDOIPHONE accesoryView:ACCESORYVIEWLISTADOSIGUIENDOIPHONE backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
+-(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return APARIENCIALISTADOSIGUIENDOIPHONE(backgroundView, altoCelda);
+        
+    } else {
+        return APARIENCIALISTADOSIGUIENDOIPAD(backgroundView, altoCelda);
+    }
+    
+}
 
 -(CustomCellSeriesListadoSeries *) createCellListadoSeriesWithMediaElementUserPending: (MediaElementUser *) mediaElementUser {
     
@@ -171,6 +224,10 @@
     [labelSerie sizeToFit];
     labelSerie.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
+    CGRect labelSerieFrame = labelSerie.frame;
+    labelSerieFrame.origin.y = (poster.frame.origin.y + poster.frame.size.height/2) - labelSerieFrame.size.height/2;
+    labelSerie.frame = labelSerieFrame;
+    
     
     
     altoCelda = poster.frame.origin.y + poster.frame.size.height + margenY;
@@ -180,7 +237,7 @@
     
     
     CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOSIGUIENDO(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance:backgroundView AltoCelda:altoCelda] cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
     return customCellSeriesListadoSeries;
     
     /*UIView * backgroundView = [[UIView alloc] init];

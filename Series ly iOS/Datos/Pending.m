@@ -13,7 +13,7 @@
 - (id)initWithSeason: (NSString *) season Episode: (NSString *) episode Full: (NSString *) full {
     self = [super init];
     if (self) {
-        self.season = [NSString stringWithFormat:@"%@",season];
+        //self.season = [NSString stringWithFormat:@"%@",season];
         self.episode = [NSString stringWithFormat:@"%@",episode];
         self.full = [NSString stringWithFormat:@"%@",full];
     }
@@ -23,11 +23,23 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        self.season = [dictionary objectForKey:@"season"];
+        NSString * season2 = [dictionary objectForKey:@"season"];
+        self.season = [season2 intValue];
         self.episode = [dictionary objectForKey:@"episode"];
         self.full = [dictionary objectForKey:@"full"];
     }
     return self;
+}
+
+-(BOOL) isEqual:(id)object {
+    if ([object class] != [self class]) {
+        return NO;
+    }
+    Pending * pending = (Pending *) object;
+    
+    return pending.season == self.season && [pending.episode isEqualToString:self.episode] && [pending.full isEqualToString:self.full];
+    
+    return NO;
 }
 
 @end

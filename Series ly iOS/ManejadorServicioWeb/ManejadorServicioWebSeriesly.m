@@ -148,7 +148,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/pending?auth_token=%@&user_token=%@",newAuthToken.authToken,userToken.userToken];
-    
+    //NSLog(@"%@",urlString);
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
     [request startSynchronous];
     NSError *error = [request error];

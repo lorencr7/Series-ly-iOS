@@ -9,7 +9,7 @@
 #import "Serializable.h"
 @interface Pending : Serializable
 
-@property (strong, nonatomic) NSString * season;
+@property (assign, nonatomic) int season;
 @property (strong, nonatomic) NSString * episode;
 @property (strong, nonatomic) NSString * full;
 

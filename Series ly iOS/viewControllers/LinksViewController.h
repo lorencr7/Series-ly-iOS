@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import "DownloadableViewController.h"
 @class MediaElementUserPending, CustomTableViewController, Links, FullInfo;
-@interface LinksViewController : UIViewController
+@interface LinksViewController : DownloadableViewController
 
 @property(strong,nonatomic) MediaElementUserPending * mediaElementUserPending;
 @property(strong,nonatomic) FullInfo * fullInfo;

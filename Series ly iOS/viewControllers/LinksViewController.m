@@ -40,20 +40,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadData];
-	// Do any additional setup after loading the view.
-}
-
--(void) viewDidAppear:(BOOL)animated {
-    if (self.tableViewLinks.lastCellPressed) {
-        [self.tableViewLinks.lastCellPressed customDeselect];
-    }
-}
-
--(void) loadData {
-    //self.view.frame = CGRectMake(0, 0, 540, 620 - self.navigationController.navigationBar.frame.size.height);
-    //NSLog(@"Viendo enlaces de: %@",self.mediaElementUserPending.name);
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadSegmentedControl];
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
@@ -63,10 +49,20 @@
                                                                                 action:@selector(cancelarButtonPressed:)];
     }
     
+    [self iniciarActivityIndicator];
+    [self.activityIndicatorView startAnimating];
+    
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadLinks) object:nil];
     [thread start];
-    
+	// Do any additional setup after loading the view.
 }
+
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.tableViewLinks.lastCellPressed) {
+        [self.tableViewLinks.lastCellPressed customDeselect];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -110,6 +106,14 @@
         default:
             break;
     }
+    
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.viewTableViewLinks.alpha = 1.0;
+    } completion:^(BOOL finished){
+        
+    }];
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
 }
 
 -(void) cargarLinksPeliculas {
@@ -126,7 +130,7 @@
 -(void) cargarLinksSeries {
     BOOL hayTemporadaZero = NO;
     BOOL hayEpisodioZero = NO;
-    int sesion = [self.mediaElementUserPending.pending.season intValue];
+    int sesion = self.mediaElementUserPending.pending.season ;
     int capitulo = [self.mediaElementUserPending.pending.episode intValue];
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
@@ -183,11 +187,7 @@
     
     [self.viewTableViewLinks addSubview:self.tableViewLinks];
     [self.view addSubview:self.viewTableViewLinks];
-    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.viewTableViewLinks.alpha = 1.0;
-    } completion:^(BOOL finished){
-        
-    }];
+    
 }
 
 #define SELECTEDCOLORAPARIENCIALISTADOLINKS [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]

@@ -41,4 +41,19 @@
     return self;
 }
 
+-(BOOL) isEqual:(id)object {
+    if ([object class] != [self class]) {
+        return NO;
+    }
+    MediaElementUserPending * mediaElementUserPending = (MediaElementUserPending *) object;
+    if ([self.idMedia isEqualToString:mediaElementUserPending.idMedia] && [self.idm isEqualToString:mediaElementUserPending.idm]) {
+        if ([self.pending isEqual:mediaElementUserPending.pending]) {
+            return YES;
+        }
+        
+    }
+    
+    return NO;
+}
+
 @end

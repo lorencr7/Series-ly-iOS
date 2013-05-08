@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RefreshableAndDownloadableViewController.h"
 
 typedef enum {
     SourceSeriesSiguiendo,
@@ -16,13 +16,15 @@ typedef enum {
 }TipoSourceDataSiguiendo;
 
 @class CustomTableViewController;
-@interface ListadoElementsSiguiendoViewController : UIViewController
+@interface ListadoElementsSiguiendoViewController : RefreshableAndDownloadableViewController
 
 @property (strong, nonatomic) CustomTableViewController *tableViewMultimedia;
 //@property (strong, nonatomic) UIView * viewEpisodios;
 @property (assign, nonatomic) CGRect frame;
 @property (strong, nonatomic) NSMutableArray * sourceData;
 @property (assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;
+@property (strong, nonatomic) NSMutableArray * lastSourceData;
+
 
 - (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceDataSiguiendo) sourceData;
 

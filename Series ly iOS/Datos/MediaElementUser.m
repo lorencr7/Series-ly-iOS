@@ -36,4 +36,16 @@
     return self;
 }
 
+-(BOOL) isEqual:(id)object {
+    if ([object class] != [self class]) {
+        return NO;
+    }
+    MediaElementUser * mediaElementUser = (MediaElementUser *) object;
+    if ([self.idm isEqualToString:mediaElementUser.idm] && [self.idMedia isEqualToString:mediaElementUser.idMedia]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

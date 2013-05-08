@@ -37,7 +37,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.frame = self.frame;
+    
     [self loadUserInfo];
+    [self iniciarActivityIndicator];
+    [self.activityIndicatorView startAnimating];
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
 }
@@ -92,12 +95,14 @@
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //Descargamos la informacion del usuario
     UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:nil ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
-    if (!userInfo) {
+    if (!userInfo || userInfo.error != 0) {
         NSLog(@"error descargando la info del usuario");
     } else {
         usuario.userInfo = userInfo;
         [self configureUserInfo];
     }
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
     
 }
 
@@ -145,5 +150,6 @@
     //[self.view addSubview:imageView];
     
 }
+
 
 @end

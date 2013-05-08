@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DownloadableViewController.h"
 
-@interface DatosPerfilViewController : UIViewController
+@interface DatosPerfilViewController : DownloadableViewController
 
 @property (assign, nonatomic) CGRect frame;
 

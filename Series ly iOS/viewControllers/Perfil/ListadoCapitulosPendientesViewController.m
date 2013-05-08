@@ -20,6 +20,7 @@
 
 
 
+
 @interface ListadoCapitulosPendientesViewController ()
 
 @end
@@ -31,7 +32,7 @@
     if (self) {
         self.frame = frame;
         self.tipoSourceData = tipoSourceData;
-
+        
     }
     return self;
 }
@@ -51,6 +52,9 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self iniciarTableViewEpisodiosPendientes];
+    [self iniciarActivityIndicator];
+    [self.activityIndicatorView startAnimating];
+    
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
     [thread start];
     //[self downloadUserPendingInfo];
@@ -77,9 +81,24 @@
     [sections addObject:sectionElement];
     self.tableViewEpisodios = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewEpisodios.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
+    [self iniciarRefreshControl];
+    [self.tableViewEpisodios addSubview:self.refreshControl];
+    
     //self.tableViewEpisodios.layer.borderColor = [[UIColor grayColor] CGColor];
     [self.view addSubview:self.tableViewEpisodios];
 }
+
+
+
+
+
+-(void) refresh {
+    [self downloadUserPendingInfo];
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
+}
+
+
 
 -(void) downloadUserPendingInfo {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
@@ -98,47 +117,84 @@
         usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
         //Rellenamos el tableView con los capitulos de series pendientes
     }
+    
+    
     [self fillTableViewFromSourceType:self.tipoSourceData];
+    
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
 }
 
 -(void) fillTableViewFromSourceType:(TipoSourceData)sourceType {
     User * usuario = [User getInstance];
-    NSMutableArray * sourceData;
+    BOOL hayNuevosDatos = NO;
     switch (sourceType) {
         case SourceSeriesPendientes:
-            sourceData = usuario.seriesPendientes;
+            self.sourceData = usuario.seriesPendientes;
             break;
         case SourcePeliculasPendientes:
-            sourceData = usuario.peliculasPendientes;
+            self.sourceData = usuario.peliculasPendientes;
             break;
         case SourceDocumentalesPendientes:
-            sourceData = usuario.documentalesPendientes;
+            self.sourceData = usuario.documentalesPendientes;
             break;
         case SourceTVShowsPendientes:
-            sourceData = usuario.tvShowsPendientes;
+            self.sourceData = usuario.tvShowsPendientes;
             break;
             
         default:
             break;
     }
-    if (sourceData) {
-        [self fillTableViewInBackgroundFromSource:sourceData];
+    if (self.lastSourceData) {
+        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
+            hayNuevosDatos = YES;
+        }
+    } else {
+        hayNuevosDatos = YES;
+    }
+    
+    if (self.sourceData && hayNuevosDatos) {
+        self.lastSourceData = self.sourceData;
+        [self fillTableViewInBackgroundFromSource:self.sourceData];
     }
 }
 
-#define SELECTEDCOLORAPARIENCIALISTADOCAPITULOS [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOS nil
-#define TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOS nil
-#define UNSELECTEDFONTAPARIENCIALISTADOCAPITULOS nil
-#define SELECTEDFONTAPARIENCIALISTADOCAPITULOS nil
-#define TEXTALIGNMENTLISTADOCAPITULOS 0
-#define ACCESORYTYPELISTADOCAPITULOS UITableViewCellAccessoryDisclosureIndicator
-#define LINEBREAKMODELISTADOCAPITULOS 0
-#define NUMBEROFLINESLISTADOCAPITULOS 0
-#define ACCESORYVIEWLISTADOCAPITULOS nil
-//#define CUSTOMHEIGHTCELLLISTADOCAPITULOS 80
+#define SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD nil
+#define UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD nil
+#define SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD nil
+#define TEXTALIGNMENTLISTADOCAPITULOSIPAD 0
+#define ACCESORYTYPELISTADOCAPITULOSIPAD UITableViewCellAccessoryNone
+#define LINEBREAKMODELISTADOCAPITULOSIPAD 0
+#define NUMBEROFLINESLISTADOCAPITULOSIPAD 0
+#define ACCESORYVIEWLISTADOCAPITULOSIPAD nil
+//#define CUSTOMHEIGHTCELLLISTADOCAPITULOSIPAD 80
 
-#define APARIENCIALISTADOCAPITULOS(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOCAPITULOS unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOS selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOS unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOCAPITULOS selectedTextFont:SELECTEDFONTAPARIENCIALISTADOCAPITULOS textAlignment:TEXTALIGNMENTLISTADOCAPITULOS accesoryType:ACCESORYTYPELISTADOCAPITULOS lineBreakMode:LINEBREAKMODELISTADOCAPITULOS numberOfLines:NUMBEROFLINESLISTADOCAPITULOS accesoryView:ACCESORYVIEWLISTADOCAPITULOS backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+#define APARIENCIALISTADOCAPITULOSIPAD(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD selectedTextFont:SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD textAlignment:TEXTALIGNMENTLISTADOCAPITULOSIPAD accesoryType:ACCESORYTYPELISTADOCAPITULOSIPAD lineBreakMode:LINEBREAKMODELISTADOCAPITULOSIPAD numberOfLines:NUMBEROFLINESLISTADOCAPITULOSIPAD accesoryView:ACCESORYVIEWLISTADOCAPITULOSIPAD backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
+#define SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE nil
+#define TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE nil
+#define UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE nil
+#define SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE nil
+#define TEXTALIGNMENTLISTADOCAPITULOSIPHONE 0
+#define ACCESORYTYPELISTADOCAPITULOSIPHONE UITableViewCellAccessoryDisclosureIndicator
+#define LINEBREAKMODELISTADOCAPITULOSIPHONE 0
+#define NUMBEROFLINESLISTADOCAPITULOSIPHONE 0
+#define ACCESORYVIEWLISTADOCAPITULOSIPHONE nil
+//#define CUSTOMHEIGHTCELLLISTADOCAPITULOSIPHONE 80
+
+#define APARIENCIALISTADOCAPITULOSIPHONE(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE selectedTextFont:SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE textAlignment:TEXTALIGNMENTLISTADOCAPITULOSIPHONE accesoryType:ACCESORYTYPELISTADOCAPITULOSIPHONE lineBreakMode:LINEBREAKMODELISTADOCAPITULOSIPHONE numberOfLines:NUMBEROFLINESLISTADOCAPITULOSIPHONE accesoryView:ACCESORYVIEWLISTADOCAPITULOSIPHONE backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+
+-(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return APARIENCIALISTADOCAPITULOSIPHONE(backgroundView, altoCelda);
+        
+    } else {
+        return APARIENCIALISTADOCAPITULOSIPAD(backgroundView, altoCelda);
+    }
+}
 
 //Este metodo crea una celda del tableView de la derecha a partir de un mediaElement
 -(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
@@ -177,17 +233,25 @@
     //
     [labelSerie sizeToFit];
     labelSerie.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
+    
+    
     
     UILabel * labelEpisodio;
     if (mediaElementUserPending.pending.full) {
-        labelEpisodio = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster, labelSerie.frame.origin.y + labelSerie.frame.size.height, 0, 0)];
+        labelEpisodio = [[UILabel alloc] initWithFrame:CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster, 0, 0, 0)];
         labelEpisodio.text = [NSString stringWithFormat:@"%@",mediaElementUserPending.pending.full];
         labelEpisodio.backgroundColor = [UIColor clearColor];
         labelEpisodio.font = [UIFont systemFontOfSize:17];
         [labelEpisodio sizeToFit];
     }
     
+    CGRect labelSerieFrame = labelSerie.frame;
+    labelSerieFrame.origin.y = (poster.frame.origin.y + poster.frame.size.height/2) - labelSerieFrame.size.height/2 - labelEpisodio.frame.size.height/2;
+    labelSerie.frame = labelSerieFrame;
+    
+    CGRect labelEpisodioFrame = labelEpisodio.frame;
+    labelEpisodioFrame.origin.y = labelSerie.frame.origin.y + labelSerie.frame.size.height;
+    labelEpisodio.frame = labelEpisodioFrame;
     
     altoCelda = poster.frame.origin.y + poster.frame.size.height + margenY;
     
@@ -197,7 +261,7 @@
     
     
     CustomCellPerfilListadoCapitulos * customCellPerfilListadoCapitulos = [[CustomCellPerfilListadoCapitulos alloc] initWithMediaElementUserPending:mediaElementUserPending];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellPerfilListadoCapitulos];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance:backgroundView AltoCelda:altoCelda] cellText:nil selectionType:YES customCell:customCellPerfilListadoCapitulos];
     return customCellPerfilListadoCapitulos;
 }
 
@@ -238,7 +302,7 @@
         NSData * imageData = [request responseData];
         imagen = [UIImage imageWithData:imageData];
         imageView.image = imagen;
-    }   
+    }
     
 }
 
