@@ -129,6 +129,9 @@
 		459FE00D17271F8700AEA455 /* Serializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 459FE00C17271F8700AEA455 /* Serializable.m */; };
 		45A7187317006E3A007E3A80 /* VerLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A7187217006E3A007E3A80 /* VerLinkViewController.m */; };
 		45AC4EAE16DE5E7D00BA0379 /* ScreenSizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC4EAD16DE5E7D00BA0379 /* ScreenSizeManager.m */; };
+		45CE93AD173BC14B0078E617 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 45CE93AA173BC14B0078E617 /* SVProgressHUD.bundle */; };
+		45CE93AE173BC14B0078E617 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CE93AC173BC14B0078E617 /* SVProgressHUD.m */; };
+		45CE93B0173BC1C50078E617 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CE93AF173BC1C50078E617 /* QuartzCore.framework */; };
 		45F79BEF16DEA59400AD108D /* backup.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 45F79BEE16DEA59400AD108D /* backup.sqlite */; };
 		45F79BF116DEA5D800AD108D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F79BF016DEA5D800AD108D /* libsqlite3.0.dylib */; };
 		45F79BF416DEA65A00AD108D /* ManejadorBaseDeDatosBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F79BF316DEA65A00AD108D /* ManejadorBaseDeDatosBackup.m */; };
@@ -371,6 +374,10 @@
 		45A7187217006E3A007E3A80 /* VerLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerLinkViewController.m; sourceTree = "<group>"; };
 		45AC4EAC16DE5E7D00BA0379 /* ScreenSizeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenSizeManager.h; sourceTree = "<group>"; };
 		45AC4EAD16DE5E7D00BA0379 /* ScreenSizeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenSizeManager.m; sourceTree = "<group>"; };
+		45CE93AA173BC14B0078E617 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		45CE93AB173BC14B0078E617 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		45CE93AC173BC14B0078E617 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		45CE93AF173BC1C50078E617 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		45F79BEE16DEA59400AD108D /* backup.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = backup.sqlite; sourceTree = "<group>"; };
 		45F79BF016DEA5D800AD108D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		45F79BF216DEA65A00AD108D /* ManejadorBaseDeDatosBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManejadorBaseDeDatosBackup.h; sourceTree = "<group>"; };
@@ -392,6 +399,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45CE93B0173BC1C50078E617 /* QuartzCore.framework in Frameworks */,
 				45751773173905F9004CBAD7 /* libz.dylib in Frameworks */,
 				45751771173905E5004CBAD7 /* MobileCoreServices.framework in Frameworks */,
 				4575176F173905DC004CBAD7 /* SystemConfiguration.framework in Frameworks */,
@@ -634,6 +642,7 @@
 		4577AAC716DD8C5E00B089B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45CE93AF173BC1C50078E617 /* QuartzCore.framework */,
 				45751772173905F9004CBAD7 /* libz.dylib */,
 				45751770173905E5004CBAD7 /* MobileCoreServices.framework */,
 				4575176E173905DC004CBAD7 /* SystemConfiguration.framework */,
@@ -651,6 +660,7 @@
 		4577AACE16DD8C5E00B089B2 /* Series ly iOS */ = {
 			isa = PBXGroup;
 			children = (
+				45CE93A9173BC14B0078E617 /* SVProgressHUD */,
 				4575174C173902E2004CBAD7 /* ASIHTTPRequest */,
 				4544C1A116DED285006828EF /* Imagenes */,
 				45F79BFE16DEC03100AD108D /* LogIn */,
@@ -845,6 +855,16 @@
 			path = Utilidades;
 			sourceTree = "<group>";
 		};
+		45CE93A9173BC14B0078E617 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				45CE93AA173BC14B0078E617 /* SVProgressHUD.bundle */,
+				45CE93AB173BC14B0078E617 /* SVProgressHUD.h */,
+				45CE93AC173BC14B0078E617 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		45F79BEC16DE915700AD108D /* Databases */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +985,7 @@
 				454A837D1700C456007600C1 /* ajustes.png in Resources */,
 				45213F70172B1D4C0047900C /* drawer.png in Resources */,
 				45213F71172B1D4C0047900C /* logo256x256.png in Resources */,
+				45CE93AD173BC14B0078E617 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1109,7 @@
 				4575176B173905A8004CBAD7 /* Reachability.m in Sources */,
 				45410655173A4B7500E5E7B3 /* DownloadableViewController.m in Sources */,
 				45410658173A530400E5E7B3 /* RefreshableAndDownloadableViewController.m in Sources */,
+				45CE93AE173BC14B0078E617 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
