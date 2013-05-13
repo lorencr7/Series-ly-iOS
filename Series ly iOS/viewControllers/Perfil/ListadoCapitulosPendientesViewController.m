@@ -301,6 +301,7 @@
     NSURL * imageURL = [NSURL URLWithString:url];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
+    [request setNumberOfTimesToRetryOnTimeout:2];
     [request startSynchronous];
     
     NSError *error = [request error];

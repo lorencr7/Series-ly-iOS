@@ -33,6 +33,7 @@
     
 
     self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:self.view.frame SourceData:self.tipoSourceData];
+    [self addChildViewController:self.listadoCapitulosPendientesViewController];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 	// Do any additional setup after loading the view.
 }

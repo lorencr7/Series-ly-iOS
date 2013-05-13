@@ -9,8 +9,7 @@
 #import "CustomCellPerfilSeleccionDocumentalesPendientes.h"
 #import "PerfilViewControllerIpad.h"
 #import "PerfilViewControllerIphone.h"
-#import "AppDelegate.h"
-#import "DrawerViewController.h"
+#import "ListadoOpcionesPerfilViewController.h"
 #import "ListadoCapitulosPendientesViewController.h"
 #import "User.h"
 #import "VerCapitulosPendientesViewController.h"
@@ -20,26 +19,13 @@
 -(void) executeAction: (UIViewController *) viewController {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         VerCapitulosPendientesViewController * verCapitulosPendientesViewController = [[VerCapitulosPendientesViewController alloc] initWithTitle:@"Documentales pendientes" SourceData:SourceDocumentalesPendientes];
-        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-        [navigationController pushViewController:verCapitulosPendientesViewController animated:YES];
+        [viewController.navigationController pushViewController:verCapitulosPendientesViewController animated:YES];
     } else {
         User * usuario = [User getInstance];
-        ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = (ListadoCapitulosPendientesViewController*) viewController;
+        ListadoOpcionesPerfilViewController * listadoOpcionesPerfilViewController = (ListadoOpcionesPerfilViewController*) viewController;
+        ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = listadoOpcionesPerfilViewController.listadoCapitulosPendientes;
         [listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.documentalesPendientes];
     }
-    /*User * usuario = [User getInstance];
-     if ([viewController class] == [PerfilViewControllerIphone class]) {
-     PerfilViewControllerIphone * perfilViewControllerIphone = (PerfilViewControllerIphone *) viewController;
-     ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:perfilViewControllerIphone.view.frame SourceData:SourceDocumentalesPendientes];
-     listadoCapitulosPendientesViewController.title = @"Documentales pendientes";
-     AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-     UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-     [navigationController pushViewController:listadoCapitulosPendientesViewController animated:YES];
-     } else if([viewController class] == [PerfilViewControllerIpad class]) {
-     PerfilViewControllerIpad * perfilViewControllerIpad = (PerfilViewControllerIpad *) viewController;
-     [perfilViewControllerIpad.listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.documentalesPendientes];
-     }*/
 }
 
 @end

@@ -40,9 +40,9 @@
 
 -(void) configureFrame {
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-        self.contenido.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+        self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
     } else {
-        self.contenido.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+        self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
     }
 }
 
@@ -58,20 +58,21 @@
 }
 
 - (void) rotateToLandscape: (NSNotification *) notification {//llamado cuando se gira a landscape
-    self.contenido.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+    self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
 }
 
 - (void) rotateToPortrait: (NSNotification *) notification {//llamado cuando se gira a portrait
-    self.contenido.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+    self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
 }
 
 -(void) loadUserInfo {
     CGRect datosPerfilFrame = CGRectMake(0,
                                          0,
-                                         self.contenido.frame.size.width,
+                                         self.view.frame.size.width,
                                          120);
     self.datosPerfilViewController = [[DatosPerfilViewController alloc] initWithFrame:datosPerfilFrame];
-    [self.contenido addSubview:self.datosPerfilViewController.view];
+    [self addChildViewController:self.datosPerfilViewController];
+    [self.view addSubview:self.datosPerfilViewController.view];
     
 }
 
@@ -81,19 +82,22 @@
     
     CGRect frameViewSeleccion = CGRectMake(0,
                                            self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
-                                           self.contenido.frame.size.width/2 - anchoDiferente,
-                                           self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
+                                           self.view.frame.size.width/2 - anchoDiferente,
+                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     
     CGRect frameViewEpisodios = CGRectMake(frameViewSeleccion.origin.x + frameViewSeleccion.size.width,
                                            self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
-                                           self.contenido.frame.size.width/2 + anchoDiferente,
-                                           self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
+                                           self.view.frame.size.width/2 + anchoDiferente,
+                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     
     self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:frameViewEpisodios SourceData:SourceSeriesPendientes];
     self.listadoOpcionesPerfilViewController = [[ListadoOpcionesPerfilViewController alloc] initWithFrame:frameViewSeleccion ListadoCapitulosPendientes:self.listadoCapitulosPendientesViewController];
     
-    [self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
-    [self.contenido addSubview:self.listadoCapitulosPendientesViewController.view];
+    [self addChildViewController:self.listadoOpcionesPerfilViewController];
+    [self addChildViewController:self.listadoCapitulosPendientesViewController];
+    
+    [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
+    [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 }
 
 -(void) loadInterstitialBanner {

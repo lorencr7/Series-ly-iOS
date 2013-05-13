@@ -11,6 +11,6 @@
 @interface RootViewController : UIViewController
 
 
-@property (strong, nonatomic) UIView * contenido;
+//@property (strong, nonatomic) UIView * contenido;
 
 @end

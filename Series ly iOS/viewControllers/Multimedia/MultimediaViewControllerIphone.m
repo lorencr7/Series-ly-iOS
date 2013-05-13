@@ -47,22 +47,22 @@
     
     CGSize screenSize = [ScreenSizeManager currentSize];
     
-    CGRect viewFrame = self.contenido.frame;
+    CGRect viewFrame = self.view.frame;
     viewFrame.origin.y = 0;
     viewFrame.origin.x = 0;
     viewFrame.size.height = screenSize.height - altoNavigationBar;
     viewFrame.size.width = screenSize.width;
     
-    self.contenido.frame = viewFrame;
+    self.view.frame = viewFrame;
 }
 
 -(void) loadListadoSeries {
     CGRect listadoSeriesFrame = CGRectMake(0,
                                            0,
-                                           self.contenido.frame.size.width,
-                                           self.contenido.frame.size.height);
+                                           self.view.frame.size.width,
+                                           self.view.frame.size.height);
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData];
-    [self.contenido addSubview:self.listadoElementosSiguiendoViewController.view];
+    [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
 }
 
 

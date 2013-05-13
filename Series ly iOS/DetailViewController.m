@@ -23,11 +23,11 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        /*UIView * view;
+        UIView * view;
         for (view in self.view.subviews) {
             [view removeFromSuperview];
             view = nil;
-        }*/
+        }
         // Update the view.
         [self configureView];
     }
@@ -46,15 +46,21 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-
     if (self.detailItem) {
+        self.title = self.detailItem.title;
+        [self.view addSubview:self.detailItem.view];
+        self.navigationItem.rightBarButtonItem = self.detailItem.navigationItem.rightBarButtonItem;
+        [self addChildViewController:self.detailItem];
+        //self.detailDescriptionLabel.text = [self.detailItem description];
+    }
+    /*if (self.detailItem) {
         self.title = self.detailItem.title;
         RootViewController * rootViewController = (RootViewController *) self.detailItem;
         self.view = rootViewController.contenido;
         self.navigationItem.rightBarButtonItem = self.detailItem.navigationItem.rightBarButtonItem;
         
         //self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+    }*/
 }
 
 - (void)viewDidLoad {
@@ -65,11 +71,11 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-    [self.detailItem viewDidAppear:animated];
+    //[self.detailItem viewDidAppear:animated];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [self.detailItem viewWillAppear:animated];
+    //[self.detailItem viewWillAppear:animated];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {

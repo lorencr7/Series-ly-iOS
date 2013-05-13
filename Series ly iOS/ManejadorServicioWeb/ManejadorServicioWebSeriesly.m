@@ -96,6 +96,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(AuthToken *) getAuthTokenWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView {
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/auth_token/?id_api=%@&secret=%@&response=json",appId,appSecret];
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    //NSLog(@"%@",urlString);
     [request startSynchronous];
     NSError *error = [request error];
     if (error) {

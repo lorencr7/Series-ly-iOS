@@ -12,10 +12,6 @@
 #import "ScreenSizeManager.h"
 #import "TVFramework.h"
 
-#import "AppDelegate.h"
-#import "DrawerViewController.h"
-#import "DetailViewController.h"
-
 @interface PerfilViewControllerIphone ()
 
 @end
@@ -48,13 +44,13 @@
     
     CGSize screenSize = [ScreenSizeManager currentSize];
     
-    CGRect viewFrame = self.contenido.frame;
+    CGRect viewFrame = self.view.frame;
     viewFrame.origin.y = 0;
     viewFrame.origin.x = 0;
     viewFrame.size.height = screenSize.height - altoNavigationBar;
     viewFrame.size.width = screenSize.width;
     
-    self.contenido.frame = viewFrame;
+    self.view.frame = viewFrame;
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -68,21 +64,21 @@
 -(void) loadUserInfo {
     CGRect datosPerfilFrame = CGRectMake(0,
                                          0,
-                                         self.contenido.frame.size.width,
+                                         self.view.frame.size.width,
                                          120);
     self.datosPerfilViewController = [[DatosPerfilViewController alloc] initWithFrame:datosPerfilFrame];
-    [self.contenido addSubview:self.datosPerfilViewController.view];
-    //[self.contenido addSubview:self.datosPerfilViewController.view];
+    [self addChildViewController:self.datosPerfilViewController];
+    [self.view addSubview:self.datosPerfilViewController.view];
 }
 
 -(void) loadEpisodes {
     CGRect frameViewSeleccion = CGRectMake(0,
                                            self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height,
-                                           self.contenido.frame.size.width,
-                                           self.contenido.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
+                                           self.view.frame.size.width,
+                                           self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     self.listadoOpcionesPerfilViewController = [[ListadoOpcionesPerfilViewController alloc] initWithFrame:frameViewSeleccion ListadoCapitulosPendientes:nil];
-    [self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
-    //[self.contenido addSubview:self.listadoOpcionesPerfilViewController.view];
+    [self addChildViewController:self.listadoOpcionesPerfilViewController];
+    [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
 }
 
 
@@ -94,52 +90,26 @@
     }
 }
 
--(void) loadiADBanner {
-    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UINavigationController * navController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-    DetailViewController * detailViewController = [navController.viewControllers objectAtIndex:0];
-    [detailViewController showiADBanner];
-}
-
 - (void) showiADBanner {
-    int originY;
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        originY = self.contenido.frame.size.height - 44;
-    } else {
-        originY = self.contenido.frame.size.height - 32;
-    }
-    self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, originY, 0, 0)];
+
+    self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
     self.bannerView.delegate = self;
-    self.bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    //self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableFooterView = banner;
     self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableHeaderView = banner;
-    //[self.contenido addSubview:banner];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    NSLog(@"%@",error);
+    self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableHeaderView = nil;
+    NSLog(@"bannerViewError: %@",error);
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-    if (!willLeave) {
-        navigationController.navigationBarHidden = YES;
-    }
     return YES;
 }
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
-    navigationController.navigationBarHidden = NO;
-    /*NSLog(@"%.2f",self.listadoOpcionesPerfilViewController.view.frame.origin.y);
-    CGRect tableFrame = self.listadoOpcionesPerfilViewController.view.frame;
-    tableFrame.origin.y = 120;
-    self.listadoOpcionesPerfilViewController.view.frame = tableFrame;*/
     
 }
 

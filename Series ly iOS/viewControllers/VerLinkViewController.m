@@ -75,7 +75,7 @@
 
     //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/link/go/%@?auth_token=%@&user_token=%@",self.link.idv,userCredentials.authToken.authToken,userCredentials.userToken.userToken];
-    //NSLog(@"url de webview: %@",self.link.idv);
+    NSLog(@"url de webview: %@",urlString);
     
     NSURL * url = [NSURL URLWithString:urlString];
     //[[UIApplication sharedApplication] openURL:url];

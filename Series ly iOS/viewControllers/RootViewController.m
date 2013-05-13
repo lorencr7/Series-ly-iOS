@@ -18,8 +18,8 @@
     self = [super init];
     if (self) {
         //El title tiene que estar en el init, sino el tabBar del iPhone no coge el nombre de la ventana
-        self.contenido = [[UIView alloc] init];
-        self.contenido.backgroundColor = [UIColor whiteColor];
+        //self.contenido = [[UIView alloc] init];
+        //self.contenido.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

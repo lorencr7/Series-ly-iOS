@@ -55,13 +55,13 @@
     
     sections = [self crearSectionsSeleccion];
     
-    self.tableViewSeleccion = [[CustomTableViewController alloc] initWithFrame:frameTableViewSeleccion style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:(UIViewController *)self.listadoCapitulosPendientes title:nil];
+    self.tableViewSeleccion = [[CustomTableViewController alloc] initWithFrame:frameTableViewSeleccion style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewSeleccion.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.tableViewSeleccion.layer.borderWidth = 0;
     self.tableViewSeleccion.bounces = YES;
     self.tableViewSeleccion.layer.borderColor = [[UIColor grayColor] CGColor];
     self.tableViewSeleccion.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
+    
     /*if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
         SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
         CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
@@ -113,21 +113,28 @@
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
     
+    CustomCellPerfilSeleccionSeriesPendientes *customCellPerfilSeleccionSeriesPendiente = [[CustomCellPerfilSeleccionSeriesPendientes alloc] init];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Series pendientes" selectionType:YES customCell:customCellPerfilSeleccionSeriesPendiente];
+    
+    
     CustomCellPerfilSeleccionPeliculasPendientes *customCellPerfilSeleccionPeliculasPendientes = [[CustomCellPerfilSeleccionPeliculasPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Películas pendientes" selectionType:YES customCell:customCellPerfilSeleccionPeliculasPendientes];
-    [cells addObject:customCellPerfilSeleccionPeliculasPendientes];
+    
     
     CustomCellPerfilSeleccionDocumentalesPendientes *customCellPerfilSeleccionDocumentalesPendientes = [[CustomCellPerfilSeleccionDocumentalesPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Documentales pendientes" selectionType:YES customCell:customCellPerfilSeleccionDocumentalesPendientes];
-    [cells addObject:customCellPerfilSeleccionDocumentalesPendientes];
+    
     
     CustomCellPerfilSeleccionTVShowsPendientes *customCellPerfilSeleccionTVShowsPendientes = [[CustomCellPerfilSeleccionTVShowsPendientes alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"TVShows pendientes" selectionType:YES customCell:customCellPerfilSeleccionTVShowsPendientes];
+    
+    
+    [cells addObject:customCellPerfilSeleccionSeriesPendiente];
+    [cells addObject:customCellPerfilSeleccionPeliculasPendientes];
+    [cells addObject:customCellPerfilSeleccionDocumentalesPendientes];
     [cells addObject:customCellPerfilSeleccionTVShowsPendientes];
     
-    CustomCellPerfilSeleccionSeriesPendientes *customCellPerfilSeleccionSeriesPendiente = [[CustomCellPerfilSeleccionSeriesPendientes alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Series pendientes" selectionType:YES customCell:customCellPerfilSeleccionSeriesPendiente];
-    [cells addObject:customCellPerfilSeleccionSeriesPendiente];
+    
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
