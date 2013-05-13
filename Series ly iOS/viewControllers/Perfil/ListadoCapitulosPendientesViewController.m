@@ -114,8 +114,8 @@
     NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
     if (!userPendingInfo) {
         NSLog(@"error descargando la info de pendientes del usuario");
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
+        //UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        //[alertView show];
     } else {
         usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
         usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];

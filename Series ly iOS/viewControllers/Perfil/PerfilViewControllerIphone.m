@@ -28,7 +28,7 @@
         [self configureFrame];
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        //[self showiADBanner];
+        [self showiADBanner];
     }
     return self;
 }
@@ -114,7 +114,9 @@
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    [self.contenido addSubview:banner];
+    //self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableFooterView = banner;
+    self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableHeaderView = banner;
+    //[self.contenido addSubview:banner];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
@@ -122,11 +124,22 @@
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    
+    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
+    if (!willLeave) {
+        navigationController.navigationBarHidden = YES;
+    }
     return YES;
 }
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UINavigationController * navigationController = [appDelegate.drawerViewController.viewControllers objectAtIndex:1];
+    navigationController.navigationBarHidden = NO;
+    /*NSLog(@"%.2f",self.listadoOpcionesPerfilViewController.view.frame.origin.y);
+    CGRect tableFrame = self.listadoOpcionesPerfilViewController.view.frame;
+    tableFrame.origin.y = 120;
+    self.listadoOpcionesPerfilViewController.view.frame = tableFrame;*/
     
 }
 

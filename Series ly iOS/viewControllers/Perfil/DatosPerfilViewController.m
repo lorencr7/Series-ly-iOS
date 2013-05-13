@@ -37,6 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.frame = self.frame;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
     [self loadUserInfo];
     [self iniciarActivityIndicator];
