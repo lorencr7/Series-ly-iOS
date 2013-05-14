@@ -13,7 +13,7 @@
 @interface VerCapitulosPendientesViewController : UIViewController
 
 @property(strong, nonatomic) ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController;
-@property (assign, nonatomic) TipoSourceData tipoSourceData;
+@property(assign, nonatomic) TipoSourceData tipoSourceData;
 
 - (id)initWithTitle: (NSString *) title SourceData: (TipoSourceData) sourceData;
 

@@ -43,7 +43,6 @@
     
     [self iniciarTableViewMultimedia];
     [self iniciarActivityIndicator];
-    [self.activityIndicatorView startAnimating];
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
@@ -127,8 +126,7 @@
         [alertView show];
     }
     
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView removeFromSuperview];
+    [self stopActivityIndicator];
     
 }
 

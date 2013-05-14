@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self loadSegmentedControl];
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar"
@@ -48,20 +48,17 @@
                                                                                 target:self
                                                                                 action:@selector(cancelarButtonPressed:)];
     }
-    
-    [self iniciarActivityIndicator];
-    [self.activityIndicatorView startAnimating];
-    
+        
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadLinks) object:nil];
     [thread start];
 	// Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated {
+/*-(void) viewDidAppear:(BOOL)animated {
     if (self.tableViewLinks.lastCellPressed) {
         [self.tableViewLinks.lastCellPressed customDeselect];
     }
-}
+}*/
 
 
 - (void)didReceiveMemoryWarning
@@ -72,6 +69,11 @@
 
 -(void) cancelarButtonPressed: (UIButton *) sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) refresh {
+    [self downloadLinks];
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
 }
 
 -(void) downloadLinks {
@@ -87,33 +89,22 @@
                                                             MediaType:self.mediaElementUserPending.mediaType];
     switch ([self.fullInfo.mediaType intValue]) {
         case 1:
-            //NSLog(@"Serie");
             [self cargarLinksSeries];
             break;
         case 2:
             [self cargarLinksPeliculas];
-            //NSLog(@"Pelicula");
             break;
         case 3:
             [self cargarLinksPeliculas];
-            //NSLog(@"Documental");
             break;
         case 4:
             [self cargarLinksSeries];
-            //NSLog(@"TVShow");
             break;
             
         default:
             break;
     }
-    
-    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.viewTableViewLinks.alpha = 1.0;
-    } completion:^(BOOL finished){
-        
-    }];
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView removeFromSuperview];
+    self.navigationItem.titleView = self.segmentedControl;
 }
 
 -(void) cargarLinksPeliculas {
@@ -169,7 +160,11 @@
 }
 
 -(void) loadTableViewWithLinks: (Links *) links {
-    self.viewTableViewLinks = [[UIView alloc] initWithFrame:self.view.frame];
+    NSMutableArray *sections = [self crearSectionsLinksWithLinks:links.streaming];
+    [self reloadTableViewWithSections:sections];
+    [self stopActivityIndicator];
+    
+    /*self.viewTableViewLinks = [[UIView alloc] initWithFrame:self.view.frame];
     self.viewTableViewLinks.backgroundColor = [UIColor whiteColor];
     self.viewTableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.viewTableViewLinks.alpha = 0.0;
@@ -186,7 +181,7 @@
     self.tableViewLinks.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [self.viewTableViewLinks addSubview:self.tableViewLinks];
-    [self.view addSubview:self.viewTableViewLinks];
+    [self.view addSubview:self.viewTableViewLinks];*/
     
 }
 
@@ -278,7 +273,6 @@
                                                      [UIFont systemFontOfSize:12.5f],
                                                      UITextAttributeFont,
                                                      nil]  forState:UIControlStateSelected];
-    self.navigationItem.titleView = self.segmentedControl;
 }
 
 - (IBAction)manejadorSegmented:(UISegmentedControl *) sender {
@@ -293,8 +287,9 @@
         default:
             break;
     }
-    self.tableViewLinks.section.sections = sections;
-    [self.tableViewLinks reloadData];
+    [self reloadTableViewWithSections:sections];
+    //self.tableViewLinks.section.sections = sections;
+    //[self.tableViewLinks reloadData];
 }
 
 @end

@@ -40,8 +40,8 @@
     //self.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
     [self loadUserInfo];
-    [self iniciarActivityIndicator];
-    [self.activityIndicatorView startAnimating];
+    //[self iniciarActivityIndicator];
+
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
 }
@@ -102,8 +102,8 @@
         usuario.userInfo = userInfo;
         [self configureUserInfo];
     }
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView removeFromSuperview];
+
+    [self stopActivityIndicator];
     
 }
 

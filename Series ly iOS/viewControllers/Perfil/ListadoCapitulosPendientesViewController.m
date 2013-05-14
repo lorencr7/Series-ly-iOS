@@ -16,10 +16,6 @@
 #import "MediaElementUserPending.h"
 #import "Pending.h"
 #import "Poster.h"
-#import "ASIHTTPRequest.h"
-
-
-
 
 @interface ListadoCapitulosPendientesViewController ()
 
@@ -27,84 +23,38 @@
 
 @implementation ListadoCapitulosPendientesViewController
 
+#pragma mark -
+#pragma mark init
+
 - (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceData) tipoSourceData{
     self = [super init];
     if (self) {
         self.frame = frame;
         self.tipoSourceData = tipoSourceData;
-        
     }
     return self;
 }
 
+#pragma mark -
+#pragma mark UIViewControllerDelegate
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
     self.view.frame = self.frame;
-    /*self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
-     self.view.layer.shadowOffset = CGSizeMake(-3,5);
-     self.view.layer.shadowRadius = 3;
-     self.view.layer.shadowOpacity = 0.3;
-     CGRect shadowFrame = self.view.layer.bounds;
-     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
-     self.view.layer.shadowPath = shadowPath;*/
+    [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    [self iniciarTableViewEpisodiosPendientes];
-    [self iniciarActivityIndicator];
-    [self.activityIndicatorView startAnimating];
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserPendingInfo) object:nil];
     [thread start];
-    //[self downloadUserPendingInfo];
-	// Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    if (self.customTableView.lastCellPressed) {
-        [self.customTableView.lastCellPressed customDeselect];
-    }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
--(void) iniciarTableViewEpisodiosPendientes {
-    NSMutableArray *sections;
-    SectionElement *sectionElement;
-    NSMutableArray *cells;
-    CGRect frameTableViewEpisodios = CGRectMake(0,
-                                                0,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height);
-    sections = [NSMutableArray array];
-    cells = [NSMutableArray array];
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
-    
-
-    
-    self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableViewEpisodios style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    
-    
-    [self iniciarRefreshControl];
-    //[self.customTableView addSubview:self.refreshControl];
-   
-    
-    [self.view addSubview:self.tableViewController.view];
-    //[self.view addSubview:self.customTableView];
-}
-
-
-
-
-
--(void) refresh {
-    [self downloadUserPendingInfo];
-    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
-}
-
-
+#pragma mark -
+#pragma mark downloadInfo
 
 -(void) downloadUserPendingInfo {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
@@ -124,17 +74,19 @@
         //Rellenamos el tableView con los capitulos de series pendientes
     }
     
+    [self selectTypeOfData];
+    BOOL hayNuevaInfo = [self hayNuevaInfo];
+    if (self.sourceData && hayNuevaInfo) {
+        self.lastSourceData = self.sourceData;
+        [self fillTableViewInBackgroundFromSource:self.sourceData];
+    }
     
-    [self fillTableViewFromSourceType:self.tipoSourceData];
     
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView removeFromSuperview];
 }
 
--(void) fillTableViewFromSourceType:(TipoSourceData)sourceType {
+-(void) selectTypeOfData {
     User * usuario = [User getInstance];
-    BOOL hayNuevosDatos = NO;
-    switch (sourceType) {
+    switch (self.tipoSourceData) {
         case SourceSeriesPendientes:
             self.sourceData = usuario.seriesPendientes;
             break;
@@ -151,47 +103,21 @@
         default:
             break;
     }
-    if (self.lastSourceData) {
-        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
-            hayNuevosDatos = YES;
-        }
-    } else {
-        hayNuevosDatos = YES;
-    }
-    
-    if (self.sourceData && hayNuevosDatos) {
-        self.lastSourceData = self.sourceData;
-        [self fillTableViewInBackgroundFromSource:self.sourceData];
-    }
 }
 
-#define SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD nil
-#define TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD nil
-#define UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD nil
-#define SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD nil
-#define TEXTALIGNMENTLISTADOCAPITULOSIPAD 0
-#define ACCESORYTYPELISTADOCAPITULOSIPAD UITableViewCellAccessoryNone
-#define LINEBREAKMODELISTADOCAPITULOSIPAD 0
-#define NUMBEROFLINESLISTADOCAPITULOSIPAD 0
-#define ACCESORYVIEWLISTADOCAPITULOSIPAD nil
-//#define CUSTOMHEIGHTCELLLISTADOCAPITULOSIPAD 80
+-(BOOL) hayNuevaInfo {
+    if (self.lastSourceData) {
+        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
+            return YES;
+        }
+    } else {
+        return YES;
+    }
+    return NO;
+}
 
-#define APARIENCIALISTADOCAPITULOSIPAD(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPAD unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD selectedTextFont:SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPAD textAlignment:TEXTALIGNMENTLISTADOCAPITULOSIPAD accesoryType:ACCESORYTYPELISTADOCAPITULOSIPAD lineBreakMode:LINEBREAKMODELISTADOCAPITULOSIPAD numberOfLines:NUMBEROFLINESLISTADOCAPITULOSIPAD accesoryView:ACCESORYVIEWLISTADOCAPITULOSIPAD backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
-
-#define SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE nil
-#define TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE nil
-#define UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE nil
-#define SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE nil
-#define TEXTALIGNMENTLISTADOCAPITULOSIPHONE 0
-#define ACCESORYTYPELISTADOCAPITULOSIPHONE UITableViewCellAccessoryDisclosureIndicator
-#define LINEBREAKMODELISTADOCAPITULOSIPHONE 0
-#define NUMBEROFLINESLISTADOCAPITULOSIPHONE 0
-#define ACCESORYVIEWLISTADOCAPITULOSIPHONE nil
-//#define CUSTOMHEIGHTCELLLISTADOCAPITULOSIPHONE 80
-
-#define APARIENCIALISTADOCAPITULOSIPHONE(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOCAPITULOSIPHONE unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE selectedTextFont:SELECTEDFONTAPARIENCIALISTADOCAPITULOSIPHONE textAlignment:TEXTALIGNMENTLISTADOCAPITULOSIPHONE accesoryType:ACCESORYTYPELISTADOCAPITULOSIPHONE lineBreakMode:LINEBREAKMODELISTADOCAPITULOSIPHONE numberOfLines:NUMBEROFLINESLISTADOCAPITULOSIPHONE accesoryView:ACCESORYVIEWLISTADOCAPITULOSIPHONE backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
+#pragma mark -
+#pragma mark fillTableView
 
 -(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -271,9 +197,14 @@
     return customCellPerfilListadoCapitulos;
 }
 
-//Metodo que rellena el tableView de la derecha a partir de un array de mediaElements y lo muestra con una animacion
-//No se debe llamar a este metodo, llamar en su lugar a: -(void) fillTableViewFromSource:
 -(void) fillTableViewInBackgroundFromSource:(NSMutableArray *)source {
+    NSMutableArray * sections = [self createSectionsFromSource:source];
+    
+    [self stopActivityIndicator];
+    [self reloadTableViewWithSections:sections];
+}
+
+-(NSMutableArray *) createSectionsFromSource:(NSMutableArray *)source {
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
@@ -283,40 +214,20 @@
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
-    self.customTableView.section.sections = sections;
-    [self.customTableView reloadData];
+    return sections;
 }
 
-//idem que metodo anterior pero lanzando un thread. Se debe llamar a este metodo
 - (void) fillTableViewFromSource: (NSMutableArray *) source {
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
     [thread start];
 }
 
-//Este metodo se descarga una imagen de internet y la asigna a su imageView correspondiente
--(void) configureImageView: (NSMutableDictionary *) arguments {
-    UIImageView * imageView = [arguments objectForKey:@"imageView"];
-    NSString * url = [arguments objectForKey:@"url"];
-    UIImage * imagen;
-    NSURL * imageURL = [NSURL URLWithString:url];
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
-    [request setNumberOfTimesToRetryOnTimeout:2];
-    [request startSynchronous];
-    
-    NSError *error = [request error];
-    if (!error) {
-        NSData * imageData = [request responseData];
-        imagen = [UIImage imageWithData:imageData];
-        imageView.image = imagen;
-    }
-    
+#pragma mark -
+#pragma mark refresh
+-(void) refresh {
+    [self downloadUserPendingInfo];
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
