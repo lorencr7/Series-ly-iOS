@@ -23,11 +23,7 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        UIView * view;
-        for (view in self.view.subviews) {
-            [view removeFromSuperview];
-            view = nil;
-        }
+        [self removeSubViews];
         // Update the view.
         [self configureView];
     }
@@ -41,6 +37,14 @@
             [appDelegate.splitViewController hideMaster];
             //[[CustomSplitViewController getInstance] hideMaster];
         }
+    }
+}
+
+-(void) removeSubViews {
+    UIView * view;
+    for (view in self.view.subviews) {
+        [view removeFromSuperview];
+        view = nil;
     }
 }
 

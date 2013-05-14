@@ -30,6 +30,9 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
+    
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+
 	// Do any additional setup after loading the view.
     [self loadEpisodes];
 }

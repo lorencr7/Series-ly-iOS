@@ -36,7 +36,7 @@
     self.view.frame = self.frame;
     [super viewDidLoad];
 
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];

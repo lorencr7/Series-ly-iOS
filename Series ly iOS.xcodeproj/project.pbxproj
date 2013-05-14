@@ -694,28 +694,28 @@
 		4577AACE16DD8C5E00B089B2 /* Series ly iOS */ = {
 			isa = PBXGroup;
 			children = (
-				45CE93A9173BC14B0078E617 /* SVProgressHUD */,
-				4575174C173902E2004CBAD7 /* ASIHTTPRequest */,
-				4544C1A116DED285006828EF /* Imagenes */,
-				45F79BFE16DEC03100AD108D /* LogIn */,
-				45F79BEC16DE915700AD108D /* Databases */,
-				45AC4EAB16DE5E7D00BA0379 /* Utilidades */,
-				451C93E916DE1AF3001C4E89 /* viewControllers */,
-				451C93D316DE175B001C4E89 /* customCells */,
-				4577AB4916DD8DB600B089B2 /* Frameworks */,
 				4577AAD716DD8C5E00B089B2 /* AppDelegate.h */,
 				4577AAD816DD8C5E00B089B2 /* AppDelegate.m */,
+				4575174C173902E2004CBAD7 /* ASIHTTPRequest */,
+				451C93D316DE175B001C4E89 /* customCells */,
+				45F79BEC16DE915700AD108D /* Databases */,
 				4577AB2C16DD8CC800B089B2 /* Datos */,
 				4577AAE316DD8C5E00B089B2 /* DetailViewController.h */,
 				4577AAE416DD8C5E00B089B2 /* DetailViewController.m */,
 				4577AAEF16DD8C5E00B089B2 /* DetailViewController_iPad.xib */,
 				4577AAEC16DD8C5E00B089B2 /* DetailViewController_iPhone.xib */,
+				4577AB4916DD8DB600B089B2 /* Frameworks */,
+				4544C1A116DED285006828EF /* Imagenes */,
+				45F79BFE16DEC03100AD108D /* LogIn */,
 				4577AB3B16DD8CC800B089B2 /* ManejadorServicioWeb */,
 				4577AAE016DD8C5E00B089B2 /* MasterViewController.h */,
 				4577AAE116DD8C5E00B089B2 /* MasterViewController.m */,
 				4577AAE916DD8C5E00B089B2 /* MasterViewController_iPad.xib */,
 				4577AAE616DD8C5E00B089B2 /* MasterViewController_iPhone.xib */,
 				4577AACF16DD8C5E00B089B2 /* Supporting Files */,
+				45CE93A9173BC14B0078E617 /* SVProgressHUD */,
+				45AC4EAB16DE5E7D00BA0379 /* Utilidades */,
+				451C93E916DE1AF3001C4E89 /* viewControllers */,
 			);
 			path = "Series ly iOS";
 			sourceTree = "<group>";
