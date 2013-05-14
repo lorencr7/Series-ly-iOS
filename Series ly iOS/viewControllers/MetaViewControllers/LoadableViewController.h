@@ -1,20 +1,16 @@
 //
 //  LoadableViewController.h
-//  FI UPM
+//  Series ly iOS
 //
-//  Created by Lorenzo Villarroel on 14/05/13.
-//  Copyright (c) 2013 Laboratorio Ingeniería del Software. All rights reserved.
+//  Created by Lorenzo Villarroel Pérez on 14/05/13.
+//  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class CustomTableViewController;
 @interface LoadableViewController : UIViewController {
     UIActivityIndicatorView *activityIndicator;
 }
-
-@property (strong, nonatomic) CustomTableViewController *customTableView;
-@property (strong, nonatomic) UITableViewController *tableViewController;
 
 @property(strong, nonatomic) NSMutableArray * requests;
 @property(strong, nonatomic) NSMutableArray * threads;
@@ -23,7 +19,5 @@
 -(void) stopActivityIndicator;
 
 -(void) configureImageView: (NSMutableDictionary *) arguments;
-
--(void) reloadTableViewWithSections: (NSMutableArray *) sections;
 
 @end

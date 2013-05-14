@@ -57,6 +57,20 @@
 #pragma mark downloadInfo
 
 -(void) downloadUserPendingInfo {
+    
+    
+    [self selectTypeOfData];
+    
+    BOOL hayNuevaInfo = [self hayNuevaInfo];
+    if (self.sourceData ) {
+        if (hayNuevaInfo) {
+            self.lastSourceData = self.sourceData;
+            [self fillTableViewInBackgroundFromSource:self.sourceData];
+        }
+    }
+}
+
+-(void) selectTypeOfData {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
@@ -73,19 +87,6 @@
         usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
         //Rellenamos el tableView con los capitulos de series pendientes
     }
-    
-    [self selectTypeOfData];
-    BOOL hayNuevaInfo = [self hayNuevaInfo];
-    if (self.sourceData && hayNuevaInfo) {
-        self.lastSourceData = self.sourceData;
-        [self fillTableViewInBackgroundFromSource:self.sourceData];
-    }
-    
-    
-}
-
--(void) selectTypeOfData {
-    User * usuario = [User getInstance];
     switch (self.tipoSourceData) {
         case SourceSeriesPendientes:
             self.sourceData = usuario.seriesPendientes;
@@ -103,17 +104,6 @@
         default:
             break;
     }
-}
-
--(BOOL) hayNuevaInfo {
-    if (self.lastSourceData) {
-        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
-            return YES;
-        }
-    } else {
-        return YES;
-    }
-    return NO;
 }
 
 #pragma mark -

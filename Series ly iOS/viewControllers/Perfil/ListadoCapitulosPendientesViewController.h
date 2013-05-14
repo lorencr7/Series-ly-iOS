@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "RefreshableViewController.h"
+#import "ListOfEpisodesViewController.h"
 
 typedef enum {
     SourceSeriesPendientes,
@@ -16,14 +16,12 @@ typedef enum {
 }TipoSourceData;
 
 @class CustomTableViewController;
-@interface ListadoCapitulosPendientesViewController : RefreshableViewController
+@interface ListadoCapitulosPendientesViewController : ListOfEpisodesViewController
 
 
 //@property (strong, nonatomic) CustomTableViewController *tableViewEpisodios;
 @property (assign, nonatomic) CGRect frame;
-@property (strong, nonatomic) NSMutableArray * sourceData;
 @property (assign, nonatomic) TipoSourceData tipoSourceData;
-@property (strong, nonatomic) NSMutableArray * lastSourceData;
 
 
 - (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceData) sourceData;

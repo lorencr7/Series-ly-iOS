@@ -6,8 +6,15 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootViewController.h"
+#import "ListadoCapitulosPendientesViewController.h"
 
-@interface VerCapitulosPendientesViewController : UIViewController
+//@class ListadoCapitulosPendientesViewController;
+@interface VerCapitulosPendientesViewController : RootViewController
+
+@property(strong, nonatomic) ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController;
+@property(assign, nonatomic) TipoSourceData tipoSourceData;
+
+- (id)initWithTitle: (NSString *) title SourceData: (TipoSourceData) sourceData;
 
 @end

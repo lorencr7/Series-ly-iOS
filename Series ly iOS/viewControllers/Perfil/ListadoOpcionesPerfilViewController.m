@@ -27,12 +27,10 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    self.view.frame = self.frame;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.frame = self.frame;
-    self.view.backgroundColor = [UIColor clearColor];
     [self loadEpisodes];
 }
 
@@ -43,37 +41,10 @@
 }
 
 -(void) loadEpisodes {
-    CGRect frameTableViewSeleccion = CGRectMake(0,
-                                                0,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height);
-
-    
-    NSMutableArray *sections;
-    NSMutableArray *cells;
-    
-    cells = [NSMutableArray array];
-    
-    sections = [self crearSectionsSeleccion];
-    
-    self.tableViewSeleccion = [[CustomTableViewController alloc] initWithFrame:frameTableViewSeleccion style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.tableViewSeleccion.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.tableViewSeleccion.layer.borderWidth = 0;
-    self.tableViewSeleccion.bounces = YES;
-    self.tableViewSeleccion.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.tableViewSeleccion.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    /*if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
-        SectionElement * secionElement = [self.tableViewSeleccion.section.sections objectAtIndex:0];
-        CustomCellPerfilSeleccionSeriesPendientes * customCellPerfilSeleccionSeriesPendiente = [secionElement.cells objectAtIndex:0];
-        [customCellPerfilSeleccionSeriesPendiente customSelect];
-        
-        [self.tableViewSeleccion selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
-    }*/
-    [self.view addSubview:self.tableViewSeleccion];
+    NSMutableArray *sections = [self crearSectionsSeleccion];
+    [self reloadTableViewWithSections:sections];
+    [self stopActivityIndicator];
 }
-
-
 
 - (NSMutableArray *) crearSectionsSeleccion {
     NSMutableArray * sections = [NSMutableArray array];

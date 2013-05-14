@@ -28,7 +28,7 @@
         
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        //[self loadInterstitialBanner];
+        //[self showInterstitialBanner];
     }
     return self;
 }
@@ -100,9 +100,28 @@
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 }
 
--(void) loadInterstitialBanner {
+/*-(void) loadInterstitialBanner {
     AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate showInterstitialBanner];
+}*/
+
+-(void) showInterstitialBanner {
+    self.interstitial = [[ADInterstitialAd alloc] init];
+    self.interstitial.delegate = self;
+}
+
+- (void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+        [interstitialAd presentFromViewController:self];
+    }
+}
+
+- (void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd {
+    
+}
+
+- (void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
+    NSLog(@"interstitialAdError: %@",error.localizedDescription);
 }
 
 @end

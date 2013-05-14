@@ -53,12 +53,6 @@
     self.view.frame = viewFrame;
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    if (self.listadoOpcionesPerfilViewController.tableViewSeleccion.lastCellPressed) {
-        [self.listadoOpcionesPerfilViewController.tableViewSeleccion.lastCellPressed customDeselect];
-    }
-}
-
 
 
 -(void) loadUserInfo {
@@ -97,12 +91,12 @@
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableHeaderView = banner;
+    self.listadoOpcionesPerfilViewController.customTableView.tableHeaderView = banner;
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    self.listadoOpcionesPerfilViewController.tableViewSeleccion.tableHeaderView = nil;
-    NSLog(@"bannerViewError: %@",error);
+    self.listadoOpcionesPerfilViewController.customTableView.tableHeaderView = nil;
+    NSLog(@"bannerViewError: %@",error.localizedDescription);
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {

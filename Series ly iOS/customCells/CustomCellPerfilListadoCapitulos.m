@@ -7,7 +7,8 @@
 //
 
 #import "CustomCellPerfilListadoCapitulos.h"
-#import "LinksViewController.h"
+#import "VerLinksViewController.h"
+#import "ListadoLinksViewController.h"
 #import "DrawerViewController.h"
 #import "CustomSplitViewController.h"
 #import "MediaElementUserPending.h"
@@ -24,13 +25,15 @@
 
 -(void) executeAction: (UIViewController *) viewController {
 
-    LinksViewController * linksViewController = [[LinksViewController alloc] initWithMediaElementUserPending:self.mediaElementUserPending];
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
-    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-    navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    VerLinksViewController * linksViewController = [[VerLinksViewController alloc] initWithMediaElementUserPending:self.mediaElementUserPending];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewController.navigationController pushViewController:linksViewController animated:YES];
     } else {
+        //ListadoLinksViewController * listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:linksViewController.view.frame MediaElementUserPending:self.mediaElementUserPending];
+        UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
         [viewController presentViewController:navigationController animated:YES completion:nil];
     }
 }

@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "LoadableViewController.h"
+#import "LoadableWithTableViewController.h"
 
 @class CustomTableViewController;
-@interface RefreshableViewController : LoadableViewController
+@interface RefreshableViewController : LoadableWithTableViewController
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 
 @class CustomSplitViewController, DrawerViewController;
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate ,ADInterstitialAdDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -18,14 +17,8 @@
 @property (strong, nonatomic) CustomSplitViewController *splitViewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) DrawerViewController *drawerViewController;
-@property (strong, nonatomic) ADInterstitialAd * interstitial;
-
-
 
 -(void) loadContentControllers;
 -(void) loadLogInController;
-
--(void) showInterstitialBanner;
-
 
 @end

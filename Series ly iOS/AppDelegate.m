@@ -123,28 +123,5 @@
     self.window.rootViewController = self.splitViewController;
 }
 
--(void) showInterstitialBanner {
-    self.interstitial = [[ADInterstitialAd alloc] init];
-    self.interstitial.delegate = self;
-}
-
-- (void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
-        [interstitialAd presentFromViewController:self.splitViewController];
-    }
-}
-
-- (void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd {
-    
-}
-
-- (void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-    NSLog(@"%@",error);
-}
-
-
-
-
-
 
 @end

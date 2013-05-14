@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LoadableWithTableViewController.h"
 
 @class CustomTableViewController,ListadoCapitulosPendientesViewController;
-@interface ListadoOpcionesPerfilViewController : UIViewController
+@interface ListadoOpcionesPerfilViewController : LoadableWithTableViewController
 
 @property (assign, nonatomic) CGRect frame;
-@property (strong, nonatomic) CustomTableViewController *tableViewSeleccion;
+//@property (strong, nonatomic) CustomTableViewController *tableViewSeleccion;
 @property (strong, nonatomic) ListadoCapitulosPendientesViewController *listadoCapitulosPendientes;
 
 - (id)initWithFrame: (CGRect) frame ListadoCapitulosPendientes: (ListadoCapitulosPendientesViewController *) listadoCapitulosPendientes;

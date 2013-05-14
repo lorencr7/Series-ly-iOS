@@ -58,21 +58,4 @@
     
 }
 
--(void) iniciarActivityIndicator {
-    [super iniciarActivityIndicator];
-}
-
--(void) stopActivityIndicator {
-    [super stopActivityIndicator];
-}
-
--(void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-
--(void) reloadTableViewWithSections: (NSMutableArray *) sections {
-    [super reloadTableViewWithSections:sections];
-}
-
 @end
