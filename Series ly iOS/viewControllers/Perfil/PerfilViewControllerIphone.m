@@ -71,6 +71,7 @@
                                            self.view.frame.size.width,
                                            self.view.frame.size.height - (self.datosPerfilViewController.view.frame.origin.y + self.datosPerfilViewController.view.frame.size.height));
     self.listadoOpcionesPerfilViewController = [[ListadoOpcionesPerfilViewController alloc] initWithFrame:frameViewSeleccion ListadoCapitulosPendientes:nil];
+    self.listadoOpcionesPerfilViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self addChildViewController:self.listadoOpcionesPerfilViewController];
     [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
 }

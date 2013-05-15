@@ -31,11 +31,11 @@
 	// Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated {
+/*-(void) viewDidAppear:(BOOL)animated {
     if (self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed) {
         [self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed customDeselect];
     }
-}
+}*/
 
 -(void) configureFrame {
     int altoNavigationBar;
@@ -62,6 +62,10 @@
                                            self.view.frame.size.width,
                                            self.view.frame.size.height);
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData];
+    self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+    
+    [self addChildViewController:self.listadoElementosSiguiendoViewController];
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
 }
 

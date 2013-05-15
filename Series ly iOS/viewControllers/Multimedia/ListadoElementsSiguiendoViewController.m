@@ -35,9 +35,8 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
+    //NSLog(@"%.2f",self.view.frame.origin.y);
 
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
     [thread start];
 }
@@ -182,7 +181,7 @@
     [backgroundView addSubview:labelSerie];
     
     
-    CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] init];
+    CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] initWithMediaElementUser:mediaElementUser];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance:backgroundView AltoCelda:altoCelda] cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
     return customCellSeriesListadoSeries;
     

@@ -30,19 +30,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureFrame];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+
 
     self.listadoCapitulosPendientesViewController = [[ListadoCapitulosPendientesViewController alloc] initWithFrame:self.view.frame SourceData:self.tipoSourceData];
     [self addChildViewController:self.listadoCapitulosPendientesViewController];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
--(void) viewDidAppear:(BOOL)animated {
+/*-(void) viewDidAppear:(BOOL)animated {
     if (self.listadoCapitulosPendientesViewController.customTableView.lastCellPressed) {
         [self.listadoCapitulosPendientesViewController.customTableView.lastCellPressed customDeselect];
     }
-}
+}*/
 
 -(void) configureFrame {
     int altoNavigationBar;

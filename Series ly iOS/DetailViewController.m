@@ -22,6 +22,7 @@
 
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
+        _detailItem = nil;
         _detailItem = newDetailItem;
         [self removeSubViews];
         // Update the view.

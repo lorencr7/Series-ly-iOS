@@ -8,6 +8,11 @@
 
 #import "CustomCell.h"
 
+@class MediaElementUser;
 @interface CustomCellSeriesListadoSeries : CustomCell
+
+@property(strong, nonatomic) MediaElementUser * mediaElementUser;
+
+- (id)initWithMediaElementUser: (MediaElementUser *) mediaElementUser;
 
 @end

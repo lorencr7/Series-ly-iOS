@@ -39,6 +39,8 @@
 		451C93DF16DE17BF001C4E89 /* CustomCellPeliculas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93DE16DE17BF001C4E89 /* CustomCellPeliculas.m */; };
 		451C93E216DE17CB001C4E89 /* CustomCellProgramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E116DE17CB001C4E89 /* CustomCellProgramas.m */; };
 		451C93E516DE17D9001C4E89 /* CustomCellDocumentales.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */; };
+		451FD3EE1743983C003E5A4B /* VerDetalleElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451FD3ED1743983C003E5A4B /* VerDetalleElementViewController.m */; };
+		451FD3F117439CC1003E5A4B /* DetalleElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451FD3F017439CC1003E5A4B /* DetalleElementViewController.m */; };
 		45213F70172B1D4C0047900C /* drawer.png in Resources */ = {isa = PBXBuildFile; fileRef = 45213F6E172B1D4C0047900C /* drawer.png */; };
 		45213F71172B1D4C0047900C /* logo256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 45213F6F172B1D4C0047900C /* logo256x256.png */; };
 		45226CFF1728872800A88843 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45226CFE1728872800A88843 /* DrawerViewController.m */; };
@@ -220,6 +222,10 @@
 		451C93E316DE17D9001C4E89 /* CustomCellDocumentales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellDocumentales.h; sourceTree = "<group>"; };
 		451C93E416DE17D9001C4E89 /* CustomCellDocumentales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellDocumentales.m; sourceTree = "<group>"; };
 		451C93E616DE1866001C4E89 /* CustomCellsMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsMaster.h; sourceTree = "<group>"; };
+		451FD3EC1743983C003E5A4B /* VerDetalleElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerDetalleElementViewController.h; sourceTree = "<group>"; };
+		451FD3ED1743983C003E5A4B /* VerDetalleElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerDetalleElementViewController.m; sourceTree = "<group>"; };
+		451FD3EF17439CC1003E5A4B /* DetalleElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleElementViewController.h; sourceTree = "<group>"; };
+		451FD3F017439CC1003E5A4B /* DetalleElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleElementViewController.m; sourceTree = "<group>"; };
 		45213F6E172B1D4C0047900C /* drawer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawer.png; sourceTree = "<group>"; };
 		45213F6F172B1D4C0047900C /* logo256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo256x256.png; sourceTree = "<group>"; };
 		45226CFD1728872800A88843 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
@@ -469,6 +475,8 @@
 		450F8542172D8E3B008523A5 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
+				451FD3EF17439CC1003E5A4B /* DetalleElementViewController.h */,
+				451FD3F017439CC1003E5A4B /* DetalleElementViewController.m */,
 				45019FD1173158130002DA29 /* ListadoElementsSiguiendoViewController.h */,
 				45019FD2173158130002DA29 /* ListadoElementsSiguiendoViewController.m */,
 				450F8543172D8E3B008523A5 /* MultimediaViewController.h */,
@@ -477,6 +485,8 @@
 				450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */,
 				450F8547172D8E3B008523A5 /* MultimediaViewControllerIphone.h */,
 				450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */,
+				451FD3EC1743983C003E5A4B /* VerDetalleElementViewController.h */,
+				451FD3ED1743983C003E5A4B /* VerDetalleElementViewController.m */,
 			);
 			path = Multimedia;
 			sourceTree = "<group>";
@@ -1148,6 +1158,8 @@
 				453C40301742E250007CE06C /* RootViewController.m in Sources */,
 				453C40331742E285007CE06C /* VerLinksViewController.m in Sources */,
 				453C40361742E2F8007CE06C /* VerCapitulosPendientesViewController.m in Sources */,
+				451FD3EE1743983C003E5A4B /* VerDetalleElementViewController.m in Sources */,
+				451FD3F117439CC1003E5A4B /* DetalleElementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

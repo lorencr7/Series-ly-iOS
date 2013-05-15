@@ -59,6 +59,8 @@
                                            self.view.frame.size.width/2 - 60,
                                            self.view.frame.size.height);
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData];
+    self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
 }
 

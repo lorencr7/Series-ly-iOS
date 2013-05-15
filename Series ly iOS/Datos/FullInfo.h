@@ -20,9 +20,9 @@
 @property (strong,nonatomic) NSMutableArray * cast;
 @property (strong,nonatomic) NSString * rating;
 @property (strong,nonatomic) SeasonsEpisodes * seasonsEpisodes;
-@property (strong,nonatomic) NSMutableArray * plot;
-@property (strong,nonatomic) NSMutableArray * plot_es;
-@property (strong,nonatomic) NSMutableArray * plot_en;
+@property (strong,nonatomic) NSString * plot;
+@property (strong,nonatomic) NSString * plot_es;
+@property (strong,nonatomic) NSString * plot_en;
 @property (assign,nonatomic) int error;
 
 @end
