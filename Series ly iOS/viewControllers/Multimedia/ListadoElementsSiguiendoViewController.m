@@ -37,81 +37,57 @@
     [super viewDidLoad];
     //NSLog(@"%.2f",self.view.frame.origin.y);
 
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
-    [thread start];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(getSections) object:nil];
+    //[thread start];
 }
 
-
--(void) refresh {
-    [self downloadUserInfo];
-    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
-}
-
-- (void) downloadUserInfo {
-
-    
-    
-    [self selectTypeOfData];
-    
-    BOOL hayNuevaInfo = [self hayNuevaInfo];
-    
-    if (self.sourceData ) {
-        if (hayNuevaInfo) {
-            self.lastSourceData = self.sourceData;
-            [self fillTableViewInBackgroundFromSource:self.sourceData];
-        }
-    } else {
-        NSLog(@"error descargando la info de siguiendo del usuario");
-        //UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar la información que sigues" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //[alertView show];
-    }
-}
-
--(void) selectTypeOfData {
+-(NSMutableArray *) getSourceData {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //User * usuario = [PerfilViewController getUsuario];
     //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
     
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
+    [self.requests addObject:request];
+    
     switch (self.tipoSourceData) {
         case SourceSeriesSiguiendo:
-            usuario.seriesFollowing = [manejadorServicioWebSeriesly getUserFollowingSeriesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.seriesFollowing = [manejadorServicioWebSeriesly getUserFollowingSeriesWithRequest:request ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.seriesFollowing;
             break;
         case SourcePeliculasSiguiendo:
-            usuario.peliculasFollowing = [manejadorServicioWebSeriesly getUserFollowingMoviesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.peliculasFollowing = [manejadorServicioWebSeriesly getUserFollowingMoviesWithRequest:request ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.peliculasFollowing;
             break;
         case SourceTVShowsSiguiendo:
-            usuario.tvShowsFollowing = [manejadorServicioWebSeriesly getUserFollowingTvShowsWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.tvShowsFollowing = [manejadorServicioWebSeriesly getUserFollowingTvShowsWithRequest:request ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.tvShowsFollowing;
             break;
         case SourceDocumentalesSiguiendo:
-            usuario.documentalesFollowing = [manejadorServicioWebSeriesly getUserFollowingDocumentariesWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+            usuario.documentalesFollowing = [manejadorServicioWebSeriesly getUserFollowingDocumentariesWithRequest:request ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
             self.sourceData = usuario.documentalesFollowing;
             break;
             
         default:
             break;
     }
+    [self.requests removeObject:request];
+
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
+    return self.sourceData;
 }
 
-
-
--(void) fillTableViewInBackgroundFromSource:(NSMutableArray *)source {
-    NSMutableArray * sections = [self createSectionsFromSource:source];
-    [self stopActivityIndicator];
-    [self reloadTableViewWithSections:sections];
-}
-
--(NSMutableArray *) createSectionsFromSource:(NSMutableArray *)source {
+-(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
     
     
-    for (MediaElementUser * mediaElementUser in source) {
+    for (MediaElementUser * mediaElementUser in sourceData) {
         [cells addObject:[self createCellListadoSeriesWithMediaElementUser:mediaElementUser]];
     }
     
@@ -119,7 +95,6 @@
     [sections addObject:sectionElement];
     return sections;
 }
-
 
 -(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -186,7 +161,6 @@
     return customCellSeriesListadoSeries;
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {

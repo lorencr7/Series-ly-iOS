@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "ListOfEpisodesViewController.h"
+#import "RefreshableViewController.h"
 
 typedef enum {
     SourceSeriesSiguiendo,
@@ -16,7 +16,7 @@ typedef enum {
 }TipoSourceDataSiguiendo;
 
 @class CustomTableViewController;
-@interface ListadoElementsSiguiendoViewController : ListOfEpisodesViewController
+@interface ListadoElementsSiguiendoViewController : RefreshableViewController
 
 @property (assign, nonatomic) CGRect frame;
 @property (assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;

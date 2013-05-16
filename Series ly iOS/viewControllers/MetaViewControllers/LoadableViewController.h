@@ -20,4 +20,8 @@
 
 -(void) configureImageView: (NSMutableDictionary *) arguments;
 
+-(void) loadData;
+-(void) getData;
+
+
 @end

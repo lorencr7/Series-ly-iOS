@@ -15,7 +15,7 @@
 @synthesize sectionSubtitle = _sectionSubtitle;
 
 @synthesize heightHeader = _heightHeader;
-@synthesize heightCell = _heightCell;
+//@synthesize heightCell = _heightCell;
 @synthesize heightFooter = _heightFooter;
 
 @synthesize labelHeader = _labelHeader;
@@ -52,6 +52,22 @@
     [view addSubview:self.labelFooter];
     
     return view;
+}
+
+-(BOOL) isEqual:(id)object {
+    if ([object class] != [self class]) {
+        return NO;
+    }
+    SectionElement * sectionElement = (SectionElement *) object;
+    if (self.heightHeader == sectionElement.heightHeader
+        && self.heightFooter == sectionElement.heightFooter
+        && [self.labelHeader isEqual:sectionElement.labelHeader]
+        && [self.labelFooter isEqual:sectionElement.labelFooter]
+        && [self.cells isEqualToArray:sectionElement.cells]) {
+        
+    }
+    
+    return NO;
 }
 
 @end

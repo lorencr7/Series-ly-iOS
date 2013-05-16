@@ -24,7 +24,7 @@
         User * usuario = [User getInstance];
         ListadoOpcionesPerfilViewController * listadoOpcionesPerfilViewController = (ListadoOpcionesPerfilViewController*) viewController;
         ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController = listadoOpcionesPerfilViewController.listadoCapitulosPendientes;
-        [listadoCapitulosPendientesViewController fillTableViewFromSource:usuario.peliculasPendientes];
+        [listadoCapitulosPendientesViewController reloadTableViewFromSource:usuario.peliculasPendientes];
     }
 }
 

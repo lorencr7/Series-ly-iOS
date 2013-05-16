@@ -16,10 +16,11 @@
 @implementation LoadableWithTableViewController
 
 - (void)viewDidLoad {
+    [self iniciarTableView];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-    [self iniciarTableView];
+    
     
 }
 
@@ -72,6 +73,27 @@
             
         }];
     }
+}
+
+-(void) loadData {
+    [self getSections];
+    [self.threads removeObject:[NSThread currentThread]];
+}
+
+-(void) getSections {
+    self.sourceData = [self getSourceData];
+    NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
+    [self stopActivityIndicator];
+    [self reloadTableViewWithSections:sections];
+}
+
+-(NSMutableArray *) getSourceData {
+    return nil;
+}
+
+-(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
+    
+    return nil;
 }
 
 

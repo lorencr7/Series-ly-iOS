@@ -16,12 +16,24 @@
 
 @implementation LoadableViewController
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.requests = [NSMutableArray array];
+        self.threads = [NSMutableArray array];
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     [self iniciarActivityIndicator];
+    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadData) object:nil];
+    [thread start];
+    [self.threads addObject:thread];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +77,7 @@
 
 //Este metodo se descarga una imagen de internet y la asigna a su imageView correspondiente
 -(void) configureImageView: (NSMutableDictionary *) arguments {
+    [self.threads addObject:[NSThread currentThread]];
     UIImageView * imageView = [arguments objectForKey:@"imageView"];
     NSString * url = [arguments objectForKey:@"url"];
     UIImage * imagen;
@@ -72,7 +85,12 @@
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
     [request setNumberOfTimesToRetryOnTimeout:2];
+    [self.requests addObject:request];
     [request startSynchronous];
+    [self.requests removeObject:request];
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
     
     NSError *error = [request error];
     if (!error) {
@@ -81,5 +99,28 @@
         imageView.image = imagen;
     }
 }
+
+-(void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    for (NSThread * thread in self.threads) {
+        if ([thread isExecuting]) {
+            [thread cancel];
+        }
+    }
+    for (ASIHTTPRequest * request in self.requests) {
+        [request cancel];
+    }
+}
+
+-(void) loadData {
+    [self getData];
+    [self.threads removeObject:[NSThread currentThread]];
+}
+
+-(void) getData {
+    
+}
+
 
 @end

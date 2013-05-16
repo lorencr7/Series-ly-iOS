@@ -21,6 +21,7 @@
 #import "EpisodeMedia.h"
 #import "Season.h"
 #import "SeasonsEpisodes.h"
+#import "ASIHTTPRequest.h"
 
 
 @interface ListadoLinksViewController ()
@@ -51,8 +52,8 @@
                                                                                 action:@selector(cancelarButtonPressed:)];
     }
         
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadLinks) object:nil];
-    [thread start];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(getSections) object:nil];
+    //[thread start];
 	// Do any additional setup after loading the view.
 }
 
@@ -62,33 +63,28 @@
     }
 }*/
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) getSections {
+    [super getSections];
+    self.parentNavigationItem.titleView = self.segmentedControl;
 }
 
--(void) cancelarButtonPressed: (UIButton *) sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void) refresh {
-    [self downloadLinks];
-    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
-}
-
--(void) downloadLinks {
-    
+-(NSMutableArray *) getSourceData {
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     
     UserCredentials * userCredentials = [UserCredentials getInstance];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
+    [self.requests addObject:request];
     self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithRequest:nil
                                                          ProgressView:nil
                                                             AuthToken:userCredentials.authToken
                                                             UserToken:userCredentials.userToken
                                                                   Idm:self.mediaElementUserPending.idm
                                                             MediaType:self.mediaElementUserPending.mediaType];
+    [self.requests removeObject:request];
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
     switch ([self.fullInfo.mediaType intValue]) {
         case 1:
             [self cargarLinksSeries];
@@ -106,10 +102,50 @@
         default:
             break;
     }
-    self.parentNavigationItem.titleView = self.segmentedControl;
+    return self.links.streaming;
 }
 
+-(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
+    NSMutableArray * sections = [NSMutableArray array];
+    SectionElement * sectionElement;
+    NSMutableArray * cells = [NSMutableArray array];
+    
+    for (Link * link in sourceData) {
+        NSString * host = [link.host lowercaseString];
+        if (![host isEqualToString:@"moevideos"] && ! [host isEqualToString:@"nowvideo"] && ! [host isEqualToString:@"magnovideo"] && ! [host isEqualToString:@"vidxden"]) {
+            [cells addObject:[self createCellLinksLinkWithLink:link]];
+        }
+        
+    }
+    if (cells.count == 0) {
+        CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] init];
+        [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(nil, 44) cellText:@"No hay Links compatibles" selectionType:YES customCell:customCellLinksLink];
+        [cells addObject:customCellLinksLink];
+    }
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    [sections addObject:sectionElement];
+    return sections;
+}
+
+-(CustomCellLinksLink *) createCellLinksLinkWithLink: (Link *) link {
+    CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] initWithLink:link];
+    UIView * view = [[UIView alloc] init];
+    int heightCell = 44;
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
+    label.text = link.host;
+    label.backgroundColor = [UIColor clearColor];
+    [label sizeToFit];
+    [view addSubview:label];
+    
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(view, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
+    return customCellLinksLink;
+}
+
+
 -(void) cargarLinksPeliculas {
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
+    [self.requests addObject:request];
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     self.links = [manejadorServicioWeb getLinksWithRequest:nil
@@ -117,7 +153,11 @@
                                                  AuthToken:userCredentials.authToken
                                                        Idm:self.fullInfo.idm
                                                  MediaType:[NSString stringWithFormat:@"%d",[self.fullInfo.mediaType intValue]]];
-    [self loadTableViewWithLinks:self.links];
+    [self.requests removeObject:request];
+
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
 }
 
 -(void) cargarLinksSeries {
@@ -157,66 +197,12 @@
                                                  AuthToken:userCredentials.authToken
                                                        Idm:episode.idm
                                                  MediaType:[NSString stringWithFormat:@"%d",episode.mediaType]];
-    [self loadTableViewWithLinks:self.links];
     
 }
 
--(void) loadTableViewWithLinks: (Links *) links {
-    NSMutableArray *sections = [self crearSectionsLinksWithLinks:links.streaming];
-    [self reloadTableViewWithSections:sections];
-    [self stopActivityIndicator];    
+-(void) cancelarButtonPressed: (UIButton *) sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-#define SELECTEDCOLORAPARIENCIALISTADOLINKS [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIALISTADOLINKS nil
-#define TEXTSELECTEDCOLORAPARIENCIALISTADOLINKS nil
-#define UNSELECTEDFONTAPARIENCIALISTADOLINKS nil
-#define SELECTEDFONTAPARIENCIALISTADOLINKS nil
-#define TEXTALIGNMENTLISTADOLINKS 0
-#define ACCESORYTYPELISTADOLINKS UITableViewCellAccessoryNone
-#define LINEBREAKMODELISTADOLINKS 0
-#define NUMBEROFLINESLISTADOLINKS 0
-#define ACCESORYVIEWLISTADOLINKS nil
-//#define CUSTOMHEIGHTCELLLISTADOLINKS 80
-
-#define APARIENCIALISTADOLINKS(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIALISTADOLINKS unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIALISTADOLINKS selectedTextColor:TEXTSELECTEDCOLORAPARIENCIALISTADOLINKS unselectedTextFont:UNSELECTEDFONTAPARIENCIALISTADOLINKS selectedTextFont:SELECTEDFONTAPARIENCIALISTADOLINKS textAlignment:TEXTALIGNMENTLISTADOLINKS accesoryType:ACCESORYTYPELISTADOLINKS lineBreakMode:LINEBREAKMODELISTADOLINKS numberOfLines:NUMBEROFLINESLISTADOLINKS accesoryView:ACCESORYVIEWLISTADOLINKS backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
-
-- (NSMutableArray *) crearSectionsLinksWithLinks: (NSMutableArray *) links {
-    NSMutableArray * sections = [NSMutableArray array];
-    SectionElement * sectionElement;
-    NSMutableArray * cells = [NSMutableArray array];
-    
-    for (Link * link in links) {
-        NSString * host = [link.host lowercaseString];
-        if (![host isEqualToString:@"moevideos"] && ! [host isEqualToString:@"nowvideo"] && ! [host isEqualToString:@"magnovideo"] && ! [host isEqualToString:@"vidxden"]) {
-            [cells addObject:[self createCellLinksLinkWithLink:link]];
-        }
-        
-    }
-    if (cells.count == 0) {
-        CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] init];
-        [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(nil, 44) cellText:@"No hay Links compatibles" selectionType:YES customCell:customCellLinksLink];
-        [cells addObject:customCellLinksLink];
-    }
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
-    return sections;
-}
-
--(CustomCellLinksLink *) createCellLinksLinkWithLink: (Link *) link {
-    CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] initWithLink:link];
-    UIView * view = [[UIView alloc] init];
-    int heightCell = 44;
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
-    label.text = link.host;
-    label.backgroundColor = [UIColor clearColor];
-    [label sizeToFit];
-    [view addSubview:label];
-    
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(view, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
-    return customCellLinksLink;
-}
-
 
 -(void) loadSegmentedControl {
     self.segmentedControl =[[UISegmentedControl alloc]
@@ -261,17 +247,21 @@
     NSMutableArray * sections;
     switch (sender.selectedSegmentIndex) {
         case 0:
-            sections = [self crearSectionsLinksWithLinks:self.links.streaming];
+            sections = [self getSectionsFromSourceData:self.links.streaming];
             break;
         case 1:
-            sections = [self crearSectionsLinksWithLinks:self.links.officialServer];
+            sections = [self getSectionsFromSourceData:self.links.officialServer];
             break;
         default:
             break;
     }
     [self reloadTableViewWithSections:sections];
-    //self.tableViewLinks.section.sections = sections;
-    //[self.tableViewLinks reloadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

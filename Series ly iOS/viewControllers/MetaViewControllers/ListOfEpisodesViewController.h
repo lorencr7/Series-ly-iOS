@@ -10,10 +10,8 @@
 
 @interface ListOfEpisodesViewController : RefreshableViewController
 
-@property (strong, nonatomic) NSMutableArray * lastSourceData;
-@property (strong, nonatomic) NSMutableArray * sourceData;
 
 
--(BOOL) hayNuevaInfo;
+
 
 @end

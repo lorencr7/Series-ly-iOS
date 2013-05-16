@@ -13,10 +13,15 @@
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+@property (strong, nonatomic) NSMutableArray * lastSourceData;
+
 -(void) iniciarRefreshControl;
 -(void) pullToRefreshHandler;
 -(void) stopRefreshAnimation;
 
 -(void) refresh;
+
+-(BOOL) hayNuevaInfo;
+
 
 @end

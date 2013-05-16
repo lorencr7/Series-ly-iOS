@@ -20,7 +20,7 @@
 @property (strong,nonatomic,readwrite) NSArray * cells;
 
 @property (nonatomic, readwrite, assign) CGFloat heightHeader;
-@property (nonatomic, readwrite, assign) CGFloat heightCell;
+//@property (nonatomic, readwrite, assign) CGFloat heightCell;
 @property (nonatomic, readwrite, assign) CGFloat heightFooter;
 
 @property (strong, nonatomic) UILabel *labelHeader;

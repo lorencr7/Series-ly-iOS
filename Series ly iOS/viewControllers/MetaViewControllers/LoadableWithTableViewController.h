@@ -14,7 +14,14 @@
 @property (strong, nonatomic) CustomTableViewController *customTableView;
 @property (strong, nonatomic) UITableViewController *tableViewController;
 
+@property (strong, nonatomic) NSMutableArray * sourceData;
 
+
+-(NSMutableArray *) getSourceData;
+
+-(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData;
+
+-(void) getSections;
 
 -(void) reloadTableViewWithSections: (NSMutableArray *) sections;
 

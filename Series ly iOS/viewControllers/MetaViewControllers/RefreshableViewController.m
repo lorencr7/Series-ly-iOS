@@ -43,7 +43,7 @@
     [self.refreshControl addTarget:self
                             action:@selector(pullToRefreshHandler)
                   forControlEvents:UIControlEventValueChanged];
-     self.tableViewController.refreshControl = self.refreshControl;
+    self.tableViewController.refreshControl = self.refreshControl;
 }
 
 -(void) pullToRefreshHandler {
@@ -55,7 +55,34 @@
 }
 
 -(void) refresh {
-    
+    self.lastSourceData = self.sourceData;
+    self.sourceData = [self getSourceData];
+    if ([self hayNuevaInfo]) {
+        NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
+        //[self stopActivityIndicator];
+        [self reloadTableViewWithSections:sections];
+    }
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
+
+}
+
+-(NSMutableArray *) getSourceData {
+    return nil;
+}
+
+-(NSMutableArray *) getSectionsFromSourceData {
+    return nil;
+}
+
+-(BOOL) hayNuevaInfo {
+    if (self.lastSourceData) {
+        if (![self.lastSourceData isEqualToArray:self.sourceData]) {
+            return YES;
+        }
+    } else {
+        return YES;
+    }
+    return NO;
 }
 
 @end

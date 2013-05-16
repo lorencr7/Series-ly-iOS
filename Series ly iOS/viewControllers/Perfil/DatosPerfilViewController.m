@@ -16,6 +16,7 @@
 #import "UserCountry.h"
 #import "UserInfo.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ASIHTTPRequest.h"
 
 
 @interface DatosPerfilViewController ()
@@ -42,8 +43,8 @@
     [self loadUserInfo];
     //[self iniciarActivityIndicator];
 
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
-    [thread start];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
+    //[thread start];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,12 +91,18 @@
     [self.view addSubview:self.labelNombreUsuarioAlta];
 }
 
--(void) downloadUserInfo {
+-(void) getData {
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
     //Descargamos la informacion del usuario
-    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:nil ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
+    [self.requests addObject:request];
+    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:request ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    [self.requests removeObject:request];
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
     if (!userInfo || userInfo.error != 0) {
         NSLog(@"error descargando la info del usuario");
     } else {
