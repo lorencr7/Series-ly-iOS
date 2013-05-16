@@ -35,16 +35,10 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
-    //NSLog(@"%.2f",self.view.frame.origin.y);
-
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(getSections) object:nil];
-    //[thread start];
 }
 
 -(NSMutableArray *) getSourceData {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    //User * usuario = [PerfilViewController getUsuario];
-    //UserCredentials * userCredentials = [PerfilViewController getUserCredentials];
     
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];

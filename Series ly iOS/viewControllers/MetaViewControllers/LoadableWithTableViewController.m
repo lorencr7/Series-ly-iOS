@@ -75,7 +75,7 @@
     }
 }
 
--(void) loadData {
+-(void) getData {
     [self getSections];
     [self.threads removeObject:[NSThread currentThread]];
 }

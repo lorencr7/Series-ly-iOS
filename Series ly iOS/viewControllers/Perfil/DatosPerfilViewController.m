@@ -35,16 +35,10 @@
 }
 
 - (void)viewDidLoad {
+    self.view.frame = self.frame;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.frame = self.frame;
-    //self.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    
-    [self loadUserInfo];
-    //[self iniciarActivityIndicator];
 
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadUserInfo) object:nil];
-    //[thread start];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,6 +86,7 @@
 }
 
 -(void) getData {
+    [self loadUserInfo];
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
@@ -146,18 +141,6 @@
 	
 }
 
-//Este metodo se descarga una imagen de internet y la asigna a su imageView correspondiente
--(void) configureImageView: (NSMutableDictionary *) arguments {
-    UIImageView * imageView = [arguments objectForKey:@"imageView"];
-    NSString * url = [arguments objectForKey:@"url"];
-    UIImage * imagen;
-    NSURL * imageURL = [NSURL URLWithString:url];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    imagen = [UIImage imageWithData:imageData];
-    imageView.image = imagen;
-    //[self.view addSubview:imageView];
-    
-}
 
 
 @end

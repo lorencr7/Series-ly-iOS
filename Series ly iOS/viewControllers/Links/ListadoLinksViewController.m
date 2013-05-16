@@ -43,25 +43,14 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
-    
     [self loadSegmentedControl];
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
         self.parentNavigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar"
-                                                                                 style:UIBarButtonItemStyleBordered
-                                                                                target:self
-                                                                                action:@selector(cancelarButtonPressed:)];
+                                                                                       style:UIBarButtonItemStyleBordered
+                                                                                      target:self
+                                                                                      action:@selector(cancelarButtonPressed:)];
     }
-        
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(getSections) object:nil];
-    //[thread start];
-	// Do any additional setup after loading the view.
 }
-
-/*-(void) viewDidAppear:(BOOL)animated {
-    if (self.tableViewLinks.lastCellPressed) {
-        [self.tableViewLinks.lastCellPressed customDeselect];
-    }
-}*/
 
 -(void) getSections {
     [super getSections];

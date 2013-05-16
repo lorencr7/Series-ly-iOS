@@ -112,6 +112,15 @@
     return sections;
 }
 
+-(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return APARIENCIALISTADOCAPITULOSIPHONE(backgroundView, altoCelda);
+        
+    } else {
+        return APARIENCIALISTADOCAPITULOSIPAD(backgroundView, altoCelda);
+    }
+}
+
 //Este metodo crea una celda del tableView de la derecha a partir de un mediaElement
 -(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
@@ -181,14 +190,8 @@
     return customCellPerfilListadoCapitulos;
 }
 
--(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return APARIENCIALISTADOCAPITULOSIPHONE(backgroundView, altoCelda);
-        
-    } else {
-        return APARIENCIALISTADOCAPITULOSIPAD(backgroundView, altoCelda);
-    }
-}
+
+
 
 - (void) reloadTableViewFromSource: (NSMutableArray *) source {
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
@@ -201,102 +204,6 @@
     [self stopActivityIndicator];
     [self reloadTableViewWithSections:sections];
 }
-
-/*-(void) getSections {
- 
- 
- [self selectTypeOfData];
- 
- BOOL hayNuevaInfo = [self hayNuevaInfo];
- if (self.sourceData ) {
- if (hayNuevaInfo) {
- self.lastSourceData = self.sourceData;
- [self fillTableViewInBackgroundFromSource:self.sourceData];
- }
- }
- }*/
-/*
- -(void) selectTypeOfData {
- ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
- User * usuario = [User getInstance];
- UserCredentials * userCredentials = [UserCredentials getInstance];
- //Descargamos los capitulos de las series pendientes del usuario
- NSMutableDictionary * userPendingInfo = [manejadorServicioWebSeriesly getUserPendingInfoWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
- if (!userPendingInfo) {
- NSLog(@"error descargando la info de pendientes del usuario");
- //UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
- //[alertView show];
- } else {
- usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
- usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];
- usuario.documentalesPendientes = [userPendingInfo objectForKey:@"documentaries"];
- usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
- //Rellenamos el tableView con los capitulos de series pendientes
- }
- switch (self.tipoSourceData) {
- case SourceSeriesPendientes:
- self.sourceData = usuario.seriesPendientes;
- break;
- case SourcePeliculasPendientes:
- self.sourceData = usuario.peliculasPendientes;
- break;
- case SourceDocumentalesPendientes:
- self.sourceData = usuario.documentalesPendientes;
- break;
- case SourceTVShowsPendientes:
- self.sourceData = usuario.tvShowsPendientes;
- break;
- 
- default:
- break;
- }
- }
- 
- #pragma mark -
- #pragma mark fillTableView
- 
- -(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {
- if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
- return APARIENCIALISTADOCAPITULOSIPHONE(backgroundView, altoCelda);
- 
- } else {
- return APARIENCIALISTADOCAPITULOSIPAD(backgroundView, altoCelda);
- }
- }
- 
- 
- 
- -(void) fillTableViewInBackgroundFromSource:(NSMutableArray *)source {
- NSMutableArray * sections = [self createSectionsFromSource:source];
- 
- [self stopActivityIndicator];
- [self reloadTableViewWithSections:sections];
- }
- 
- -(NSMutableArray *) createSectionsFromSource:(NSMutableArray *)source {
- NSMutableArray * sections = [NSMutableArray array];
- SectionElement * sectionElement;
- NSMutableArray * cells = [NSMutableArray array];
- for (MediaElementUserPending * mediaElementUserPending in source) {
- [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
- }
- 
- sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
- [sections addObject:sectionElement];
- return sections;
- }
- 
- - (void) fillTableViewFromSource: (NSMutableArray *) source {
- NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
- [thread start];
- }
- 
- #pragma mark -
- #pragma mark refresh
- -(void) refresh {
- [self getSourceData];
- [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
- }*/
 
 
 @end
