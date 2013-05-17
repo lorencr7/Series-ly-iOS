@@ -12,11 +12,22 @@
 #import "ScreenSizeManager.h"
 #import "TVFramework.h"
 
+static PerfilViewControllerIphone * instance;
+
+
 @interface PerfilViewControllerIphone ()
 
 @end
 
 @implementation PerfilViewControllerIphone
+
++(PerfilViewControllerIphone *) getInstance {
+    if (instance == nil) {
+        instance = [[PerfilViewControllerIphone alloc] init];
+    }
+    [instance reloadData];
+    return instance;
+}
 
 - (id)init {
     self = [super init];
@@ -33,6 +44,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
+-(void) reloadData {
+    if (!firstLoad) {
+        [self.datosPerfilViewController performSelectorInBackground:@selector(loadData) withObject:nil];
+    }
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    firstLoad = NO;
+}
+
 
 -(void) configureFrame {
     int altoNavigationBar;

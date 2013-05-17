@@ -10,11 +10,21 @@
 #import "TVFramework.h"
 #import "ScreenSizeManager.h"
 
+static MultimediaViewControllerIphone * instance;
+
 @interface MultimediaViewControllerIphone ()
 
 @end
 
 @implementation MultimediaViewControllerIphone
+
++(MultimediaViewControllerIphone *) getInstance {
+    if (instance == nil) {
+        instance = [[MultimediaViewControllerIphone alloc] init];
+    }
+    
+    return instance;
+}
 
 - (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
     self = [super initWithTitle:title TipoSourceData:tipoSourceData];

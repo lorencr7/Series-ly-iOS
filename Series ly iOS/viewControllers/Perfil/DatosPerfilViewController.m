@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
+    [self performSelectorOnMainThread:@selector(loadUserInfo) withObject:nil waitUntilDone:YES];
 	// Do any additional setup after loading the view.
 
 }
@@ -47,7 +48,8 @@
 }
 
 -(void) getData {
-    [self loadUserInfo];
+    
+    //[self loadUserInfo];
     User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
@@ -65,8 +67,8 @@
         usuario.userInfo = userInfo;
         [self configureUserInfo];
     }
-    
-    [self stopActivityIndicator];
+    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
+    //[self stopActivityIndicator];
     
 }
 

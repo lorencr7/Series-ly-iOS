@@ -18,5 +18,8 @@
 
 - (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData;
 
++(MultimediaViewController *) getInstance;
+
+
 @end
 

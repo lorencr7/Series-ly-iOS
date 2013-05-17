@@ -8,12 +8,21 @@
 
 #import "MultimediaViewController.h"
 
+static MultimediaViewController * instance;
 
 @interface MultimediaViewController ()
 
 @end
 
 @implementation MultimediaViewController
+
++(MultimediaViewController *) getInstance {
+    if (instance == nil) {
+        instance = [[MultimediaViewController alloc] init];
+    }
+    
+    return instance;
+}
 
 - (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
     self = [super init];

@@ -51,9 +51,29 @@ static CustomSplitViewController * controller;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:(197/255.0) green:(197/255.0) blue:(197/255.0) alpha:1];
+    
+    self.masterView = [[UIView alloc] init];
+    self.detailView = [[UIView alloc] init];
+    
+    UINavigationController * masterViewController = [self.viewControllers objectAtIndex:0];
+    //masterViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    UINavigationController * detailViewController = [self.viewControllers objectAtIndex:1];
+    //detailViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+
+    [self addChildViewController:masterViewController];
+    [self addChildViewController:detailViewController];
+
+    [self.masterView addSubview:masterViewController.view];
+    [self.detailView addSubview:detailViewController.view];
+    
     //[self willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:0];
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:1];
     // Do any additional setup after loading the view from its nib.
+
+    
+    
 }
 
 - (void)viewDidUnload {
@@ -70,59 +90,54 @@ static CustomSplitViewController * controller;
  ******************************************************************************/
 
 -(void) cargarLandscape {//carga master y detail juntos en landscape
+    self.masterView.transform = CGAffineTransformMakeScale(1,1);
     UINavigationController * navigationController;
     UIViewController * viewController;
     
-    self.masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, baseMaster, altoMasterLandscape+2)];
-    self.detailView = [[UIView alloc] initWithFrame:CGRectMake(baseMaster + 1, 0, baseDetailLandscape, altoDetailLandscape)];
+    CGRect masterFrame = CGRectMake(0, 0, baseMaster, altoMasterLandscape+2);
+    CGRect detailFrame = CGRectMake(baseMaster + 1, 0, baseDetailLandscape, altoDetailLandscape);
+    
+    self.masterView.frame = masterFrame;
+    self.detailView.frame = detailFrame;
     
     navigationController = [self.viewControllers objectAtIndex:0];
     navigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterLandscape+2);//navigation controller del master
-    //viewController = [navigationController.viewControllers objectAtIndex:0];
-    viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-    viewController.navigationItem.leftBarButtonItem = nil;
-    [self.masterView addSubview:navigationController.view];
     
     navigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
     navigationController.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape);
-    //viewController = [navigationController.viewControllers objectAtIndex:0];
     viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
     if ([viewController.navigationItem.leftBarButtonItems count] == 0 && [navigationController.viewControllers count] == 1) {
         [self anadirHideButton:viewController];
     } else if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"mostrar"]) {
         [self anadirHideButton:viewController];
-    } else
-        //////NSLog(@"se carga landscape");
-        //[self anadirTapGesture:viewController.view];
-        [viewController.view removeGestureRecognizer:self.oneFingerOneTap];
+    }
+
+    [viewController.view removeGestureRecognizer:self.oneFingerOneTap];
     [viewController.view removeGestureRecognizer:self.swipeLeft];
     [viewController.view removeGestureRecognizer:self.swipeRight];
-    //[self anadirHideButton:viewController];
     [self.detailView addSubview:navigationController.view];
-    
-    //if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"mostrar"]) {
-    
-    //}
+
     [self.view addSubview:self.masterView];
     [self.view addSubview:self.detailView];
+    
 }
 
 -(void) cargarPortrait {//carga el detail
     UINavigationController * navigationController;
     UIViewController * viewController;
-    ////NSLog(@"cargarPortrait");
-    self.masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, baseMaster, altoMasterPortrait+2)];
-    self.detailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait)];
+
+    
+    CGRect masterFrame = CGRectMake(0, 0, baseMaster, altoMasterPortrait+2);
+    CGRect detailFrame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
+    
+    self.masterView.frame = masterFrame;
+    self.detailView.frame = detailFrame;
     
     navigationController = [self.viewControllers objectAtIndex:0];
     navigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterPortrait+2);
-    //viewController = [navigationController.viewControllers objectAtIndex:0];//navigation controller del master
-    viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-    [self.masterView addSubview:navigationController.view];
     
     navigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
     navigationController.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
-    //viewController = [navigationController.viewControllers objectAtIndex:0];
     viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
     
     // Gestion boton show/hide

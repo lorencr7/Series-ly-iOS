@@ -17,5 +17,7 @@
 
 - (id)initWithFrame: (CGRect) frame MediaElementUser: (MediaElementUser *) mediaElementUser;
 
+-(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser;
+
 
 @end

@@ -13,6 +13,10 @@
 #import "ListadoOpcionesPerfilViewController.h"
 #import "AppDelegate.h"
 
+
+static PerfilViewControllerIpad * instance;
+
+
 @interface PerfilViewControllerIpad ()
 
 @end
@@ -20,6 +24,14 @@
 
 @implementation PerfilViewControllerIpad
 
++(PerfilViewControllerIpad *) getInstance {
+    if (instance == nil) {
+        instance = [[PerfilViewControllerIpad alloc] init];
+    }
+    [instance reloadData];
+    
+    return instance;
+}
 
 - (id)init {
     self = [super init];
@@ -35,6 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
 }
 
@@ -46,15 +59,33 @@
     }
 }
 
+-(void) reloadData {
+    if (!firstLoad) {
+        [self.listadoCapitulosPendientesViewController performSelectorInBackground:@selector(loadData) withObject:nil];
+        [self.datosPerfilViewController performSelectorInBackground:@selector(loadData) withObject:nil];
+    }
+}
 
 -(void) viewWillAppear:(BOOL)animated {
+    [self reloadData];
+
+
     //Nos suscribimos a los cambios de orientacion del iPad
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToLandscape:) name:@"RotateToLandscape" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToPortrait:) name:@"RotateToPortrait" object:nil];
+    firstLoad = NO;
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    //NSLog(@"viewDidAppear");
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    //NSLog(@"viewDidDisappear");
 }
 
 - (void) rotateToLandscape: (NSNotification *) notification {//llamado cuando se gira a landscape

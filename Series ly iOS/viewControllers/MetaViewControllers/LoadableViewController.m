@@ -31,9 +31,19 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     [self iniciarActivityIndicator];
+    [self performSelectorOnMainThread:@selector(activateActivityIndicator) withObject:nil waitUntilDone:YES];
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadData) object:nil];
     [thread start];
     [self.threads addObject:thread];
+}
+
+-(void) loadData {
+    [self getData];
+    [self.threads removeObject:[NSThread currentThread]];
+}
+
+-(void) getData {
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,9 +75,13 @@
     
     [activityIndicator addSubview:label];
     
+    //[self activateActivityIndicator];
+    
+}
+
+-(void) activateActivityIndicator {
     [self.view addSubview:activityIndicator];
     [activityIndicator startAnimating];
-    
 }
 
 -(void) stopActivityIndicator {
@@ -113,14 +127,7 @@
     }
 }
 
--(void) loadData {
-    [self getData];
-    [self.threads removeObject:[NSThread currentThread]];
-}
 
--(void) getData {
-    
-}
 
 
 @end

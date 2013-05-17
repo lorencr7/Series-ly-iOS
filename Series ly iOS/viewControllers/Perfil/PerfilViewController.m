@@ -13,13 +13,21 @@
 #import "User.h"
 #import "AppDelegate.h"
 
-
+static PerfilViewController * instance;
 
 @interface PerfilViewController ()
 
 @end
 
 @implementation PerfilViewController
+
++(PerfilViewController *) getInstance {
+    if (instance == nil) {
+        instance = [[PerfilViewController alloc] init];
+    }
+    
+    return instance;
+}
 
 //Codigo principal de logout. Esta funcion hace un logout de verdad
 +(void) logout {

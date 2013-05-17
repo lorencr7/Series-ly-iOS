@@ -9,12 +9,23 @@
 #import "MultimediaViewControllerIpad.h"
 #import "ConstantsCustomSplitViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
+#import "DetalleElementViewController.h"
+
+static MultimediaViewControllerIpad * instance;
 
 @interface MultimediaViewControllerIpad ()
 
 @end
 
 @implementation MultimediaViewControllerIpad
+
++(MultimediaViewControllerIpad *) getInstance {
+    if (instance == nil) {
+        instance = [[MultimediaViewControllerIpad alloc] init];
+    }
+    
+    return instance;
+}
 
 - (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
     self = [super initWithTitle:title TipoSourceData:tipoSourceData];
@@ -58,10 +69,19 @@
                                            0,
                                            self.view.frame.size.width/2 - 60,
                                            self.view.frame.size.height);
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData DetalleElementViewController:nil];
+    CGRect detalleSeriesFrame = CGRectMake(listadoSeriesFrame.origin.x + listadoSeriesFrame.size.width,
+                                           0,
+                                           self.view.frame.size.width - listadoSeriesFrame.size.width,
+                                           self.view.frame.size.height);
+    
+    self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElementUser:nil];
+    self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
+    [self.view addSubview:self.detalleElementViewController.view];
 }
 
 -(void) loadDetalleSeries {

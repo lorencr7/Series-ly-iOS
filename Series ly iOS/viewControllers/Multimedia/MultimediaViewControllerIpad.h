@@ -9,9 +9,10 @@
 #import "MultimediaViewController.h"
 
 
-//@class ListadoElementsSiguiendoViewController;
+@class DetalleElementViewController;
 @interface MultimediaViewControllerIpad : MultimediaViewController
 
+@property (strong, nonatomic) DetalleElementViewController * detalleElementViewController;
 
 
 /*@property (strong, nonatomic) UIView * viewListadoSeries;

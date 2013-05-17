@@ -18,6 +18,6 @@
 
 + (void) logout;
 
-
++(PerfilViewController *) getInstance;
 
 @end

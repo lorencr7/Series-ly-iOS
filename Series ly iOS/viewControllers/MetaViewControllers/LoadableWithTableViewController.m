@@ -24,6 +24,20 @@
     
 }
 
+-(void) getData {
+    [self getSections];
+}
+
+-(void) getSections {
+    self.sourceData = [self getSourceData];
+    NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
+    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+    
+    //[self stopActivityIndicator];
+    //[self reloadTableViewWithSections:sections];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,7 +69,7 @@
     
     self.tableViewController = [[UITableViewController alloc] init];
     self.tableViewController.tableView = (UITableView *)self.customTableView;
-    self.tableViewController.view.alpha = 0;
+    self.tableViewController.view.alpha = 1;
     [self addChildViewController:self.tableViewController];
     
     
@@ -64,10 +78,12 @@
 
 -(void) reloadTableViewWithSections: (NSMutableArray *) sections {
     self.customTableView.section.sections = sections;
-    [self.customTableView reloadData];
-    
+    //[self.customTableView reloadData];
+    [self.customTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+
     if (self.tableViewController.view.alpha != 1) {
         [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+
             [self.tableViewController.view setAlpha:1];
         } completion:^(BOOL finished){
             
@@ -75,21 +91,7 @@
     }
 }
 
--(void) getData {
-    [self getSections];
-        //NSLog(@"removing 2");
-    //[self.threads removeObject:[NSThread currentThread]];
-}
 
--(void) getSections {
-    self.sourceData = [self getSourceData];
-    NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
-    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
-
-    //[self stopActivityIndicator];
-    //[self reloadTableViewWithSections:sections];
-}
 
 -(NSMutableArray *) getSourceData {
     return nil;

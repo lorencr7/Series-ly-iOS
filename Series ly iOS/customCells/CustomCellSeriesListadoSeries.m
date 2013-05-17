@@ -8,6 +8,8 @@
 
 #import "CustomCellSeriesListadoSeries.h"
 #import "VerDetalleElementViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
+#import "DetalleElementViewController.h"
 
 @implementation CustomCellSeriesListadoSeries
 
@@ -20,16 +22,13 @@
 }
 
 -(void) executeAction: (UIViewController *) viewController {
-    
-    VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElementUser:self.mediaElementUser];
-    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElementUser:self.mediaElementUser];
         [viewController.navigationController pushViewController:verDetalleElementViewController animated:YES];
     } else {
-        //UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
-        //navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        //navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
-        //[viewController presentViewController:navigationController animated:YES completion:nil];
+        ListadoElementsSiguiendoViewController * listadoElementsSiguiendoViewController = (ListadoElementsSiguiendoViewController*) viewController;
+        DetalleElementViewController * detalleElementViewController = listadoElementsSiguiendoViewController.detalleElementViewController;
+        [detalleElementViewController reloadInfoFromMediaElementUser:self.mediaElementUser];
     }
 }
 

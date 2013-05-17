@@ -16,6 +16,7 @@
 @property(strong, nonatomic) NSMutableArray * threads;
 
 -(void) iniciarActivityIndicator;
+-(void) activateActivityIndicator;
 -(void) stopActivityIndicator;
 
 -(void) configureImageView: (NSMutableDictionary *) arguments;

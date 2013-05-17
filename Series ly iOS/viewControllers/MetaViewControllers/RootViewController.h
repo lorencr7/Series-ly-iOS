@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController {
+    BOOL firstLoad;
+}
 
 @property (strong, nonatomic) UIBarButtonItem * backButton;
 

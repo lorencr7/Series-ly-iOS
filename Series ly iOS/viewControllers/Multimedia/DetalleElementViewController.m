@@ -30,7 +30,6 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
     
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElementUser:) object:self.mediaElementUser];
     [thread start];
@@ -41,7 +40,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
+    for (UIView * view in self.view.subviews) {
+        [view removeFromSuperview];
+    }
+    [self performSelectorOnMainThread:@selector(activateActivityIndicator) withObject:nil waitUntilDone:YES];
+    [self performSelectorInBackground:@selector(downloadFullInfoFromMediaElementUser:) withObject:mediaElementUser];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElementUser:) object:mediaElementUser];
+    //[thread start];
+}
+
 -(void) downloadFullInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
+    [self.threads addObject:[NSThread currentThread]];
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     
     UserCredentials * userCredentials = [UserCredentials getInstance];
@@ -49,8 +59,8 @@
                                                          ProgressView:nil
                                                             AuthToken:userCredentials.authToken
                                                             UserToken:userCredentials.userToken
-                                                                  Idm:self.mediaElementUser.idm
-                                                            MediaType:self.mediaElementUser.mediaType];
+                                                                  Idm:mediaElementUser.idm
+                                                            MediaType:mediaElementUser.mediaType];
     
     
     
