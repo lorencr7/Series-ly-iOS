@@ -46,13 +46,11 @@ static PerfilViewControllerIphone * instance;
 }
 
 -(void) reloadData {
-    if (!firstLoad) {
         [self.datosPerfilViewController performSelectorInBackground:@selector(loadData) withObject:nil];
-    }
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    firstLoad = NO;
+
 }
 
 

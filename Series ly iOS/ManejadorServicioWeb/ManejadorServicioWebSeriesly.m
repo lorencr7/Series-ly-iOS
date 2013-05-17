@@ -309,7 +309,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/full_info/?idm=%@&mediaType=%@&auth_token=%@&user_token=%@",idm ,mediaType ,newAuthToken.authToken,userToken.userToken];
-    NSLog(@"%@",urlString);
+    //NSLog(@"%@",urlString);
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
     [request startSynchronous];
     NSError *error = [request error];

@@ -15,6 +15,10 @@
 @property(strong, nonatomic) MediaElementUser * mediaElementUser;
 @property(strong, nonatomic) FullInfo * fullInfo;
 
+@property(strong, nonatomic) UISegmentedControl * segmentedControl;
+@property(assign, nonatomic) int altoContenidoScrollView;
+@property(strong, nonatomic) UIScrollView * scrollView;
+
 - (id)initWithFrame: (CGRect) frame MediaElementUser: (MediaElementUser *) mediaElementUser;
 
 -(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser;

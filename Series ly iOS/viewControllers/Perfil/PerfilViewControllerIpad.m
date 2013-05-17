@@ -47,7 +47,6 @@ static PerfilViewControllerIpad * instance;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 	// Do any additional setup after loading the view.
 }
 
@@ -60,20 +59,16 @@ static PerfilViewControllerIpad * instance;
 }
 
 -(void) reloadData {
-    if (!firstLoad) {
         [self.listadoCapitulosPendientesViewController performSelectorInBackground:@selector(loadData) withObject:nil];
         [self.datosPerfilViewController performSelectorInBackground:@selector(loadData) withObject:nil];
-    }
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [self reloadData];
-
 
     //Nos suscribimos a los cambios de orientacion del iPad
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToLandscape:) name:@"RotateToLandscape" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToPortrait:) name:@"RotateToPortrait" object:nil];
-    firstLoad = NO;
+
 }
 
 -(void) viewDidAppear:(BOOL)animated {

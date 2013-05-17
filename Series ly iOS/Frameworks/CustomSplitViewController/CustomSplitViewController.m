@@ -70,7 +70,6 @@ static CustomSplitViewController * controller;
     
     [self setupRecognizers];
     
-    //[self willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:0];
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:1];
     // Do any additional setup after loading the view from its nib.
 }

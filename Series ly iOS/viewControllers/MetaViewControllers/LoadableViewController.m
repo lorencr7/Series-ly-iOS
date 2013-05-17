@@ -122,9 +122,13 @@
             [thread cancel];
         }
     }
-    for (ASIHTTPRequest * request in self.requests) {
+    for (int i = 0; i < self.requests.count; i++) {
+        ASIHTTPRequest * request = self.requests[i];
         [request cancel];
     }
+    /*for (ASIHTTPRequest * request in self.requests) {
+        [request cancel];
+    }*/
 }
 
 
