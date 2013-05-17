@@ -50,7 +50,7 @@ static CustomSplitViewController * controller;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:(197/255.0) green:(197/255.0) blue:(197/255.0) alpha:1];
+    self.view.backgroundColor = [UIColor blackColor];
     
     self.masterView = [[UIView alloc] init];
     self.detailView = [[UIView alloc] init];
@@ -60,39 +60,31 @@ static CustomSplitViewController * controller;
     
     UINavigationController * detailViewController = [self.viewControllers objectAtIndex:1];
     //detailViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-
+    
+    
     [self addChildViewController:masterViewController];
     [self addChildViewController:detailViewController];
-
+    
     [self.masterView addSubview:masterViewController.view];
     [self.detailView addSubview:detailViewController.view];
+    
+    [self setupRecognizers];
     
     //[self willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:0];
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:1];
     // Do any additional setup after loading the view from its nib.
-
-    
-    
 }
 
 - (void)viewDidUnload {
-    [self setMasterView:nil];
-    [self setDetailView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
-/*******************************************************************************
- Carga de elementos
- ******************************************************************************/
 
 -(void) cargarLandscape {//carga master y detail juntos en landscape
-    self.masterView.transform = CGAffineTransformMakeScale(1,1);
-    UINavigationController * navigationController;
-    UIViewController * viewController;
+    //self.masterView.transform = CGAffineTransformMakeScale(1,1);
     
     CGRect masterFrame = CGRectMake(0, 0, baseMaster, altoMasterLandscape+2);
     CGRect detailFrame = CGRectMake(baseMaster + 1, 0, baseDetailLandscape, altoDetailLandscape);
@@ -100,60 +92,136 @@ static CustomSplitViewController * controller;
     self.masterView.frame = masterFrame;
     self.detailView.frame = detailFrame;
     
-    navigationController = [self.viewControllers objectAtIndex:0];
-    navigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterLandscape+2);//navigation controller del master
+    UINavigationController * masterNavigationController = [self.viewControllers objectAtIndex:0];
+    masterNavigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterLandscape+2);//navigation controller del master
     
-    navigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
-    navigationController.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape);
-    viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-    if ([viewController.navigationItem.leftBarButtonItems count] == 0 && [navigationController.viewControllers count] == 1) {
-        [self anadirHideButton:viewController];
-    } else if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"mostrar"]) {
-        [self anadirHideButton:viewController];
-    }
-
-    [viewController.view removeGestureRecognizer:self.oneFingerOneTap];
-    [viewController.view removeGestureRecognizer:self.swipeLeft];
-    [viewController.view removeGestureRecognizer:self.swipeRight];
-    [self.detailView addSubview:navigationController.view];
-
+    UINavigationController * detailNavigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
+    detailNavigationController.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape);
+    
+    [self quitarBotonDrawer];
+    
+    [self.detailView removeGestureRecognizer:self.oneFingerOneTap];
+    [self.detailView removeGestureRecognizer:self.oneFngerPan];
+    
     [self.view addSubview:self.masterView];
     [self.view addSubview:self.detailView];
     
 }
 
 -(void) cargarPortrait {//carga el detail
-    UINavigationController * navigationController;
-    UIViewController * viewController;
-
-    
     CGRect masterFrame = CGRectMake(0, 0, baseMaster, altoMasterPortrait+2);
     CGRect detailFrame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
     
     self.masterView.frame = masterFrame;
     self.detailView.frame = detailFrame;
     
-    navigationController = [self.viewControllers objectAtIndex:0];
-    navigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterPortrait+2);
+    UINavigationController * masterNavigationController = [self.viewControllers objectAtIndex:0];
+    masterNavigationController.view.frame = CGRectMake(0, 0, baseMaster, altoMasterPortrait+2);
     
-    navigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
-    navigationController.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
-    viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
+    UINavigationController * detailNavigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
+    detailNavigationController.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
     
-    // Gestion boton show/hide
-    if ([viewController.navigationItem.leftBarButtonItems count] == 0 && [navigationController.viewControllers count] == 1) {
-        [self anadirShowButton:viewController];
-    } else if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"ocultar"]) {
-        [self anadirShowButton:viewController];
-    }
-    [self anadirSwipeGesture:viewController.view];
+    [self ponerBotonesOpenDrawer];
     
-    [self.detailView addSubview:navigationController.view];
-    
+    [self.detailView addGestureRecognizer:self.oneFngerPan];
+        
     [self.view addSubview:self.masterView];
     [self.view addSubview:self.detailView];
     
-    self.masterView.transform = CGAffineTransformMakeScale(0.95,0.98);
+}
+
+-(void) ponerBotonesOpenDrawer {
+    self.buttons = [NSMutableArray array];
+    UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
+    if ([mainViewController class] == [UINavigationController class]) {//NavigationController
+        UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        if (navigationController.viewControllers.count == 1) {
+            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+            [aButtonFavorite addTarget:self action:@selector(showMaster) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+            rootViewController.navigationItem.leftBarButtonItem = button;
+            [self.buttons addObject:button];
+        }
+    }
+}
+
+-(void) ponerBotonesCerrarDrawer {
+    self.buttons = [NSMutableArray array];
+    UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
+    if ([mainViewController class] == [UINavigationController class]) {//NavigationController
+        UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        if (navigationController.viewControllers.count == 1) {
+            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+            
+            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+            [aButtonFavorite addTarget:self action:@selector(hideMaster) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+            rootViewController.navigationItem.leftBarButtonItem = button;
+            [self.buttons addObject:button];
+        }
+        
+    }
+}
+
+-(void) quitarBotonDrawer {
+    UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
+    if ([mainViewController class] == [UINavigationController class]) {//NavigationController
+        UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        if (navigationController.viewControllers.count == 1) {
+            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+            rootViewController.navigationItem.leftBarButtonItem = nil;
+        }
+        
+    }
+}
+
+-(UIButton *) crearBarButtonBoton: (NSString *) image {
+    UIImage *buttonImageFavorite = [UIImage imageNamed:image];
+    UIButton *aButtonFavorite = [UIButton buttonWithType:UIButtonTypeCustom];
+    aButtonFavorite.bounds = CGRectMake(0.0, 0.0, 32, 32);
+    [aButtonFavorite setImage:buttonImageFavorite forState:UIControlStateNormal];
+    return aButtonFavorite;
+}
+
+-(void) showMaster {
+    NSArray * botones = [NSArray arrayWithArray:self.buttons];
+    for (UIBarButtonItem * button in botones) {
+        [self ponerBotonesCerrarDrawer];
+    }
+    
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        [self.detailView addGestureRecognizer:self.oneFingerOneTap];
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            CGRect frame = self.detailView.frame;
+            frame.origin.x = baseMaster + 1;
+            self.detailView.frame = frame;
+        } completion:^(BOOL finished){
+            
+        }];
+    }
+    
+    
+}
+
+-(void) hideMaster {
+    NSArray * botones = [NSArray arrayWithArray:self.buttons];
+    for (UIBarButtonItem * button in botones) {
+        [self ponerBotonesOpenDrawer];
+    }
+    
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        [self.detailView removeGestureRecognizer:self.oneFingerOneTap];
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            CGRect frame = self.detailView.frame;
+            frame.origin.x = 0;
+            self.detailView.frame = frame;
+        } completion:^(BOOL finished){
+            
+        }];
+    }
+    
+    
 }
 
 
@@ -182,149 +250,21 @@ static CustomSplitViewController * controller;
     
 }
 
-
-/*******************************************************************************
- Mostrar y ocultar el Master
- ******************************************************************************/
-
--(void) hideMaster {
-    UINavigationController * navigationController;
-    UIViewController * viewController;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if (orientation == UIInterfaceOrientationLandscapeRight || orientation == UIInterfaceOrientationLandscapeLeft) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideMasterLandscape" object:nil];
-        // Navigation controller del detail
-        navigationController = [self.viewControllers objectAtIndex:1];//navigation controller del detail
-        viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-        
-        // Cambiamos el buton
-        if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"ocultar"]) {
-            [self anadirShowButton:viewController];
-        }
-        
-        // Desplazamos elementos (ocultar master)
-        [self moveDetailWithX:0 y:0 width:baseLandscape height:altoDetailLandscape scaleX:0.95 scaleY:0.98];
-    } else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideMasterPortrait" object:nil];
-        // Navigation controller del detail
-        navigationController = [self.viewControllers objectAtIndex:1];
-        viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-        
-        // Cambiamos el buton y le quitamos el gesture reconizer
-        if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"ocultar"]) {
-            [self anadirShowButton:viewController];
-        }
-        [viewController.view removeGestureRecognizer:self.oneFingerOneTap];
-        
-        // Desplazamos elementos (ocultar master)
-        //[self moveImage:self.detailView x:0 y:0];
-        [self moveDetailWithX:0 y:0 width:self.detailView.frame.size.width height:self.detailView.frame.size.height scaleX:0.95 scaleY:0.98];
-    }
-}
-
-
--(void) showMaster {
-    UINavigationController * navigationController;
-    UIViewController * viewController;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if (orientation == UIInterfaceOrientationLandscapeRight || orientation == UIInterfaceOrientationLandscapeLeft) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"showMasterLandscape" object:nil];
-        // Navigation controller del detail
-        navigationController = [self.viewControllers objectAtIndex:1];
-        viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-        
-        // Cambiamos el buton
-        if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"mostrar"]) {
-            [self anadirHideButton:viewController];
-        }
-        
-        // Desplazamos elementos
-        [self moveDetailWithX:baseMaster + 1 y:0 width:baseDetailLandscape height:altoDetailLandscape scaleX:1 scaleY:1];
-    } else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"showMasterPortrait" object:nil];
-        for (UIView * view in self.masterView.subviews) {
-            [view removeFromSuperview];
-        }
-        // Navigation controller del detail
-        navigationController = [self.viewControllers objectAtIndex:1];
-        viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-        [self anadirTapGesture:viewController.view];
-        
-        
-        // Cambiamos el buton
-        if ([viewController.navigationItem.leftBarButtonItems count] > 0 && [viewController.navigationItem.leftBarButtonItem.title isEqualToString: @"mostrar"]) {
-            [self anadirHideButton:viewController];
-        }
-        
-        // Navigation controller del master
-        navigationController = [self.viewControllers objectAtIndex:0];
-        viewController = [navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1];
-        [self.masterView addSubview:navigationController.view];
-        
-        // Barra separadora
-        UIView * barraSeparadora = [[UIView alloc] initWithFrame:CGRectMake(0,0,1,altoPortrait)];
-        barraSeparadora.backgroundColor =  [UIColor colorWithRed:(197/255.0) green:(197/255.0) blue:(197/255.0) alpha:1];
-        
-        // Desplazamos elementos
-        [self moveImage:barraSeparadora x:baseMaster y:0];
-        //[self moveImage:self.detailView x:321 y:0];
-        [self moveDetailWithX:baseMaster + 1 y:0 width:self.detailView.frame.size.width height:self.detailView.frame.size.height scaleX:1 scaleY:1];
-    }
-}
-
-
-
-
--(void) anadirHideButton: (UIViewController *) viewController {
-    self.botonHideShowDetail = [[UIBarButtonItem alloc] initWithTitle:@"ocultar"
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(hideMaster)];
-    
-    viewController.navigationItem.leftBarButtonItem = self.botonHideShowDetail;
-}
-
--(void) anadirShowButton: (UIViewController *) viewController {
-    self.botonHideShowDetail = [[UIBarButtonItem alloc] initWithTitle:@"mostrar"
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(showMaster)];
-    
-    viewController.navigationItem.leftBarButtonItem = self.botonHideShowDetail;
-}
-
-
 /*******************************************************************************
  Gestion de Gestos
  ******************************************************************************/
 
--(void) anadirTapGesture: (UIView *) view {
-    if (!self.oneFingerOneTap) {
-        self.oneFingerOneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerOneTap:)];
-        // Set required taps and number of touches
-        [self.oneFingerOneTap setNumberOfTapsRequired:1];
-        [self.oneFingerOneTap setNumberOfTouchesRequired:1];
-    }
-    // Add the gesture to the view
-    [view addGestureRecognizer:self.oneFingerOneTap];
-}
-
--(void) anadirSwipeGesture: (UIView *) view {
-    if (!self.swipeLeft) {
-        self.swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft:)];
-        // Set direction
-        [self.swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-    }
-    if (!self.swipeRight) {
-        self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight:)];
-        // Set direction
-        [self.swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    }
-    // Add the gesture to the view
-    [view addGestureRecognizer:self.swipeLeft];
-    [view addGestureRecognizer:self.swipeRight];
+-(void) setupRecognizers {
+    self.oneFingerOneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerOneTap:)];
+    // Set required taps and number of touches
+    [self.oneFingerOneTap setNumberOfTapsRequired:1];
+    [self.oneFingerOneTap setNumberOfTouchesRequired:1];
+    
+    self.oneFngerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureMoveAround:)];
+    [self.oneFngerPan setMaximumNumberOfTouches:1];
+    [self.oneFngerPan setMinimumNumberOfTouches:1];
+    [self.oneFngerPan setDelegate:self];
+    
 }
 
 - (IBAction) oneFingerOneTap: (id) sender {
@@ -334,48 +274,45 @@ static CustomSplitViewController * controller;
     }
 }
 
-- (IBAction)handleSwipeLeft:(UISwipeGestureRecognizer *)sender {
-    [self hideMaster];
-}
-
-
-- (IBAction)handleSwipeRight:(UISwipeGestureRecognizer *)sender {
-    [self showMaster];
-}
-
-
-
-/*******************************************************************************
- Movimiento de elementos
- ******************************************************************************/
-
-- (void)moveDetailWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width
-                 height:(CGFloat) height scaleX:(CGFloat) scaleX scaleY:(CGFloat)scaleY {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    [UIView setAnimationBeginsFromCurrentState:YES];
+-(void)panGestureMoveAround:(UIPanGestureRecognizer *)panGesture {
     
-    self.masterView.transform = CGAffineTransformMakeScale(scaleX,scaleY);
-    CGRect frame = CGRectMake(x, y, width, height);
-    self.detailView.frame = frame;
+    CGPoint translation = [panGesture translationInView:self.view];
     
-    // Commit the changes
-    [UIView commitAnimations];
-}
-
-
-- (void)moveImage:(UIView *)element x:(CGFloat)x y:(CGFloat)y
-{
-    // Setup the animation
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationBeginsFromCurrentState:YES];
+    if (translation.x > 0) {//Hacia la derecha
+        if (panGesture.view.frame.origin.x < baseMaster + 1) {
+            CGRect frame = panGesture.view.frame;
+            if ((frame.origin.x + translation.x) > baseMaster + 1) {
+                frame.origin.x = baseMaster + 1;
+            } else {
+                frame.origin.x += translation.x;
+            }
+            panGesture.view.frame = frame;
+            [panGesture setTranslation:CGPointMake(0, 0) inView:self.view];
+        }
+    } else {//Hacia la izquierda
+        if (panGesture.view.frame.origin.x > 0) {
+            CGRect frame = panGesture.view.frame;
+            if ((frame.origin.x + translation.x) < 0) {
+                frame.origin.x = 0;
+            } else {
+                frame.origin.x += translation.x;
+            }
+            panGesture.view.frame = frame;
+            [panGesture setTranslation:CGPointMake(0, 0) inView:self.view];
+        }
+    }
+    if (translation.x != 0) {
+        panApplied = translation.x;
+    }
     
-    CGRect frame = CGRectMake(x, y, element.frame.size.width, element.frame.size.height);
-    element.frame = frame;
-    
-    // Commit the changes
-    [UIView commitAnimations];
+    if ([panGesture state] == UIGestureRecognizerStateEnded) {
+        if (panApplied > 0) {
+            [self showMaster];
+        } else {
+            [self hideMaster];
+        }
+        panApplied = 0;
+    }
 }
 
 

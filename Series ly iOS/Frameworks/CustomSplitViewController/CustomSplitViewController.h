@@ -8,24 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomSplitViewController : UIViewController
+@interface CustomSplitViewController : UIViewController <UIGestureRecognizerDelegate>{
+    int panApplied;
+}
 
 @property (strong, nonatomic) NSArray * viewControllers;
-@property (strong, nonatomic) IBOutlet UIView *masterView;
-@property (strong, nonatomic) IBOutlet UIView *detailView;
+@property (strong, nonatomic) UIView *masterView;
+@property (strong, nonatomic) UIView *detailView;
 @property (strong, nonatomic) UIBarButtonItem * botonHideShowDetail;
+@property (strong, nonatomic) NSMutableArray * buttons;
+
 
 @property (strong, nonatomic) UITapGestureRecognizer * oneFingerOneTap;
-@property (strong, nonatomic) UISwipeGestureRecognizer * swipeLeft;
-@property (strong, nonatomic) UISwipeGestureRecognizer * swipeRight;
+@property (strong, nonatomic) UIPanGestureRecognizer * oneFngerPan;
 
 -(void) hideMaster;
 -(void) showMaster;
 
--(void) anadirTapGesture: (UIView *) view;
 
--(void) anadirHideButton: (UIViewController *) viewController;
--(void) anadirShowButton: (UIViewController *) viewController;
 + (CustomSplitViewController *) getInstance;
 
 @end
