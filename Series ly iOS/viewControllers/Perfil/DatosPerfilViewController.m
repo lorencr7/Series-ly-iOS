@@ -46,6 +46,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) getData {
+    [self loadUserInfo];
+    User * usuario = [User getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
+    //Descargamos la informacion del usuario
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
+    [self.requests addObject:request];
+    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:request ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
+    [self.requests removeObject:request];
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
+    if (!userInfo || userInfo.error != 0) {
+        NSLog(@"error descargando la info del usuario");
+    } else {
+        usuario.userInfo = userInfo;
+        [self configureUserInfo];
+    }
+    
+    [self stopActivityIndicator];
+    
+}
+
 -(void) loadUserInfo {
     [self loadImage];//Inicializamos la imagen del usuario
     [self loadUserInformation];//Inicializamos los labels de la informacion de usuario
@@ -85,29 +109,7 @@
     [self.view addSubview:self.labelNombreUsuarioAlta];
 }
 
--(void) getData {
-    [self loadUserInfo];
-    User * usuario = [User getInstance];
-    UserCredentials * userCredentials = [UserCredentials getInstance];
-    ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    //Descargamos la informacion del usuario
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
-    [self.requests addObject:request];
-    UserInfo * userInfo = [manejadorServicioWebSeriesly getUserInfoWithRequest:request ProgressView:nil  AuthToken:userCredentials.authToken UserToken:userCredentials.userToken];
-    [self.requests removeObject:request];
-    if ([[NSThread currentThread] isCancelled]) {
-        [NSThread exit];
-    }
-    if (!userInfo || userInfo.error != 0) {
-        NSLog(@"error descargando la info del usuario");
-    } else {
-        usuario.userInfo = userInfo;
-        [self configureUserInfo];
-    }
 
-    [self stopActivityIndicator];
-    
-}
 
 - (void) configureUserInfo {
     User * usuario = [User getInstance];

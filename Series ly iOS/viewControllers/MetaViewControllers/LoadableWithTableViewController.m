@@ -77,7 +77,8 @@
 
 -(void) getData {
     [self getSections];
-    [self.threads removeObject:[NSThread currentThread]];
+        //NSLog(@"removing 2");
+    //[self.threads removeObject:[NSThread currentThread]];
 }
 
 -(void) getSections {

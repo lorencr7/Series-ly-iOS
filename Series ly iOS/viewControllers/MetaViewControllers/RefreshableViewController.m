@@ -62,11 +62,11 @@
     self.sourceData = [self getSourceData];
     if ([self hayNuevaInfo]) {
         NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-        //[self stopActivityIndicator];
-        [self reloadTableViewWithSections:sections];
+        [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+
     }
     [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:YES];
-
+    [self.threads removeObject:[NSThread currentThread]];
 }
 
 -(NSMutableArray *) getSourceData {

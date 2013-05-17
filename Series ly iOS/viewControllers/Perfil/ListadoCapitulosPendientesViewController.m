@@ -42,7 +42,6 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(getSourceData) object:nil];
     //[thread start];

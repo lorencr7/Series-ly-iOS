@@ -15,13 +15,15 @@ typedef enum {
     SourceDocumentalesSiguiendo,
 }TipoSourceDataSiguiendo;
 
-@class CustomTableViewController;
+@class CustomTableViewController,DetalleElementViewController;
 @interface ListadoElementsSiguiendoViewController : RefreshableViewController
 
 @property (assign, nonatomic) CGRect frame;
 @property (assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;
+@property (assign, nonatomic) DetalleElementViewController * detalleElementViewController;
 
-- (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceDataSiguiendo) sourceData;
+
+- (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceDataSiguiendo) tipoSourceData DetalleElementViewController: (DetalleElementViewController *) detalleElementViewController;
 
 @end
 

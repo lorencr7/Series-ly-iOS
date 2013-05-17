@@ -23,11 +23,12 @@
 
 @implementation ListadoElementsSiguiendoViewController
 
-- (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceDataSiguiendo) tipoSourceData{
+- (id)initWithFrame: (CGRect) frame SourceData: (TipoSourceDataSiguiendo) tipoSourceData DetalleElementViewController: (DetalleElementViewController *) detalleElementViewController{
     self = [super init];
     if (self) {
         self.frame = frame;
         self.tipoSourceData = tipoSourceData;
+        self.detalleElementViewController = detalleElementViewController;
     }
     return self;
 }

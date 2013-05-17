@@ -36,10 +36,11 @@
         return NO;
     }
     Pending * pending = (Pending *) object;
-    
-    return pending.season == self.season && [pending.episode isEqualToString:self.episode] && [pending.full isEqualToString:self.full];
-    
-    return NO;
+    if (self.episode && self.full) {
+        return pending.season == self.season && [pending.episode isEqualToString:self.episode] && [pending.full isEqualToString:self.full];
+    } else {
+        return pending.season == self.season;
+    }    
 }
 
 @end
