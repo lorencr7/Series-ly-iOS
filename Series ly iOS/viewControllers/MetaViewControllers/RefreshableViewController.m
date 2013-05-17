@@ -47,7 +47,10 @@
 }
 
 -(void) pullToRefreshHandler {
-    [self performSelectorInBackground:@selector(refresh) withObject:nil];
+    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(refresh) object:nil];
+    [thread start];
+    [self.threads addObject:thread];
+    //[self performSelectorInBackground:@selector(refresh) withObject:nil];
 }
 
 -(void) stopRefreshAnimation {
@@ -62,7 +65,7 @@
         //[self stopActivityIndicator];
         [self reloadTableViewWithSections:sections];
     }
-    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:YES];
 
 }
 

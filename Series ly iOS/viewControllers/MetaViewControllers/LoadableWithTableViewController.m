@@ -83,8 +83,11 @@
 -(void) getSections {
     self.sourceData = [self getSourceData];
     NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-    [self stopActivityIndicator];
-    [self reloadTableViewWithSections:sections];
+    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+
+    //[self stopActivityIndicator];
+    //[self reloadTableViewWithSections:sections];
 }
 
 -(NSMutableArray *) getSourceData {

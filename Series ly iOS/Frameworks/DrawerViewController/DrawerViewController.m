@@ -181,9 +181,10 @@
         [self ponerBotonesCerrarDrawer];
     }
     [self.mainView addGestureRecognizer:self.oneFingerOneTap];
-    CGRect frame = self.mainView.frame;
-    frame.origin.x = DRAWERVIEWWIDTH + 1;
+    
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        CGRect frame = self.mainView.frame;
+        frame.origin.x = DRAWERVIEWWIDTH + 1;
         self.mainView.frame = frame;
     } completion:^(BOOL finished){
         
@@ -199,9 +200,10 @@
         [self ponerBotonesOpenDrawer];
     }
     [self.mainView removeGestureRecognizer:self.oneFingerOneTap];
-    CGRect frame = self.mainView.frame;
-    frame.origin.x = 0;
+    
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        CGRect frame = self.mainView.frame;
+        frame.origin.x = 0;
         self.mainView.frame = frame;
     } completion:^(BOOL finished){
         
