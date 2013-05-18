@@ -52,33 +52,24 @@ static FabricaCeldas * instance;
     
     
     if (!appearance.backgroundView) {
-        appearance.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 0)];
-        appearance.backgroundView.opaque = NO;
-        appearance.backgroundView.backgroundColor = appearance.unselectedColor;
-        appearance.backgroundView.layer.borderWidth = appearance.borderWidth;
-        appearance.backgroundView.layer.borderColor = [appearance.borderColor CGColor];
-        appearance.backgroundView.layer.cornerRadius = appearance.cornerRadius;
-        
-        
-        //[customCell.cell setBackgroundColor:appearance.unselectedColor];
-        //[customCell.cell setBackgroundView:appearance.backgroundView];
+        if (appearance.borderWidth != -57) {
+            appearance.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 0)];
+            appearance.backgroundView.opaque = NO;
+            appearance.backgroundView.backgroundColor = appearance.unselectedColor;
+            appearance.backgroundView.layer.borderWidth = appearance.borderWidth;
+            appearance.backgroundView.layer.borderColor = [appearance.borderColor CGColor];
+            appearance.backgroundView.layer.cornerRadius = appearance.cornerRadius;
+            [customCell.cell setBackgroundView:appearance.backgroundView];
+        }
     } else {
-        //customCell.cell.selectionStyle = UITableViewCellSelectionStyleNone;//Estilo de la celda
         appearance.unselectedColor = appearance.backgroundView.backgroundColor;
-        //[customCell.cell setBackgroundView:appearance.backgroundView];
+        [customCell.cell setBackgroundView:appearance.backgroundView];
     }
-    //[customCell.cell performSelectorOnMainThread:@selector(setBackgroundView:) withObject:appearance.backgroundView waitUntilDone:YES];
-    [customCell.cell setBackgroundView:appearance.backgroundView];
+    //[customCell.cell setBackgroundView:appearance.backgroundView];
     if (appearance.heightCell <= 0) {
         appearance.heightCell = 44;
     }
     customCell.customCellAppearance = appearance;
-    
-    
-}
-
-
--(void) auxCreateNewCustomCellWithAppearance:(CustomCellAppearance *) appearance cellText: (NSString *) cellText selectionType: (BOOL) selectionType customCell:(CustomCell *) customCell {
     
     
 }

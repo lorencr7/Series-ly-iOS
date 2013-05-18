@@ -16,6 +16,7 @@
 #import "CustomCellSeriesListadoSeries.h"
 #import "Poster.h"
 #import "ASIHTTPRequest.h"
+#import "DetalleElementViewController.h"
 
 @interface ListadoElementsSiguiendoViewController ()
 
@@ -68,6 +69,9 @@
         default:
             break;
     }
+    //DetalleElementViewController * detalleElementViewController = self.detalleElementViewController;
+    //[detalleElementViewController reloadInfoFromMediaElementUser:self.mediaElementUser];
+    
     [self.requests removeObject:request];
 
     if ([[NSThread currentThread] isCancelled]) {
@@ -86,9 +90,25 @@
         [cells addObject:[self createCellListadoSeriesWithMediaElementUser:mediaElementUser]];
     }
     
+    
+    
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
     return sections;
+}
+
+-(void) reloadTableViewWithSections: (NSMutableArray *) sections {
+    [super reloadTableViewWithSections:sections];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        SectionElement * sectionElement = [self.customTableView.section.sections objectAtIndex:0];
+        if (sectionElement.cells.count > 0) {
+            CustomCellSeriesListadoSeries * firstCell = [sectionElement.cells objectAtIndex:0];
+            [firstCell customSelect];
+            [self.customTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.detalleElementViewController reloadInfoFromMediaElementUser:firstCell.mediaElementUser];
+        }
+    }
+    
 }
 
 -(CustomCellAppearance *) getAppearance: (UIView *) backgroundView AltoCelda: (int) altoCelda {

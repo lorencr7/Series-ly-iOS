@@ -39,6 +39,7 @@
             //[[CustomSplitViewController getInstance] hideMaster];
         }
     }
+    
 }
 
 -(void) removeSubViews {

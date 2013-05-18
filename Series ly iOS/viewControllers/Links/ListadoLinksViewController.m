@@ -22,6 +22,7 @@
 #import "Season.h"
 #import "SeasonsEpisodes.h"
 #import "ASIHTTPRequest.h"
+#import "MediaElement.h"
 
 
 @interface ListadoLinksViewController ()
@@ -30,10 +31,11 @@
 
 @implementation ListadoLinksViewController
 
-- (id)initWithFrame: (CGRect) frame MediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending NavigationItem: (UINavigationItem *) navigationItem {
+- (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement NavigationItem: (UINavigationItem *) navigationItem {
+
     self = [super init];
     if (self) {
-        self.mediaElementUserPending = mediaElementUserPending;
+        self.mediaElement = mediaElement;
         self.frame = frame;
         self.parentNavigationItem = navigationItem;
     }
@@ -58,6 +60,9 @@
 }
 
 -(NSMutableArray *) getSourceData {
+    if ([self.mediaElement class] == [MediaElementUserPending class]) {
+        self.mediaElementUserPending = (MediaElementUserPending *) self.mediaElement;
+    }
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     
     UserCredentials * userCredentials = [UserCredentials getInstance];
@@ -154,6 +159,7 @@
     BOOL hayEpisodioZero = NO;
     int sesion = self.mediaElementUserPending.pending.season ;
     int capitulo = [self.mediaElementUserPending.pending.episode intValue];
+
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     
@@ -165,7 +171,7 @@
     if (hayTemporadaZero) {
         season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
     } else {
-        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion - 1];
+        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion - 2];
     }
     
     

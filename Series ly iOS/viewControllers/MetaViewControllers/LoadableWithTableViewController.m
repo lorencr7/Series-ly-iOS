@@ -31,14 +31,10 @@
 -(void) getSections {
     self.sourceData = [self getSourceData];
     [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:NO];
-    
-    //[self stopActivityIndicator];
-    //[self reloadTableViewWithSections:sections];
 }
 
 -(void) getSectionsMainThread {
     NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-    //NSMutableArray * sections = [self performSelectorOnMainThread:@selector(getSectionsFromSourceData:) withObject:self.sourceData waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
 }
@@ -83,8 +79,7 @@
 
 -(void) reloadTableViewWithSections: (NSMutableArray *) sections {
     self.customTableView.section.sections = sections;
-    //[self.customTableView reloadData];
-    [self.customTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [self.customTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 
     if (self.tableViewController.view.alpha != 1) {
         [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{

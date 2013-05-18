@@ -8,12 +8,12 @@
 
 #import "RootViewController.h"
 
-@class MediaElementUserPending, ListadoLinksViewController;
+@class MediaElement, ListadoLinksViewController;
 @interface VerLinksViewController : RootViewController
 
-@property(strong,nonatomic) MediaElementUserPending * mediaElementUserPending;
+@property(strong,nonatomic) MediaElement * mediaElement;
 @property(strong,nonatomic) ListadoLinksViewController * listadoLinksViewController;
 
-- (id)initWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending;
+- (id)initWithMediaElement: (MediaElement *) mediaElement;
 
 @end

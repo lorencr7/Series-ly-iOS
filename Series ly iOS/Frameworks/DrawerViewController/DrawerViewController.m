@@ -77,13 +77,13 @@
     UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
     if ([mainViewController class] == [UINavigationController class]) {//NavigationController
         UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+        UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+        [aButtonFavorite addTarget:self action:@selector(showDrawer) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+        [self.buttons addObject:button];
         if (navigationController.viewControllers.count == 1) {
-            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
-            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
-            [aButtonFavorite addTarget:self action:@selector(showDrawer) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
             rootViewController.navigationItem.leftBarButtonItem = button;
-            [self.buttons addObject:button];
         }
     }
 }
@@ -93,14 +93,15 @@
     UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
     if ([mainViewController class] == [UINavigationController class]) {//NavigationController
         UINavigationController * navigationController = (UINavigationController *) mainViewController;
+        
+        UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+        
+        UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+        [aButtonFavorite addTarget:self action:@selector(hideDrawer) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+        [self.buttons addObject:button];
         if (navigationController.viewControllers.count == 1) {
-            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
-            
-            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
-            [aButtonFavorite addTarget:self action:@selector(hideDrawer) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
             rootViewController.navigationItem.leftBarButtonItem = button;
-            [self.buttons addObject:button];
         }
         
     }

@@ -36,7 +36,9 @@
         self.rating = [dictionary objectForKey:@"rating"];
         
         NSDictionary * seasonsEpisodesDictionary = [dictionary objectForKey:@"seasons_episodes"];
-        self.seasonsEpisodes = [[SeasonsEpisodes alloc] initWithDictionary:seasonsEpisodesDictionary];
+        if (seasonsEpisodesDictionary) {
+            self.seasonsEpisodes = [[SeasonsEpisodes alloc] initWithDictionary:seasonsEpisodesDictionary];
+        }
         
         self.plot = [dictionary objectForKey:@"plot"];
         self.plot_es = [dictionary objectForKey:@"plot_es"];

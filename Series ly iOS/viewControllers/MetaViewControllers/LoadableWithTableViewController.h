@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSMutableArray * sourceData;
 
+-(void) iniciarTableView;
 
 -(NSMutableArray *) getSourceData;
 

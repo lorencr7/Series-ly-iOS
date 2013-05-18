@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) Pending * pending;
 
--(id) initWithIdm: (NSString *) idm IdMedia: (NSString *) idMedia MediaType: (NSString *) mediaType Name: (NSString *) name MainGenre: (NSString *) mainGenre Year: (NSString *) year Seasons: (NSString *) seasons Episodes: (NSString *) episodes Url: (NSString *) url Poster: (Poster *) poster Pending: (Pending *) pending;
+-(id) initWithIdm: (NSString *) idm IdMedia: (NSString *) idMedia MediaType: (NSString *) mediaType Name: (NSString *) name MainGenre: (NSString *) mainGenre Year: (NSString *) year Seasons: (int) seasons Episodes: (int) episodes Url: (NSString *) url Poster: (Poster *) poster Pending: (Pending *) pending;
 
 @end

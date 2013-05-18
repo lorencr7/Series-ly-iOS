@@ -1,29 +1,32 @@
 //
-//  CustomCellPerfilListadoCapitulos.m
+//  CustomCellMultimediaListadoCapitulos.m
 //  Series ly iOS
 //
-//  Created by Lorenzo Villarroel Pérez on 07/03/13.
+//  Created by Lorenzo Villarroel Pérez on 18/05/13.
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "CustomCellPerfilListadoCapitulos.h"
+#import "CustomCellMultimediaListadoCapitulos.h"
 #import "VerLinksViewController.h"
-#import "ListadoLinksViewController.h"
 #import "MediaElementUserPending.h"
+#import "MediaElementUser.h"
 
-@implementation CustomCellPerfilListadoCapitulos
+@implementation CustomCellMultimediaListadoCapitulos
 
-- (id)initWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
+
+
+- (id)initWithMediaElementUser: (MediaElementUser *) mediaElementUser Pending: (Pending *) pending{
     self = [super init];
     if (self) {
-        self.mediaElementUserPending = mediaElementUserPending;
+        self.mediaElementUser = mediaElementUser;
+        self.pending = pending;
     }
     return self;
 }
 
 -(void) executeAction: (UIViewController *) viewController {
-
-    VerLinksViewController * linksViewController = [[VerLinksViewController alloc] initWithMediaElement:(MediaElement *)self.mediaElementUserPending];
+    MediaElementUserPending * mediaElementUserPending = [[MediaElementUserPending alloc] initWithIdm:self.mediaElementUser.idm IdMedia:self.mediaElementUser.idMedia MediaType:self.mediaElementUser.mediaType Name:self.mediaElementUser.name MainGenre:self.mediaElementUser.mainGenre Year:self.mediaElementUser.year Seasons:self.mediaElementUser.seasons Episodes:self.mediaElementUser.episodes Url:self.mediaElementUser.url Poster:self.mediaElementUser.poster Pending:self.pending];
+    VerLinksViewController * linksViewController = [[VerLinksViewController alloc] initWithMediaElement:(MediaElement *)mediaElementUserPending];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewController.navigationController pushViewController:linksViewController animated:YES];

@@ -16,10 +16,10 @@
 
 @implementation VerLinksViewController
 
-- (id)initWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
+- (id)initWithMediaElement: (MediaElement *) mediaElement {
     self = [super init];
     if (self) {
-        self.mediaElementUserPending = mediaElementUserPending;
+        self.mediaElement = mediaElement;
         //self.title = @"Enlaces";
     }
     return self;
@@ -30,7 +30,7 @@
     [self configureFrame];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:self.view.frame MediaElementUserPending:self.mediaElementUserPending NavigationItem:self.navigationItem];
+    self.listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:self.view.frame MediaElement:self.mediaElement NavigationItem:self.navigationItem];
     [self addChildViewController:self.listadoLinksViewController];
     [self.view addSubview:self.listadoLinksViewController.view];
 }

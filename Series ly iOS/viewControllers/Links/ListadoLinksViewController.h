@@ -7,10 +7,12 @@
 //
 
 #import "LoadableWithTableViewController.h"
-@class MediaElementUserPending, CustomTableViewController, Links, FullInfo;
+@class MediaElement, CustomTableViewController, Links, FullInfo, MediaElementUserPending;
 @interface ListadoLinksViewController : LoadableWithTableViewController
 
+@property(strong,nonatomic) MediaElement * mediaElement;
 @property(strong,nonatomic) MediaElementUserPending * mediaElementUserPending;
+
 @property(strong,nonatomic) FullInfo * fullInfo;
 
 @property(strong,nonatomic) UISegmentedControl * segmentedControl;
@@ -23,7 +25,7 @@
 
 @property(strong,nonatomic) Links * links;
 
-- (id)initWithFrame: (CGRect) frame MediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending NavigationItem: (UINavigationItem *) navigationItem;
+- (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement NavigationItem: (UINavigationItem *) navigationItem;
 @end
 
 

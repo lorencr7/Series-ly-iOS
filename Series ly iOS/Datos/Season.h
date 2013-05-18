@@ -9,6 +9,7 @@
 #import "Serializable.h"
 @interface Season : Serializable
 
+@property (strong,nonatomic) NSString * season;
 @property (strong,nonatomic) NSMutableArray * episodes;
 
 @end

@@ -17,24 +17,33 @@
     if (self) {
         
         self.seasons = [NSMutableArray array];
-        int seasons = dictionary.count , i;
+        int seasons = dictionary.count , i, j = 0;
         for (i = 0; i < seasons ; i++) {
             Season * season = [[Season alloc] init];
             NSString * seasonString;
             if (i < 10) {
-                seasonString = [NSString stringWithFormat:@"0%d",i];
+                seasonString = [NSString stringWithFormat:@"0%d",j];
             } else {
-                seasonString = [NSString stringWithFormat:@"%d",i];
+                seasonString = [NSString stringWithFormat:@"%d",j];
             }
             NSString * key = [NSString stringWithFormat:@"season_%@",seasonString];
+            
             NSArray * arrayCapitulosPorSesion = [dictionary objectForKey:key];
-            NSMutableArray * episodes = [NSMutableArray array];
-            for (NSDictionary * diccionarioCapitulo in arrayCapitulosPorSesion) {
-                
-                [episodes addObject:[[Episode alloc] initWithDictionary:diccionarioCapitulo]];
+            if (arrayCapitulosPorSesion) {
+                NSMutableArray * episodes = [NSMutableArray array];
+                for (NSDictionary * diccionarioCapitulo in arrayCapitulosPorSesion) {
+                    
+                    [episodes addObject:[[Episode alloc] initWithDictionary:diccionarioCapitulo]];
+                }
+                season.episodes = episodes;
+                season.season = seasonString;
+                [self.seasons addObject:season];
+            } else {
+                i--;
             }
-            season.episodes = episodes;
-            [self.seasons addObject:season];
+            //NSLog(@"%@",arrayCapitulosPorSesion);
+            
+            j++;
         }
     }
     return self;

@@ -14,6 +14,13 @@
 #import "Poster.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Director.h"
+#import "TVFramework.h"
+#import "SeasonsEpisodes.h"
+#import "Season.h"
+#import "Episode.h"
+#import "VerLinksViewController.h"
+#import "CustomCellMultimediaListadoCapitulos.h"
+#import "Pending.h"
 
 
 @interface DetalleElementViewController ()
@@ -45,6 +52,7 @@
 }
 
 -(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
+    self.mediaElementUser = mediaElementUser;
     for (UIView * view in self.view.subviews) {
         [view removeFromSuperview];
     }
@@ -73,10 +81,14 @@
         
         if (self.fullInfo) {
             self.altoContenidoScrollView = 0;
-            [self loadSegmentedControl];
-            [self iniciarScrollView];
-            
-            [self createDetalleFromFullInfo:self.fullInfo];
+            if (self.fullInfo.seasonsEpisodes) {
+                [self loadSegmentedControl];
+                [self createFichaFromFullInfo:self.fullInfo];
+                [self createCapitulosFromFullInfo:self.fullInfo];
+            } else {
+                [self loadButtonVerEnlaces];
+                [self createFichaFromFullInfo:self.fullInfo];
+            }
             self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.altoContenidoScrollView + 20);
         }
         
@@ -85,12 +97,69 @@
     [self stopActivityIndicator];
 }
 
--(void) createDetalleFromFullInfo: (FullInfo *) fullInfo {
+-(void) createCapitulosFromFullInfo: (FullInfo *) fullInfo {
+    [self iniciarTableView];
+    NSMutableArray * sections = [self createSectionsFromFullInfo:fullInfo];
+    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+}
+
+-(NSMutableArray *) createSectionsFromFullInfo: (FullInfo *) fullInfo {
+    NSMutableArray * sections = [NSMutableArray array];
+    SectionElement * sectionElement;
+    NSMutableArray * cells = [NSMutableArray array];
+    UILabel * labelHeader;
+    NSMutableArray * seasons = [NSMutableArray arrayWithArray:fullInfo.seasonsEpisodes.seasons];
+    
+    if (fullInfo.seasonsEpisodes.seasons.count == (fullInfo.seasons + 1)) {
+        Season * season0 = seasons[0];
+        [seasons removeObject:season0];
+        //[seasons addObject:season0];
+    }
+    
+    int sesion = 1;
+    int capitulo = 1;
+    for (Season * season in seasons) {
+        
+        cells = [NSMutableArray array];
+        for (Episode * episode in season.episodes) {
+            if (![episode.title isEqualToString:@""]) {
+                [cells addObject:[self createCellFromEpisode:episode Sesion:sesion Capitulo:capitulo]];
+            }
+            capitulo ++;
+        }
+        NSString * labelHeaderText = [NSString stringWithFormat:@"Temporada %@",season.season];
+        labelHeader = [[FabricaHeaderFooterSecciones getInstance] getNewTitleLabelWithTitle:labelHeaderText appearance:HEADERLISTADOCAPITULOSTITULO(0, 0, self.tableViewController.view.frame.size.width, 22)];
+        sectionElement = [[SectionElement alloc] initWithHeightHeader:22 labelHeader:labelHeader heightFooter:0 labelFooter:nil cells:cells];
+        [sections addObject:sectionElement];
+        /*if (sesion == seasons.count) {
+            sesion = 0;
+        } else {
+            sesion++;
+        }*/
+        sesion++;
+        capitulo = 1;
+    }
+    
+    
+    
+    //sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    //[sections addObject:sectionElement];
+    return sections;
+}
+
+-(CustomCellMultimediaListadoCapitulos *) createCellFromEpisode: (Episode *) episode Sesion: (int) sesion Capitulo: (int) capitulo {
+    Pending * pending = [[Pending alloc] init];
+    pending.season = sesion;
+    pending.episode = [NSString stringWithFormat:@"%d",capitulo];
+    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS cellText:episode.title selectionType:YES customCell:customCellMultimediaListadoCapitulos];
+    return customCellMultimediaListadoCapitulos;
+}
+
+-(void) createFichaFromFullInfo: (FullInfo *) fullInfo {
+    [self iniciarScrollView];
     [self createPosterSectionWithFullInfo:fullInfo];
     [self createPlotLabelWithText:fullInfo.plot];
-    //UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 1)];
-    //view.backgroundColor = [UIColor redColor];
-    //[self.view addSubview:view];
 }
 
 -(void) createPosterSectionWithFullInfo: (FullInfo *) fullInfo {
@@ -161,7 +230,7 @@
                 i++;
             } else {
                 text = [NSString stringWithFormat:@"%@, %@",text,country];
-            }            
+            }
         }
         labelContenidoPais.text = text;
         labelContenidoPais.numberOfLines = 0;
@@ -247,11 +316,11 @@
         [self.scrollView addSubview:labelEtiquetaDuracion];
         origenY += labelEtiquetaDuracion.frame.size.height + margenEntreEtiquetas;
     }
-
+    
     int altoSeccion = poster.frame.size.height;
     
     self.altoContenidoScrollView += altoSeccion + margenY;
-
+    
 }
 
 -(void) createPlotLabelWithText: (NSString *) text {
@@ -285,23 +354,85 @@
 }
 
 -(void) iniciarScrollView {
-    int segmentedSize = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
+    int topViewSize = 0;
+    if (self.segmentedControl) {
+        topViewSize += self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
+    }
+    if (self.buttonVerEnlaces) {
+        topViewSize += self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
+    }
+    
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
-                                                                     segmentedSize,
+                                                                     topViewSize,
                                                                      self.view.frame.size.width,
-                                                                     self.view.frame.size.height - segmentedSize)];
+                                                                     self.view.frame.size.height - topViewSize)];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.contentSize = self.scrollView.frame.size;
     [self.view addSubview:self.scrollView];
 }
 
+-(void) iniciarTableView {
+    NSMutableArray *sections;
+    SectionElement *sectionElement;
+    NSMutableArray *cells;
+    CGRect frameTableView = self.scrollView.frame;
+    sections = [NSMutableArray array];
+    cells = [NSMutableArray array];
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    [sections addObject:sectionElement];
+    
+    self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableView style:UITableViewStylePlain backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    self.tableViewController = [[UITableViewController alloc] init];
+    self.tableViewController.tableView = (UITableView *)self.customTableView;
+    self.tableViewController.view.alpha = 1;
+    [self addChildViewController:self.tableViewController];
+    
+    self.tableViewController.view.frame = self.scrollView.frame;
+    self.customTableView.frame = self.scrollView.frame;
+    //[self.tableViewController.view removeFromSuperview];
+    //self.tableViewController.view.backgroundColor = [UIColor redColor];
+    /*NSMutableArray *sections;
+     SectionElement *sectionElement;
+     NSMutableArray *cells;
+     CGRect frameTableView = self.scrollView.frame;
+     sections = [NSMutableArray array];
+     cells = [NSMutableArray array];
+     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+     [sections addObject:sectionElement];
+     
+     self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableView style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+     self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+     
+     self.tableViewController = [[UITableViewController alloc] init];
+     self.tableViewController.tableView = (UITableView *)self.customTableView;
+     self.tableViewController.view.alpha = 1;
+     [self addChildViewController:self.tableViewController];
+     
+     
+     //[self.view addSubview:self.tableViewController.view];*/
+}
+
+-(void) loadButtonVerEnlaces {
+    self.buttonVerEnlaces = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    int alto = 40;
+    int margen = 5;
+    self.buttonVerEnlaces.frame = CGRectMake(margen, margen, self.view.frame.size.width - 2*margen, alto);
+    [self.buttonVerEnlaces addTarget:self
+                              action:@selector(manejadorButtonVerEnlaces:)
+                    forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonVerEnlaces setTitle:@"Ver enlaces" forState:UIControlStateNormal];
+    [self.view addSubview:self.buttonVerEnlaces];
+}
+
 -(void) loadSegmentedControl {
-    int altoSegmented = 40;
-    int margenSegmented = 5;
+    int alto = 40;
+    int margen = 5;
     self.segmentedControl =[[UISegmentedControl alloc]
                             initWithItems:[NSArray arrayWithObjects:
                                            @"Ficha",@"Capítulos", nil]];
-    self.segmentedControl.frame = CGRectMake(margenSegmented, margenSegmented, self.view.frame.size.width - 2*margenSegmented, altoSegmented);
+    self.segmentedControl.frame = CGRectMake(margen, margen, self.view.frame.size.width - 2*margen, alto);
     
     self.segmentedControl.selectedSegmentIndex = 0;
     
@@ -339,12 +470,27 @@
     
 }
 
+- (IBAction)manejadorButtonVerEnlaces:(UIButton *) sender {
+    Pending * pending = [[Pending alloc] init];
+    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
+    [customCellMultimediaListadoCapitulos executeAction:self];
+    /*VerLinksViewController * linksViewController = [[VerLinksViewController alloc] initWithMediaElement:self.mediaElementUser];
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
+    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    [self presentViewController:navigationController animated:YES completion:nil];*/
+    
+}
+
 - (IBAction)manejadorSegmented:(UISegmentedControl *) sender {
     switch (sender.selectedSegmentIndex) {
         case 0:
-
+            [self.tableViewController.view removeFromSuperview];
+            [self.view addSubview:self.scrollView];
             break;
         case 1:
+            [self.scrollView removeFromSuperview];
+            [self.view addSubview:self.tableViewController.view];
             break;
         default:
             break;

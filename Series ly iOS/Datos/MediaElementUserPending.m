@@ -14,7 +14,7 @@
 
 
 
--(id) initWithIdm: (NSString *) idm IdMedia: (NSString *) idMedia MediaType: (NSString *) mediaType Name: (NSString *) name MainGenre: (NSString *) mainGenre Year: (NSString *) year Seasons: (NSString *) seasons Episodes: (NSString *) episodes Url: (NSString *) url Poster: (Poster *) poster Pending: (Pending *) pending {
+-(id) initWithIdm: (NSString *) idm IdMedia: (NSString *) idMedia MediaType: (NSString *) mediaType Name: (NSString *) name MainGenre: (NSString *) mainGenre Year: (NSString *) year Seasons: (int) seasons Episodes: (int) episodes Url: (NSString *) url Poster: (Poster *) poster Pending: (Pending *) pending {
     self = [super init];
     if (self) {
         self.idm = [NSString stringWithFormat:@"%@",idm];
@@ -23,8 +23,8 @@
         self.name = [NSString stringWithFormat:@"%@",name];
         self.mainGenre = [NSString stringWithFormat:@"%@",mainGenre];
         self.year = [NSString stringWithFormat:@"%@",year];
-        //self.seasons = [NSString stringWithFormat:@"%@",seasons];
-        //self.episodes = [NSString stringWithFormat:@"%@",episodes];
+        self.seasons = seasons;
+        self.episodes = episodes;
         self.url = [NSString stringWithFormat:@"%@",url];
         self.poster = poster;
         self.pending = pending;
