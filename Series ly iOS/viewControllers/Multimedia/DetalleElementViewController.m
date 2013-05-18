@@ -119,7 +119,6 @@
     int origenY = poster.frame.origin.y;
     int margenEntreEtiquetas = 13;
     if (fullInfo.year && ![fullInfo.year isEqualToString:@""]) {
-        NSLog(@"/%@/",fullInfo.year);
         UILabel * labelEtiquetaAno = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaAno.backgroundColor = [UIColor clearColor];
         labelEtiquetaAno.font = [UIFont boldSystemFontOfSize:13];

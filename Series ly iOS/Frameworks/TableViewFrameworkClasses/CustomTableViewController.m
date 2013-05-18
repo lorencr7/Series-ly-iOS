@@ -30,7 +30,8 @@
         self.dataSource = self;
         self.delegate = self;
         self.tableViewBeingPressed = NO;
-        [self reloadData];
+        //[self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        //[self reloadData];
     }
     return self;
 }

@@ -30,12 +30,17 @@
 
 -(void) getSections {
     self.sourceData = [self getSourceData];
-    NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
-    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:NO];
     
     //[self stopActivityIndicator];
     //[self reloadTableViewWithSections:sections];
+}
+
+-(void) getSectionsMainThread {
+    NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
+    //NSMutableArray * sections = [self performSelectorOnMainThread:@selector(getSectionsFromSourceData:) withObject:self.sourceData waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
 }
 
 - (void)didReceiveMemoryWarning {
