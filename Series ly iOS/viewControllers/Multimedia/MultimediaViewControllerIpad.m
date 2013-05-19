@@ -80,6 +80,9 @@ static MultimediaViewControllerIpad * instance;
     self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 
+    [self addChildViewController:self.listadoElementosSiguiendoViewController];
+    [self addChildViewController:self.detalleElementViewController];
+    
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
     [self.view addSubview:self.detalleElementViewController.view];
 }
