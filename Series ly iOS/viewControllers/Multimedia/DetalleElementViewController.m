@@ -78,23 +78,27 @@
                                                                 UserToken:userCredentials.userToken
                                                                       Idm:mediaElementUser.idm
                                                                 MediaType:mediaElementUser.mediaType];
+        [self performSelectorOnMainThread:@selector(createContent) withObject:nil waitUntilDone:YES];
         
-        if (self.fullInfo) {
-            self.altoContenidoScrollView = 0;
-            if (self.fullInfo.seasonsEpisodes) {
-                [self loadSegmentedControl];
-                [self createFichaFromFullInfo:self.fullInfo];
-                [self createCapitulosFromFullInfo:self.fullInfo];
-            } else {
-                [self loadButtonVerEnlaces];
-                [self createFichaFromFullInfo:self.fullInfo];
-            }
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.altoContenidoScrollView + 20);
-        }
         
     }
     
     [self stopActivityIndicator];
+}
+
+-(void) createContent {
+    if (self.fullInfo) {
+        self.altoContenidoScrollView = 0;
+        if (self.fullInfo.seasonsEpisodes) {
+            [self loadSegmentedControl];
+            [self createFichaFromFullInfo:self.fullInfo];
+            [self createCapitulosFromFullInfo:self.fullInfo];
+        } else {
+            [self loadButtonVerEnlaces];
+            [self createFichaFromFullInfo:self.fullInfo];
+        }
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.altoContenidoScrollView + 20);
+    }
 }
 
 -(void) createCapitulosFromFullInfo: (FullInfo *) fullInfo {
@@ -119,7 +123,10 @@
     int sesion = 1;
     int capitulo = 1;
     for (Season * season in seasons) {
-        
+        Episode * firstEpisode = [season.episodes objectAtIndex:0];
+        if ([firstEpisode.episode intValue] == 0) {
+            capitulo = 0;
+        }
         cells = [NSMutableArray array];
         for (Episode * episode in season.episodes) {
             if (![episode.title isEqualToString:@""]) {
@@ -132,10 +139,10 @@
         sectionElement = [[SectionElement alloc] initWithHeightHeader:22 labelHeader:labelHeader heightFooter:0 labelFooter:nil cells:cells];
         [sections addObject:sectionElement];
         /*if (sesion == seasons.count) {
-            sesion = 0;
-        } else {
-            sesion++;
-        }*/
+         sesion = 0;
+         } else {
+         sesion++;
+         }*/
         sesion++;
         capitulo = 1;
     }
@@ -148,11 +155,88 @@
 }
 
 -(CustomCellMultimediaListadoCapitulos *) createCellFromEpisode: (Episode *) episode Sesion: (int) sesion Capitulo: (int) capitulo {
+    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       300,
+                                                                       0)];
+    
     Pending * pending = [[Pending alloc] init];
     pending.season = sesion;
     pending.episode = [NSString stringWithFormat:@"%d",capitulo];
     CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOCAPITULOS cellText:episode.title selectionType:YES customCell:customCellMultimediaListadoCapitulos];
+    int heightCell = 50;
+    int spaceForIcons = 83;
+    
+    UILabel * labelSerie = [[UILabel alloc] initWithFrame:
+                            CGRectMake(10,
+                                       0,
+                                       backgroundView.frame.size.width - spaceForIcons - 30,
+                                       0)];
+    //
+    NSString * cellText = [NSString stringWithFormat:@"%dx%d\t%@",sesion,capitulo,episode.title];
+    labelSerie.text = cellText;
+    labelSerie.backgroundColor = [UIColor clearColor];
+    labelSerie.font = [UIFont systemFontOfSize:17];
+    labelSerie.lineBreakMode = NSLineBreakByWordWrapping;
+    labelSerie.numberOfLines = 2;
+    //
+    [labelSerie sizeToFit];
+    labelSerie.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [backgroundView addSubview:labelSerie];
+    
+    if (labelSerie.frame.size.height > 50) {
+        heightCell = labelSerie.frame.size.height;
+    }
+    
+    CGRect labelSerieFrame = labelSerie.frame;
+    labelSerieFrame.origin.y = (heightCell/2) - labelSerieFrame.size.height/2;
+    labelSerie.frame = labelSerieFrame;
+    
+    UIImageView * imageViewWatched = [[UIImageView alloc] initWithFrame:CGRectMake(0,
+                                                                                   0,
+                                                                                   0,
+                                                                                   0)];
+    imageViewWatched.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    if (episode.watched) {
+        imageViewWatched.image = [UIImage imageNamed:@"media_watched.png"];
+    } else {
+        imageViewWatched.image = [UIImage imageNamed:@"media_dontwatched.png"];
+    }
+    
+    CGRect imageViewWatchedFrame = imageViewWatched.frame;
+    imageViewWatchedFrame.origin.x = backgroundView.frame.size.width - spaceForIcons;
+    imageViewWatchedFrame.origin.y = (heightCell/2) - imageViewWatched.image.size.height/2;
+    imageViewWatchedFrame.size.width = imageViewWatched.image.size.width;
+    imageViewWatchedFrame.size.height = imageViewWatched.image.size.height;
+    imageViewWatched.frame = imageViewWatchedFrame;
+    
+    [backgroundView addSubview:imageViewWatched];
+    
+    UIImageView * imageViewhaveLinks = [[UIImageView alloc] initWithFrame:CGRectMake(0,
+                                                                                   0,
+                                                                                   0,
+                                                                                   0)];
+    imageViewhaveLinks.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    if (episode.haveLinks) {
+        imageViewhaveLinks.image = [UIImage imageNamed:@"media_havelinks.png"];
+    } else {
+        imageViewhaveLinks.image = [UIImage imageNamed:@"media_donthavelinks.png"];
+    }
+    
+    CGRect imageViewhaveLinksFrame = imageViewhaveLinks.frame;
+    imageViewhaveLinksFrame.origin.x = imageViewWatched.frame.origin.x + imageViewWatched.frame.size.width + 2;
+    imageViewhaveLinksFrame.origin.y = (heightCell/2) - imageViewhaveLinks.image.size.height/2;
+    imageViewhaveLinksFrame.size.width = imageViewhaveLinks.image.size.width;
+    imageViewhaveLinksFrame.size.height = imageViewhaveLinks.image.size.height;
+    imageViewhaveLinks.frame = imageViewhaveLinksFrame;
+    
+    [backgroundView addSubview:imageViewhaveLinks];
+    
+    //poster.layer.cornerRadius = 6.0f;
+    //poster.clipsToBounds = YES;
+    
+    
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(backgroundView, heightCell) cellText:nil selectionType:episode.haveLinks customCell:customCellMultimediaListadoCapitulos];
     return customCellMultimediaListadoCapitulos;
 }
 
@@ -475,10 +559,10 @@
     CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
     [customCellMultimediaListadoCapitulos executeAction:self];
     /*VerLinksViewController * linksViewController = [[VerLinksViewController alloc] initWithMediaElement:self.mediaElementUser];
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
-    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-    navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
-    [self presentViewController:navigationController animated:YES completion:nil];*/
+     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
+     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+     navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+     [self presentViewController:navigationController animated:YES completion:nil];*/
     
 }
 

@@ -54,14 +54,45 @@
     }
 }
 
--(void) getSections {
-    [super getSections];
+
+-(void) iniciarTableView {
+    NSMutableArray *sections;
+    SectionElement *sectionElement;
+    NSMutableArray *cells;
+    CGRect frameTableView = CGRectMake(0,
+                                       0,
+                                       self.view.frame.size.width,
+                                       self.view.frame.size.height);
+    sections = [NSMutableArray array];
+    cells = [NSMutableArray array];
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    [sections addObject:sectionElement];
+    
+    self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableView style:UITableViewStylePlain backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    self.tableViewController = [[UITableViewController alloc] init];
+    self.tableViewController.tableView = (UITableView *)self.customTableView;
+    self.tableViewController.view.alpha = 1;
+    [self addChildViewController:self.tableViewController];
+    
+    
+    [self.view addSubview:self.tableViewController.view];
+}
+
+-(void) getData {
+    [super getData];
+    if ([[NSThread currentThread] isCancelled]) {
+        [NSThread exit];
+    }
     self.parentNavigationItem.titleView = self.segmentedControl;
 }
 
 -(NSMutableArray *) getSourceData {
     if ([self.mediaElement class] == [MediaElementUserPending class]) {
         self.mediaElementUserPending = (MediaElementUserPending *) self.mediaElement;
+
+    } else {
     }
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     
@@ -105,10 +136,10 @@
     NSMutableArray * cells = [NSMutableArray array];
     
     for (Link * link in sourceData) {
-        NSString * host = [link.host lowercaseString];
-        if (![host isEqualToString:@"moevideos"] && ! [host isEqualToString:@"nowvideo"] && ! [host isEqualToString:@"magnovideo"] && ! [host isEqualToString:@"vidxden"]) {
+        //NSString * host = [link.host lowercaseString];
+        //if (![host isEqualToString:@"moevideos"] && ! [host isEqualToString:@"nowvideo"] && ! [host isEqualToString:@"magnovideo"] && ! [host isEqualToString:@"vidxden"]) {
             [cells addObject:[self createCellLinksLinkWithLink:link]];
-        }
+        //}
         
     }
     if (cells.count == 0) {
@@ -123,15 +154,107 @@
 
 -(CustomCellLinksLink *) createCellLinksLinkWithLink: (Link *) link {
     CustomCellLinksLink *customCellLinksLink = [[CustomCellLinksLink alloc] initWithLink:link];
-    UIView * view = [[UIView alloc] init];
-    int heightCell = 44;
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
-    label.text = link.host;
-    label.backgroundColor = [UIColor clearColor];
-    [label sizeToFit];
-    [view addSubview:label];
+    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       300,
+                                                                       0)];
+    int heightCell = 50;
+    NSString * hostImageString = [NSString stringWithFormat:@"%@.png",[link.host lowercaseString]];
+    UIImage * hostImage = [UIImage imageNamed:hostImageString];
+    double maxAncho;
+    int labelAutoResizingMask;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        labelAutoResizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
+        maxAncho = 100;
+    } else {
+        labelAutoResizingMask = UIViewAutoresizingFlexibleWidth;
+        maxAncho = 150;
+    }
+    double maxAnchoLabels = 100;
+    double coeficiente = 1;
+    int margenX = 5;
+    if (hostImage) {
+        UIImageView * imageViewHost = [[UIImageView alloc] initWithFrame:CGRectZero];
+        imageViewHost.image = hostImage;
+        //imageViewHost.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        CGRect imageViewWatchedFrame = imageViewHost.frame;
+        imageViewWatchedFrame.origin.x = margenX;
+        imageViewWatchedFrame.origin.y = (heightCell/2) - imageViewHost.image.size.height/2;
+        if (imageViewHost.image.size.width > maxAncho) {
+            coeficiente = maxAncho/imageViewHost.image.size.width;
+        }
+        imageViewWatchedFrame.size.width = imageViewHost.image.size.width * coeficiente;
+        imageViewWatchedFrame.size.height = imageViewHost.image.size.height * coeficiente;
+        imageViewHost.frame = imageViewWatchedFrame;
+        
+        [backgroundView addSubview:imageViewHost];
+    } else {
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(margenX, 10, maxAncho, 0)];
+        label.text = link.host;
+        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 2;
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [label sizeToFit];
+        [backgroundView addSubview:label];
+    }
     
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(view, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
+    UILabel * labelLang = [[UILabel alloc] initWithFrame:
+                            CGRectMake(margenX + maxAncho + margenX,
+                                       0,
+                                       maxAnchoLabels - 10,
+                                       0)];
+    //
+    labelLang.text = link.lang;
+    labelLang.backgroundColor = [UIColor clearColor];
+    labelLang.font = [UIFont systemFontOfSize:15];
+    labelLang.textAlignment = NSTextAlignmentCenter;
+    labelLang.lineBreakMode = NSLineBreakByWordWrapping;
+    labelLang.numberOfLines = 2;
+    //
+    [labelLang sizeToFit];
+    //labelLang.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
+    labelLang.autoresizingMask = labelAutoResizingMask;
+    [backgroundView addSubview:labelLang];
+    
+    if (labelLang.frame.size.height > 50) {
+        heightCell = labelLang.frame.size.height;
+    }
+    
+    CGRect labelLangFrame = labelLang.frame;
+    labelLangFrame.origin.y = (heightCell/2) - labelLangFrame.size.height/2;
+    labelLangFrame.size.width = maxAnchoLabels - 10;
+    labelLang.frame = labelLangFrame;
+    [backgroundView addSubview:labelLang];
+    
+    UILabel * labelQuality = [[UILabel alloc] initWithFrame:
+                           CGRectMake(labelLang.frame.origin.x + maxAnchoLabels + margenX,
+                                      0,
+                                      maxAnchoLabels - 10,
+                                      0)];
+    //
+    labelQuality.text = link.quality;
+    labelQuality.backgroundColor = [UIColor clearColor];
+    labelQuality.font = [UIFont systemFontOfSize:15];
+    labelQuality.lineBreakMode = NSLineBreakByWordWrapping;
+    labelQuality.textAlignment = NSTextAlignmentCenter;
+    labelQuality.numberOfLines = 2;
+    //
+    [labelQuality sizeToFit];
+    //labelQuality.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
+    labelQuality.autoresizingMask = labelAutoResizingMask;
+    [backgroundView addSubview:labelQuality];
+    
+    if (labelQuality.frame.size.height > 50) {
+        heightCell = labelQuality.frame.size.height;
+    }
+    
+    CGRect labelQualityFrame = labelQuality.frame;
+    labelQualityFrame.origin.y = (heightCell/2) - labelQualityFrame.size.height/2;
+    labelQualityFrame.size.width = maxAnchoLabels - 10;
+    labelQuality.frame = labelQualityFrame;
+    [backgroundView addSubview:labelQuality];
+    
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIALISTADOLINKS(backgroundView, heightCell) cellText:nil selectionType:YES customCell:customCellLinksLink];
     return customCellLinksLink;
 }
 
@@ -160,6 +283,7 @@
     int sesion = self.mediaElementUserPending.pending.season ;
     int capitulo = [self.mediaElementUserPending.pending.episode intValue];
 
+
     ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     
@@ -171,7 +295,7 @@
     if (hayTemporadaZero) {
         season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion];
     } else {
-        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion - 2];
+        season = [self.fullInfo.seasonsEpisodes.seasons objectAtIndex:sesion - 1];
     }
     
     

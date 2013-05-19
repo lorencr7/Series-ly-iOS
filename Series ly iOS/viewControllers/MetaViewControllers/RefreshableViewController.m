@@ -49,7 +49,7 @@
 -(void) pullToRefreshHandler {
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(refresh) object:nil];
     [thread start];
-    [self.threads addObject:thread];
+    //[self.threads addObject:thread];
     //[self performSelectorInBackground:@selector(refresh) withObject:nil];
 }
 
@@ -58,24 +58,26 @@
 }
 
 -(void) refresh {
+    [self.threads addObject:[NSThread currentThread]];
     self.lastSourceData = self.sourceData;
     self.sourceData = [self getSourceData];
     if ([self hayNuevaInfo]) {
-        NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
-        [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:YES];
+        //NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
+        //[self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
 
     }
     [self performSelectorOnMainThread:@selector(stopRefreshAnimation) withObject:nil waitUntilDone:YES];
     [self.threads removeObject:[NSThread currentThread]];
 }
 
--(NSMutableArray *) getSourceData {
+/*-(NSMutableArray *) getSourceData {
     return nil;
 }
 
 -(NSMutableArray *) getSectionsFromSourceData {
     return nil;
-}
+}*/
 
 -(BOOL) hayNuevaInfo {
     if (self.lastSourceData) {

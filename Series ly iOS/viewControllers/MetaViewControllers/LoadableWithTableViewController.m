@@ -25,13 +25,10 @@
 }
 
 -(void) getData {
-    [self getSections];
+    self.sourceData = [self getSourceData];
+    [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:YES];
 }
 
--(void) getSections {
-    self.sourceData = [self getSourceData];
-    [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:NO];
-}
 
 -(void) getSectionsMainThread {
     NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];

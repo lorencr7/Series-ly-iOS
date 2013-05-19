@@ -16,7 +16,7 @@
     if (self) {
         NSArray * offialServerDictionary = [dictionary objectForKey:@"oficialServer"];
         NSArray * streamingDictionary = [dictionary objectForKey:@"streaming"];
-        NSArray * directDownloadDictionary = [dictionary objectForKey:@"direct_download"];
+        //NSArray * directDownloadDictionary = [dictionary objectForKey:@"direct_download"];
         NSString * error2 = [dictionary objectForKey:@"error"];
         
         self.officialServer = [NSMutableArray array];
@@ -28,12 +28,17 @@
         }
         
         for (NSDictionary * linkDictionary in streamingDictionary) {
-            [self.streaming addObject:[[Link alloc] initWithDictionary:linkDictionary]];
+            NSString * hostServer = linkDictionary[@"host"];
+            NSString * host = [hostServer lowercaseString];
+            if ([host isEqualToString:@"vk"] || [host isEqualToString:@"putlocker"] || [host isEqualToString:@"vimeo"] || [host isEqualToString:@"youtube"] || [host isEqualToString:@"allmyvideos"]) {
+                [self.streaming addObject:[[Link alloc] initWithDictionary:linkDictionary]];
+            }
+            
         }
         
-        for (NSDictionary * linkDictionary in directDownloadDictionary) {
+        /*for (NSDictionary * linkDictionary in directDownloadDictionary) {
             [self.directDownload addObject:[[Link alloc] initWithDictionary:linkDictionary]];
-        }
+        }*/
 
         self.error = [error2 intValue];
         if (self.error != 0) {

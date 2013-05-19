@@ -22,8 +22,6 @@
 
 -(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData;
 
--(void) getSections;
-
 -(void) reloadTableViewWithSections: (NSMutableArray *) sections;
 
 @end

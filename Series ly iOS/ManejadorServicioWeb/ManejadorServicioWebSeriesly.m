@@ -288,7 +288,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 -(Links *) getLinksWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
     
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
-     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/episode/links?auth_token=%@&idm=%@&mediaType=%@",newAuthToken.authToken,idm,mediaType];
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/episode/links?auth_token=%@&idm=%@&mediaType=%@",newAuthToken.authToken,idm,mediaType];
+    //NSLog(@"%@",urlString);
     
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
     [request startSynchronous];

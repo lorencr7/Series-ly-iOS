@@ -69,6 +69,20 @@
 		453D9B6716E0071200338C44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6316E0071200338C44 /* InfoPlist.strings */; };
 		453D9B6816E0071200338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6516E0071200338C44 /* Localizable.strings */; };
 		4544C1A316DED285006828EF /* logoSeriesly375x375.png in Resources */ = {isa = PBXBuildFile; fileRef = 4544C1A216DED285006828EF /* logoSeriesly375x375.png */; };
+		45467D9517492C3F007CA3CD /* media_donthavelinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9117492C3F007CA3CD /* media_donthavelinks.png */; };
+		45467D9617492C3F007CA3CD /* media_dontwatched.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9217492C3F007CA3CD /* media_dontwatched.png */; };
+		45467D9717492C3F007CA3CD /* media_havelinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9317492C3F007CA3CD /* media_havelinks.png */; };
+		45467D9817492C3F007CA3CD /* media_watched.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9417492C3F007CA3CD /* media_watched.png */; };
+		45467DAE17494BC7007CA3CD /* allmyvideos.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA417494BC7007CA3CD /* allmyvideos.png */; };
+		45467DAF17494BC7007CA3CD /* filmin.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA517494BC7007CA3CD /* filmin.png */; };
+		45467DB017494BC7007CA3CD /* google play.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA617494BC7007CA3CD /* google play.png */; };
+		45467DB117494BC7007CA3CD /* nubeox.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA717494BC7007CA3CD /* nubeox.png */; };
+		45467DB217494BC7007CA3CD /* putlocker.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA817494BC7007CA3CD /* putlocker.png */; };
+		45467DB317494BC7007CA3CD /* vimeo.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DA917494BC7007CA3CD /* vimeo.png */; };
+		45467DB417494BC7007CA3CD /* vk.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DAA17494BC7007CA3CD /* vk.png */; };
+		45467DB517494BC7007CA3CD /* wuaki.tv.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DAB17494BC7007CA3CD /* wuaki.tv.png */; };
+		45467DB617494BC7007CA3CD /* youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DAC17494BC7007CA3CD /* youtube.png */; };
+		45467DB717494BC7007CA3CD /* youzee.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467DAD17494BC7007CA3CD /* youzee.png */; };
 		4548A75716DFC784009D9B04 /* logoSeriesly57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4548A75616DFC784009D9B04 /* logoSeriesly57x57.png */; };
 		4548A75916DFC789009D9B04 /* logoSeriesly114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4548A75816DFC789009D9B04 /* logoSeriesly114x114.png */; };
 		4548A75B16DFC791009D9B04 /* logoSeriesly72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4548A75A16DFC791009D9B04 /* logoSeriesly72x72.png */; };
@@ -275,6 +289,20 @@
 		453D9B6416E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = InfoPlist.strings; sourceTree = "<group>"; };
 		453D9B6616E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		4544C1A216DED285006828EF /* logoSeriesly375x375.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly375x375.png; sourceTree = "<group>"; };
+		45467D9117492C3F007CA3CD /* media_donthavelinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_donthavelinks.png; sourceTree = "<group>"; };
+		45467D9217492C3F007CA3CD /* media_dontwatched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_dontwatched.png; sourceTree = "<group>"; };
+		45467D9317492C3F007CA3CD /* media_havelinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_havelinks.png; sourceTree = "<group>"; };
+		45467D9417492C3F007CA3CD /* media_watched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_watched.png; sourceTree = "<group>"; };
+		45467DA417494BC7007CA3CD /* allmyvideos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = allmyvideos.png; sourceTree = "<group>"; };
+		45467DA517494BC7007CA3CD /* filmin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmin.png; sourceTree = "<group>"; };
+		45467DA617494BC7007CA3CD /* google play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "google play.png"; sourceTree = "<group>"; };
+		45467DA717494BC7007CA3CD /* nubeox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nubeox.png; sourceTree = "<group>"; };
+		45467DA817494BC7007CA3CD /* putlocker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = putlocker.png; sourceTree = "<group>"; };
+		45467DA917494BC7007CA3CD /* vimeo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vimeo.png; sourceTree = "<group>"; };
+		45467DAA17494BC7007CA3CD /* vk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vk.png; sourceTree = "<group>"; };
+		45467DAB17494BC7007CA3CD /* wuaki.tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wuaki.tv.png; sourceTree = "<group>"; };
+		45467DAC17494BC7007CA3CD /* youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube.png; sourceTree = "<group>"; };
+		45467DAD17494BC7007CA3CD /* youzee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youzee.png; sourceTree = "<group>"; };
 		4548A75616DFC784009D9B04 /* logoSeriesly57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly57x57.png; sourceTree = "<group>"; };
 		4548A75816DFC789009D9B04 /* logoSeriesly114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly114x114.png; sourceTree = "<group>"; };
 		4548A75A16DFC791009D9B04 /* logoSeriesly72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly72x72.png; sourceTree = "<group>"; };
@@ -620,6 +648,11 @@
 		4544C1A116DED285006828EF /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				45467DA317494BC7007CA3CD /* logos */,
+				45467D9117492C3F007CA3CD /* media_donthavelinks.png */,
+				45467D9217492C3F007CA3CD /* media_dontwatched.png */,
+				45467D9317492C3F007CA3CD /* media_havelinks.png */,
+				45467D9417492C3F007CA3CD /* media_watched.png */,
 				453C40251742E12A007CE06C /* backButton.png */,
 				45213F6E172B1D4C0047900C /* drawer.png */,
 				45213F6F172B1D4C0047900C /* logo256x256.png */,
@@ -636,6 +669,23 @@
 				4544C1A216DED285006828EF /* logoSeriesly375x375.png */,
 			);
 			path = Imagenes;
+			sourceTree = "<group>";
+		};
+		45467DA317494BC7007CA3CD /* logos */ = {
+			isa = PBXGroup;
+			children = (
+				45467DA417494BC7007CA3CD /* allmyvideos.png */,
+				45467DA517494BC7007CA3CD /* filmin.png */,
+				45467DA617494BC7007CA3CD /* google play.png */,
+				45467DA717494BC7007CA3CD /* nubeox.png */,
+				45467DA817494BC7007CA3CD /* putlocker.png */,
+				45467DA917494BC7007CA3CD /* vimeo.png */,
+				45467DAA17494BC7007CA3CD /* vk.png */,
+				45467DAB17494BC7007CA3CD /* wuaki.tv.png */,
+				45467DAC17494BC7007CA3CD /* youtube.png */,
+				45467DAD17494BC7007CA3CD /* youzee.png */,
+			);
+			path = logos;
 			sourceTree = "<group>";
 		};
 		4575174C173902E2004CBAD7 /* ASIHTTPRequest */ = {
@@ -1036,6 +1086,20 @@
 				45213F71172B1D4C0047900C /* logo256x256.png in Resources */,
 				45CE93AD173BC14B0078E617 /* SVProgressHUD.bundle in Resources */,
 				453C40261742E12A007CE06C /* backButton.png in Resources */,
+				45467D9517492C3F007CA3CD /* media_donthavelinks.png in Resources */,
+				45467D9617492C3F007CA3CD /* media_dontwatched.png in Resources */,
+				45467D9717492C3F007CA3CD /* media_havelinks.png in Resources */,
+				45467D9817492C3F007CA3CD /* media_watched.png in Resources */,
+				45467DAE17494BC7007CA3CD /* allmyvideos.png in Resources */,
+				45467DAF17494BC7007CA3CD /* filmin.png in Resources */,
+				45467DB017494BC7007CA3CD /* google play.png in Resources */,
+				45467DB117494BC7007CA3CD /* nubeox.png in Resources */,
+				45467DB217494BC7007CA3CD /* putlocker.png in Resources */,
+				45467DB317494BC7007CA3CD /* vimeo.png in Resources */,
+				45467DB417494BC7007CA3CD /* vk.png in Resources */,
+				45467DB517494BC7007CA3CD /* wuaki.tv.png in Resources */,
+				45467DB617494BC7007CA3CD /* youtube.png in Resources */,
+				45467DB717494BC7007CA3CD /* youzee.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "VerLinksViewController.h"
 #import "MediaElementUserPending.h"
 #import "MediaElementUser.h"
+#import "Pending.h"
 
 @implementation CustomCellMultimediaListadoCapitulos
 

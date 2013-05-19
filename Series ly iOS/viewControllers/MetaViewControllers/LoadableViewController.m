@@ -26,18 +26,18 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     [self iniciarActivityIndicator];
     [self performSelectorOnMainThread:@selector(activateActivityIndicator) withObject:nil waitUntilDone:YES];
     NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadData) object:nil];
     [thread start];
-    [self.threads addObject:thread];
+    //[self.threads addObject:thread];
 }
 
 -(void) loadData {
+    [self.threads addObject:[NSThread currentThread]];
     [self getData];
     [self.threads removeObject:[NSThread currentThread]];
 }

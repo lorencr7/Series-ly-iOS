@@ -19,4 +19,6 @@
 @property (strong,nonatomic) NSString * timeStamp;
 @property (assign,nonatomic) BOOL haveLinks;
 @property (strong,nonatomic) EpisodeMedia * media;
+@property (assign,nonatomic) BOOL watched;
+
 @end

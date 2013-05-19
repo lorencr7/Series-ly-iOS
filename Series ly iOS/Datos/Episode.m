@@ -27,6 +27,9 @@
         
         NSDictionary * mediaDictionary = [dictionary objectForKey:@"media"];
         self.media = [[EpisodeMedia alloc] initWithDictionary:mediaDictionary];
+        
+        NSString * stringWatched = [dictionary objectForKey:@"watched"];
+        self.watched = [stringWatched boolValue];
     }
     return self;
 }
