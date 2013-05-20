@@ -134,9 +134,9 @@
             }
             capitulo ++;
         }
-        NSString * labelHeaderText = [NSString stringWithFormat:@"Temporada %@",season.season];
+        NSString * labelHeaderText = [NSString stringWithFormat:@"  Temporada %@",season.season];
         labelHeader = [[FabricaHeaderFooterSecciones getInstance] getNewTitleLabelWithTitle:labelHeaderText appearance:HEADERLISTADOCAPITULOSTITULO(0, 0, self.tableViewController.view.frame.size.width, 22)];
-        sectionElement = [[SectionElement alloc] initWithHeightHeader:22 labelHeader:labelHeader heightFooter:0 labelFooter:nil cells:cells];
+        sectionElement = [[SectionElement alloc] initWithHeightHeader:22 labelHeader:labelHeader heightFooter:40 labelFooter:nil cells:cells];
         [sections addObject:sectionElement];
         /*if (sesion == seasons.count) {
          sesion = 0;
@@ -164,7 +164,7 @@
     pending.season = sesion;
     pending.episode = [NSString stringWithFormat:@"%d",capitulo];
     CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
-    int heightCell = 50;
+    int heightCell = 55;
     int spaceForIcons = 83;
     
     UILabel * labelSerie = [[UILabel alloc] initWithFrame:
@@ -248,7 +248,7 @@
 
 -(void) createPosterSectionWithFullInfo: (FullInfo *) fullInfo {
     int margenX = 5;
-    int margenY = 10;
+    int margenY = 20;
     UIImageView * poster = [[UIImageView alloc] initWithFrame:CGRectMake(margenX, margenY, 131.25, 195)];
     poster.layer.cornerRadius = 6.0f;
     poster.clipsToBounds = YES;
@@ -262,10 +262,10 @@
     }
     [self.scrollView addSubview:poster];
     
-    int margenEtiquetas = 5;
+    int margenEtiquetas = 15;
     int margenContenidos = 5;
     int origenXEtiquetas = poster.frame.origin.x + poster.frame.size.width + margenEtiquetas;
-    int widthEtiquetas = 60;
+    int widthEtiquetas = 65;
     int origenXContenidos = origenXEtiquetas + margenContenidos + widthEtiquetas;
     int widthContenidos = self.scrollView.frame.size.width - origenXContenidos - 5;
     
@@ -274,7 +274,7 @@
     if (fullInfo.year && ![fullInfo.year isEqualToString:@""]) {
         UILabel * labelEtiquetaAno = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaAno.backgroundColor = [UIColor clearColor];
-        labelEtiquetaAno.font = [UIFont boldSystemFontOfSize:13];
+        labelEtiquetaAno.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaAno.text = @"Año";
         labelEtiquetaAno.numberOfLines = 0;
         labelEtiquetaAno.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -297,7 +297,7 @@
     if (fullInfo.country.count > 0) {
         UILabel * labelEtiquetaPais = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaPais.backgroundColor = [UIColor clearColor];
-        labelEtiquetaPais.font = [UIFont boldSystemFontOfSize:13];
+        labelEtiquetaPais.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaPais.text = @"País";
         labelEtiquetaPais.numberOfLines = 0;
         labelEtiquetaPais.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -328,7 +328,7 @@
     if (fullInfo.runtime) {
         UILabel * labelEtiquetaDuracion = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaDuracion.backgroundColor = [UIColor clearColor];
-        labelEtiquetaDuracion.font = [UIFont boldSystemFontOfSize:13];
+        labelEtiquetaDuracion.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaDuracion.text = @"Duración";
         labelEtiquetaDuracion.numberOfLines = 0;
         labelEtiquetaDuracion.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -350,7 +350,7 @@
     if (fullInfo.genres.count > 0) {
         UILabel * labelEtiquetaGenre = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaGenre.backgroundColor = [UIColor clearColor];
-        labelEtiquetaGenre.font = [UIFont boldSystemFontOfSize:13];
+        labelEtiquetaGenre.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaGenre.text = @"Género";
         labelEtiquetaGenre.numberOfLines = 0;
         labelEtiquetaGenre.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -381,7 +381,7 @@
     if (fullInfo.director.count > 0) {
         UILabel * labelEtiquetaDirector = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaDirector.backgroundColor = [UIColor clearColor];
-        labelEtiquetaDirector.font = [UIFont boldSystemFontOfSize:13];
+        labelEtiquetaDirector.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaDirector.text = @"Director";
         labelEtiquetaDirector.numberOfLines = 0;
         labelEtiquetaDirector.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -409,8 +409,8 @@
 
 -(void) createPlotLabelWithText: (NSString *) text {
     
-    int margenX = 5;
-    int margenYSinopsis = 10;
+    int margenX = 10;
+    int margenYSinopsis = 20;
     int originYSinopsis = self.altoContenidoScrollView + margenYSinopsis;
     UILabel * sinopsisLabel = [[UILabel alloc] initWithFrame:CGRectMake(margenX, originYSinopsis, self.view.frame.size.width - 2*margenX, 0)];
     sinopsisLabel.backgroundColor = [UIColor clearColor];
@@ -452,6 +452,7 @@
                                                                      self.view.frame.size.height - topViewSize)];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.contentSize = self.scrollView.frame.size;
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.scrollView];
 }
 
@@ -502,7 +503,7 @@
     self.buttonVerEnlaces = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     int alto = 40;
     int margen = 5;
-    self.buttonVerEnlaces.frame = CGRectMake(margen, margen, self.view.frame.size.width - 2*margen, alto);
+    self.buttonVerEnlaces.frame = CGRectMake(margen, margen+5, self.view.frame.size.width - 2*margen, alto);
     [self.buttonVerEnlaces addTarget:self
                               action:@selector(manejadorButtonVerEnlaces:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -511,12 +512,12 @@
 }
 
 -(void) loadSegmentedControl {
-    int alto = 40;
+    int alto = 35;
     int margen = 5;
     self.segmentedControl =[[UISegmentedControl alloc]
                             initWithItems:[NSArray arrayWithObjects:
                                            @"Ficha",@"Capítulos", nil]];
-    self.segmentedControl.frame = CGRectMake(margen, margen, self.view.frame.size.width - 2*margen, alto);
+    self.segmentedControl.frame = CGRectMake(margen, margen+5, self.view.frame.size.width - 2*margen, alto);
     
     self.segmentedControl.selectedSegmentIndex = 0;
     
@@ -550,6 +551,8 @@
                                                      [UIFont systemFontOfSize:12.5f],
                                                      UITextAttributeFont,
                                                      nil]  forState:UIControlStateSelected];
+    
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.segmentedControl];
     
 }

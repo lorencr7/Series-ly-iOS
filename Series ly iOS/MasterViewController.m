@@ -145,14 +145,13 @@
     
     CustomCellPeliculas *customCellPeliculas = [[CustomCellPeliculas alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPeliculas ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewPeliculasCellText", nil)]];
-    
-    CustomCellProgramas *customCellProgramas = [[CustomCellProgramas alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
-
 
     CustomCellDocumentales *customCellDocumentales = [[CustomCellDocumentales alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellDocumentales ImageName:@"documentales.png" CellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil)]];
     
+    CustomCellProgramas *customCellProgramas = [[CustomCellProgramas alloc] init];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
+
     CustomCellAjustes *customCellAjustes = [[CustomCellAjustes alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"ajustes.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
     

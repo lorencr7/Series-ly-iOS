@@ -158,7 +158,7 @@
                                                                        0,
                                                                        300,
                                                                        0)];
-    int heightCell = 50;
+    int heightCell = 55;
     NSString * hostImageString = [NSString stringWithFormat:@"%@.png",[link.host lowercaseString]];
     UIImage * hostImage = [UIImage imageNamed:hostImageString];
     double maxAncho;

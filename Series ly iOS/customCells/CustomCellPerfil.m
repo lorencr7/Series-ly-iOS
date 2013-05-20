@@ -23,8 +23,8 @@
             //perfilViewController = [[PerfilViewControllerIphone alloc] init];
             perfilViewController = [PerfilViewControllerIphone getInstance];
         } else {
-            perfilViewController = [[PerfilViewControllerIpad alloc] init];
-            //perfilViewController = [PerfilViewControllerIpad getInstance];
+            //perfilViewController = [[PerfilViewControllerIpad alloc] init];
+            perfilViewController = [PerfilViewControllerIpad getInstance];
         }
         [detailViewController setDetailItem:perfilViewController];
     }

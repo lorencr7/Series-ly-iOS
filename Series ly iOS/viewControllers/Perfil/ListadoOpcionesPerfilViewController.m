@@ -64,7 +64,7 @@
     
     
     CustomCellPerfilSeleccionTVShowsPendientes *customCellPerfilSeleccionTVShowsPendientes = [[CustomCellPerfilSeleccionTVShowsPendientes alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"TVShows pendientes" selectionType:YES customCell:customCellPerfilSeleccionTVShowsPendientes];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance] cellText:@"Programas pendientes" selectionType:YES customCell:customCellPerfilSeleccionTVShowsPendientes];
     
     
     [cells addObject:customCellPerfilSeleccionSeriesPendiente];
@@ -72,12 +72,23 @@
     [cells addObject:customCellPerfilSeleccionDocumentalesPendientes];
     [cells addObject:customCellPerfilSeleccionTVShowsPendientes];
     
-    
-    
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
     
     return sections;
+}
+
+-(void) reloadTableViewWithSections: (NSMutableArray *) sections {
+    [super reloadTableViewWithSections:sections];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        SectionElement * sectionElement = [self.customTableView.section.sections objectAtIndex:0];
+        if (sectionElement.cells.count > 0) {
+            CustomCell * firstCell = [sectionElement.cells objectAtIndex:0];
+            [firstCell customSelect];
+            [self.customTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+    
 }
 
 
