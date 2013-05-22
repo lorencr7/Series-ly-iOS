@@ -39,7 +39,7 @@
                 season.season = seasonString;
                 [self.seasons addObject:season];
             } else {
-                i--;
+                //i--;
             }
             //NSLog(@"%@",arrayCapitulosPorSesion);
             

@@ -17,13 +17,23 @@
 		450F8530172D8C9F008523A5 /* PerfilViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F852C172D8C9F008523A5 /* PerfilViewControllerIphone.m */; };
 		450F8549172D8E3B008523A5 /* AjustesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8541172D8E3B008523A5 /* AjustesViewController.m */; };
 		450F854A172D8E3B008523A5 /* MultimediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8544172D8E3B008523A5 /* MultimediaViewController.m */; };
-		450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */; };
-		450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */; };
 		450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F854E172D8F60008523A5 /* DatosPerfilViewController.m */; };
 		450F8552172DA197008523A5 /* ListadoOpcionesPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8551172DA196008523A5 /* ListadoOpcionesPerfilViewController.m */; };
 		45116BD8174D38FF001C3032 /* DetalleElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BD3174D38FF001C3032 /* DetalleElementViewController.m */; };
 		45116BD9174D38FF001C3032 /* DetalleEnlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BD5174D38FF001C3032 /* DetalleEnlacesViewController.m */; };
 		45116BDA174D38FF001C3032 /* DetalleInformacionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BD7174D38FF001C3032 /* DetalleInformacionViewController.m */; };
+		45116BE1174D5C9A001C3032 /* SeriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BE0174D5C9A001C3032 /* SeriesViewController.m */; };
+		45116BE4174D5CDC001C3032 /* SeriesViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BE3174D5CDC001C3032 /* SeriesViewControllerIpad.m */; };
+		45116BE7174D5CEE001C3032 /* SeriesViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BE6174D5CED001C3032 /* SeriesViewControllerIphone.m */; };
+		45116BEA174D606B001C3032 /* PeliculasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BE9174D606B001C3032 /* PeliculasViewController.m */; };
+		45116BED174D607A001C3032 /* PeliculasViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BEC174D607A001C3032 /* PeliculasViewControllerIpad.m */; };
+		45116BF0174D609E001C3032 /* PeliculasViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BEF174D609E001C3032 /* PeliculasViewControllerIphone.m */; };
+		45116BF3174D6340001C3032 /* ProgramasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BF2174D6340001C3032 /* ProgramasViewController.m */; };
+		45116BF6174D635D001C3032 /* ProgramasViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BF5174D635D001C3032 /* ProgramasViewControllerIpad.m */; };
+		45116BF9174D636A001C3032 /* ProgramasViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BF8174D636A001C3032 /* ProgramasViewControllerIphone.m */; };
+		45116BFC174D637B001C3032 /* DocumentalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BFB174D637B001C3032 /* DocumentalesViewController.m */; };
+		45116BFF174D638A001C3032 /* DocumentalesViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116BFE174D638A001C3032 /* DocumentalesViewControllerIpad.m */; };
+		45116C02174D6397001C3032 /* DocumentalesViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 45116C01174D6397001C3032 /* DocumentalesViewControllerIphone.m */; };
 		45126FDC16F2306B0037BDDF /* CustomCellAjustesAutores.m in Sources */ = {isa = PBXBuildFile; fileRef = 45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */; };
 		45195A331747CD59005A5658 /* CustomCellMultimediaListadoCapitulos.m in Sources */ = {isa = PBXBuildFile; fileRef = 45195A321747CD58005A5658 /* CustomCellMultimediaListadoCapitulos.m */; };
 		451ABD1E16EA23A700681EA6 /* documentales.png in Resources */ = {isa = PBXBuildFile; fileRef = 451ABD1A16EA23A700681EA6 /* documentales.png */; };
@@ -202,10 +212,6 @@
 		450F8541172D8E3B008523A5 /* AjustesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewController.m; sourceTree = "<group>"; };
 		450F8543172D8E3B008523A5 /* MultimediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewController.h; sourceTree = "<group>"; };
 		450F8544172D8E3B008523A5 /* MultimediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewController.m; sourceTree = "<group>"; };
-		450F8545172D8E3B008523A5 /* MultimediaViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewControllerIpad.h; sourceTree = "<group>"; };
-		450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewControllerIpad.m; sourceTree = "<group>"; };
-		450F8547172D8E3B008523A5 /* MultimediaViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultimediaViewControllerIphone.h; sourceTree = "<group>"; };
-		450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultimediaViewControllerIphone.m; sourceTree = "<group>"; };
 		450F854D172D8F60008523A5 /* DatosPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatosPerfilViewController.h; sourceTree = "<group>"; };
 		450F854E172D8F60008523A5 /* DatosPerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatosPerfilViewController.m; sourceTree = "<group>"; };
 		450F8550172DA196008523A5 /* ListadoOpcionesPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListadoOpcionesPerfilViewController.h; sourceTree = "<group>"; };
@@ -216,6 +222,30 @@
 		45116BD5174D38FF001C3032 /* DetalleEnlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEnlacesViewController.m; sourceTree = "<group>"; };
 		45116BD6174D38FF001C3032 /* DetalleInformacionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleInformacionViewController.h; sourceTree = "<group>"; };
 		45116BD7174D38FF001C3032 /* DetalleInformacionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleInformacionViewController.m; sourceTree = "<group>"; };
+		45116BDF174D5C9A001C3032 /* SeriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriesViewController.h; sourceTree = "<group>"; };
+		45116BE0174D5C9A001C3032 /* SeriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriesViewController.m; sourceTree = "<group>"; };
+		45116BE2174D5CDC001C3032 /* SeriesViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriesViewControllerIpad.h; sourceTree = "<group>"; };
+		45116BE3174D5CDC001C3032 /* SeriesViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriesViewControllerIpad.m; sourceTree = "<group>"; };
+		45116BE5174D5CED001C3032 /* SeriesViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriesViewControllerIphone.h; sourceTree = "<group>"; };
+		45116BE6174D5CED001C3032 /* SeriesViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriesViewControllerIphone.m; sourceTree = "<group>"; };
+		45116BE8174D606B001C3032 /* PeliculasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeliculasViewController.h; sourceTree = "<group>"; };
+		45116BE9174D606B001C3032 /* PeliculasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeliculasViewController.m; sourceTree = "<group>"; };
+		45116BEB174D607A001C3032 /* PeliculasViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeliculasViewControllerIpad.h; sourceTree = "<group>"; };
+		45116BEC174D607A001C3032 /* PeliculasViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeliculasViewControllerIpad.m; sourceTree = "<group>"; };
+		45116BEE174D609E001C3032 /* PeliculasViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeliculasViewControllerIphone.h; sourceTree = "<group>"; };
+		45116BEF174D609E001C3032 /* PeliculasViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeliculasViewControllerIphone.m; sourceTree = "<group>"; };
+		45116BF1174D6340001C3032 /* ProgramasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramasViewController.h; sourceTree = "<group>"; };
+		45116BF2174D6340001C3032 /* ProgramasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramasViewController.m; sourceTree = "<group>"; };
+		45116BF4174D635D001C3032 /* ProgramasViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramasViewControllerIpad.h; sourceTree = "<group>"; };
+		45116BF5174D635D001C3032 /* ProgramasViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramasViewControllerIpad.m; sourceTree = "<group>"; };
+		45116BF7174D636A001C3032 /* ProgramasViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramasViewControllerIphone.h; sourceTree = "<group>"; };
+		45116BF8174D636A001C3032 /* ProgramasViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramasViewControllerIphone.m; sourceTree = "<group>"; };
+		45116BFA174D637B001C3032 /* DocumentalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentalesViewController.h; sourceTree = "<group>"; };
+		45116BFB174D637B001C3032 /* DocumentalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentalesViewController.m; sourceTree = "<group>"; };
+		45116BFD174D638A001C3032 /* DocumentalesViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentalesViewControllerIpad.h; sourceTree = "<group>"; };
+		45116BFE174D638A001C3032 /* DocumentalesViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentalesViewControllerIpad.m; sourceTree = "<group>"; };
+		45116C00174D6397001C3032 /* DocumentalesViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentalesViewControllerIphone.h; sourceTree = "<group>"; };
+		45116C01174D6397001C3032 /* DocumentalesViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentalesViewControllerIphone.m; sourceTree = "<group>"; };
 		45126FDA16F2306B0037BDDF /* CustomCellAjustesAutores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellAjustesAutores.h; sourceTree = "<group>"; };
 		45126FDB16F2306B0037BDDF /* CustomCellAjustesAutores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellAjustesAutores.m; sourceTree = "<group>"; };
 		45126FDD16F2307B0037BDDF /* CustomCellsAjustes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellsAjustes.h; sourceTree = "<group>"; };
@@ -532,15 +562,15 @@
 		450F8542172D8E3B008523A5 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
+				45116BDB174D5C82001C3032 /* Documentales */,
+				45116BDC174D5C82001C3032 /* Peliculas */,
+				45116BDD174D5C83001C3032 /* Programas */,
+				45116BDE174D5C83001C3032 /* Series */,
 				45116BD1174D38FF001C3032 /* DetalleElement */,
 				45019FD1173158130002DA29 /* ListadoElementsSiguiendoViewController.h */,
 				45019FD2173158130002DA29 /* ListadoElementsSiguiendoViewController.m */,
 				450F8543172D8E3B008523A5 /* MultimediaViewController.h */,
 				450F8544172D8E3B008523A5 /* MultimediaViewController.m */,
-				450F8545172D8E3B008523A5 /* MultimediaViewControllerIpad.h */,
-				450F8546172D8E3B008523A5 /* MultimediaViewControllerIpad.m */,
-				450F8547172D8E3B008523A5 /* MultimediaViewControllerIphone.h */,
-				450F8548172D8E3B008523A5 /* MultimediaViewControllerIphone.m */,
 				451FD3EC1743983C003E5A4B /* VerDetalleElementViewController.h */,
 				451FD3ED1743983C003E5A4B /* VerDetalleElementViewController.m */,
 			);
@@ -558,6 +588,58 @@
 				45116BD7174D38FF001C3032 /* DetalleInformacionViewController.m */,
 			);
 			path = DetalleElement;
+			sourceTree = "<group>";
+		};
+		45116BDB174D5C82001C3032 /* Documentales */ = {
+			isa = PBXGroup;
+			children = (
+				45116BFA174D637B001C3032 /* DocumentalesViewController.h */,
+				45116BFB174D637B001C3032 /* DocumentalesViewController.m */,
+				45116BFD174D638A001C3032 /* DocumentalesViewControllerIpad.h */,
+				45116BFE174D638A001C3032 /* DocumentalesViewControllerIpad.m */,
+				45116C00174D6397001C3032 /* DocumentalesViewControllerIphone.h */,
+				45116C01174D6397001C3032 /* DocumentalesViewControllerIphone.m */,
+			);
+			path = Documentales;
+			sourceTree = "<group>";
+		};
+		45116BDC174D5C82001C3032 /* Peliculas */ = {
+			isa = PBXGroup;
+			children = (
+				45116BE8174D606B001C3032 /* PeliculasViewController.h */,
+				45116BE9174D606B001C3032 /* PeliculasViewController.m */,
+				45116BEB174D607A001C3032 /* PeliculasViewControllerIpad.h */,
+				45116BEC174D607A001C3032 /* PeliculasViewControllerIpad.m */,
+				45116BEE174D609E001C3032 /* PeliculasViewControllerIphone.h */,
+				45116BEF174D609E001C3032 /* PeliculasViewControllerIphone.m */,
+			);
+			path = Peliculas;
+			sourceTree = "<group>";
+		};
+		45116BDD174D5C83001C3032 /* Programas */ = {
+			isa = PBXGroup;
+			children = (
+				45116BF1174D6340001C3032 /* ProgramasViewController.h */,
+				45116BF2174D6340001C3032 /* ProgramasViewController.m */,
+				45116BF4174D635D001C3032 /* ProgramasViewControllerIpad.h */,
+				45116BF5174D635D001C3032 /* ProgramasViewControllerIpad.m */,
+				45116BF7174D636A001C3032 /* ProgramasViewControllerIphone.h */,
+				45116BF8174D636A001C3032 /* ProgramasViewControllerIphone.m */,
+			);
+			path = Programas;
+			sourceTree = "<group>";
+		};
+		45116BDE174D5C83001C3032 /* Series */ = {
+			isa = PBXGroup;
+			children = (
+				45116BDF174D5C9A001C3032 /* SeriesViewController.h */,
+				45116BE0174D5C9A001C3032 /* SeriesViewController.m */,
+				45116BE2174D5CDC001C3032 /* SeriesViewControllerIpad.h */,
+				45116BE3174D5CDC001C3032 /* SeriesViewControllerIpad.m */,
+				45116BE5174D5CED001C3032 /* SeriesViewControllerIphone.h */,
+				45116BE6174D5CED001C3032 /* SeriesViewControllerIphone.m */,
+			);
+			path = Series;
 			sourceTree = "<group>";
 		};
 		451C93D316DE175B001C4E89 /* customCells */ = {
@@ -1245,8 +1327,6 @@
 				450F8530172D8C9F008523A5 /* PerfilViewControllerIphone.m in Sources */,
 				450F8549172D8E3B008523A5 /* AjustesViewController.m in Sources */,
 				450F854A172D8E3B008523A5 /* MultimediaViewController.m in Sources */,
-				450F854B172D8E3B008523A5 /* MultimediaViewControllerIpad.m in Sources */,
-				450F854C172D8E3B008523A5 /* MultimediaViewControllerIphone.m in Sources */,
 				450F854F172D8F60008523A5 /* DatosPerfilViewController.m in Sources */,
 				450F8552172DA197008523A5 /* ListadoOpcionesPerfilViewController.m in Sources */,
 				45019FD3173158130002DA29 /* ListadoElementsSiguiendoViewController.m in Sources */,
@@ -1278,6 +1358,18 @@
 				45116BD8174D38FF001C3032 /* DetalleElementViewController.m in Sources */,
 				45116BD9174D38FF001C3032 /* DetalleEnlacesViewController.m in Sources */,
 				45116BDA174D38FF001C3032 /* DetalleInformacionViewController.m in Sources */,
+				45116BE1174D5C9A001C3032 /* SeriesViewController.m in Sources */,
+				45116BE4174D5CDC001C3032 /* SeriesViewControllerIpad.m in Sources */,
+				45116BE7174D5CEE001C3032 /* SeriesViewControllerIphone.m in Sources */,
+				45116BEA174D606B001C3032 /* PeliculasViewController.m in Sources */,
+				45116BED174D607A001C3032 /* PeliculasViewControllerIpad.m in Sources */,
+				45116BF0174D609E001C3032 /* PeliculasViewControllerIphone.m in Sources */,
+				45116BF3174D6340001C3032 /* ProgramasViewController.m in Sources */,
+				45116BF6174D635D001C3032 /* ProgramasViewControllerIpad.m in Sources */,
+				45116BF9174D636A001C3032 /* ProgramasViewControllerIphone.m in Sources */,
+				45116BFC174D637B001C3032 /* DocumentalesViewController.m in Sources */,
+				45116BFF174D638A001C3032 /* DocumentalesViewControllerIpad.m in Sources */,
+				45116C02174D6397001C3032 /* DocumentalesViewControllerIphone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

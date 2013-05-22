@@ -9,7 +9,6 @@
 #import "RootViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 
-@class CustomTableViewController;
 @interface MultimediaViewController : RootViewController
 
 @property(assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;

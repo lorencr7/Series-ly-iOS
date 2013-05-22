@@ -7,15 +7,24 @@
 //
 
 #import "CustomCellProgramas.h"
-#import "MultimediaViewControllerIphone.h"
-#import "MultimediaViewControllerIpad.h"
+#import "ProgramasViewControllerIpad.h"
+#import "ProgramasViewControllerIphone.h"
 #import "DetailViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 
 @implementation CustomCellProgramas
 
 -(void) executeAction: (UIViewController *) viewController {
-    if ([viewController class] == [DetailViewController class]) {
+    DetailViewController * detailViewController = (DetailViewController *) viewController;
+    ProgramasViewController * programasViewController;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        programasViewController = [[ProgramasViewControllerIphone alloc] init];
+    } else {
+        programasViewController = [[ProgramasViewControllerIpad alloc] init];
+    }
+    
+    [detailViewController setDetailItem:programasViewController];
+    /*if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -25,7 +34,7 @@
         }
         
         [detailViewController setDetailItem:multimediaViewController];
-    }
+    }*/
 }
 
 @end

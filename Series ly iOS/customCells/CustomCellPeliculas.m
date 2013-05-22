@@ -7,10 +7,10 @@
 //
 
 #import "CustomCellPeliculas.h"
-#import "MultimediaViewControllerIphone.h"
-#import "MultimediaViewControllerIpad.h"
 #import "DetailViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
+#import "PeliculasViewControllerIpad.h"
+#import "PeliculasViewControllerIphone.h"
 
 @implementation CustomCellPeliculas
 
@@ -19,6 +19,15 @@
 -(void) executeAction: (UIViewController *) viewController {
     if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
+        PeliculasViewController * peliculasViewController;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            peliculasViewController = [[PeliculasViewControllerIphone alloc] init];
+        } else {
+            peliculasViewController = [[PeliculasViewControllerIpad alloc] init];
+        }
+        
+        [detailViewController setDetailItem:peliculasViewController];
+        /*DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             multimediaViewController = [[MultimediaViewControllerIphone alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)TipoSourceData:SourcePeliculasSiguiendo];
@@ -26,7 +35,7 @@
             multimediaViewController = [[MultimediaViewControllerIpad alloc] initWithTitle:NSLocalizedString(@"TableViewPeliculasCellText", nil)TipoSourceData:SourcePeliculasSiguiendo];
         }
         
-        [detailViewController setDetailItem:multimediaViewController];
+        [detailViewController setDetailItem:multimediaViewController];*/
     }
 }
 

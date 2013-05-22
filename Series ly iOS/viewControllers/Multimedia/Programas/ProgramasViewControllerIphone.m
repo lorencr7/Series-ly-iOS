@@ -1,39 +1,21 @@
 //
-//  MultimediaViewControllerIphone.m
+//  ProgramasViewControllerIphone.m
 //  Series ly iOS
 //
-//  Created by Lorenzo Villarroel Pérez on 28/04/13.
+//  Created by Lorenzo Villarroel Pérez on 22/05/13.
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "MultimediaViewControllerIphone.h"
+#import "ProgramasViewControllerIphone.h"
 #import "TVFramework.h"
 #import "ScreenSizeManager.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
-static MultimediaViewControllerIphone * instance;
-
-@interface MultimediaViewControllerIphone ()
+@interface ProgramasViewControllerIphone ()
 
 @end
 
-@implementation MultimediaViewControllerIphone
-
-+(MultimediaViewControllerIphone *) getInstance {
-    if (instance == nil) {
-        instance = [[MultimediaViewControllerIphone alloc] init];
-    }
-    
-    return instance;
-}
-
-- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
-    self = [super initWithTitle:title TipoSourceData:tipoSourceData];
-    if (self) {
-        
-    }
-    return self;
-}
-
+@implementation ProgramasViewControllerIphone
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,11 +25,11 @@ static MultimediaViewControllerIphone * instance;
 	// Do any additional setup after loading the view.
 }
 
-/*-(void) viewDidAppear:(BOOL)animated {
-    if (self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed) {
-        [self.listadoElementosSiguiendoViewController.customTableView.lastCellPressed customDeselect];
-    }
-}*/
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 -(void) configureFrame {
     int altoNavigationBar;
@@ -73,20 +55,16 @@ static MultimediaViewControllerIphone * instance;
                                            0,
                                            self.view.frame.size.width,
                                            self.view.frame.size.height);
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData DetalleElementViewController:nil];
+    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceTVShowsSiguiendo DetalleElementViewController:nil];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
+    
     
     [self addChildViewController:self.listadoElementosSiguiendoViewController];
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     self.listadoElementosSiguiendoViewController.customTableView.tableHeaderView = banner;

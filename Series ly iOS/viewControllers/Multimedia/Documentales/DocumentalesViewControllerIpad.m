@@ -1,45 +1,33 @@
 //
-//  MultimediaViewControllerIpad.m
+//  DocumentalesViewControllerIpad.m
 //  Series ly iOS
 //
-//  Created by Lorenzo Villarroel Pérez on 28/04/13.
+//  Created by Lorenzo Villarroel Pérez on 22/05/13.
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "MultimediaViewControllerIpad.h"
+#import "DocumentalesViewControllerIpad.h"
 #import "ConstantsCustomSplitViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 #import "DetalleElementViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
 
-static MultimediaViewControllerIpad * instance;
-
-@interface MultimediaViewControllerIpad ()
+@interface DocumentalesViewControllerIpad ()
 
 @end
 
-@implementation MultimediaViewControllerIpad
-
-+(MultimediaViewControllerIpad *) getInstance {
-    if (instance == nil) {
-        instance = [[MultimediaViewControllerIpad alloc] init];
-    }
-    
-    return instance;
-}
-
-- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
-    self = [super initWithTitle:title TipoSourceData:tipoSourceData];
-    if (self) {
-        
-    }
-    return self;
-}
+@implementation DocumentalesViewControllerIpad
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureFrame];
     [self loadListadoSeries];
 	// Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void) configureFrame {
@@ -77,17 +65,14 @@ static MultimediaViewControllerIpad * instance;
     self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElementUser:nil];
     self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:self.tipoSourceData DetalleElementViewController:self.detalleElementViewController];
+    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceDocumentalesSiguiendo DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-
+    
     [self addChildViewController:self.listadoElementosSiguiendoViewController];
     [self addChildViewController:self.detalleElementViewController];
     
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
     [self.view addSubview:self.detalleElementViewController.view];
 }
-
-
-
 
 @end

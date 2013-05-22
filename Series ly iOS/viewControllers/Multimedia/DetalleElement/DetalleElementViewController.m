@@ -68,16 +68,19 @@
 
 -(void) downloadFullInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
     [self.threads addObject:[NSThread currentThread]];
+    
     if (mediaElementUser) {
         ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
         
         UserCredentials * userCredentials = [UserCredentials getInstance];
+        
         self.fullInfo = [manejadorServicioWeb getMediaFullInfoWithRequest:nil
                                                              ProgressView:nil
                                                                 AuthToken:userCredentials.authToken
                                                                 UserToken:userCredentials.userToken
                                                                       Idm:mediaElementUser.idm
                                                                 MediaType:mediaElementUser.mediaType];
+        NSLog(@"%@",mediaElementUser.name);
         if (self.fullInfo) {
             [self performSelectorOnMainThread:@selector(createContent) withObject:nil waitUntilDone:YES];
         }

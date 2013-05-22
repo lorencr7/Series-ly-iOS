@@ -7,15 +7,24 @@
 //
 
 #import "CustomCellDocumentales.h"
-#import "MultimediaViewControllerIphone.h"
-#import "MultimediaViewControllerIpad.h"
+#import "DocumentalesViewControllerIpad.h"
+#import "DocumentalesViewControllerIphone.h"
 #import "DetailViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 
 @implementation CustomCellDocumentales
 
 -(void) executeAction: (UIViewController *) viewController {
-    if ([viewController class] == [DetailViewController class]) {
+    DetailViewController * detailViewController = (DetailViewController *) viewController;
+    DocumentalesViewController * documentalesViewController;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        documentalesViewController = [[DocumentalesViewControllerIphone alloc] init];
+    } else {
+        documentalesViewController = [[DocumentalesViewControllerIpad alloc] init];
+    }
+    
+    [detailViewController setDetailItem:documentalesViewController];
+    /*if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         MultimediaViewController * multimediaViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -25,7 +34,7 @@
         }
         
         [detailViewController setDetailItem:multimediaViewController];
-    }
+    }*/
 }
 
 @end
