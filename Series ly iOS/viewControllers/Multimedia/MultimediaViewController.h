@@ -15,6 +15,5 @@
 
 +(MultimediaViewController *) getInstance;
 
-
 @end
 
