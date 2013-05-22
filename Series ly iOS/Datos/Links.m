@@ -29,11 +29,12 @@
         
         for (NSDictionary * linkDictionary in streamingDictionary) {
             NSString * hostServer = linkDictionary[@"host"];
-            NSString * host = [hostServer lowercaseString];
-            if ([host isEqualToString:@"vk"] || [host isEqualToString:@"putlocker"] || [host isEqualToString:@"vimeo"] || [host isEqualToString:@"youtube"] || [host isEqualToString:@"allmyvideos"]) {
-                [self.streaming addObject:[[Link alloc] initWithDictionary:linkDictionary]];
+            if (hostServer && [hostServer class] != [NSNull class]) {
+                NSString * host = [hostServer lowercaseString];
+                if ([host isEqualToString:@"vk"] || [host isEqualToString:@"putlocker"] || [host isEqualToString:@"vimeo"] || [host isEqualToString:@"youtube"] || [host isEqualToString:@"allmyvideos"]) {
+                    [self.streaming addObject:[[Link alloc] initWithDictionary:linkDictionary]];
+                }
             }
-            
         }
         
         /*for (NSDictionary * linkDictionary in directDownloadDictionary) {

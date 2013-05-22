@@ -30,7 +30,8 @@
     self = [super initWithDictionary:dictionary];
     if (self) {
         self.idv = [dictionary objectForKey:@"idv"];
-        self.host = [dictionary objectForKey:@"host"];
+        self.host = [dictionary[@"host"] class] == [NSNull class] ? nil : dictionary[@"host"];
+        //self.host = [dictionary objectForKey:@"host"];
         self.lang = [dictionary objectForKey:@"lang"];
         self.subtitles = [dictionary objectForKey:@"subtitles"];
         self.videoUrl = [dictionary objectForKey:@"video_url"];

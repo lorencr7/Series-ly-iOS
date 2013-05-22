@@ -30,7 +30,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-        self.bannerView.delegate = self;
+        //self.bannerView.delegate = self;
     }
 }
 
@@ -45,7 +45,7 @@
 -(void) showInterstitialBanner {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.interstitial = [[ADInterstitialAd alloc] init];
-        self.interstitial.delegate = self;
+        //self.interstitial.delegate = self;
     }
 }
 
