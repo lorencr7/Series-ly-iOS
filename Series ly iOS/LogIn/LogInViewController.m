@@ -117,9 +117,15 @@
         AppDelegate * appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
         [appDelegate loadContentControllers];
     } else {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Usuario, Email o contraseña incorrectos" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         NSLog(@"Login incorrecto");
     }
     [threadstopFeedback start];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	
 }
 
 //************************* Delegate

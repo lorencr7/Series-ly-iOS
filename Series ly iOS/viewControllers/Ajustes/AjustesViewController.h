@@ -7,25 +7,16 @@
 //
 
 #import "RootViewController.h"
-@class CustomTableViewController;
+
+@class CustomTableViewController,AcercaDeViewController;
 @interface AjustesViewController : RootViewController
 
-@property (strong, nonatomic) CustomTableViewController *tableViewAjustes;
+@property (strong, nonatomic) AcercaDeViewController * acercaDeViewController;
+//@property (strong, nonatomic) CustomTableViewController *tableViewAjustes;
 
--(void) loadListadoAjustesWithFrame: (CGRect) frame Sections: (NSMutableArray *) sections;
+/*-(void) loadListadoAjustesWithFrame: (CGRect) frame Sections: (NSMutableArray *) sections;
 -(void) loadDetalleAjustesWithFrame: (CGRect) frame;
--(void) iniciarAutores;
+-(void) iniciarAutores;*/
 
 @end
 
-@interface AjustesViewControllerIpad : AjustesViewController
-
-@property (strong, nonatomic) UIView * viewTableAjustes;
-
-@property (strong, nonatomic) UIView * viewDetalleAjustes;
-
-@end
-
-@interface AjustesViewControllerIphone : AjustesViewController
-
-@end

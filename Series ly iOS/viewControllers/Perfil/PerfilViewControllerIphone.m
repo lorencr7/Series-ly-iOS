@@ -105,11 +105,7 @@ static PerfilViewControllerIphone * instance;
     }
 }
 
-- (void) showiADBanner {
 
-    self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    self.bannerView.delegate = self;
-}
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     self.listadoOpcionesPerfilViewController.customTableView.tableHeaderView = banner;
@@ -118,14 +114,6 @@ static PerfilViewControllerIphone * instance;
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
     self.listadoOpcionesPerfilViewController.customTableView.tableHeaderView = nil;
     NSLog(@"bannerViewError: %@",error.localizedDescription);
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    
 }
 
 @end

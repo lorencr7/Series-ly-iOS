@@ -23,14 +23,14 @@
 "TableViewProgramasCellText" = "Programas";
 "TableViewPeliculasCellText" = "Peliculas";
 "TableViewDocumentalesCellText" = "Documentales";
-"TableViewAjustesCellText" = "Ajustes";
+"TableViewAjustesCellText" = "Acerca de";
 
 //
 
 "BarButtonLogout" = "Salir";
 
 "TableViewPerfilCellText" = "Perfil";
-"TableViewSettingsCellText" = "Ajustes";
+"TableViewSettingsCellText" = "Acerca de";
 
 "TextHeaderSettingsRate" = "Seriesly App";
 "TextCellRate" = "Votar";

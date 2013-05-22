@@ -153,7 +153,7 @@
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
 
     CustomCellAjustes *customCellAjustes = [[CustomCellAjustes alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"ajustes.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"acerca_de.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:10 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
@@ -181,6 +181,11 @@
     
     //[self.view addSubview:self.customTableViewController];
     self.tableView = self.customTableViewController;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [customCellPerfil customSelect];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

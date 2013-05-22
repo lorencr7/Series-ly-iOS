@@ -41,7 +41,6 @@
 - (void)viewDidLoad {
     self.view.frame = self.frame;
     [super viewDidLoad];
-    
     //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElementUser:) object:self.mediaElementUser];
     //[thread start];
 }
@@ -63,7 +62,9 @@
 }
 
 -(void) getData {
-    [self downloadFullInfoFromMediaElementUser:self.mediaElementUser];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [self downloadFullInfoFromMediaElementUser:self.mediaElementUser];
+    }
 }
 
 -(void) downloadFullInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
@@ -93,6 +94,7 @@
             [self loadSegmentedControl];
             [self createFichaFromFullInfo:self.fullInfo];
             [self createCapitulosFromFullInfo:self.fullInfo];
+            
         } else {
             [self loadButtonVerEnlaces];
             [self createFichaFromFullInfo:self.fullInfo];
@@ -105,6 +107,12 @@
     [self iniciarTableView];
     NSMutableArray * sections = [self createSectionsFromFullInfo:fullInfo];
     [self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+}
+
+-(void) createFichaFromFullInfo: (FullInfo *) fullInfo {
+    [self iniciarScrollView];
+    [self createPosterSectionWithFullInfo:fullInfo];
+    [self createPlotLabelWithText:fullInfo.plot];
 }
 
 -(NSMutableArray *) createSectionsFromFullInfo: (FullInfo *) fullInfo {
@@ -213,9 +221,9 @@
     [backgroundView addSubview:imageViewWatched];
     
     UIImageView * imageViewhaveLinks = [[UIImageView alloc] initWithFrame:CGRectMake(0,
-                                                                                   0,
-                                                                                   0,
-                                                                                   0)];
+                                                                                     0,
+                                                                                     0,
+                                                                                     0)];
     imageViewhaveLinks.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     if (episode.haveLinks) {
         imageViewhaveLinks.image = [UIImage imageNamed:@"media_havelinks.png"];
@@ -240,11 +248,7 @@
     return customCellMultimediaListadoCapitulos;
 }
 
--(void) createFichaFromFullInfo: (FullInfo *) fullInfo {
-    [self iniciarScrollView];
-    [self createPosterSectionWithFullInfo:fullInfo];
-    [self createPlotLabelWithText:fullInfo.plot];
-}
+
 
 -(void) createPosterSectionWithFullInfo: (FullInfo *) fullInfo {
     int margenX = 5;
@@ -268,7 +272,10 @@
     int widthEtiquetas = 65;
     int origenXContenidos = origenXEtiquetas + margenContenidos + widthEtiquetas;
     int widthContenidos = self.scrollView.frame.size.width - origenXContenidos - 5;
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        widthContenidos = 94;
+        
+    }
     int origenY = poster.frame.origin.y;
     int margenEntreEtiquetas = 13;
     if (fullInfo.year && ![fullInfo.year isEqualToString:@""]) {
@@ -277,7 +284,7 @@
         labelEtiquetaAno.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaAno.text = @"Año";
         labelEtiquetaAno.numberOfLines = 0;
-        labelEtiquetaAno.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaAno.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaAno sizeToFit];
         
         UILabel * labelContenidoAno = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
@@ -285,7 +292,7 @@
         labelContenidoAno.font = [UIFont systemFontOfSize:13];
         labelContenidoAno.text = fullInfo.year;
         labelContenidoAno.numberOfLines = 0;
-        labelContenidoAno.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelContenidoAno.autoresizingMask =  UIViewAutoresizingFlexibleRightMargin;
         [labelContenidoAno sizeToFit];
         
         [self.scrollView addSubview:labelEtiquetaAno];
@@ -300,7 +307,7 @@
         labelEtiquetaPais.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaPais.text = @"País";
         labelEtiquetaPais.numberOfLines = 0;
-        labelEtiquetaPais.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaPais.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaPais sizeToFit];
         
         UILabel * labelContenidoPais = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
@@ -318,7 +325,7 @@
         }
         labelContenidoPais.text = text;
         labelContenidoPais.numberOfLines = 0;
-        labelContenidoPais.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelContenidoPais.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelContenidoPais sizeToFit];
         [self.scrollView addSubview:labelEtiquetaPais];
         [self.scrollView addSubview:labelContenidoPais];
@@ -331,7 +338,7 @@
         labelEtiquetaDuracion.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaDuracion.text = @"Duración";
         labelEtiquetaDuracion.numberOfLines = 0;
-        labelEtiquetaDuracion.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaDuracion.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaDuracion sizeToFit];
         
         UILabel * labelContenidoDuracion = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
@@ -340,7 +347,7 @@
         NSString * text = [NSString stringWithFormat:@"%@ minutos",fullInfo.runtime];
         labelContenidoDuracion.text = text;
         labelContenidoDuracion.numberOfLines = 0;
-        labelContenidoDuracion.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelContenidoDuracion.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelContenidoDuracion sizeToFit];
         [self.scrollView addSubview:labelEtiquetaDuracion];
         [self.scrollView addSubview:labelContenidoDuracion];
@@ -353,7 +360,7 @@
         labelEtiquetaGenre.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaGenre.text = @"Género";
         labelEtiquetaGenre.numberOfLines = 0;
-        labelEtiquetaGenre.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaGenre.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaGenre sizeToFit];
         
         UILabel * labelContenidoGenre = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
@@ -371,7 +378,7 @@
         }
         labelContenidoGenre.text = text;
         labelContenidoGenre.numberOfLines = 0;
-        labelContenidoGenre.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelContenidoGenre.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelContenidoGenre sizeToFit];
         [self.scrollView addSubview:labelEtiquetaGenre];
         [self.scrollView addSubview:labelContenidoGenre];
@@ -384,7 +391,7 @@
         labelEtiquetaDirector.font = [UIFont boldSystemFontOfSize:14];
         labelEtiquetaDirector.text = @"Director";
         labelEtiquetaDirector.numberOfLines = 0;
-        labelEtiquetaDirector.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaDirector.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaDirector sizeToFit];
         
         UILabel * labelEtiquetaDuracion = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
@@ -394,7 +401,7 @@
         NSString * text = director.name;
         labelEtiquetaDuracion.text = text;
         labelEtiquetaDuracion.numberOfLines = 0;
-        labelEtiquetaDuracion.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        labelEtiquetaDuracion.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelEtiquetaDuracion sizeToFit];
         [self.scrollView addSubview:labelEtiquetaDirector];
         [self.scrollView addSubview:labelEtiquetaDuracion];
@@ -428,7 +435,11 @@
     plotLabel.font = [UIFont systemFontOfSize:14];
     plotLabel.text = text;
     plotLabel.numberOfLines = 0;
-    plotLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        plotLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    } else {
+        plotLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
     [plotLabel sizeToFit];
     [self.scrollView addSubview:plotLabel];
     
@@ -452,7 +463,11 @@
                                                                      self.view.frame.size.height - topViewSize)];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.contentSize = self.scrollView.frame.size;
-    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    //self.scrollView.autoresizesSubviews = YES;
     [self.view addSubview:self.scrollView];
 }
 
@@ -460,7 +475,21 @@
     NSMutableArray *sections;
     SectionElement *sectionElement;
     NSMutableArray *cells;
-    CGRect frameTableView = self.scrollView.frame;
+    int topViewSize = 0;
+    if (self.segmentedControl) {
+        topViewSize += self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
+    }
+    if (self.buttonVerEnlaces) {
+        topViewSize += self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
+    }
+    
+    CGRect frameTableView = CGRectMake(0,
+                                       topViewSize,
+                                       self.view.frame.size.width,
+                                       self.view.frame.size.height - topViewSize);
+    //NSLog(@"%.2f,%.2f",frameTableView.size.width,frameTableView.size.height);
+    
+    //CGRect frameTableView = self.scrollView.frame;
     sections = [NSMutableArray array];
     cells = [NSMutableArray array];
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
@@ -468,14 +497,23 @@
     
     self.customTableView = [[CustomTableViewController alloc] initWithFrame:frameTableView style:UITableViewStylePlain backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.customTableView.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    //self.customTableView.backgroundColor = [UIColor redColor];
+    //self.customTableView.alpha = 0;
     
     self.tableViewController = [[UITableViewController alloc] init];
     self.tableViewController.tableView = (UITableView *)self.customTableView;
     self.tableViewController.view.alpha = 1;
+    //self.tableViewController.view.backgroundColor = [UIColor redColor];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.tableViewController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    }
+    
     [self addChildViewController:self.tableViewController];
     
     self.tableViewController.view.frame = self.scrollView.frame;
     self.customTableView.frame = self.scrollView.frame;
+    
+    //[self.view addSubview:self.tableViewController.view];
     //[self.tableViewController.view removeFromSuperview];
     //self.tableViewController.view.backgroundColor = [UIColor redColor];
     /*NSMutableArray *sections;
@@ -572,16 +610,72 @@
 - (IBAction)manejadorSegmented:(UISegmentedControl *) sender {
     switch (sender.selectedSegmentIndex) {
         case 0:
+            //[self.scrollView removeFromSuperview];
+            //[self.view addSubview:self.scrollView];
+            //self.tableViewController.view.alpha = 0;
+            //self.scrollView.alpha = 1;
             [self.tableViewController.view removeFromSuperview];
             [self.view addSubview:self.scrollView];
             break;
         case 1:
+            //[self.tableViewController.view removeFromSuperview];
+            //[self.view addSubview:self.tableViewController.view];
+            //self.tableViewController.view.alpha = 1;
+            //self.scrollView.alpha = 0;
             [self.scrollView removeFromSuperview];
             [self.view addSubview:self.tableViewController.view];
             break;
         default:
             break;
     }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+    int topViewSize = 0;
+    if (self.segmentedControl) {
+        topViewSize += self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
+    }
+    if (self.buttonVerEnlaces) {
+        topViewSize += self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
+    }
+    CGRect frame = CGRectMake(0,
+                              topViewSize,
+                              self.view.frame.size.width,
+                              self.view.frame.size.height - topViewSize);
+    self.scrollView.frame = frame;
+    self.tableViewController.view.frame = frame;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        if (UIInterfaceOrientationIsPortrait(orientation)) {
+            self.scrollView.contentSize = CGSizeMake(frame.size.width, self.scrollView.contentSize.height * 2);
+            
+        } else {
+            
+        }
+    } /*else {
+        int topViewSize = 0;
+        if (self.segmentedControl) {
+            topViewSize += self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
+        }
+        if (self.buttonVerEnlaces) {
+            topViewSize += self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
+        }
+        CGRect frame = CGRectMake(0,
+                                  topViewSize,
+                                  self.view.frame.size.width,
+                                  self.view.frame.size.height - topViewSize);
+        if (UIInterfaceOrientationIsPortrait(orientation)) {
+            self.scrollView.contentSize = CGSizeMake(frame.size.width, self.scrollView.contentSize.height * 2);
+            
+        } else {
+            self.scrollView.contentSize = CGSizeMake(frame.size.width, self.scrollView.contentSize.height);
+        }
+        self.scrollView.frame = frame;
+        self.tableViewController.view.frame = frame;
+    }*/
+    NSLog(@"%.2f,%.2f",self.view.frame.size.width,self.view.frame.size.height);
+    
+    
 }
 
 @end

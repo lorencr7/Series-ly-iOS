@@ -38,6 +38,7 @@ static MultimediaViewControllerIphone * instance;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self showiADBanner];
 	// Do any additional setup after loading the view.
 }
 
@@ -84,6 +85,15 @@ static MultimediaViewControllerIphone * instance;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    self.listadoElementosSiguiendoViewController.customTableView.tableHeaderView = banner;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    self.listadoElementosSiguiendoViewController.customTableView.tableHeaderView = nil;
+    NSLog(@"bannerViewError: %@",error.localizedDescription);
 }
 
 @end

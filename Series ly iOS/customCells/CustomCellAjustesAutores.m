@@ -8,22 +8,24 @@
 
 #import "CustomCellAjustesAutores.h"
 #import "AjustesViewController.h"
+#import "AjustesViewControllerIphone.h"
+#import "AjustesViewControllerIpad.h"
 
 @implementation CustomCellAjustesAutores
 
 
 -(void) executeAction: (UIViewController *) viewController {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if ([viewController class] == [AjustesViewControllerIphone class]) {
             AjustesViewControllerIphone * ajustesViewController = (AjustesViewControllerIphone *) viewController;
-            [ajustesViewController iniciarAutores];
+            //[ajustesViewController iniciarAutores];
         }
     } else {
         if ([viewController class] == [AjustesViewControllerIpad class]) {
             AjustesViewControllerIpad * ajustesViewController = (AjustesViewControllerIpad *) viewController;
-            [ajustesViewController iniciarAutores];
+            //[ajustesViewController iniciarAutores];
         }
-    }
+    }*/
 }
 
 @end

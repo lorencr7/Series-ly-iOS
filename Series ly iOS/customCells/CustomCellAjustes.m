@@ -8,8 +8,9 @@
 
 #import "CustomCellAjustes.h"
 #import "AjustesViewController.h"
+#import "AjustesViewControllerIpad.h"
+#import "AjustesViewControllerIphone.h"
 #import "DetailViewController.h"
-#import "MasterViewController.h"
 
 @implementation CustomCellAjustes
 
@@ -18,9 +19,9 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         AjustesViewController * ajustesViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            ajustesViewController = [[AjustesViewController alloc] init];
+            ajustesViewController = [[AjustesViewControllerIphone alloc] init];
         } else {
-            ajustesViewController = [[AjustesViewController alloc] init];
+            ajustesViewController = [[AjustesViewControllerIpad alloc] init];
         }
         [detailViewController setDetailItem:ajustesViewController];
     }

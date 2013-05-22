@@ -193,8 +193,12 @@
 
 
 - (void) reloadTableViewFromSource: (NSMutableArray *) source {
-    NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
-    [thread start];
+    NSMutableArray * sections = [self getSectionsFromSourceData:source];
+    
+    [self stopActivityIndicator];
+    [self reloadTableViewWithSections:sections];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(fillTableViewInBackgroundFromSource:) object:source];
+    //[thread start];
 }
 
 -(void) fillTableViewInBackgroundFromSource:(NSMutableArray *)source {

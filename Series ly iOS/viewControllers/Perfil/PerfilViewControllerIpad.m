@@ -12,6 +12,7 @@
 #import "ListadoCapitulosPendientesViewController.h"
 #import "ListadoOpcionesPerfilViewController.h"
 #import "AppDelegate.h"
+#import "TVFramework.h"
 
 
 static PerfilViewControllerIpad * instance;
@@ -40,7 +41,8 @@ static PerfilViewControllerIpad * instance;
         
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        //[self showInterstitialBanner];
+        //[self showiADBanner];
+        [self showInterstitialBanner];
     }
     return self;
 }
@@ -135,7 +137,7 @@ static PerfilViewControllerIpad * instance;
     [appDelegate showInterstitialBanner];
 }*/
 
--(void) showInterstitialBanner {
+/*-(void) showInterstitialBanner {
     self.interstitial = [[ADInterstitialAd alloc] init];
     self.interstitial.delegate = self;
 }
@@ -152,7 +154,24 @@ static PerfilViewControllerIpad * instance;
 
 - (void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
     NSLog(@"interstitialAdError: %@",error.localizedDescription);
+}*/
+
+- (void) showiADBanner {
+    
+    self.bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 0, 100, 60)];
+    self.bannerView.delegate = self;
+    
 }
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    self.listadoCapitulosPendientesViewController.customTableView.tableHeaderView = banner;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    self.listadoCapitulosPendientesViewController.customTableView.tableHeaderView = nil;
+    NSLog(@"bannerViewError: %@",error.localizedDescription);
+}
+
 
 @end
 

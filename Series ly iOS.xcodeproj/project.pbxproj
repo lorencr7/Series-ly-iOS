@@ -68,6 +68,11 @@
 		453D9B5F16E006FD00338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B5616E006FD00338C44 /* Localizable.strings */; };
 		453D9B6716E0071200338C44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6316E0071200338C44 /* InfoPlist.strings */; };
 		453D9B6816E0071200338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6516E0071200338C44 /* Localizable.strings */; };
+		453EBFAE174AC5FF004F6CF8 /* acerca_de.png in Resources */ = {isa = PBXBuildFile; fileRef = 453EBFAD174AC5FF004F6CF8 /* acerca_de.png */; };
+		453EBFB1174AC6EE004F6CF8 /* AjustesViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB0174AC6EE004F6CF8 /* AjustesViewControllerIpad.m */; };
+		453EBFB4174AC700004F6CF8 /* AjustesViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB3174AC700004F6CF8 /* AjustesViewControllerIphone.m */; };
+		453EBFB7174AC82F004F6CF8 /* AcercaDeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB6174AC82E004F6CF8 /* AcercaDeViewController.m */; };
+		453EBFBA174AD461004F6CF8 /* ParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB9174AD461004F6CF8 /* ParentViewController.m */; };
 		4544C1A316DED285006828EF /* logoSeriesly375x375.png in Resources */ = {isa = PBXBuildFile; fileRef = 4544C1A216DED285006828EF /* logoSeriesly375x375.png */; };
 		45467D9517492C3F007CA3CD /* media_donthavelinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9117492C3F007CA3CD /* media_donthavelinks.png */; };
 		45467D9617492C3F007CA3CD /* media_dontwatched.png in Resources */ = {isa = PBXBuildFile; fileRef = 45467D9217492C3F007CA3CD /* media_dontwatched.png */; };
@@ -288,6 +293,15 @@
 		453D9B5716E006FD00338C44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		453D9B6416E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = InfoPlist.strings; sourceTree = "<group>"; };
 		453D9B6616E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		453EBFAD174AC5FF004F6CF8 /* acerca_de.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acerca_de.png; sourceTree = "<group>"; };
+		453EBFAF174AC6EE004F6CF8 /* AjustesViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewControllerIpad.h; sourceTree = "<group>"; };
+		453EBFB0174AC6EE004F6CF8 /* AjustesViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewControllerIpad.m; sourceTree = "<group>"; };
+		453EBFB2174AC700004F6CF8 /* AjustesViewControllerIphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewControllerIphone.h; sourceTree = "<group>"; };
+		453EBFB3174AC700004F6CF8 /* AjustesViewControllerIphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewControllerIphone.m; sourceTree = "<group>"; };
+		453EBFB5174AC82E004F6CF8 /* AcercaDeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcercaDeViewController.h; sourceTree = "<group>"; };
+		453EBFB6174AC82E004F6CF8 /* AcercaDeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcercaDeViewController.m; sourceTree = "<group>"; };
+		453EBFB8174AD461004F6CF8 /* ParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentViewController.h; sourceTree = "<group>"; };
+		453EBFB9174AD461004F6CF8 /* ParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentViewController.m; sourceTree = "<group>"; };
 		4544C1A216DED285006828EF /* logoSeriesly375x375.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly375x375.png; sourceTree = "<group>"; };
 		45467D9117492C3F007CA3CD /* media_donthavelinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_donthavelinks.png; sourceTree = "<group>"; };
 		45467D9217492C3F007CA3CD /* media_dontwatched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_dontwatched.png; sourceTree = "<group>"; };
@@ -499,6 +513,12 @@
 			children = (
 				450F8540172D8E3B008523A5 /* AjustesViewController.h */,
 				450F8541172D8E3B008523A5 /* AjustesViewController.m */,
+				453EBFAF174AC6EE004F6CF8 /* AjustesViewControllerIpad.h */,
+				453EBFB0174AC6EE004F6CF8 /* AjustesViewControllerIpad.m */,
+				453EBFB2174AC700004F6CF8 /* AjustesViewControllerIphone.h */,
+				453EBFB3174AC700004F6CF8 /* AjustesViewControllerIphone.m */,
+				453EBFB5174AC82E004F6CF8 /* AcercaDeViewController.h */,
+				453EBFB6174AC82E004F6CF8 /* AcercaDeViewController.m */,
 			);
 			path = Ajustes;
 			sourceTree = "<group>";
@@ -610,6 +630,8 @@
 				453C401D1742C586007CE06C /* RefreshableViewController.m */,
 				453C401F1742DCB3007CE06C /* ListOfEpisodesViewController.h */,
 				453C40201742DCB3007CE06C /* ListOfEpisodesViewController.m */,
+				453EBFB8174AD461004F6CF8 /* ParentViewController.h */,
+				453EBFB9174AD461004F6CF8 /* ParentViewController.m */,
 			);
 			path = MetaViewControllers;
 			sourceTree = "<group>";
@@ -648,6 +670,7 @@
 		4544C1A116DED285006828EF /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				453EBFAD174AC5FF004F6CF8 /* acerca_de.png */,
 				45467DA317494BC7007CA3CD /* logos */,
 				45467D9117492C3F007CA3CD /* media_donthavelinks.png */,
 				45467D9217492C3F007CA3CD /* media_dontwatched.png */,
@@ -1100,6 +1123,7 @@
 				45467DB517494BC7007CA3CD /* wuaki.tv.png in Resources */,
 				45467DB617494BC7007CA3CD /* youtube.png in Resources */,
 				45467DB717494BC7007CA3CD /* youzee.png in Resources */,
+				453EBFAE174AC5FF004F6CF8 /* acerca_de.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1230,6 +1254,10 @@
 				451FD3EE1743983C003E5A4B /* VerDetalleElementViewController.m in Sources */,
 				451FD3F117439CC1003E5A4B /* DetalleElementViewController.m in Sources */,
 				45195A331747CD59005A5658 /* CustomCellMultimediaListadoCapitulos.m in Sources */,
+				453EBFB1174AC6EE004F6CF8 /* AjustesViewControllerIpad.m in Sources */,
+				453EBFB4174AC700004F6CF8 /* AjustesViewControllerIphone.m in Sources */,
+				453EBFB7174AC82F004F6CF8 /* AcercaDeViewController.m in Sources */,
+				453EBFBA174AD461004F6CF8 /* ParentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1388,10 +1416,14 @@
 		4577AB0A16DD8C5E00B089B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lorenzo villarroel perez (SC48V388MQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lorenzo villarroel perez (SC48V388MQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Series ly iOS/Series ly iOS-Prefix.pch";
 				INFOPLIST_FILE = "Series ly iOS/Series ly iOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F3B5A1D1-5454-403D-9FCA-3A885BA840D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F3B5A1D1-5454-403D-9FCA-3A885BA840D4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1399,10 +1431,14 @@
 		4577AB0B16DD8C5E00B089B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lorenzo villarroel perez (SC48V388MQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lorenzo villarroel perez (SC48V388MQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Series ly iOS/Series ly iOS-Prefix.pch";
 				INFOPLIST_FILE = "Series ly iOS/Series ly iOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F3B5A1D1-5454-403D-9FCA-3A885BA840D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F3B5A1D1-5454-403D-9FCA-3A885BA840D4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

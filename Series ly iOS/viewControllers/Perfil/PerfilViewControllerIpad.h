@@ -9,10 +9,10 @@
 #import "PerfilViewController.h"
 #import <iAd/iAd.h>
 
-@interface PerfilViewControllerIpad : PerfilViewController <ADInterstitialAdDelegate>
+@interface PerfilViewControllerIpad : PerfilViewController //<ADInterstitialAdDelegate>
 
 @property (strong, nonatomic) ListadoCapitulosPendientesViewController * listadoCapitulosPendientesViewController;
-@property (strong, nonatomic) ADInterstitialAd * interstitial;
+//@property (strong, nonatomic) ADInterstitialAd * interstitial;
 
 
 @end

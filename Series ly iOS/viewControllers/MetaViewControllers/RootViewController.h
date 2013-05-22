@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface RootViewController : UIViewController 
+#import "ParentViewController.h"
+@interface RootViewController : ParentViewController
 
 @property (strong, nonatomic) UIBarButtonItem * backButton;
 

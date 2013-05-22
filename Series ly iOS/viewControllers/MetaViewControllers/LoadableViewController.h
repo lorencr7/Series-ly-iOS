@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ParentViewController.h"
 
-@interface LoadableViewController : UIViewController {
+@interface LoadableViewController : ParentViewController {
     UIActivityIndicatorView *activityIndicator;
 }
 

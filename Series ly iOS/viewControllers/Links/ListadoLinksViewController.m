@@ -52,6 +52,8 @@
                                                                                       target:self
                                                                                       action:@selector(cancelarButtonPressed:)];
     }
+    [self showInterstitialBanner];
+    [self showiADBanner];
 }
 
 
@@ -381,6 +383,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    self.customTableView.tableHeaderView = banner;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    self.customTableView.tableHeaderView = nil;
+    NSLog(@"bannerViewError: %@",error.localizedDescription);
 }
 
 @end

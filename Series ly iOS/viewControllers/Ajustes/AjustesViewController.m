@@ -26,7 +26,7 @@
     }
     return self;
 }
-
+/*
 - (void) loadData {
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -148,10 +148,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
+}*/
 
 @end
-
+/*
 @implementation AjustesViewControllerIpad
 
 - (id)init {
@@ -226,32 +226,6 @@
     } completion:^(BOOL finished){
         
     }];
-    /*NSMutableArray *sections = [NSMutableArray array];
-    SectionElement *sectionElement;
-    NSMutableArray *cells;
-    
-    //section 1
-    cells = [NSMutableArray array];
-    
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
-    
-    self.tableViewListadoCapitulos = [[CustomTableViewController alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
-    self.tableViewListadoCapitulos.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.tableViewListadoCapitulos.bounces = YES;
-    
-    self.viewDetalleSeries = [[UIView alloc] init];
-    self.viewDetalleSeries.backgroundColor = [UIColor whiteColor];
-    self.viewDetalleSeries.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.viewDetalleSeries.layer.shadowOffset = CGSizeMake(-3,5);
-    self.viewDetalleSeries.layer.shadowRadius = 3;
-    self.viewDetalleSeries.layer.shadowOpacity = 0.3;
-    self.viewDetalleSeries.backgroundColor = [UIColor whiteColor];
-    self.viewDetalleSeries.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.viewListadoSeries.alpha = 0.0;
-    
-    [self.viewDetalleSeries addSubview:self.tableViewListadoCapitulos];
-    [self.view addSubview:self.viewDetalleSeries];*/
 }
 
 - (void)viewDidLoad {
@@ -324,3 +298,4 @@
 }
 
 @end
+*/

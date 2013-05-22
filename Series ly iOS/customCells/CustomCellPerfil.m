@@ -20,11 +20,11 @@
         DetailViewController * detailViewController = (DetailViewController *) viewController;
         PerfilViewController * perfilViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            //perfilViewController = [[PerfilViewControllerIphone alloc] init];
-            perfilViewController = [PerfilViewControllerIphone getInstance];
+            perfilViewController = [[PerfilViewControllerIphone alloc] init];
+            //perfilViewController = [PerfilViewControllerIphone getInstance];
         } else {
-            //perfilViewController = [[PerfilViewControllerIpad alloc] init];
-            perfilViewController = [PerfilViewControllerIpad getInstance];
+            perfilViewController = [[PerfilViewControllerIpad alloc] init];
+            //perfilViewController = [PerfilViewControllerIpad getInstance];
         }
         [detailViewController setDetailItem:perfilViewController];
     }

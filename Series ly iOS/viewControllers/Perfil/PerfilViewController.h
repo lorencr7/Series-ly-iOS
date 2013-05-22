@@ -7,9 +7,12 @@
 //
 
 #import "RootViewController.h"
+#import <iAd/iAd.h>
+
 
 @class CustomTableViewController, ListadoCapitulosPendientesViewController,DatosPerfilViewController, ListadoOpcionesPerfilViewController;
-@interface PerfilViewController : RootViewController
+@interface PerfilViewController : RootViewController 
+
 
 @property (strong, nonatomic) ListadoOpcionesPerfilViewController * listadoOpcionesPerfilViewController;
 
