@@ -80,7 +80,6 @@
                                                                 UserToken:userCredentials.userToken
                                                                       Idm:mediaElementUser.idm
                                                                 MediaType:mediaElementUser.mediaType];
-        NSLog(@"%@",mediaElementUser.name);
         if (self.fullInfo) {
             [self performSelectorOnMainThread:@selector(createContent) withObject:nil waitUntilDone:YES];
         }

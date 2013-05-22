@@ -7,15 +7,11 @@
 //
 
 #import "RootViewController.h"
-#import "ListadoElementsSiguiendoViewController.h"
 
+@class ListadoElementsSiguiendoViewController;
 @interface MultimediaViewController : RootViewController
 
-@property(assign, nonatomic) TipoSourceDataSiguiendo tipoSourceData;
-
 @property(strong, nonatomic) ListadoElementsSiguiendoViewController * listadoElementosSiguiendoViewController;
-
-- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData;
 
 +(MultimediaViewController *) getInstance;
 

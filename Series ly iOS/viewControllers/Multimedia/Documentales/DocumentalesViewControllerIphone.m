@@ -9,7 +9,7 @@
 #import "DocumentalesViewControllerIphone.h"
 #import "TVFramework.h"
 #import "ScreenSizeManager.h"
-#import "ListadoElementsSiguiendoViewController.h"
+#import "ListadoDocumentalesSiguiendoViewController.h"
 
 @interface DocumentalesViewControllerIphone ()
 
@@ -55,7 +55,8 @@
                                            0,
                                            self.view.frame.size.width,
                                            self.view.frame.size.height);
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceDocumentalesSiguiendo DetalleElementViewController:nil];
+    self.listadoElementosSiguiendoViewController = [[ListadoDocumentalesSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:nil];
+    //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceDocumentalesSiguiendo DetalleElementViewController:nil];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     

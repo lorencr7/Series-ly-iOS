@@ -10,7 +10,7 @@
 #import "ConstantsCustomSplitViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 #import "DetalleElementViewController.h"
-#import "ListadoElementsSiguiendoViewController.h"
+#import "ListadoProgramasSiguiendoViewController.h"
 
 @interface ProgramasViewControllerIpad ()
 
@@ -64,8 +64,8 @@
     
     self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElementUser:nil];
     self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceTVShowsSiguiendo DetalleElementViewController:self.detalleElementViewController];
+    self.listadoElementosSiguiendoViewController = [[ListadoProgramasSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:self.detalleElementViewController];
+    //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceTVShowsSiguiendo DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     [self addChildViewController:self.listadoElementosSiguiendoViewController];

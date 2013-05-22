@@ -10,7 +10,7 @@
 #import "ConstantsCustomSplitViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 #import "DetalleElementViewController.h"
-#import "ListadoElementsSiguiendoViewController.h"
+#import "ListadoPeliculasSiguiendoViewController.h"
 
 @interface PeliculasViewControllerIpad ()
 
@@ -65,7 +65,8 @@
     self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElementUser:nil];
     self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourcePeliculasSiguiendo DetalleElementViewController:self.detalleElementViewController];
+    self.listadoElementosSiguiendoViewController = [[ListadoPeliculasSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:self.detalleElementViewController];
+    //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourcePeliculasSiguiendo DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     [self addChildViewController:self.listadoElementosSiguiendoViewController];

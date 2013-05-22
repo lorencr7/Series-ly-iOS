@@ -24,15 +24,6 @@ static MultimediaViewController * instance;
     return instance;
 }
 
-- (id)initWithTitle: (NSString *) title TipoSourceData: (TipoSourceDataSiguiendo) tipoSourceData {
-    self = [super init];
-    if (self) {
-        self.title = title;
-        self.tipoSourceData = tipoSourceData;
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

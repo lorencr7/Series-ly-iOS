@@ -9,7 +9,7 @@
 #import "SeriesViewControllerIphone.h"
 #import "TVFramework.h"
 #import "ScreenSizeManager.h"
-#import "ListadoElementsSiguiendoViewController.h"
+#import "ListadoSeriesSiguiendoViewController.h"
 
 
 @interface SeriesViewControllerIphone ()
@@ -57,7 +57,8 @@
                                            0,
                                            self.view.frame.size.width,
                                            self.view.frame.size.height);
-    self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceSeriesSiguiendo DetalleElementViewController:nil];
+    self.listadoElementosSiguiendoViewController = [[ListadoSeriesSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:nil];
+    //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceSeriesSiguiendo DetalleElementViewController:nil];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     
