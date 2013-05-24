@@ -250,19 +250,6 @@
 }
 
 -(void) iniciarScrollView {
-    /*int topViewSize = 0;
-    if (self.segmentedControl) {
-        topViewSize += self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
-    }
-    if (self.buttonVerEnlaces) {
-        topViewSize += self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
-    }
-    
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
-                                                                     topViewSize,
-                                                                     self.view.frame.size.width,
-                                                                     self.view.frame.size.height - topViewSize)];*/
-
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
                                                                      0,
                                                                      self.view.frame.size.width,

@@ -94,11 +94,6 @@
         sesion++;
         capitulo = 1;
     }
-    
-    
-    
-    //sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    //[sections addObject:sectionElement];
     return sections;
 }
 
