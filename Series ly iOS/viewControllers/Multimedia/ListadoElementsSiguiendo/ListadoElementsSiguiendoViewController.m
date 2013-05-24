@@ -6,17 +6,15 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import "ListadoElementsSiguiendoViewController.h"
-#import "TVFramework.h"
-#import "ManejadorServicioWebSeriesly.h"
-#import "User.h"
-#import "UserCredentials.h"
-#import <QuartzCore/QuartzCore.h>
-#import "MediaElementUser.h"
-#import "CustomCellSeriesListadoSeries.h"
-#import "Poster.h"
 #import "ASIHTTPRequest.h"
+#import "CustomCellSeriesListadoSeries.h"
 #import "DetalleElementViewController.h"
+#import "ListadoElementsSiguiendoViewController.h"
+#import "ManejadorServicioWebSeriesly.h"
+#import "MediaElementUser.h"
+#import "Poster.h"
+#import "TVFramework.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ListadoElementsSiguiendoViewController ()
 
