@@ -18,6 +18,7 @@
 #import "Links.h"
 #import "FullInfo.h"
 #import "ASIHTTPRequest.h"
+#import "ASIDownloadCache.h"
 
 static ManejadorServicioWebSeriesly * instance;
 
@@ -89,6 +90,9 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     if (progressView) {
         [request setDownloadProgressDelegate:progressView];
     }
+    [request setDownloadCache:[ASIDownloadCache sharedCache]];
+    [request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     return request;
     
 }

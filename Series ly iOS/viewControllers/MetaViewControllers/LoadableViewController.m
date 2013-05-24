@@ -8,6 +8,7 @@
 
 #import "LoadableViewController.h"
 #import "ASIHTTPRequest.h"
+#import "ASIDownloadCache.h"
 
 
 @interface LoadableViewController ()
@@ -98,6 +99,9 @@
     NSURL * imageURL = [NSURL URLWithString:url];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
+    [request setDownloadCache:[ASIDownloadCache sharedCache]];
+    [request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setNumberOfTimesToRetryOnTimeout:2];
     [self.requests addObject:request];
     [request startSynchronous];
