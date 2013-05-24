@@ -24,5 +24,6 @@
 -(void) loadData;
 -(void) getData;
 
+-(void) cancelThreadsAndRequests;
 
 @end

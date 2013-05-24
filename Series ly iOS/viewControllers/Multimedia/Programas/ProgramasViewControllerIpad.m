@@ -75,4 +75,9 @@
     [self.view addSubview:self.detalleElementViewController.view];
 }
 
+-(void) stopTasks {
+    [self.detalleElementViewController cancelThreadsAndRequests];
+    [self.listadoElementosSiguiendoViewController cancelThreadsAndRequests];
+}
+
 @end

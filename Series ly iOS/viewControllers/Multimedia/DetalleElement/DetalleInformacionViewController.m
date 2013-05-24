@@ -230,11 +230,9 @@
     
     int margenYPlot = 10;
     int originYPlotLabel = sinopsisLabel.frame.origin.y + sinopsisLabel.frame.size.height + margenYPlot;
-    int anchoPlotLabel;
+    int anchoPlotLabel= self.view.frame.size.width - 2*margenX;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         anchoPlotLabel = 300;
-    } else {
-        anchoPlotLabel = self.view.frame.size.width - 2*margenX;
     }
     UILabel * plotLabel = [[UILabel alloc] initWithFrame:CGRectMake(margenX, originYPlotLabel, anchoPlotLabel, 0)];
     
@@ -274,5 +272,6 @@
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.scrollView];
 }
+
 
 @end

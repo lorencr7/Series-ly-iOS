@@ -76,5 +76,8 @@
     NSLog(@"bannerViewError: %@",error.localizedDescription);
 }
 
+-(void) stopTasks {
+    [self.listadoElementosSiguiendoViewController cancelThreadsAndRequests];
+}
 
 @end

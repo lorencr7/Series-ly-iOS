@@ -172,6 +172,11 @@ static PerfilViewControllerIpad * instance;
     NSLog(@"bannerViewError: %@",error.localizedDescription);
 }
 
+-(void) stopTasks {
+    [self.listadoOpcionesPerfilViewController cancelThreadsAndRequests];
+    [self.datosPerfilViewController cancelThreadsAndRequests];
+    [self.listadoCapitulosPendientesViewController cancelThreadsAndRequests];
+}
 
 @end
 

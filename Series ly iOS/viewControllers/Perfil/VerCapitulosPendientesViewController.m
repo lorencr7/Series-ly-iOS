@@ -69,4 +69,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) stopTasks {
+    [self.listadoCapitulosPendientesViewController cancelThreadsAndRequests];
+}
+
 @end

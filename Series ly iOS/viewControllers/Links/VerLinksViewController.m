@@ -60,4 +60,8 @@
     self.view.frame = viewFrame;
 }
 
+-(void) stopTasks {
+    [self.listadoLinksViewController cancelThreadsAndRequests];
+}
+
 @end

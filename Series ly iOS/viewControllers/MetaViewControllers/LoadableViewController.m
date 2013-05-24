@@ -117,6 +117,18 @@
 -(void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
+    /*for (NSThread * thread in self.threads) {
+        if ([thread isExecuting]) {
+            [thread cancel];
+        }
+    }
+    for (int i = 0; i < self.requests.count; i++) {
+        ASIHTTPRequest * request = self.requests[i];
+        [request cancel];
+    }*/
+}
+
+-(void) cancelThreadsAndRequests {
     for (NSThread * thread in self.threads) {
         if ([thread isExecuting]) {
             [thread cancel];
@@ -126,9 +138,6 @@
         ASIHTTPRequest * request = self.requests[i];
         [request cancel];
     }
-    /*for (ASIHTTPRequest * request in self.requests) {
-        [request cancel];
-    }*/
 }
 
 

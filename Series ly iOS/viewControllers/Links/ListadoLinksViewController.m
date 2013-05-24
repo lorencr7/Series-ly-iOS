@@ -322,6 +322,7 @@
 }
 
 -(void) cancelarButtonPressed: (UIButton *) sender {
+    [self cancelThreadsAndRequests];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

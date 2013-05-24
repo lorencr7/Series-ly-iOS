@@ -11,5 +11,6 @@
 
 @property (strong, nonatomic) UIBarButtonItem * backButton;
 
+-(void) stopTasks;
 
 @end
