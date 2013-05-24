@@ -205,7 +205,7 @@
         [labelEtiquetaDuracion sizeToFit];
         [self.scrollView addSubview:labelEtiquetaDirector];
         [self.scrollView addSubview:labelEtiquetaDuracion];
-        origenY += labelEtiquetaDuracion.frame.size.height + margenEntreEtiquetas;
+        //origenY += labelEtiquetaDuracion.frame.size.height + margenEntreEtiquetas;
     }
     
     int altoSeccion = poster.frame.size.height;

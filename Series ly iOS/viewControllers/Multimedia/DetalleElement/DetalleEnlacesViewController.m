@@ -58,7 +58,7 @@
 -(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
-    NSMutableArray * cells = [NSMutableArray array];
+    NSMutableArray * cells;
     UILabel * labelHeader;
     NSMutableArray * seasons = [NSMutableArray arrayWithArray:self.fullInfo.seasonsEpisodes.seasons];
     
