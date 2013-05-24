@@ -36,61 +36,24 @@ static PerfilViewControllerIpad * instance;
 
 - (id)init {
     self = [super init];
-    if (self) {
-        [self configureFrame];
+    if (self) {        
         
-        [self loadUserInfo];
-        [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
-        //[self showiADBanner];
-        [self showInterstitialBanner];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadUserInfo];
+    [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
+    //[self showiADBanner];
+    [self showInterstitialBanner];
 	// Do any additional setup after loading the view.
-}
-
--(void) configureFrame {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-        self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
-    } else {
-        self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
-    }
 }
 
 -(void) reloadData {
         [self.listadoCapitulosPendientesViewController performSelectorInBackground:@selector(loadData) withObject:nil];
         [self.datosPerfilViewController performSelectorInBackground:@selector(loadData) withObject:nil];
-}
-
--(void) viewWillAppear:(BOOL)animated {
-
-    //Nos suscribimos a los cambios de orientacion del iPad
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToLandscape:) name:@"RotateToLandscape" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotateToPortrait:) name:@"RotateToPortrait" object:nil];
-
-}
-
--(void) viewDidAppear:(BOOL)animated {
-    //NSLog(@"viewDidAppear");
-}
-
--(void) viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
--(void) viewDidDisappear:(BOOL)animated {
-    //NSLog(@"viewDidDisappear");
-}
-
-- (void) rotateToLandscape: (NSNotification *) notification {//llamado cuando se gira a landscape
-    self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
-}
-
-- (void) rotateToPortrait: (NSNotification *) notification {//llamado cuando se gira a portrait
-    self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
 }
 
 -(void) loadUserInfo {
@@ -103,7 +66,6 @@ static PerfilViewControllerIpad * instance;
     [self.view addSubview:self.datosPerfilViewController.view];
     
 }
-
 
 -(void) loadEpisodes {
     int anchoDiferente = 60;//diferencia de tamaño de los tableView
@@ -131,30 +93,6 @@ static PerfilViewControllerIpad * instance;
     [self.view addSubview:self.listadoOpcionesPerfilViewController.view];
     [self.view addSubview:self.listadoCapitulosPendientesViewController.view];
 }
-
-/*-(void) loadInterstitialBanner {
-    AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showInterstitialBanner];
-}*/
-
-/*-(void) showInterstitialBanner {
-    self.interstitial = [[ADInterstitialAd alloc] init];
-    self.interstitial.delegate = self;
-}
-
-- (void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
-        [interstitialAd presentFromViewController:self];
-    }
-}
-
-- (void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd {
-    
-}
-
-- (void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-    NSLog(@"interstitialAdError: %@",error.localizedDescription);
-}*/
 
 - (void) showiADBanner {
     

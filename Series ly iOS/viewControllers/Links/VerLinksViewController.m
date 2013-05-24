@@ -27,7 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureFrame];
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:self.view.frame MediaElement:self.mediaElement NavigationItem:self.navigationItem];
@@ -39,25 +38,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) configureFrame {
-    int altoNavigationBar;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-        altoNavigationBar = 32;
-    } else {
-        altoNavigationBar = 44;
-    }
-    
-    CGSize screenSize = [ScreenSizeManager currentSize];
-    
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y = 0;
-    viewFrame.origin.x = 0;
-    viewFrame.size.height = screenSize.height - altoNavigationBar;
-    viewFrame.size.width = screenSize.width;
-    
-    self.view.frame = viewFrame;
 }
 
 -(void) stopTasks {

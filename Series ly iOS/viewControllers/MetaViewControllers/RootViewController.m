@@ -7,6 +7,8 @@
 //
 
 #import "RootViewController.h"
+#import "ScreenSizeManager.h"
+#import "ConstantsCustomSplitViewController.h"
 
 @interface RootViewController ()
 
@@ -27,6 +29,7 @@
 {
     [super viewDidLoad];
     [self putBackButton];
+    [self configureFrame];
 	// Do any additional setup after loading the view.
 }
 
@@ -34,6 +37,44 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) configureFrame {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        int altoNavigationBar;
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
+            altoNavigationBar = 32;
+        } else {
+            altoNavigationBar = 44;
+        }
+        
+        CGSize screenSize = [ScreenSizeManager currentSize];
+        
+        CGRect viewFrame = self.view.frame;
+        viewFrame.origin.y = 0;
+        viewFrame.origin.x = 0;
+        viewFrame.size.height = screenSize.height - altoNavigationBar;
+        viewFrame.size.width = screenSize.width;
+        
+        self.view.frame = viewFrame;
+    } else {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
+            self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+        } else {
+            self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+        }
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (UIInterfaceOrientationIsPortrait(orientation)) {
+            self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+        } else {
+            self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+        }
+    }
+    
 }
 
 -(void) putBackButton {

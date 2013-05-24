@@ -32,7 +32,6 @@ static PerfilViewControllerIphone * instance;
 - (id)init {
     self = [super init];
     if (self) {
-        [self configureFrame];
         [self loadUserInfo];
         [self loadEpisodes];//Inicializamos los tableViews que controlan los episodios pendientes
         [self showiADBanner];
@@ -51,26 +50,6 @@ static PerfilViewControllerIphone * instance;
 
 -(void) viewWillAppear:(BOOL)animated {
 
-}
-
-
--(void) configureFrame {
-    int altoNavigationBar;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-        altoNavigationBar = 32;
-    } else {
-        altoNavigationBar = 44;
-    }
-    
-    CGSize screenSize = [ScreenSizeManager currentSize];
-    
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y = 0;
-    viewFrame.origin.x = 0;
-    viewFrame.size.height = screenSize.height - altoNavigationBar;
-    viewFrame.size.width = screenSize.width;
-    
-    self.view.frame = viewFrame;
 }
 
 

@@ -23,17 +23,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"NavigationBarTitle", nil);
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             self.clearsSelectionOnViewWillAppear = NO;
-            self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-        }
     }
     return self;
 }
-							
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
     [self configureTableView];
 }
 
@@ -96,7 +94,7 @@
     frame.origin.y = imageView.frame.origin.y + imageView.frame.size.height/2 - label.frame.size.height/2;
     frame.origin.x = imageView.frame.origin.x + imageView.frame.size.width + 15;
     label.frame = frame;
-
+    
     //altoCelda = imageView.frame.origin.y + imageView.frame.size.height + 15;
     //NSLog(@"%d",altoCelda);
     
@@ -139,19 +137,19 @@
     
     CustomCellPerfil *customCellPerfil = [[CustomCellPerfil alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPerfil ImageName:@"perfil.png" CellText:NSLocalizedString(@"TableViewPerfilCellText", nil)]];
-
+    
     CustomCellSeries *customCellSeries = [[CustomCellSeries alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellSeries ImageName:@"series.png" CellText:NSLocalizedString(@"TableViewSeriesCellText", nil)]];
     
     CustomCellPeliculas *customCellPeliculas = [[CustomCellPeliculas alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPeliculas ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewPeliculasCellText", nil)]];
-
+    
     CustomCellDocumentales *customCellDocumentales = [[CustomCellDocumentales alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellDocumentales ImageName:@"documentales.png" CellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil)]];
     
     CustomCellProgramas *customCellProgramas = [[CustomCellProgramas alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
-
+    
     CustomCellAjustes *customCellAjustes = [[CustomCellAjustes alloc] init];
     [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"acerca_de.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
     
@@ -162,7 +160,7 @@
     CustomCellUnLogin *customCellUnLogin = [[CustomCellUnLogin alloc] init];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIASALIR cellText:@"Salir" selectionType:YES customCell:customCellUnLogin];
     [cells addObject:customCellUnLogin];
-
+    
     int salirHeaderHeight;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         salirHeaderHeight = 17;
@@ -176,15 +174,18 @@
     // Creamos el tableView y lo anadimos a la subvista
     CGRect tableViewFrame = self.view.frame;
     self.customTableViewController = [[CustomTableViewController alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0] sections:sections viewController:self.detailViewController title:nil];
+    self.customTableViewController.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [customCellPerfil executeAction:self.detailViewController];
     
     
     //[self.view addSubview:self.customTableViewController];
+    //[self.tableView removeFromSuperview];
     self.tableView = self.customTableViewController;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
         [customCellPerfil customSelect];
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    }
+        
+    //}
     
 }
 

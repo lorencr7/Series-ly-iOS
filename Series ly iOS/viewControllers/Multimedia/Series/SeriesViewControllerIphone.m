@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureFrame];
+    //[self configureFrame];
     [self loadListadoSeries];
     [self showiADBanner];
 	// Do any additional setup after loading the view.

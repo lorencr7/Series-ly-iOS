@@ -8,7 +8,7 @@
 
 #import "DrawerViewController.h"
 
-#define DRAWERVIEWWIDTH 250
+#define DRAWERVIEWWIDTH 255
 #define NAVIGATIONBARHEIGHTLANDSCAPE 32
 
 @interface DrawerViewController ()
