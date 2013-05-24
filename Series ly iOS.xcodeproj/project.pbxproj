@@ -158,9 +158,6 @@
 		4577AB4716DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB3D16DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m */; };
 		4577AB6816DD8DB600B089B2 /* HorizontalPagedScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB4C16DD8DB600B089B2 /* HorizontalPagedScrollViewController.m */; };
 		4577AB6916DD8DB600B089B2 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB4E16DD8DB600B089B2 /* Page.m */; };
-		4577AB6A16DD8DB600B089B2 /* LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5116DD8DB600B089B2 /* LinkedList.m */; };
-		4577AB6B16DD8DB600B089B2 /* LinkedListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5316DD8DB600B089B2 /* LinkedListNode.m */; };
-		4577AB6C16DD8DB600B089B2 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5516DD8DB600B089B2 /* Queue.m */; };
 		4577AB6D16DD8DB600B089B2 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5816DD8DB600B089B2 /* CustomCell.m */; };
 		4577AB6E16DD8DB600B089B2 /* CustomCellAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5A16DD8DB600B089B2 /* CustomCellAppearance.m */; };
 		4577AB6F16DD8DB600B089B2 /* CustomHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577AB5C16DD8DB600B089B2 /* CustomHeaderFooter.m */; };
@@ -457,12 +454,6 @@
 		4577AB4C16DD8DB600B089B2 /* HorizontalPagedScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalPagedScrollViewController.m; sourceTree = "<group>"; };
 		4577AB4D16DD8DB600B089B2 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		4577AB4E16DD8DB600B089B2 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
-		4577AB5016DD8DB600B089B2 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
-		4577AB5116DD8DB600B089B2 /* LinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedList.m; sourceTree = "<group>"; };
-		4577AB5216DD8DB600B089B2 /* LinkedListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedListNode.h; sourceTree = "<group>"; };
-		4577AB5316DD8DB600B089B2 /* LinkedListNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedListNode.m; sourceTree = "<group>"; };
-		4577AB5416DD8DB600B089B2 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
-		4577AB5516DD8DB600B089B2 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		4577AB5716DD8DB600B089B2 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		4577AB5816DD8DB600B089B2 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		4577AB5916DD8DB600B089B2 /* CustomCellAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellAppearance.h; sourceTree = "<group>"; };
@@ -1040,7 +1031,6 @@
 				45226CFC1728872800A88843 /* DrawerViewController */,
 				453829EF16E00EB500B2F04A /* CustomSplitViewController */,
 				4577AB4A16DD8DB600B089B2 /* HorizontalScrollFrameworkClasses */,
-				4577AB4F16DD8DB600B089B2 /* LinkedList */,
 				4577AB5616DD8DB600B089B2 /* TableViewFrameworkClasses */,
 			);
 			path = Frameworks;
@@ -1055,19 +1045,6 @@
 				4577AB4E16DD8DB600B089B2 /* Page.m */,
 			);
 			path = HorizontalScrollFrameworkClasses;
-			sourceTree = "<group>";
-		};
-		4577AB4F16DD8DB600B089B2 /* LinkedList */ = {
-			isa = PBXGroup;
-			children = (
-				4577AB5016DD8DB600B089B2 /* LinkedList.h */,
-				4577AB5116DD8DB600B089B2 /* LinkedList.m */,
-				4577AB5216DD8DB600B089B2 /* LinkedListNode.h */,
-				4577AB5316DD8DB600B089B2 /* LinkedListNode.m */,
-				4577AB5416DD8DB600B089B2 /* Queue.h */,
-				4577AB5516DD8DB600B089B2 /* Queue.m */,
-			);
-			path = LinkedList;
 			sourceTree = "<group>";
 		};
 		4577AB5616DD8DB600B089B2 /* TableViewFrameworkClasses */ = {
@@ -1300,9 +1277,6 @@
 				4577AB4716DD8CC800B089B2 /* ManejadorServicioWebSeriesly.m in Sources */,
 				4577AB6816DD8DB600B089B2 /* HorizontalPagedScrollViewController.m in Sources */,
 				4577AB6916DD8DB600B089B2 /* Page.m in Sources */,
-				4577AB6A16DD8DB600B089B2 /* LinkedList.m in Sources */,
-				4577AB6B16DD8DB600B089B2 /* LinkedListNode.m in Sources */,
-				4577AB6C16DD8DB600B089B2 /* Queue.m in Sources */,
 				4577AB6D16DD8DB600B089B2 /* CustomCell.m in Sources */,
 				4577AB6E16DD8DB600B089B2 /* CustomCellAppearance.m in Sources */,
 				4577AB6F16DD8DB600B089B2 /* CustomHeaderFooter.m in Sources */,
