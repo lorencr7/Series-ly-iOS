@@ -100,7 +100,8 @@
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
     [request setDownloadCache:[ASIDownloadCache sharedCache]];
-    [request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    //[request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setNumberOfTimesToRetryOnTimeout:2];
     [self.requests addObject:request];

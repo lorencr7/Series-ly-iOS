@@ -12,6 +12,7 @@
 #import "UserCredentials.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import "ASIDownloadCache.h"
 
 static PerfilViewController * instance;
 
@@ -48,6 +49,7 @@ static PerfilViewController * instance;
     [manejadorBaseDeDatosBackup borrarUserCredentials];
     //Cargamos la ventana de log in
     AppDelegate * appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    [[ASIDownloadCache sharedCache] clearCachedResponsesForStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [appDelegate loadLogInController];
 }
 
