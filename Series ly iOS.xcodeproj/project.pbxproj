@@ -870,6 +870,7 @@
 				4577AAFE16DD8C5E00B089B2 /* Series ly iOSTests */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		4577AAC616DD8C5E00B089B2 /* Products */ = {
 			isa = PBXGroup;

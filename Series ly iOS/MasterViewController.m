@@ -23,7 +23,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"NavigationBarTitle", nil);
-            self.clearsSelectionOnViewWillAppear = NO;
+        self.clearsSelectionOnViewWillAppear = NO;
     }
     return self;
 }
@@ -35,26 +35,27 @@
     [self configureTableView];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [self.tableView setContentOffset:CGPointMake(0, 44.f) animated:NO];
+}
+
 -(void) viewDidAppear:(BOOL)animated {
     if (self.customTableViewController.lastCellPressed) {
         [self.customTableViewController.lastCellPressed customDeselect];
     }
 }
 
-#define SELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
-#define TEXTUNSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
-#define TEXTSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
-#define UNSELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
-#define SELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
-#define TEXTALIGNMENTMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
-#define ACCESORYTYPEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE UITableViewCellAccessoryNone
-#define LINEBREAKMODEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
-#define NUMBEROFLINESMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 0
-#define ACCESORYVIEWMASTERTABLEVIEWMASTERTABLEVIEWIPHONE nil
-//#define CUSTOMHEIGHTCELLMASTERTABLEVIEWMASTERTABLEVIEWIPHONE 80
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+    [self.tableView setContentOffset:CGPointMake(0, 44.f) animated:NO];
+}
 
-#define APARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE selectedTextColor:TEXTSELECTEDCOLORAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE unselectedTextFont:UNSELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE selectedTextFont:SELECTEDFONTAPARIENCIAMASTERTABLEVIEWMASTERTABLEVIEWIPHONE textAlignment:TEXTALIGNMENTMASTERTABLEVIEWMASTERTABLEVIEWIPHONE accesoryType:ACCESORYTYPEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE lineBreakMode:LINEBREAKMODEMASTERTABLEVIEWMASTERTABLEVIEWIPHONE numberOfLines:NUMBEROFLINESMASTERTABLEVIEWMASTERTABLEVIEWIPHONE accesoryView:ACCESORYVIEWMASTERTABLEVIEWMASTERTABLEVIEWIPHONE backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
-
+#pragma mark -
+#pragma mark Set up TableView
 
 -(CustomCell *) createCellListadoCapitulosWithMediaElementUserPending: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
     UIView * backgroundView = [[UIView alloc] init];
@@ -107,23 +108,7 @@
     return customCell;
 }
 
-#define UNSELECTEDCOLORAPARIENCIASALIR [UIColor redColor]
-#define SELECTEDCOLORAPARIENCIASALIR [UIColor redColor]
-#define TEXTUNSELECTEDCOLORAPARIENCIASALIR [UIColor whiteColor]
-#define TEXTSELECTEDCOLORAPARIENCIASALIR [UIColor whiteColor]
-#define UNSELECTEDFONTAPARIENCIASALIR [UIFont boldSystemFontOfSize:18.0]
-#define SELECTEDFONTAPARIENCIASALIR [UIFont boldSystemFontOfSize:18.0]
-#define BORDERCOLORSALIR [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]
-#define BORDERWIDTHSALIR 0.8
-#define CORNERRADIUSSALIR 0
-#define TEXTALIGNMENTSALIR NSTextAlignmentCenter
-#define ACCESORYTYPESALIR UITableViewCellAccessoryNone
-#define LINEBREAKMODESALIR NSLineBreakByWordWrapping
-#define NUMBEROFLINESSALIR 0
-#define ACCESORYVIEWSALIR nil
-#define HEIGHTCELLSALIR 47
 
-#define APARIENCIASALIR [[CustomCellAppearance alloc] initWithAppearanceWithUnselectedColor:UNSELECTEDCOLORAPARIENCIASALIR selectedColor:SELECTEDCOLORAPARIENCIASALIR unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIASALIR selectedTextColor:TEXTSELECTEDCOLORAPARIENCIASALIR unselectedTextFont:UNSELECTEDFONTAPARIENCIASALIR selectedTextFont:SELECTEDFONTAPARIENCIASALIR borderColor:BORDERCOLORSALIR borderWidth:BORDERWIDTHSALIR cornerRadius:CORNERRADIUSSALIR textAlignment:TEXTALIGNMENTSALIR accesoryType:ACCESORYTYPESALIR lineBreakMode:LINEBREAKMODESALIR numberOfLines:NUMBEROFLINESSALIR accesoryView:ACCESORYVIEWSALIR heightCell:HEIGHTCELLSALIR]
 
 -(void) configureTableView {
     NSMutableArray *sections = [NSMutableArray array];
@@ -182,17 +167,84 @@
     //[self.tableView removeFromSuperview];
     self.tableView = self.customTableViewController;
     //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-        [customCellPerfil customSelect];
-        
+    [self.customTableViewController selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [customCellPerfil customSelect];
+    
     //}
+    [self setUpSearchBar];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -
+#pragma mark Setup Search
+
+-(void) setUpSearchBar {
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+																					target:self
+																					action:@selector(searchBar:)];
+	self.navigationItem.leftBarButtonItem = rightBarButton;
+	
+	UISearchBar *mySearchBar = [[UISearchBar alloc] init];
+	/*[mySearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Series",@"Películas",@"DocumentalesDocumentalesDocumentales",@"Programas",nil]];
+     [mySearchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateNormal];
+     [mySearchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateSelected];*/
+    
+    //Quitar el fondo
+    if ([[[mySearchBar subviews] objectAtIndex:0] isKindOfClass:[UIImageView class]]){
+        [[[mySearchBar subviews] objectAtIndex:0] removeFromSuperview];
+    }
+	mySearchBar.delegate = self;
+    [mySearchBar setBackgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]];
+	[mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+	[mySearchBar sizeToFit];
+	self.tableView.tableHeaderView = mySearchBar;
+    
+    self.searchDisplayController2 = [[UISearchDisplayController alloc] initWithSearchBar:mySearchBar contentsController:self];
+    //_searchDisplayController = searchDisplayController;
+	//[self setSearchDisplayController:searchDisplayController];
+	[self.searchDisplayController2 setDelegate:self];
+	[self.searchDisplayController2 setSearchResultsDataSource:self];
 }
+
+#pragma mark -
+#pragma mark UISearchDisplayController Delegate Methods
+/*
+ - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+ [self filterContentForSearchText:searchString scope:
+ [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+ 
+ // Return YES to cause the search result table view to be reloaded.
+ return YES;
+ }
+ 
+ - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption{
+ [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+ [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+ 
+ // Return YES to cause the search result table view to be reloaded.
+ return YES;
+ }*/
+
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller{
+	/*
+     Bob: Because the searchResultsTableView will be released and allocated automatically, so each time we start to begin search, we set its delegate here.
+     */
+	[self.searchDisplayController2.searchResultsTableView setDelegate:self];
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
+	/*
+	 Hide the search bar
+	 */
+	[self.tableView setContentOffset:CGPointMake(0, 44.f) animated:YES];
+}
+
+#pragma mark -
+
+-(void)searchBar:(id)sender{
+	[self.searchDisplayController2 setActive:YES animated:YES];
+}
+
 
 
 @end

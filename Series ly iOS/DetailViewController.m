@@ -25,6 +25,7 @@
         if ([_detailItem respondsToSelector:@selector(stopTasks)]) {
             [_detailItem performSelector:@selector(stopTasks)];
         }
+        [_detailItem removeFromParentViewController];
         _detailItem = nil;
         _detailItem = newDetailItem;
         [self removeSubViews];
