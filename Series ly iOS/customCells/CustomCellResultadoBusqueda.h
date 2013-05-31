@@ -8,8 +8,11 @@
 
 #import "CustomCell.h"
 
+@class MediaElement;
 @interface CustomCellResultadoBusqueda : CustomCell
 
+@property(strong, nonatomic) MediaElement * mediaElement;
 
+- (id)initWithMediaElement: (MediaElement *) mediaElement;
 
 @end

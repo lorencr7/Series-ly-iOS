@@ -7,7 +7,7 @@
 //
 
 #import "Serializable.h"
-@class Poster;
+@class Poster,Pending;
 @interface MediaElement : Serializable
 
 @property (strong, nonatomic) NSString * idm;
@@ -20,6 +20,8 @@
 @property (assign, nonatomic) int episodes;
 @property (strong, nonatomic) NSString * url;
 @property (strong, nonatomic) Poster * poster;
+@property (strong, nonatomic) NSString * status;
+@property (strong, nonatomic) Pending * pending;
 
 
 

@@ -8,11 +8,11 @@
 
 #import "LoadableViewController.h"
 
-@class MediaElementUser, FullInfo, CustomTableViewController, DetalleEnlacesViewController, DetalleInformacionViewController;
+@class MediaElement, FullInfo, CustomTableViewController, DetalleEnlacesViewController, DetalleInformacionViewController;
 @interface DetalleElementViewController : LoadableViewController
 
 @property(assign, nonatomic) CGRect frame;
-@property(strong, nonatomic) MediaElementUser * mediaElementUser;
+@property(strong, nonatomic) MediaElement * mediaElement;
 @property(strong, nonatomic) FullInfo * fullInfo;
 
 @property(strong, nonatomic) DetalleEnlacesViewController * detalleEnlacesViewController;
@@ -28,9 +28,11 @@
 
 @property(strong, nonatomic) UIButton * buttonVerEnlaces;
 
-- (id)initWithFrame: (CGRect) frame MediaElementUser: (MediaElementUser *) mediaElementUser;
+-(void) hola;
 
--(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser;
+- (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement;
+
+-(void) reloadInfoFromMediaElement: (MediaElement *) mediaElementUser;
 
 
 @end

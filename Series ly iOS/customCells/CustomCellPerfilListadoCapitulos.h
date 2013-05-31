@@ -8,11 +8,11 @@
 
 #import "CustomCell.h"
 
-@class MediaElementUserPending;
+@class MediaElement;
 @interface CustomCellPerfilListadoCapitulos : CustomCell
 
-@property(strong, nonatomic) MediaElementUserPending * mediaElementUserPending;
+@property(strong, nonatomic) MediaElement * mediaElementUserPending;
 
-- (id)initWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending;
+- (id)initWithMediaElement: (MediaElement *) mediaElementUserPending;
 
 @end

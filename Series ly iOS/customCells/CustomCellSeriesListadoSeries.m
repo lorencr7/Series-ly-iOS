@@ -13,7 +13,7 @@
 
 @implementation CustomCellSeriesListadoSeries
 
-- (id)initWithMediaElementUser: (MediaElementUser *) mediaElementUser {
+- (id)initWithMediaElement: (MediaElement *) mediaElementUser {
     self = [super init];
     if (self) {
         self.mediaElementUser = mediaElementUser;
@@ -23,12 +23,12 @@
 
 -(void) executeAction: (UIViewController *) viewController {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElementUser:self.mediaElementUser];
+        VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElement:self.mediaElementUser];
         [viewController.navigationController pushViewController:verDetalleElementViewController animated:YES];
     } else {
         ListadoElementsSiguiendoViewController * listadoElementsSiguiendoViewController = (ListadoElementsSiguiendoViewController*) viewController;
         DetalleElementViewController * detalleElementViewController = listadoElementsSiguiendoViewController.detalleElementViewController;
-        [detalleElementViewController reloadInfoFromMediaElementUser:self.mediaElementUser];
+        [detalleElementViewController reloadInfoFromMediaElement:self.mediaElementUser];
     }
 }
 

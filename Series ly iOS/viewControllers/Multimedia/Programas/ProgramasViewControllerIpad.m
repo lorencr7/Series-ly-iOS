@@ -39,7 +39,7 @@
                                            self.view.frame.size.width - listadoSeriesFrame.size.width,
                                            self.view.frame.size.height);
     
-    self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElementUser:nil];
+    self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElement:nil];
     self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.listadoElementosSiguiendoViewController = [[ListadoProgramasSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:self.detalleElementViewController];
     //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceTVShowsSiguiendo DetalleElementViewController:self.detalleElementViewController];

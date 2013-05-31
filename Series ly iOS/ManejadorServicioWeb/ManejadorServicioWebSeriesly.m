@@ -13,8 +13,8 @@
 //#import "PerfilViewController.h"
 #import "UserInfo.h"
 #import "ManejadorBaseDeDatosBackup.h"
-#import "MediaElementUserPending.h"
-#import "MediaElementUser.h"
+#import "MediaElement.h"
+#import "MediaElement.h"
 #import "Links.h"
 #import "FullInfo.h"
 #import "ASIHTTPRequest.h"
@@ -172,16 +172,16 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSMutableArray * arrayOfMovies = [NSMutableArray array];
         NSMutableArray * arrayOfDocumentaries = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfSeries addObject:[[MediaElementUserPending alloc] initWithDictionary:serieDictionary]];
+            [arrayOfSeries addObject:[[MediaElement alloc] initWithDictionary:serieDictionary]];
         }
         for (NSDictionary * tvShowDictionary in tvShowsArray) {
-            [arrayOfTvShows addObject:[[MediaElementUserPending alloc] initWithDictionary:tvShowDictionary]];
+            [arrayOfTvShows addObject:[[MediaElement alloc] initWithDictionary:tvShowDictionary]];
         }
         for (NSDictionary * movieDictionary in moviesArray) {
-            [arrayOfMovies addObject:[[MediaElementUserPending alloc] initWithDictionary:movieDictionary]];
+            [arrayOfMovies addObject:[[MediaElement alloc] initWithDictionary:movieDictionary]];
         }
         for (NSDictionary * documentaryDictionary in documentariesArray) {
-            [arrayOfDocumentaries addObject:[[MediaElementUserPending alloc] initWithDictionary:documentaryDictionary]];
+            [arrayOfDocumentaries addObject:[[MediaElement alloc] initWithDictionary:documentaryDictionary]];
         }
         NSMutableDictionary * infoDictionary = [[NSMutableDictionary alloc] init];
         [infoDictionary setObject:arrayOfSeries forKey:@"series"];
@@ -210,7 +210,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSArray * seriesArray = [response objectForKey:@"series"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElement alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -234,7 +234,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSArray * seriesArray = [response objectForKey:@"tvshows"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElement alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -258,7 +258,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSArray * seriesArray = [response objectForKey:@"movies"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElement alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }
@@ -282,7 +282,7 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         NSArray * seriesArray = [response objectForKey:@"documentaries"];
         NSMutableArray * arrayOfElements = [NSMutableArray array];
         for (NSDictionary * serieDictionary in seriesArray) {
-            [arrayOfElements addObject:[[MediaElementUser alloc] initWithDictionary:serieDictionary]];
+            [arrayOfElements addObject:[[MediaElement alloc] initWithDictionary:serieDictionary]];
         }
         return arrayOfElements;
     }

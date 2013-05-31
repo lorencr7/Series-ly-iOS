@@ -10,7 +10,7 @@
 #import "ManejadorServicioWebSeriesly.h"
 #import "PerfilViewController.h"
 #import "UserCredentials.h"
-#import "MediaElementUserPending.h"
+#import "MediaElement.h"
 #import "TVFramework.h"
 #import "Links.h"
 #import "Link.h"
@@ -91,8 +91,8 @@
 }
 
 -(NSMutableArray *) getSourceData {
-    if ([self.mediaElement class] == [MediaElementUserPending class]) {
-        self.mediaElementUserPending = (MediaElementUserPending *) self.mediaElement;
+    if ([self.mediaElement class] == [MediaElement class]) {
+        self.mediaElementUserPending = (MediaElement *) self.mediaElement;
 
     } else {
     }

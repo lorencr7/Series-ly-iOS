@@ -1,14 +1,13 @@
 //
 //  VerDetalleElementViewController.m
-//  Series ly iOS
+//  Series ly
 //
-//  Created by Lorenzo Villarroel Pérez on 15/05/13.
+//  Created by Lorenzo Villarroel Pérez on 31/05/13.
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
 #import "VerDetalleElementViewController.h"
-#import "MediaElementUser.h"
-#import "ScreenSizeManager.h"
+#import "MediaElement.h"
 #import "DetalleElementViewController.h"
 
 @interface VerDetalleElementViewController ()
@@ -17,23 +16,24 @@
 
 @implementation VerDetalleElementViewController
 
-- (id)initWithMediaElementUser: (MediaElementUser *) mediaElementUser {
+- (id)initWithMediaElement: (MediaElement *) mediaElement {
     self = [super init];
     if (self) {
-        self.mediaElementUser = mediaElementUser;
-        self.title = mediaElementUser.name;
+        self.mediaElement = mediaElement;
+        self.title = mediaElement.name;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:self.view.frame MediaElementUser:self.mediaElementUser];
+    self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:self.view.frame MediaElement:self.mediaElement];
+
     [self addChildViewController:self.detalleElementViewController];
     [self.view addSubview:self.detalleElementViewController.view];
-	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +41,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 -(void) stopTasks {
     [self.detalleElementViewController cancelThreadsAndRequests];

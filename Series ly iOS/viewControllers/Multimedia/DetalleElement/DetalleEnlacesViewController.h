@@ -8,14 +8,14 @@
 
 #import "LoadableWithTableViewController.h"
 
-@class FullInfo, MediaElementUser;
+@class FullInfo, MediaElement;
 @interface DetalleEnlacesViewController : LoadableWithTableViewController
 
 @property(assign, nonatomic) CGRect frame;
 @property(strong, nonatomic) FullInfo * fullInfo;
-@property(strong, nonatomic) MediaElementUser * mediaElementUser;
+@property(strong, nonatomic) MediaElement * mediaElementUser;
 
-- (id)initWithFrame: (CGRect) frame FullInfo: (FullInfo *) fullInfo MediaElementUser: (MediaElementUser *) mediaElementUser;
+- (id)initWithFrame: (CGRect) frame FullInfo: (FullInfo *) fullInfo MediaElement: (MediaElement *) mediaElementUser;
 
 @end
 #define UNSELECTEDCOLORAPARIENCIALISTADOCAPITULOS [UIColor whiteColor]

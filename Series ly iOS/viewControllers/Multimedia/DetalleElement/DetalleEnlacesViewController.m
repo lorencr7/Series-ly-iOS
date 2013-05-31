@@ -22,7 +22,7 @@
 
 @implementation DetalleEnlacesViewController
 
-- (id)initWithFrame: (CGRect) frame FullInfo: (FullInfo *) fullInfo MediaElementUser: (MediaElementUser *) mediaElementUser {
+- (id)initWithFrame: (CGRect) frame FullInfo: (FullInfo *) fullInfo MediaElement: (MediaElement *) mediaElementUser {
     self = [super init];
     if (self) {
         self.frame = frame;
@@ -106,7 +106,7 @@
     Pending * pending = [[Pending alloc] init];
     pending.season = sesion;
     pending.episode = [NSString stringWithFormat:@"%d",capitulo];
-    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
+    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElement:self.mediaElementUser Pending:pending];
     int heightCell = 55;
     int spaceForIcons = 83;
     

@@ -9,11 +9,11 @@
 #import "CustomCellPerfilListadoCapitulos.h"
 #import "VerLinksViewController.h"
 #import "ListadoLinksViewController.h"
-#import "MediaElementUserPending.h"
+#import "MediaElement.h"
 
 @implementation CustomCellPerfilListadoCapitulos
 
-- (id)initWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
+- (id)initWithMediaElement: (MediaElement *) mediaElementUserPending {
     self = [super init];
     if (self) {
         self.mediaElementUserPending = mediaElementUserPending;
@@ -28,7 +28,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewController.navigationController pushViewController:linksViewController animated:YES];
     } else {
-        //ListadoLinksViewController * listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:linksViewController.view.frame MediaElementUserPending:self.mediaElementUserPending];
+        //ListadoLinksViewController * listadoLinksViewController = [[ListadoLinksViewController alloc] initWithFrame:linksViewController.view.frame MediaElement:self.mediaElementUserPending];
         UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:linksViewController];
         navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
         navigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];

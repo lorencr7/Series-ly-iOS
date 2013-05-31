@@ -76,7 +76,7 @@
 #pragma mark -
 #pragma mark Set up TableView
 
--(CustomCell *) createCellListadoCapitulosWithMediaElementUserPending: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
+-(CustomCell *) createCellListadoCapitulosWithMediaElement: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
     UIView * backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor whiteColor];
     backgroundView.layer.borderWidth = 1;
@@ -140,22 +140,22 @@
     /*labelHeader = [[FabricaHeaderFooterSecciones getInstance] getNewTitleLabelWithTitle:NSLocalizedString(@"TableViewSection1Text", nil) appearance:HEADERELMUNDO2(15, 8, 160, 30)];*/
     
     CustomCellPerfil *customCellPerfil = [[CustomCellPerfil alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPerfil ImageName:@"perfil.png" CellText:NSLocalizedString(@"TableViewPerfilCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellPerfil ImageName:@"perfil.png" CellText:NSLocalizedString(@"TableViewPerfilCellText", nil)]];
     
     CustomCellSeries *customCellSeries = [[CustomCellSeries alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellSeries ImageName:@"series.png" CellText:NSLocalizedString(@"TableViewSeriesCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellSeries ImageName:@"series.png" CellText:NSLocalizedString(@"TableViewSeriesCellText", nil)]];
     
     CustomCellPeliculas *customCellPeliculas = [[CustomCellPeliculas alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellPeliculas ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewPeliculasCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellPeliculas ImageName:@"peliculas.png" CellText:NSLocalizedString(@"TableViewPeliculasCellText", nil)]];
     
     CustomCellDocumentales *customCellDocumentales = [[CustomCellDocumentales alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellDocumentales ImageName:@"documentales.png" CellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellDocumentales ImageName:@"documentales.png" CellText:NSLocalizedString(@"TableViewDocumentalesCellText", nil)]];
     
     CustomCellProgramas *customCellProgramas = [[CustomCellProgramas alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellProgramas ImageName:@"tvshows.png" CellText:NSLocalizedString(@"TableViewProgramasCellText", nil)]];
     
     CustomCellAjustes *customCellAjustes = [[CustomCellAjustes alloc] init];
-    [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:customCellAjustes ImageName:@"acerca_de.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
+    [cells addObject:[self createCellListadoCapitulosWithMediaElement:customCellAjustes ImageName:@"acerca_de.png" CellText:NSLocalizedString(@"TableViewAjustesCellText", nil)]];
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:10 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     [sections addObject:sectionElement];
@@ -286,7 +286,7 @@
     return marginWidth;
 }
 
--(CustomCell *) createCellListadoSeriesWithMediaElementUser: (MediaElement *) mediaElement {
+-(CustomCell *) createCellListadoSeriesWithMediaElement: (MediaElement *) mediaElement {
     float backgroundViewWidthMargin = [self groupedCellMarginWithTableWidth:self.view.frame.size.width];
     float backgroundViewWidth = self.view.frame.size.width - 2*backgroundViewWidthMargin;
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
@@ -337,7 +337,7 @@
     [backgroundView addSubview:labelSerie];
     
     
-    CustomCellResultadoBusqueda * customCellResultadoBusqueda = [[CustomCellResultadoBusqueda alloc] init];
+    CustomCellResultadoBusqueda * customCellResultadoBusqueda = [[CustomCellResultadoBusqueda alloc] initWithMediaElement:mediaElement];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIARESULTADOSBUSQUEDA(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellResultadoBusqueda];
     //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAELMUNDOPEQUENO cellText:mediaElement.name selectionType:YES customCell:customCellResultadoBusqueda];
     return customCellResultadoBusqueda;
@@ -356,7 +356,7 @@
     SectionElement *sectionElement;
     NSMutableArray *cells = [NSMutableArray array];
     for (MediaElement * mediaElement in resultados) {
-        CustomCell * customCell = [self createCellListadoSeriesWithMediaElementUser:mediaElement];
+        CustomCell * customCell = [self createCellListadoSeriesWithMediaElement:mediaElement];
         [cells addObject:customCell];
     }
     

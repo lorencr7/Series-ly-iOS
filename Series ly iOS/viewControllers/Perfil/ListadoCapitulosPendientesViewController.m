@@ -13,7 +13,7 @@
 #import "UserCredentials.h"
 #import "CustomCellPerfilListadoCapitulos.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MediaElementUserPending.h"
+#import "MediaElement.h"
 #import "Pending.h"
 #import "Poster.h"
 #import "ASIHTTPRequest.h"
@@ -102,8 +102,8 @@
     NSMutableArray * sections = [NSMutableArray array];
     SectionElement * sectionElement;
     NSMutableArray * cells = [NSMutableArray array];
-    for (MediaElementUserPending * mediaElementUserPending in sourceData) {
-        [cells addObject:[self createCellListadoCapitulosWithMediaElementUserPending:mediaElementUserPending]];
+    for (MediaElement * mediaElementUserPending in sourceData) {
+        [cells addObject:[self createCellListadoCapitulosWithMediaElement:mediaElementUserPending]];
     }
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
@@ -121,7 +121,7 @@
 }
 
 //Este metodo crea una celda del tableView de la derecha a partir de un mediaElement
--(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElementUserPending: (MediaElementUserPending *) mediaElementUserPending {
+-(CustomCellPerfilListadoCapitulos *) createCellListadoCapitulosWithMediaElement: (MediaElement *) mediaElementUserPending {
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                        0,
                                                                        300,
@@ -184,7 +184,7 @@
     [backgroundView addSubview:labelEpisodio];
     
     
-    CustomCellPerfilListadoCapitulos * customCellPerfilListadoCapitulos = [[CustomCellPerfilListadoCapitulos alloc] initWithMediaElementUserPending:mediaElementUserPending];
+    CustomCellPerfilListadoCapitulos * customCellPerfilListadoCapitulos = [[CustomCellPerfilListadoCapitulos alloc] initWithMediaElement:mediaElementUserPending];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance:backgroundView AltoCelda:altoCelda] cellText:nil selectionType:YES customCell:customCellPerfilListadoCapitulos];
     return customCellPerfilListadoCapitulos;
 }

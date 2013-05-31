@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
+#import "CustomCellMultimediaListadoCapitulos.h"
 #import "DetalleElementViewController.h"
+#import "DetalleEnlacesViewController.h"
+#import "DetalleInformacionViewController.h"
 #import "FullInfo.h"
 #import "ManejadorServicioWebSeriesly.h"
-#import "UserCredentials.h"
-#import "MediaElementUser.h"
-#import "CustomCellMultimediaListadoCapitulos.h"
+#import "MediaElement.h"
 #import "Pending.h"
-#import "DetalleInformacionViewController.h"
-#import "DetalleEnlacesViewController.h"
+#import "UserCredentials.h"
 
 
 @interface DetalleElementViewController ()
@@ -23,11 +23,11 @@
 
 @implementation DetalleElementViewController
 
-- (id)initWithFrame: (CGRect) frame MediaElementUser: (MediaElementUser *) mediaElementUser {
+- (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement {
     self = [super init];
     if (self) {
         self.frame = frame;
-        self.mediaElementUser = mediaElementUser;
+        self.mediaElement = mediaElement;
     }
     return self;
 }
@@ -36,7 +36,7 @@
     self.view.frame = self.frame;
     [super viewDidLoad];
     
-    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElementUser:) object:self.mediaElementUser];
+    //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElement:) object:self.mediaElementUser];
     //[thread start];
 }
 
@@ -45,20 +45,20 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) reloadInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
-    self.mediaElementUser = mediaElementUser;
+-(void) reloadInfoFromMediaElement: (MediaElement *) mediaElementUser {
+    self.mediaElement = mediaElementUser;
     for (UIView * view in self.view.subviews) {
         [view removeFromSuperview];
     }
     [self performSelectorOnMainThread:@selector(activateActivityIndicator) withObject:nil waitUntilDone:YES];
-    [self performSelectorInBackground:@selector(downloadFullInfoFromMediaElementUser:) withObject:mediaElementUser];
+    [self performSelectorInBackground:@selector(downloadFullInfoFromMediaElement:) withObject:mediaElementUser];
 }
 
 -(void) getData {
-    [self downloadFullInfoFromMediaElementUser:self.mediaElementUser];
+    [self downloadFullInfoFromMediaElement:self.mediaElement];
 }
 
--(void) downloadFullInfoFromMediaElementUser: (MediaElementUser *) mediaElementUser {
+-(void) downloadFullInfoFromMediaElement: (MediaElement *) mediaElementUser {
     [self.threads addObject:[NSThread currentThread]];
     
     if (mediaElementUser) {
@@ -93,7 +93,7 @@
                                   self.view.frame.size.height - topViewSize);
         self.detalleInformacionViewController = [[DetalleInformacionViewController alloc] initWithFrame:elementsFrame FullInfo:self.fullInfo];
         
-        self.detalleEnlacesViewController = [[DetalleEnlacesViewController alloc] initWithFrame:elementsFrame FullInfo:self.fullInfo MediaElementUser:self.mediaElementUser];
+        self.detalleEnlacesViewController = [[DetalleEnlacesViewController alloc] initWithFrame:elementsFrame FullInfo:self.fullInfo MediaElement:self.mediaElement];
         [self addChildViewController:self.detalleEnlacesViewController];
     } else {
         [self loadButtonVerEnlaces];
@@ -171,7 +171,7 @@
 
 - (IBAction)manejadorButtonVerEnlaces:(UIButton *) sender {
     Pending * pending = [[Pending alloc] init];
-    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElementUser:self.mediaElementUser Pending:pending];
+    CustomCellMultimediaListadoCapitulos * customCellMultimediaListadoCapitulos = [[CustomCellMultimediaListadoCapitulos alloc] initWithMediaElement:self.mediaElement Pending:pending];
     [customCellMultimediaListadoCapitulos executeAction:self];
 }
 

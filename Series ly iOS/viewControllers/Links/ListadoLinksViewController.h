@@ -7,11 +7,11 @@
 //
 
 #import "LoadableWithTableViewController.h"
-@class MediaElement, CustomTableViewController, Links, FullInfo, MediaElementUserPending;
+@class MediaElement, CustomTableViewController, Links, FullInfo, MediaElement;
 @interface ListadoLinksViewController : LoadableWithTableViewController
 
 @property(strong,nonatomic) MediaElement * mediaElement;
-@property(strong,nonatomic) MediaElementUserPending * mediaElementUserPending;
+@property(strong,nonatomic) MediaElement * mediaElementUserPending;
 
 @property(strong,nonatomic) FullInfo * fullInfo;
 

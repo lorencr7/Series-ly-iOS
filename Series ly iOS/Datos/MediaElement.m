@@ -8,6 +8,7 @@
 
 #import "MediaElement.h"
 #import "Poster.h"
+#import "Pending.h"
 
 @implementation MediaElement
 
@@ -28,8 +29,25 @@
         
         NSDictionary * posterDictionary = [dictionary objectForKey:@"poster"];
         self.poster = [[Poster alloc] initWithDictionary:posterDictionary];
+        
+        self.status = [dictionary objectForKey:@"status"];
+        
+        NSDictionary * pendingDictionary = [dictionary objectForKey:@"pending"];
+        self.pending = [[Pending alloc] initWithDictionary:pendingDictionary];
     }
     return self;
+}
+
+-(BOOL) isEqual:(id)object {
+    if ([object class] != [self class]) {
+        return NO;
+    }
+    MediaElement * mediaElementUser = (MediaElement *) object;
+    if ([self.idm isEqualToString:mediaElementUser.idm] && [self.idMedia isEqualToString:mediaElementUser.idMedia]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

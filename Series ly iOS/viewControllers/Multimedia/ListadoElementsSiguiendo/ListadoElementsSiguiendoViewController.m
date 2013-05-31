@@ -11,7 +11,7 @@
 #import "DetalleElementViewController.h"
 #import "ListadoElementsSiguiendoViewController.h"
 #import "ManejadorServicioWebSeriesly.h"
-#import "MediaElementUser.h"
+#import "MediaElement.h"
 #import "Poster.h"
 #import "TVFramework.h"
 #import <QuartzCore/QuartzCore.h>
@@ -42,8 +42,8 @@
     NSMutableArray * cells = [NSMutableArray array];
     
     
-    for (MediaElementUser * mediaElementUser in sourceData) {
-        [cells addObject:[self createCellListadoSeriesWithMediaElementUser:mediaElementUser]];
+    for (MediaElement * mediaElementUser in sourceData) {
+        [cells addObject:[self createCellListadoSeriesWithMediaElement:mediaElementUser]];
     }
     
     
@@ -61,7 +61,7 @@
             CustomCellSeriesListadoSeries * firstCell = [sectionElement.cells objectAtIndex:0];
             [firstCell customSelect];
             [self.customTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-            [self.detalleElementViewController reloadInfoFromMediaElementUser:firstCell.mediaElementUser];
+            [self.detalleElementViewController reloadInfoFromMediaElement:firstCell.mediaElementUser];
         }
     }
     
@@ -77,7 +77,7 @@
     
 }
 
--(CustomCellSeriesListadoSeries *) createCellListadoSeriesWithMediaElementUser: (MediaElementUser *) mediaElementUser {
+-(CustomCellSeriesListadoSeries *) createCellListadoSeriesWithMediaElement: (MediaElement *) mediaElementUser {
     
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                        0,
@@ -127,7 +127,7 @@
     [backgroundView addSubview:labelSerie];
     
     
-    CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] initWithMediaElementUser:mediaElementUser];
+    CustomCellSeriesListadoSeries * customCellSeriesListadoSeries = [[CustomCellSeriesListadoSeries alloc] initWithMediaElement:mediaElementUser];
     [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:[self getAppearance:backgroundView AltoCelda:altoCelda] cellText:nil selectionType:YES customCell:customCellSeriesListadoSeries];
     return customCellSeriesListadoSeries;
     
