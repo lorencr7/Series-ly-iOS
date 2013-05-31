@@ -84,6 +84,7 @@
 		453D9B5F16E006FD00338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B5616E006FD00338C44 /* Localizable.strings */; };
 		453D9B6716E0071200338C44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6316E0071200338C44 /* InfoPlist.strings */; };
 		453D9B6816E0071200338C44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 453D9B6516E0071200338C44 /* Localizable.strings */; };
+		453E5F791758BF89002073CE /* CustomCellResultadoBusqueda.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E5F781758BF89002073CE /* CustomCellResultadoBusqueda.m */; };
 		453EBFAE174AC5FF004F6CF8 /* acerca_de.png in Resources */ = {isa = PBXBuildFile; fileRef = 453EBFAD174AC5FF004F6CF8 /* acerca_de.png */; };
 		453EBFB1174AC6EE004F6CF8 /* AjustesViewControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB0174AC6EE004F6CF8 /* AjustesViewControllerIpad.m */; };
 		453EBFB4174AC700004F6CF8 /* AjustesViewControllerIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 453EBFB3174AC700004F6CF8 /* AjustesViewControllerIphone.m */; };
@@ -338,6 +339,8 @@
 		453D9B5716E006FD00338C44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		453D9B6416E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = InfoPlist.strings; sourceTree = "<group>"; };
 		453D9B6616E0071200338C44 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		453E5F771758BF89002073CE /* CustomCellResultadoBusqueda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellResultadoBusqueda.h; sourceTree = "<group>"; };
+		453E5F781758BF89002073CE /* CustomCellResultadoBusqueda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellResultadoBusqueda.m; sourceTree = "<group>"; };
 		453EBFAD174AC5FF004F6CF8 /* acerca_de.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acerca_de.png; sourceTree = "<group>"; };
 		453EBFAF174AC6EE004F6CF8 /* AjustesViewControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AjustesViewControllerIpad.h; sourceTree = "<group>"; };
 		453EBFB0174AC6EE004F6CF8 /* AjustesViewControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AjustesViewControllerIpad.m; sourceTree = "<group>"; };
@@ -701,6 +704,8 @@
 				4554D0FE1700600B00AAA1CA /* CustomCellLinksLink.m */,
 				45195A311747CD58005A5658 /* CustomCellMultimediaListadoCapitulos.h */,
 				45195A321747CD58005A5658 /* CustomCellMultimediaListadoCapitulos.m */,
+				453E5F771758BF89002073CE /* CustomCellResultadoBusqueda.h */,
+				453E5F781758BF89002073CE /* CustomCellResultadoBusqueda.m */,
 			);
 			path = customCells;
 			sourceTree = "<group>";
@@ -1160,7 +1165,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "lorenzo villarroel perez";
 			};
-			buildConfigurationList = 4577AAC016DD8C5D00B089B2 /* Build configuration list for PBXProject "Series ly iOS" */;
+			buildConfigurationList = 4577AAC016DD8C5D00B089B2 /* Build configuration list for PBXProject "Series ly" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1377,6 +1382,7 @@
 				45116C0C174D6CAF001C3032 /* ListadoPeliculasSiguiendoViewController.m in Sources */,
 				45116C0F174D6CBB001C3032 /* ListadoDocumentalesSiguiendoViewController.m in Sources */,
 				45116C12174D6CCB001C3032 /* ListadoProgramasSiguiendoViewController.m in Sources */,
+				453E5F791758BF89002073CE /* CustomCellResultadoBusqueda.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,7 +1605,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4577AAC016DD8C5D00B089B2 /* Build configuration list for PBXProject "Series ly iOS" */ = {
+		4577AAC016DD8C5D00B089B2 /* Build configuration list for PBXProject "Series ly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4577AB0716DD8C5E00B089B2 /* Debug */,

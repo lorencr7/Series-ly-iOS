@@ -12,6 +12,13 @@
 #import "TVFramework.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomCellsMaster.h"
+#import "ManejadorServicioWebSeriesly.h"
+#import "UserCredentials.h"
+#import "MediaElement.h"
+#import "Poster.h"
+#import "ASIHTTPRequest.h"
+#import "ASIDownloadCache.h"
+#import "CustomCellResultadoBusqueda.h"
 
 @interface MasterViewController ()
 
@@ -52,7 +59,7 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear");
+    //NSLog(@"viewWillDisappear");
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
@@ -212,20 +219,159 @@
 	[self.searchBar sizeToFit];
 	self.tableView.tableHeaderView = self.searchBar;
     
+    [self iniciarTableViewBusquedas];
     self.searchDisplayController2 = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     //_searchDisplayController = searchDisplayController;
 	//[self setSearchDisplayController:searchDisplayController];
-	[self.searchDisplayController2 setDelegate:self];
-	[self.searchDisplayController2 setSearchResultsDataSource:self];
+	self.searchDisplayController2.searchResultsDelegate = self.tableViewSearch;//TableViewDelegate
+    self.searchDisplayController2.searchResultsDataSource = self.tableViewSearch;//TableViewDataSource
+    self.searchDisplayController2.delegate = self;
+    [self.searchDisplayController2 setValue:[NSNumber numberWithInt:UITableViewStyleGrouped] forKey:@"_searchResultsTableViewStyle"];
+
+}
+
+-(void) iniciarTableViewBusquedas {
+    // Cargamos la tabla
+    NSMutableArray *sections = [NSMutableArray array];
+    NSMutableArray *cells;
+    
+    cells = [NSMutableArray array];
+    
+    self.tableViewSearch = [[CustomTableViewController alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
 }
 
 #pragma mark -
 #pragma mark UISearchBar Delegate Methods
 
+//Este metodo se descarga una imagen de internet y la asigna a su imageView correspondiente
+-(void) configureImageView: (NSMutableDictionary *) arguments {
+    UIImageView * imageView = [arguments objectForKey:@"imageView"];
+    NSString * url = [arguments objectForKey:@"url"];
+    UIImage * imagen;
+    NSURL * imageURL = [NSURL URLWithString:url];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
+    [request setDownloadCache:[ASIDownloadCache sharedCache]];
+    //[request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+    [request setNumberOfTimesToRetryOnTimeout:2];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    if (!error) {
+        NSData * imageData = [request responseData];
+        imagen = [UIImage imageWithData:imageData];
+        imageView.image = imagen;
+    }
+}
+
+- (float) groupedCellMarginWithTableWidth:(float)tableViewWidth {
+    float marginWidth;
+    if(tableViewWidth > 20)
+    {
+        if(tableViewWidth < 400)
+        {
+            marginWidth = 10;
+        }
+        else
+        {
+            marginWidth = MAX(31, MIN(45, tableViewWidth*0.06));
+        }
+    }
+    else
+    {
+        marginWidth = tableViewWidth - 10;
+    }
+    return marginWidth;
+}
+
+-(CustomCell *) createCellListadoSeriesWithMediaElementUser: (MediaElement *) mediaElement {
+    float backgroundViewWidthMargin = [self groupedCellMarginWithTableWidth:self.view.frame.size.width];
+    float backgroundViewWidth = self.view.frame.size.width - 2*backgroundViewWidthMargin;
+    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       backgroundViewWidth,
+                                                                       0)];
+    int altoCelda = 50;
+    int margenX = 2;
+    int margenY = 5;
+    int separacionDelPoster = 10;
+    UIImageView * poster = [[UIImageView alloc] initWithFrame:CGRectMake(margenX, margenY, 27, 40)];
+    //poster.layer.cornerRadius = 6.0f;
+    //poster.clipsToBounds = YES;
+    NSString * urlImagen = mediaElement.poster.large;
+    if (urlImagen) {
+        NSMutableDictionary * arguments = [[NSMutableDictionary alloc] init];
+        [arguments setObject:poster forKey:@"imageView"];
+        [arguments setObject:urlImagen forKey:@"url"];
+        NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(configureImageView:) object:arguments];
+        [thread start];
+    }
+    
+    
+    UILabel * labelSerie = [[UILabel alloc] initWithFrame:
+                            CGRectMake(poster.frame.origin.x + poster.frame.size.width + separacionDelPoster,
+                                       poster.frame.origin.y + poster.frame.size.height/2 - 22/2 - 30,
+                                       backgroundView.frame.size.width - poster.frame.size.width - separacionDelPoster - 35,
+                                       0)];
+    //
+    
+    labelSerie.text = [NSString stringWithFormat:@"%@",mediaElement.name];
+    labelSerie.backgroundColor = [UIColor clearColor];
+    labelSerie.font = [UIFont systemFontOfSize:14];
+    labelSerie.numberOfLines = 2;
+    //
+    [labelSerie sizeToFit];
+    labelSerie.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    CGRect labelSerieFrame = labelSerie.frame;
+    labelSerieFrame.origin.y = (poster.frame.origin.y + poster.frame.size.height/2) - labelSerieFrame.size.height/2;
+    labelSerie.frame = labelSerieFrame;
+    
+    
+    
+    altoCelda = poster.frame.origin.y + poster.frame.size.height + margenY;
+    
+    [backgroundView addSubview:poster];
+    [backgroundView addSubview:labelSerie];
+    
+    
+    CustomCellResultadoBusqueda * customCellResultadoBusqueda = [[CustomCellResultadoBusqueda alloc] init];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIARESULTADOSBUSQUEDA(backgroundView, altoCelda) cellText:nil selectionType:YES customCell:customCellResultadoBusqueda];
+    //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAELMUNDOPEQUENO cellText:mediaElement.name selectionType:YES customCell:customCellResultadoBusqueda];
+    return customCellResultadoBusqueda;
+    
+}
+
+-(void) executeSearchWithText: (NSString *) text {
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
+    NSMutableArray * resultados = [manejadorServicioWebSeriesly getSearchResultsWithRequest:nil ProgressView:nil AuthToken:userCredentials.authToken Query:text];
+    [self performSelectorOnMainThread:@selector(createSectionsBusqueda:) withObject:resultados waitUntilDone:YES];
+}
+
+-(void) createSectionsBusqueda: (NSMutableArray *) resultados {
+    NSMutableArray *sections = [NSMutableArray array];
+    SectionElement *sectionElement;
+    NSMutableArray *cells = [NSMutableArray array];
+    for (MediaElement * mediaElement in resultados) {
+        CustomCell * customCell = [self createCellListadoSeriesWithMediaElementUser:mediaElement];
+        [cells addObject:customCell];
+    }
+    
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    [sections addObject:sectionElement];
+    self.tableViewSearch.section.sections = sections;
+    [self.searchDisplayController2.searchResultsTableView reloadData];
+}
+
+
 // Nos sirve para saber si se ha pulsado el boton de buscar
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"globalSearch" object:searchBar.text];
+        [self performSelectorInBackground:@selector(executeSearchWithText:) withObject:searchBar.text];
+        
         if ([searchBar isFirstResponder]) {
             [searchBar resignFirstResponder];
             //[self.searchDisplayController2 setActive:NO];
@@ -273,8 +419,11 @@
 
 -(BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [self.searchDisplayController2 setActive:YES];
+    self.searchDisplayController2.searchResultsTableView.backgroundView = nil;
+    self.searchDisplayController2.searchResultsTableView.backgroundColor = [UIColor whiteColor];
     return YES;
 }
+
 
 - (void) handlerResponse: (NSNotification *) notification {
     // Implementacion generica
@@ -317,7 +466,8 @@
 	/*
      Bob: Because the searchResultsTableView will be released and allocated automatically, so each time we start to begin search, we set its delegate here.
      */
-	[self.searchDisplayController2.searchResultsTableView setDelegate:self];
+    self.searchDisplayController2.searchResultsDelegate = self.tableViewSearch;//TableViewDelegate
+    self.searchDisplayController2.searchResultsDataSource = self.tableViewSearch;//TableViewDataSource
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
@@ -326,6 +476,8 @@
 	 */
 	[self.tableView setContentOffset:CGPointMake(0, 44.f) animated:YES];
 }
+
+
 
 #pragma mark -
 

@@ -329,6 +329,33 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     
 }
 
+-(NSMutableArray *) getSearchResultsWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Query: (NSString *) query {
+    NSMutableArray * results = [NSMutableArray array];
+    AuthToken * newAuthToken = [self checkAuthToken:authToken];
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/search?auth_token=%@&q=%@&onlyTitle=true&order=votes_num",newAuthToken.authToken,query];
+    //NSLog(@"%@",urlString);
+    
+    request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (error) {
+        return nil;
+    } else {
+        NSData *responseData = [request responseData];
+        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+        NSArray * resultsEncoded = response[@"results"];
+        for (NSDictionary * resultDictionary in resultsEncoded) {
+            MediaElement * mediaElement = [[MediaElement alloc] initWithDictionary:resultDictionary];
+            //NSLog(@"%@",mediaElement.name);
+            [results addObject:mediaElement];
+        }
+        //NSLog(@"%@",response);
+        return results;
+    }
+    
+    
+}
+
 
 
 @end
