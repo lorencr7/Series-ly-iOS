@@ -176,6 +176,7 @@
 }
 
 -(void) showDrawer{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];
     NSArray * botones = [NSArray arrayWithArray:self.buttons];
     for (UIBarButtonItem * button in botones) {
         //[button setAction:@selector(hideDrawer)];
@@ -195,6 +196,7 @@
 
 
 -(void) hideDrawer{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hide" object:nil];
     NSArray * botones = [NSArray arrayWithArray:self.buttons];
     for (UIBarButtonItem * button in botones) {
         //[button setAction:@selector(showDrawer)];

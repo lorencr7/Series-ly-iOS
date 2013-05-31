@@ -32,6 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlerHideMaster:) name:@"hide" object:nil];
     [self configureTableView];
 }
 
@@ -50,8 +51,19 @@
     }
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+    NSLog(@"viewWillDisappear");
+}
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
     [self.tableView setContentOffset:CGPointMake(0, 44.f) animated:NO];
+}
+
+- (void) handlerHideMaster: (NSNotification *) notification {
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+    
 }
 
 #pragma mark -
@@ -184,27 +196,103 @@
 																					action:@selector(searchBar:)];
 	self.navigationItem.leftBarButtonItem = rightBarButton;
 	
-	UISearchBar *mySearchBar = [[UISearchBar alloc] init];
-	/*[mySearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Series",@"Películas",@"DocumentalesDocumentalesDocumentales",@"Programas",nil]];
-     [mySearchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateNormal];
-     [mySearchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateSelected];*/
+	self.searchBar = [[UISearchBar alloc] init];
+	/*[self.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Series",@"Películas",@"DocumentalesDocumentalesDocumentales",@"Programas",nil]];
+     [self.searchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateNormal];
+     [self.searchBar setScopeBarButtonTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:9], UITextAttributeFont, nil] forState:UIControlStateSelected];*/
     
     //Quitar el fondo
-    if ([[[mySearchBar subviews] objectAtIndex:0] isKindOfClass:[UIImageView class]]){
-        [[[mySearchBar subviews] objectAtIndex:0] removeFromSuperview];
+    [[UISearchBar appearance] setTintColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]];
+    if ([[[self.searchBar subviews] objectAtIndex:0] isKindOfClass:[UIImageView class]]){
+        [[[self.searchBar subviews] objectAtIndex:0] removeFromSuperview];
     }
-	mySearchBar.delegate = self;
-    [mySearchBar setBackgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]];
-	[mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-	[mySearchBar sizeToFit];
-	self.tableView.tableHeaderView = mySearchBar;
+	self.searchBar.delegate = self;
+    [self.searchBar setBackgroundColor:[UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0]];
+	[self.searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+	[self.searchBar sizeToFit];
+	self.tableView.tableHeaderView = self.searchBar;
     
-    self.searchDisplayController2 = [[UISearchDisplayController alloc] initWithSearchBar:mySearchBar contentsController:self];
+    self.searchDisplayController2 = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     //_searchDisplayController = searchDisplayController;
 	//[self setSearchDisplayController:searchDisplayController];
 	[self.searchDisplayController2 setDelegate:self];
 	[self.searchDisplayController2 setSearchResultsDataSource:self];
 }
+
+#pragma mark -
+#pragma mark UISearchBar Delegate Methods
+
+// Nos sirve para saber si se ha pulsado el boton de buscar
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"globalSearch" object:searchBar.text];
+        if ([searchBar isFirstResponder]) {
+            [searchBar resignFirstResponder];
+            //[self.searchDisplayController2 setActive:NO];
+        }
+        return FALSE;
+    } else if([text isEqualToString:@""]) {
+        self.tableViewSearch.section.sections = [NSMutableArray array];
+        [self.searchDisplayController2.searchResultsTableView reloadData];
+    }
+    return TRUE;
+}
+
+// Va haciendo busquedas cada vez que se escribe un caracter nuevo
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    //self.valorBuscado = searchBar.text;
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"globalSearch" object:searchBar.text];
+}
+
+// Cancela la busqueda
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    if ([searchBar isFirstResponder]) {
+        [searchBar resignFirstResponder];
+    }
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.tableViewSearch.section.sections removeAllObjects];
+}
+
+// Empezamos a escribir en la busqueda
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    [searchBar becomeFirstResponder];
+    for(UIView *view in [searchBar subviews]) {
+        if([view isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]) {
+            UIBarButtonItem * item = (UIBarButtonItem *)view;
+            [item setTitle:@"Cancelar"];
+        }
+    }
+    
+}
+
+// Terminamos de escribir en la busqueda
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+-(BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [self.searchDisplayController2 setActive:YES];
+    return YES;
+}
+
+- (void) handlerResponse: (NSNotification *) notification {
+    // Implementacion generica
+    SectionElement *seccion = (SectionElement *)[notification object];
+    //for (SectionElement * sectionElement in self.resultadoBusquedas) {
+    for (SectionElement * sectionElement in self.customTableViewController.section.sections) {
+        if ([sectionElement.labelHeader.text isEqualToString:seccion.labelHeader.text]) {
+            [self.tableViewSearch.section.sections removeObject:sectionElement];
+            break;
+        }
+    }
+    
+    if ([seccion.cells count] > 0) {
+        [self.tableViewSearch.section.sections addObject:seccion];
+    }
+    [self.searchDisplayController2.searchResultsTableView reloadData];
+}
+
 
 #pragma mark -
 #pragma mark UISearchDisplayController Delegate Methods
@@ -243,6 +331,7 @@
 
 -(void)searchBar:(id)sender{
 	[self.searchDisplayController2 setActive:YES animated:YES];
+    [self.searchBar becomeFirstResponder];
 }
 
 

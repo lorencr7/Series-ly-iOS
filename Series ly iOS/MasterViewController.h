@@ -16,6 +16,9 @@
 @property (strong, nonatomic) CustomTableViewController * customTableViewController;
 
 @property (strong, nonatomic) UISearchDisplayController	*searchDisplayController2;
+@property (strong, nonatomic) CustomTableViewController * tableViewSearch;
+@property (strong, nonatomic) UISearchBar *searchBar;
+
 
 
 @end

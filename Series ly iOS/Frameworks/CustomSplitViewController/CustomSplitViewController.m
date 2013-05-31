@@ -184,6 +184,7 @@ static CustomSplitViewController * controller;
 }
 
 -(void) showMaster {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"show" object:nil];
     NSArray * botones = [NSArray arrayWithArray:self.buttons];
     for (UIBarButtonItem * button in botones) {
         [self ponerBotonesCerrarDrawer];
@@ -204,6 +205,7 @@ static CustomSplitViewController * controller;
 }
 
 -(void) hideMaster {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hide" object:nil];
     NSArray * botones = [NSArray arrayWithArray:self.buttons];
     for (UIBarButtonItem * button in botones) {
         [self ponerBotonesOpenDrawer];
