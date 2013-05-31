@@ -42,6 +42,7 @@
 	self.navigationItem.rightBarButtonItem = self.buttonCompartir;
     
     self.parentViewController.navigationItem.rightBarButtonItems = self.navigationItem.rightBarButtonItems;
+    
     //self.navigationItem.rightBarButtonItems = self.detalleElementViewController.navigationItem.rightBarButtonItems;
     
     //NSThread * thread = [[NSThread alloc] initWithTarget:self selector:@selector(downloadFullInfoFromMediaElement:) object:self.mediaElementUser];
@@ -137,7 +138,11 @@
     self.segmentedControl =[[UISegmentedControl alloc]
                             initWithItems:[NSArray arrayWithObjects:
                                            @"Ficha",@"Capítulos", nil]];
-    self.segmentedControl.frame = CGRectMake(margen, margen+5, self.view.frame.size.width - 2*margen, alto);
+    int maxWidth = 444;
+    int widthSegmented = self.view.frame.size.width > maxWidth ? maxWidth : self.view.frame.size.width;
+    widthSegmented -= 2*margen;
+    int origenXSegmented = self.view.frame.size.width/2 - widthSegmented/2;
+    self.segmentedControl.frame = CGRectMake(origenXSegmented, margen+5, widthSegmented, alto);
     
     self.segmentedControl.selectedSegmentIndex = 0;
     
@@ -172,7 +177,7 @@
                                                      UITextAttributeFont,
                                                      nil]  forState:UIControlStateSelected];
     
-    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.segmentedControl];
     
 }
@@ -231,19 +236,45 @@
 
 -(void)handlerAction:(id)sender{
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UIActionSheet *confirmacion = [[UIActionSheet alloc] initWithTitle: @"Compartir"
+        UIActionSheet *confirmacion = [[UIActionSheet alloc] init];
+        int numeroDeBotones = 6;
+        [confirmacion addButtonWithTitle:@"Compartir en Twitter"];
+        [confirmacion addButtonWithTitle:@"Compartir en Facebook"];
+        if (self.mediaElement.status) {
+            [confirmacion addButtonWithTitle:@"Dejar de seguir"];
+            numeroDeBotones ++;
+        }
+        
+        [confirmacion addButtonWithTitle:@"Marcar como siguiendo"];
+        [confirmacion addButtonWithTitle:@"Marcar como pendiente"];
+        [confirmacion addButtonWithTitle:@"Marcar como vista"];
+        [confirmacion addButtonWithTitle:@"Cancelar"];
+        confirmacion.delegate = self;
+        [confirmacion setCancelButtonIndex:numeroDeBotones - 1];
+        /*UIActionSheet *confirmacion = [[UIActionSheet alloc] initWithTitle: @"Compartir"
                                                                   delegate:self
                                                          cancelButtonTitle: @"Cancelar"
                                                     destructiveButtonTitle: nil
-                                                         otherButtonTitles: @"Compartir en Twitter",@"Compartir en Facebook", nil];
-        [confirmacion showInView:self.view];
+                                                         otherButtonTitles: @"Compartir en Twitter",@"Compartir en Facebook", nil];*/
+        //[confirmacion showInView:self.view];
+        [confirmacion showFromBarButtonItem:self.buttonCompartir animated:YES];
         
     } else {
-        [self iniciarTableViewPopover];
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:self.tableViewControllerPopover];
-        [self.popover presentPopoverFromBarButtonItem:self.buttonCompartir
-                             permittedArrowDirections:UIPopoverArrowDirectionAny
-                                             animated:YES];
+        if ([self.popover isPopoverVisible]) {
+            [self.popover dismissPopoverAnimated:YES];
+        } else {
+            /*SectionElement * sectionElement = [self getSectionElementForPopoverTableView];
+            NSMutableArray * sections = [NSMutableArray arrayWithObject:sectionElement];
+            int popoverHeight = sectionElement.cells.count*60 + sectionElement.cells.count*10;
+            self.tableViewControllerPopover.contentSizeForViewInPopover = CGSizeMake(250,  popoverHeight);
+            self.tableViewPopover.section.sections = sections;
+            [self.tableViewPopover reloadData];*/
+            [self iniciarTableViewPopover];
+            self.popover = [[UIPopoverController alloc] initWithContentViewController:self.tableViewControllerPopover];
+            [self.popover presentPopoverFromBarButtonItem:self.buttonCompartir
+                                 permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                 animated:YES];
+        }
     }
     
 }
@@ -271,7 +302,7 @@
     UIImageView * imageView;
     if (imageName) {
         UIImage * imagen = [UIImage imageNamed:imageName];
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 0, 0)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
         
         imageView.image = imagen;
         CGRect imageFrame = imageView.frame;
@@ -303,27 +334,50 @@
     return customCell;
 }
 
-
--(void) iniciarTableViewPopover {
-    NSMutableArray *sections;
+-(SectionElement *) getSectionElementForPopoverTableView {
     SectionElement *sectionElement;
     NSMutableArray *cells;
+    
+    cells = [NSMutableArray array];
+    
+    CustomCell *customCellTwitter = [[CustomCell alloc] init];
+    customCellTwitter = [self createCellPopover:customCellTwitter ImageName:@"twitterLogo50x50.png" CellText:@"Compartir en Twitter"];
+    [cells addObject:customCellTwitter];
+    
+    CustomCell *customCellFacebook = [[CustomCell alloc] init];
+    customCellFacebook = [self createCellPopover:customCellFacebook ImageName:@"facebookLogo50x50.png" CellText:@"Compartir en Facebook"];
+    [cells addObject:customCellFacebook];
+    
+    if (self.mediaElement.status) {
+        CustomCell *customCellNoSeguir = [[CustomCell alloc] init];
+        customCellNoSeguir = [self createCellPopover:customCellNoSeguir ImageName:nil CellText:@"Dejar de seguir"];
+        [cells addObject:customCellNoSeguir];
+    }
+    
+    CustomCell *customCellSeguir = [[CustomCell alloc] init];
+    customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:@"Marcar como siguiendo"];
+    [cells addObject:customCellSeguir];
+    
+    CustomCell *customCellPendiente = [[CustomCell alloc] init];
+    customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:@"Marcar como pendiente"];
+    [cells addObject:customCellPendiente];
+    
+    CustomCell *customCellVista = [[CustomCell alloc] init];
+    customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:@"Marcar como vista"];
+    [cells addObject:customCellVista];
+    
+    
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    return sectionElement;
+}
+
+-(void) iniciarTableViewPopover {
     CGRect frameTableView = CGRectMake(0,
                                        0,
                                        self.view.frame.size.width,
                                        self.view.frame.size.height);
-    sections = [NSMutableArray array];
-    cells = [NSMutableArray array];
-    for (int i = 0; i < 6; i++) {
-        CustomCell *customCell = [[CustomCell alloc] init];
-        customCell = [self createCellPopover:customCell ImageName:nil CellText:@"Compartir en Twitter"];
-        //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAAULA cellText:@"hola" selectionType:YES customCell:customCell];
-        [cells addObject:customCell];
-        
-    }
-    
-    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
-    [sections addObject:sectionElement];
+    SectionElement *sectionElement = [self getSectionElementForPopoverTableView];
+    NSMutableArray * sections = [NSMutableArray arrayWithObject:sectionElement];
     
     self.tableViewPopover = [[CustomTableViewController alloc] initWithFrame:frameTableView style:UITableViewStylePlain backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
     self.tableViewPopover.autoresizingMask =  UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -331,7 +385,8 @@
     self.tableViewControllerPopover = [[UITableViewController alloc] init];
     self.tableViewControllerPopover.tableView = (UITableView *)self.tableViewPopover;
     self.tableViewControllerPopover.view.alpha = 1;
-    int popoverHeight = cells.count*60 + 40;
+    //int popoverHeight = sectionElement.cells.count*60 + sectionElement.cells.count*10;
+    int popoverHeight = sectionElement.cells.count*69;
     self.tableViewControllerPopover.contentSizeForViewInPopover = CGSizeMake(250,  popoverHeight);
     //[self addChildViewController:self.tableViewControllerPopover];
     
