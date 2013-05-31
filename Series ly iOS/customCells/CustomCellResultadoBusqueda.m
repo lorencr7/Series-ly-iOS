@@ -8,7 +8,7 @@
 
 #import "CustomCellResultadoBusqueda.h"
 #import "DetailViewController.h"
-#import "VerDetalleElementSearchedViewController.h"
+#import "VerDetalleElementViewController.h"
 #import "DetalleElementViewController.h"
 
 @implementation CustomCellResultadoBusqueda
@@ -24,7 +24,7 @@
 -(void) executeAction:(UIViewController *)viewController {
     if ([viewController class] == [DetailViewController class]) {
         DetailViewController * detailViewController = (DetailViewController *) viewController;
-        VerDetalleElementSearchedViewController * verDetalleElementViewController = [[VerDetalleElementSearchedViewController alloc] initWithMediaElement:self.mediaElement];
+        VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElement:self.mediaElement];
         /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             VerDetalleElementViewController * verDetalleElementViewController = [[VerDetalleElementViewController alloc] initWithMediaElement:self.mediaElement];
             [viewController.navigationController pushViewController:verDetalleElementViewController animated:YES];

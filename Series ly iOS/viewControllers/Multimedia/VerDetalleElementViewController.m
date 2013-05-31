@@ -30,9 +30,10 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:self.view.frame MediaElement:self.mediaElement];
-
+    //self.navigationItem.rightBarButtonItems = self.detalleElementViewController.navigationItem.rightBarButtonItems;
     [self addChildViewController:self.detalleElementViewController];
     [self.view addSubview:self.detalleElementViewController.view];
+    
     
 }
 

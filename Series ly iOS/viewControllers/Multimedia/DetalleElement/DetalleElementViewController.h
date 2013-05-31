@@ -9,7 +9,7 @@
 #import "LoadableViewController.h"
 
 @class MediaElement, FullInfo, CustomTableViewController, DetalleEnlacesViewController, DetalleInformacionViewController;
-@interface DetalleElementViewController : LoadableViewController
+@interface DetalleElementViewController : LoadableViewController <UIActionSheetDelegate>
 
 @property(assign, nonatomic) CGRect frame;
 @property(strong, nonatomic) MediaElement * mediaElement;
@@ -28,7 +28,11 @@
 
 @property(strong, nonatomic) UIButton * buttonVerEnlaces;
 
--(void) hola;
+@property(strong, nonatomic) UIBarButtonItem *buttonCompartir;
+
+@property(strong, nonatomic) UIPopoverController * popover;
+@property(strong, nonatomic) UITableViewController * tableViewControllerPopover;
+@property(strong, nonatomic) CustomTableViewController * tableViewPopover;
 
 - (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement;
 
@@ -36,6 +40,20 @@
 
 
 @end
+
+#define SELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR [UIColor colorWithRed:(133/255.0) green:(163/255.0) blue:(206/255.0) alpha:1]
+#define TEXTUNSELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR nil
+#define TEXTSELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR nil
+#define UNSELECTEDFONTAPARIENCIAPOPOVERCOMPARTIR nil
+#define SELECTEDFONTAPARIENCIAPOPOVERCOMPARTIR nil
+#define TEXTALIGNMENTPOPOVERCOMPARTIR 0
+#define ACCESORYTYPEPOPOVERCOMPARTIR UITableViewCellAccessoryNone
+#define LINEBREAKMODEPOPOVERCOMPARTIR 0
+#define NUMBEROFLINESPOPOVERCOMPARTIR 0
+#define ACCESORYVIEWPOPOVERCOMPARTIR nil
+//#define CUSTOMHEIGHTCELLPOPOVERCOMPARTIR 80
+
+#define APARIENCIAPOPOVERCOMPARTIR(BACKGROUNDVIEW,HEIGHTCELL) [[CustomCellAppearance alloc] initWithAppearanceWithCustomBackgroundViewWithSelectedColor:SELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR unselectedTextColor:TEXTUNSELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR selectedTextColor:TEXTSELECTEDCOLORAPARIENCIAPOPOVERCOMPARTIR unselectedTextFont:UNSELECTEDFONTAPARIENCIAPOPOVERCOMPARTIR selectedTextFont:SELECTEDFONTAPARIENCIAPOPOVERCOMPARTIR textAlignment:TEXTALIGNMENTPOPOVERCOMPARTIR accesoryType:ACCESORYTYPEPOPOVERCOMPARTIR lineBreakMode:LINEBREAKMODEPOPOVERCOMPARTIR numberOfLines:NUMBEROFLINESPOPOVERCOMPARTIR accesoryView:ACCESORYVIEWPOPOVERCOMPARTIR backgroundView:BACKGROUNDVIEW heightCell:HEIGHTCELL]
 
 
 

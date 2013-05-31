@@ -40,13 +40,15 @@
                                            self.view.frame.size.height);
     
     self.detalleElementViewController = [[DetalleElementViewController alloc] initWithFrame:detalleSeriesFrame MediaElement:nil];
+    [self addChildViewController:self.detalleElementViewController];
     self.detalleElementViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.listadoElementosSiguiendoViewController = [[ListadoProgramasSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame DetalleElementViewController:self.detalleElementViewController];
+    [self addChildViewController:self.listadoElementosSiguiendoViewController];
     //self.listadoElementosSiguiendoViewController = [[ListadoElementsSiguiendoViewController alloc] initWithFrame:listadoSeriesFrame SourceData:SourceTVShowsSiguiendo DetalleElementViewController:self.detalleElementViewController];
     self.listadoElementosSiguiendoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
-    [self addChildViewController:self.listadoElementosSiguiendoViewController];
-    [self addChildViewController:self.detalleElementViewController];
+  
+    
     
     [self.view addSubview:self.listadoElementosSiguiendoViewController.view];
     [self.view addSubview:self.detalleElementViewController.view];
