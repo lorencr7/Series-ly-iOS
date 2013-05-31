@@ -237,7 +237,7 @@
     
     cells = [NSMutableArray array];
     
-    self.tableViewSearch = [[CustomTableViewController alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self title:nil];
+    self.tableViewSearch = [[CustomTableViewController alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped backgroundView:nil backgroundColor:[UIColor clearColor] sections:sections viewController:self.detailViewController title:nil];
 }
 
 #pragma mark -
