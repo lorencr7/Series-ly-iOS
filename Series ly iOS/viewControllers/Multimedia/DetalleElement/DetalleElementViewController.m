@@ -16,13 +16,23 @@
 #import "Pending.h"
 #import "UserCredentials.h"
 #import "TVFramework.h"
-
+#import "ShareHeaders.h"
+#import "CustomCellCompartirTwitter.h"
+#import "CustomCellCompartirFacebook.h"
 
 @interface DetalleElementViewController ()
 
 @end
 
 @implementation DetalleElementViewController
+
+static NSString * kCompartirEnTwitter = @"Compartir en Twitter";
+static NSString * kCompartirEnFacebook = @"Compartir en Facebook";
+static NSString * kDejarDeSeguir = @"Dejar de seguir";
+static NSString * kMarcarComoSiguiendo = @"Marcar como siguiendo";
+static NSString * kMarcarComoPendiente = @"Marcar como pendiente";
+static NSString * kMarcarComoVista = @"Marcar como vista";
+static NSString * kCancelar = @"Cancelar";
 
 - (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement {
     self = [super init];
@@ -238,17 +248,16 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIActionSheet *confirmacion = [[UIActionSheet alloc] init];
         int numeroDeBotones = 6;
-        [confirmacion addButtonWithTitle:@"Compartir en Twitter"];
-        [confirmacion addButtonWithTitle:@"Compartir en Facebook"];
+        [confirmacion addButtonWithTitle:kCompartirEnTwitter];
+        [confirmacion addButtonWithTitle:kCompartirEnFacebook];
         if (self.mediaElement.status) {
-            [confirmacion addButtonWithTitle:@"Dejar de seguir"];
+            [confirmacion addButtonWithTitle:kDejarDeSeguir];
             numeroDeBotones ++;
         }
-        
-        [confirmacion addButtonWithTitle:@"Marcar como siguiendo"];
-        [confirmacion addButtonWithTitle:@"Marcar como pendiente"];
-        [confirmacion addButtonWithTitle:@"Marcar como vista"];
-        [confirmacion addButtonWithTitle:@"Cancelar"];
+        [confirmacion addButtonWithTitle:kMarcarComoSiguiendo];
+        [confirmacion addButtonWithTitle:kMarcarComoPendiente];
+        [confirmacion addButtonWithTitle:kMarcarComoVista];
+        [confirmacion addButtonWithTitle:kCancelar];
         confirmacion.delegate = self;
         [confirmacion setCancelButtonIndex:numeroDeBotones - 1];
         /*UIActionSheet *confirmacion = [[UIActionSheet alloc] initWithTitle: @"Compartir"
@@ -280,16 +289,15 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 0://descartar
-            
-            break;
-        case 1: {//guardar
-            break;
-        }
-        default:
-            break;
+    NSString * buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:kCompartirEnTwitter]) {
+        NSString * postToTwitterText = [NSString stringWithFormat:@"Estoy viendo %@ en Series.ly",self.mediaElement.name];
+        [[ShareTwitter getInstance] postToTwitterText:postToTwitterText foto:nil urlString:self.mediaElement.url viewController:self];
+    } else if ([buttonTitle isEqualToString:kCompartirEnFacebook]) {
+        NSString * postToFacebookText = [NSString stringWithFormat:@"Estoy viendo %@ en Series.ly",self.mediaElement.name];
+        [[ShareFacebook getInstance] postToFacebookText:postToFacebookText foto:nil urlString:self.mediaElement.url viewController:self];
     }
+    
 }
 
 -(CustomCell *) createCellPopover: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
@@ -340,30 +348,30 @@
     
     cells = [NSMutableArray array];
     
-    CustomCell *customCellTwitter = [[CustomCell alloc] init];
-    customCellTwitter = [self createCellPopover:customCellTwitter ImageName:@"twitterLogo50x50.png" CellText:@"Compartir en Twitter"];
+    CustomCellCompartirTwitter *customCellTwitter = [[CustomCellCompartirTwitter alloc] initWithMediaElement:self.mediaElement];
+    customCellTwitter = (CustomCellCompartirTwitter*)[self createCellPopover:customCellTwitter ImageName:@"twitterLogo50x50.png" CellText:kCompartirEnTwitter];
     [cells addObject:customCellTwitter];
     
-    CustomCell *customCellFacebook = [[CustomCell alloc] init];
-    customCellFacebook = [self createCellPopover:customCellFacebook ImageName:@"facebookLogo50x50.png" CellText:@"Compartir en Facebook"];
+    CustomCellCompartirFacebook *customCellFacebook = [[CustomCellCompartirFacebook alloc] initWithMediaElement:self.mediaElement];
+    customCellFacebook = (CustomCellCompartirFacebook*)[self createCellPopover:customCellFacebook ImageName:@"facebookLogo50x50.png" CellText:kCompartirEnFacebook];
     [cells addObject:customCellFacebook];
     
     if (self.mediaElement.status) {
         CustomCell *customCellNoSeguir = [[CustomCell alloc] init];
-        customCellNoSeguir = [self createCellPopover:customCellNoSeguir ImageName:nil CellText:@"Dejar de seguir"];
+        customCellNoSeguir = [self createCellPopover:customCellNoSeguir ImageName:nil CellText:kDejarDeSeguir];
         [cells addObject:customCellNoSeguir];
     }
     
     CustomCell *customCellSeguir = [[CustomCell alloc] init];
-    customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:@"Marcar como siguiendo"];
+    customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:kMarcarComoSiguiendo];
     [cells addObject:customCellSeguir];
     
     CustomCell *customCellPendiente = [[CustomCell alloc] init];
-    customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:@"Marcar como pendiente"];
+    customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
     [cells addObject:customCellPendiente];
     
     CustomCell *customCellVista = [[CustomCell alloc] init];
-    customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:@"Marcar como vista"];
+    customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
     [cells addObject:customCellVista];
     
     
