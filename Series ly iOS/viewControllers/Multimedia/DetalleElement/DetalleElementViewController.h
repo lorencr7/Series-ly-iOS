@@ -14,6 +14,7 @@
 @property(assign, nonatomic) CGRect frame;
 @property(strong, nonatomic) MediaElement * mediaElement;
 @property(strong, nonatomic) FullInfo * fullInfo;
+@property(assign, nonatomic) BOOL esSerie;
 
 @property(strong, nonatomic) DetalleEnlacesViewController * detalleEnlacesViewController;
 @property(strong, nonatomic) DetalleInformacionViewController * detalleInformacionViewController;

@@ -33,6 +33,7 @@ static NSString * kMarcarComoSiguiendo = @"Marcar como siguiendo";
 static NSString * kMarcarComoPendiente = @"Marcar como pendiente";
 static NSString * kMarcarComoVista = @"Marcar como vista";
 static NSString * kCancelar = @"Cancelar";
+static NSString * kMarcarComoFavorita = @"Marcar como favorita";
 
 - (id)initWithFrame: (CGRect) frame MediaElement: (MediaElement *) mediaElement {
     self = [super init];
@@ -104,6 +105,7 @@ static NSString * kCancelar = @"Cancelar";
 -(void) createContent {
     CGRect elementsFrame;
     if (self.fullInfo.seasonsEpisodes) {
+        self.esSerie = YES;
         [self loadSegmentedControl];
         int topViewSize = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
         elementsFrame = CGRectMake(0,
@@ -115,6 +117,7 @@ static NSString * kCancelar = @"Cancelar";
         self.detalleEnlacesViewController = [[DetalleEnlacesViewController alloc] initWithFrame:elementsFrame FullInfo:self.fullInfo MediaElement:self.mediaElement];
         [self addChildViewController:self.detalleEnlacesViewController];
     } else {
+        self.esSerie = NO;
         [self loadButtonVerEnlaces];
         int topViewSize = self.buttonVerEnlaces.frame.origin.y + self.buttonVerEnlaces.frame.size.height;
         elementsFrame = CGRectMake(0,
@@ -254,9 +257,17 @@ static NSString * kCancelar = @"Cancelar";
             [confirmacion addButtonWithTitle:kDejarDeSeguir];
             numeroDeBotones ++;
         }
-        [confirmacion addButtonWithTitle:kMarcarComoSiguiendo];
-        [confirmacion addButtonWithTitle:kMarcarComoPendiente];
-        [confirmacion addButtonWithTitle:kMarcarComoVista];
+        if (self.esSerie) {
+            [confirmacion addButtonWithTitle:kMarcarComoSiguiendo];
+            [confirmacion addButtonWithTitle:kMarcarComoPendiente];
+            [confirmacion addButtonWithTitle:kMarcarComoVista];
+        } else {
+            [confirmacion addButtonWithTitle:kMarcarComoVista];
+            [confirmacion addButtonWithTitle:kMarcarComoFavorita];
+            [confirmacion addButtonWithTitle:kMarcarComoPendiente];
+        }
+        
+        
         [confirmacion addButtonWithTitle:kCancelar];
         confirmacion.delegate = self;
         [confirmacion setCancelButtonIndex:numeroDeBotones - 1];
@@ -362,18 +373,31 @@ static NSString * kCancelar = @"Cancelar";
         [cells addObject:customCellNoSeguir];
     }
     
-    CustomCell *customCellSeguir = [[CustomCell alloc] init];
-    customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:kMarcarComoSiguiendo];
-    [cells addObject:customCellSeguir];
-    
-    CustomCell *customCellPendiente = [[CustomCell alloc] init];
-    customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
-    [cells addObject:customCellPendiente];
-    
-    CustomCell *customCellVista = [[CustomCell alloc] init];
-    customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
-    [cells addObject:customCellVista];
-    
+    if (self.esSerie) {
+        CustomCell *customCellSeguir = [[CustomCell alloc] init];
+        customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:kMarcarComoSiguiendo];
+        [cells addObject:customCellSeguir];
+        
+        CustomCell *customCellPendiente = [[CustomCell alloc] init];
+        customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
+        [cells addObject:customCellPendiente];
+        
+        CustomCell *customCellVista = [[CustomCell alloc] init];
+        customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
+        [cells addObject:customCellVista];
+    } else {
+        CustomCell *customCellVista = [[CustomCell alloc] init];
+        customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
+        [cells addObject:customCellVista];
+        
+        CustomCell *customCellFavorita = [[CustomCell alloc] init];
+        customCellFavorita = [self createCellPopover:customCellFavorita ImageName:nil CellText:kMarcarComoFavorita];
+        [cells addObject:customCellFavorita];
+        
+        CustomCell *customCellPendiente = [[CustomCell alloc] init];
+        customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
+        [cells addObject:customCellPendiente];
+    }
     
     sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
     return sectionElement;
