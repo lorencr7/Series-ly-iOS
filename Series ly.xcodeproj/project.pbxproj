@@ -81,7 +81,6 @@
 		453829F216E00EB500B2F04A /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453829F116E00EB500B2F04A /* CustomSplitViewController.m */; };
 		453C401B1742C4D8007CE06C /* LoadableWithTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */; };
 		453C401E1742C586007CE06C /* RefreshableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C401D1742C586007CE06C /* RefreshableViewController.m */; };
-		453C40211742DCB3007CE06C /* ListOfEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C40201742DCB3007CE06C /* ListOfEpisodesViewController.m */; };
 		453C40241742DF86007CE06C /* LoadableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C40231742DF85007CE06C /* LoadableViewController.m */; };
 		453C40261742E12A007CE06C /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 453C40251742E12A007CE06C /* backButton.png */; };
 		453C402C1742E246007CE06C /* ListadoLinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C40291742E246007CE06C /* ListadoLinksViewController.m */; };
@@ -348,8 +347,6 @@
 		453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableWithTableViewController.m; sourceTree = "<group>"; };
 		453C401C1742C586007CE06C /* RefreshableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableViewController.h; sourceTree = "<group>"; };
 		453C401D1742C586007CE06C /* RefreshableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableViewController.m; sourceTree = "<group>"; };
-		453C401F1742DCB3007CE06C /* ListOfEpisodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfEpisodesViewController.h; sourceTree = "<group>"; };
-		453C40201742DCB3007CE06C /* ListOfEpisodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfEpisodesViewController.m; sourceTree = "<group>"; };
 		453C40221742DF85007CE06C /* LoadableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableViewController.h; sourceTree = "<group>"; };
 		453C40231742DF85007CE06C /* LoadableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableViewController.m; sourceTree = "<group>"; };
 		453C40251742E12A007CE06C /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
@@ -821,8 +818,6 @@
 				453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */,
 				453C401C1742C586007CE06C /* RefreshableViewController.h */,
 				453C401D1742C586007CE06C /* RefreshableViewController.m */,
-				453C401F1742DCB3007CE06C /* ListOfEpisodesViewController.h */,
-				453C40201742DCB3007CE06C /* ListOfEpisodesViewController.m */,
 				453EBFB8174AD461004F6CF8 /* ParentViewController.h */,
 				453EBFB9174AD461004F6CF8 /* ParentViewController.m */,
 			);
@@ -1420,7 +1415,6 @@
 				45CE93AE173BC14B0078E617 /* SVProgressHUD.m in Sources */,
 				453C401B1742C4D8007CE06C /* LoadableWithTableViewController.m in Sources */,
 				453C401E1742C586007CE06C /* RefreshableViewController.m in Sources */,
-				453C40211742DCB3007CE06C /* ListOfEpisodesViewController.m in Sources */,
 				453C40241742DF86007CE06C /* LoadableViewController.m in Sources */,
 				453C402C1742E246007CE06C /* ListadoLinksViewController.m in Sources */,
 				453C402D1742E246007CE06C /* VerLinkViewController.m in Sources */,
