@@ -253,7 +253,8 @@
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
     [request setDownloadCache:[ASIDownloadCache sharedCache]];
     //[request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
-    [request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    //[request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setNumberOfTimesToRetryOnTimeout:2];
     [request startSynchronous];

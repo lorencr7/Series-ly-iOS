@@ -91,7 +91,8 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
         [request setDownloadProgressDelegate:progressView];
     }
     [request setDownloadCache:[ASIDownloadCache sharedCache]];
-    [request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    //[request setCachePolicy:ASIAskServerIfModifiedCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy | ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     return request;
     
