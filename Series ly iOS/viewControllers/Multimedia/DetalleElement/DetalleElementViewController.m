@@ -19,6 +19,7 @@
 #import "ShareHeaders.h"
 #import "CustomCellCompartirTwitter.h"
 #import "CustomCellCompartirFacebook.h"
+#import "CustomCellCompartir.h"
 
 @interface DetalleElementViewController ()
 
@@ -330,12 +331,16 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
             newStatus = 2;
     }
     if (newStatus != -5) {
-        UserCredentials * userCredentials = [UserCredentials getInstance];
-        ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
-        [manejadorServicioWeb updateMediaStatusWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken MediaElement:self.mediaElement Status:newStatus];
+        [self performSelectorInBackground:@selector(changeStatus:) withObject:[NSNumber numberWithInt:newStatus]];
     }
     
     
+}
+
+-(void) changeStatus: (NSNumber *) newStatus {
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
+    [manejadorServicioWeb updateMediaStatusWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken MediaElement:self.mediaElement Status:[newStatus intValue]];
 }
 
 -(CustomCell *) createCellPopover: (CustomCell *) customCell ImageName: (NSString *) imageName CellText: (NSString *) cellText {
@@ -395,34 +400,34 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
     [cells addObject:customCellFacebook];
     
     if (self.mediaElement.status) {
-        CustomCell *customCellNoSeguir = [[CustomCell alloc] init];
-        customCellNoSeguir = [self createCellPopover:customCellNoSeguir ImageName:nil CellText:kDejarDeSeguir];
+        CustomCellCompartir *customCellNoSeguir = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:0];
+        customCellNoSeguir = (CustomCellCompartir*)[self createCellPopover:customCellNoSeguir ImageName:nil CellText:kDejarDeSeguir];
         [cells addObject:customCellNoSeguir];
     }
     
     if (self.esSerie) {
-        CustomCell *customCellSeguir = [[CustomCell alloc] init];
-        customCellSeguir = [self createCellPopover:customCellSeguir ImageName:nil CellText:kMarcarComoSiguiendo];
+        CustomCellCompartir*customCellSeguir = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:1];
+        customCellSeguir = (CustomCellCompartir*)[self createCellPopover:customCellSeguir ImageName:nil CellText:kMarcarComoSiguiendo];
         [cells addObject:customCellSeguir];
         
-        CustomCell *customCellPendiente = [[CustomCell alloc] init];
-        customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
+        CustomCellCompartir*customCellPendiente = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:2];
+        customCellPendiente = (CustomCellCompartir*)[self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
         [cells addObject:customCellPendiente];
         
-        CustomCell *customCellVista = [[CustomCell alloc] init];
-        customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
+        CustomCellCompartir*customCellVista = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:3];
+        customCellVista = (CustomCellCompartir*)[self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
         [cells addObject:customCellVista];
     } else {
-        CustomCell *customCellVista = [[CustomCell alloc] init];
-        customCellVista = [self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
+        CustomCellCompartir*customCellVista = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:1];
+        customCellVista = (CustomCellCompartir*)[self createCellPopover:customCellVista ImageName:nil CellText:kMarcarComoVista];
         [cells addObject:customCellVista];
         
-        CustomCell *customCellFavorita = [[CustomCell alloc] init];
-        customCellFavorita = [self createCellPopover:customCellFavorita ImageName:nil CellText:kMarcarComoFavorita];
+        CustomCellCompartir*customCellFavorita = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:2];
+        customCellFavorita = (CustomCellCompartir*)[self createCellPopover:customCellFavorita ImageName:nil CellText:kMarcarComoFavorita];
         [cells addObject:customCellFavorita];
         
-        CustomCell *customCellPendiente = [[CustomCell alloc] init];
-        customCellPendiente = [self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
+        CustomCellCompartir*customCellPendiente = [[CustomCellCompartir alloc] initWithMediaElement:self.mediaElement NewStatus:3];
+        customCellPendiente = (CustomCellCompartir*)[self createCellPopover:customCellPendiente ImageName:nil CellText:kMarcarComoPendiente];
         [cells addObject:customCellPendiente];
     }
     

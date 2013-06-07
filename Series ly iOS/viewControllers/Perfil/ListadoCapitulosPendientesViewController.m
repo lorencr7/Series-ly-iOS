@@ -68,7 +68,7 @@
         [NSThread exit];
     }
     if (!userPendingInfo) {
-        NSLog(@"error descargando la info de pendientes del usuario");
+        //NSLog(@"error descargando la info de pendientes del usuario");
         //UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         //[alertView show];
     } else {

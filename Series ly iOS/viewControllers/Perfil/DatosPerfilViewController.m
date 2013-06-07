@@ -62,7 +62,7 @@
         [NSThread exit];
     }
     if (!userInfo || userInfo.error != 0) {
-        NSLog(@"error descargando la info del usuario");
+        //NSLog(@"error descargando la info del usuario");
     } else {
         usuario.userInfo = userInfo;
         [self configureUserInfo];

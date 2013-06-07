@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45019FD5173166FF0002DA29 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45019FD4173166FF0002DA29 /* iAd.framework */; };
+		4506634617627DAD009B850A /* CustomCellSeguir.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506634517627DAD009B850A /* CustomCellSeguir.m */; };
 		4508CDFD16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */; };
 		45091CA616EC0A7A006517A4 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 45091CA516EC0A7A006517A4 /* UserInfo.m */; };
 		450F852D172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8526172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m */; };
@@ -207,6 +208,8 @@
 
 /* Begin PBXFileReference section */
 		45019FD4173166FF0002DA29 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		4506634417627DAD009B850A /* CustomCellSeguir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellSeguir.h; sourceTree = "<group>"; };
+		4506634517627DAD009B850A /* CustomCellSeguir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellSeguir.m; sourceTree = "<group>"; };
 		4508CDFB16ED0CB100495CBD /* CustomCellSeriesListadoSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellSeriesListadoSeries.h; sourceTree = "<group>"; };
 		4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellSeriesListadoSeries.m; sourceTree = "<group>"; };
 		45091CA416EC0A7A006517A4 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -793,6 +796,8 @@
 				4535228B175B8CCA008F5DE5 /* CustomCellCompartirTwitter.m */,
 				4535228D175B8CD9008F5DE5 /* CustomCellCompartirFacebook.h */,
 				4535228E175B8CD9008F5DE5 /* CustomCellCompartirFacebook.m */,
+				4506634417627DAD009B850A /* CustomCellSeguir.h */,
+				4506634517627DAD009B850A /* CustomCellSeguir.m */,
 			);
 			path = Compartir;
 			sourceTree = "<group>";
@@ -1457,6 +1462,7 @@
 				45352289175B8CB8008F5DE5 /* CustomCellCompartir.m in Sources */,
 				4535228C175B8CCA008F5DE5 /* CustomCellCompartirTwitter.m in Sources */,
 				4535228F175B8CD9008F5DE5 /* CustomCellCompartirFacebook.m in Sources */,
+				4506634617627DAD009B850A /* CustomCellSeguir.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

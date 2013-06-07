@@ -12,9 +12,10 @@
 @interface CustomCellCompartir : CustomCell
 
 @property (strong, nonatomic) MediaElement * mediaElement;
+@property (assign, nonatomic) int newStatus;
 
 - (id)initWithMediaElement: (MediaElement *) mediaElement;
 
-+ (id)CustomCellCompartirWithMediaElement: (MediaElement *) mediaElement;
+- (id)initWithMediaElement: (MediaElement *) mediaElement NewStatus: (int) newStatus;
 
 @end
