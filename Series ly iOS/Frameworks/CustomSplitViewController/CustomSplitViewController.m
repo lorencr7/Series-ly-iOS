@@ -123,7 +123,7 @@ static CustomSplitViewController * controller;
     [self ponerBotonesOpenDrawer];
     
     [self.detailView addGestureRecognizer:self.oneFngerPan];
-        
+    
     [self.view addSubview:self.masterView];
     [self.view addSubview:self.detailView];
     
@@ -134,14 +134,14 @@ static CustomSplitViewController * controller;
     UIViewController * mainViewController = [self.viewControllers objectAtIndex:1];
     if ([mainViewController class] == [UINavigationController class]) {//NavigationController
         UINavigationController * navigationController = (UINavigationController *) mainViewController;
-        if (navigationController.viewControllers.count == 1) {
-            UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
-            UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
-            [aButtonFavorite addTarget:self action:@selector(showMaster) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
-            rootViewController.navigationItem.leftBarButtonItem = button;
-            [self.buttons addObject:button];
-        }
+        //if (navigationController.viewControllers.count == 1) {
+        UIViewController * rootViewController = [navigationController.viewControllers objectAtIndex:0];
+        UIButton *aButtonFavorite = [self crearBarButtonBoton:@"drawer.png"];
+        [aButtonFavorite addTarget:self action:@selector(showMaster) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithCustomView:aButtonFavorite];
+        rootViewController.navigationItem.leftBarButtonItem = button;
+        [self.buttons addObject:button];
+        //}
     }
 }
 

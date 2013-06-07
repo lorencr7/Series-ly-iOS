@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AuthToken,UserToken,UserInfo,Links,FullInfo, ASIHTTPRequest;
+@class AuthToken,UserToken,UserInfo,Links,FullInfo, ASIHTTPRequest, MediaElement;
 @interface ManejadorServicioWebSeriesly : NSObject
 
 +(ManejadorServicioWebSeriesly *) getInstance;
@@ -35,6 +35,8 @@
 -(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
 
 -(NSMutableArray *) getSearchResultsWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Query: (NSString *) query;
+
+-(void) updateMediaStatusWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken MediaElement: (MediaElement *) mediaElement Status: (int) status;
 
 
 @end

@@ -300,6 +300,7 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    int newStatus = -5;
     NSString * buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:kCompartirEnTwitter]) {
         NSString * postToTwitterText = [NSString stringWithFormat:@"Estoy viendo %@ en Series.ly",self.mediaElement.name];
@@ -307,7 +308,33 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
     } else if ([buttonTitle isEqualToString:kCompartirEnFacebook]) {
         NSString * postToFacebookText = [NSString stringWithFormat:@"Estoy viendo %@ en Series.ly",self.mediaElement.name];
         [[ShareFacebook getInstance] postToFacebookText:postToFacebookText foto:nil urlString:self.mediaElement.url viewController:self];
+    } else if ([buttonTitle isEqualToString:kDejarDeSeguir]) {
+        newStatus = 0;
+    } else if ([buttonTitle isEqualToString:kMarcarComoSiguiendo]) {
+        if (self.esSerie) {
+            newStatus = 1;
+        }
+    } else if ([buttonTitle isEqualToString:kMarcarComoPendiente]) {
+        if (self.esSerie) {
+            newStatus = 2;
+        } else {
+            newStatus = 3;
+        }
+    } else if ([buttonTitle isEqualToString:kMarcarComoVista]) {
+        if (self.esSerie) {
+            newStatus = 3;
+        } else {
+            newStatus = 1;
+        }
+    } else if ([buttonTitle isEqualToString:kMarcarComoFavorita]) {
+            newStatus = 2;
     }
+    if (newStatus != -5) {
+        UserCredentials * userCredentials = [UserCredentials getInstance];
+        ManejadorServicioWebSeriesly * manejadorServicioWeb = [ManejadorServicioWebSeriesly getInstance];
+        [manejadorServicioWeb updateMediaStatusWithAuthToken:userCredentials.authToken UserToken:userCredentials.userToken MediaElement:self.mediaElement Status:newStatus];
+    }
+    
     
 }
 

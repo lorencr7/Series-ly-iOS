@@ -19,6 +19,8 @@
 #import "FullInfo.h"
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
+#import "MediaElement.h"
+#import "ASIFormDataRequest.h"
 
 static ManejadorServicioWebSeriesly * instance;
 
@@ -355,6 +357,26 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     }
     
     
+}
+
+-(void) updateMediaStatusWithAuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken MediaElement: (MediaElement *) mediaElement Status: (int) status {
+    AuthToken * newAuthToken = [self checkAuthToken:authToken];
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/status/update?auth_token=%@&user_token=%@",newAuthToken.authToken, userToken.userToken];
+    NSURL * url = [NSURL URLWithString:urlString];
+    ASIFormDataRequest *dataRequest = [ASIFormDataRequest requestWithURL:url];
+    [dataRequest setPostValue:mediaElement.idm forKey:@"idm"];
+    [dataRequest setPostValue:mediaElement.mediaType forKey:@"mediaType"];
+    [dataRequest setPostValue:[NSNumber numberWithInt:status] forKey:@"status"];
+    [dataRequest startSynchronous];
+    
+    NSError *error = [dataRequest error];
+    if (error) {
+        
+    } else {
+        NSData *responseData = [dataRequest responseData];
+        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"%@",response);
+    }
 }
 
 
