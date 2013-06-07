@@ -8,6 +8,7 @@
 
 #import "LoadableWithTableViewController.h"
 #import "TVFramework.h"
+#import "Reachability.h"
 
 @interface LoadableWithTableViewController ()
 
@@ -24,11 +25,55 @@
     
 }
 
--(void) getData {
+-(BOOL) getData {
     self.sourceData = [self getSourceData];
-    [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:YES];
+    if (self.sourceData) {
+        [self performSelectorOnMainThread:@selector(getSectionsMainThread) withObject:nil waitUntilDone:YES];
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
+-(void) createErrorMessage {
+    NSMutableArray * sections = [self getErrorDescargaSections];
+    [self reloadTableViewWithSectionsError:sections];
+}
+
+-(NSMutableArray *) getErrorDescargaSections {
+    Reachability* internetReachable;
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    
+    NSString * cellErrorText;
+    
+    if (internetStatus == NotReachable) {
+        cellErrorText = self.mensajeSinConexion;
+    } else {
+        cellErrorText = self.mensajeErrorDescarga;
+    }
+    [internetReachable stopNotifier];
+    
+    NSMutableArray *sections;
+    SectionElement *sectionElement;
+    NSMutableArray *cells;
+    sections = [NSMutableArray array];
+    cells = [NSMutableArray array];
+    
+    
+    
+    CustomCell * customCell = [[CustomCell alloc] init];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMENSAJEERROR cellText:cellErrorText selectionType:YES customCell:customCell];
+
+    //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMENSAJEERROR cellText:@"" selectionType:YES customCell:customCell];
+    [cells addObject:customCell];
+    
+    sectionElement = [[SectionElement alloc] initWithHeightHeader:0 labelHeader:nil heightFooter:0 labelFooter:nil cells:cells];
+    [sections addObject:sectionElement];
+    return sections;
+}
 
 -(void) getSectionsMainThread {
     NSMutableArray * sections = [self getSectionsFromSourceData:self.sourceData];
@@ -81,6 +126,20 @@
     if (self.tableViewController.view.alpha != 1) {
         [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 
+            [self.tableViewController.view setAlpha:1];
+        } completion:^(BOOL finished){
+            
+        }];
+    }
+}
+
+-(void) reloadTableViewWithSectionsError: (NSMutableArray *) sections {
+    self.customTableView.section.sections = sections;
+    [self.customTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    
+    if (self.tableViewController.view.alpha != 1) {
+        [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            
             [self.tableViewController.view setAlpha:1];
         } completion:^(BOOL finished){
             

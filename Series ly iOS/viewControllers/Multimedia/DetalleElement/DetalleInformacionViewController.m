@@ -39,9 +39,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) getData {
+-(BOOL) getData {
     [self createFichaFromFullInfo:self.fullInfo];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.altoContenidoScrollView + 20);
+    return YES;
 }
 
 -(void) createFichaFromFullInfo: (FullInfo *) fullInfo {

@@ -57,7 +57,7 @@
 
 -(NSMutableArray *) getSourceData {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    User * usuario = [User getInstance];
+    //User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     //Descargamos los capitulos de las series pendientes del usuario
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
@@ -72,6 +72,25 @@
         //UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Ups" message:@"No se pudo descargar los capítulos pendientes" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         //[alertView show];
     } else {
+        switch (self.tipoSourceData) {
+            case SourceSeriesPendientes:
+                self.sourceData = [userPendingInfo objectForKey:@"series"];
+                break;
+            case SourcePeliculasPendientes:
+                self.sourceData = [userPendingInfo objectForKey:@"movies"];
+                break;
+            case SourceDocumentalesPendientes:
+                self.sourceData = [userPendingInfo objectForKey:@"documentaries"];
+                break;
+            case SourceTVShowsPendientes:
+                self.sourceData = [userPendingInfo objectForKey:@"tvshows"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    /*else {
         usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
         usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];
         usuario.documentalesPendientes = [userPendingInfo objectForKey:@"documentaries"];
@@ -94,7 +113,7 @@
             
         default:
             break;
-    }
+    }*/
     return self.sourceData;
 }
 

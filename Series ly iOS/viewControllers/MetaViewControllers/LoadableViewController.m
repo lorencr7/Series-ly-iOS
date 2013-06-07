@@ -22,6 +22,10 @@
     if (self) {
         self.requests = [NSMutableArray array];
         self.threads = [NSMutableArray array];
+        
+        self.mensajeSinConexion = @"Error al cargar los datos. No hay conexion a internet.";
+        self.mensajeErrorDescarga = @"Error al cargar los datos.";
+        self.mensajeDatosVacios = @"No hay elementos disponibles.";
     }
     return self;
 }
@@ -39,12 +43,18 @@
 
 -(void) loadData {
     [self.threads addObject:[NSThread currentThread]];
-    [self getData];
+    BOOL hayData = [self getData];
+    if (hayData) {
+        
+    } else {
+        [self createErrorMessage];
+        [self stopActivityIndicator];
+    }
     [self.threads removeObject:[NSThread currentThread]];
 }
 
--(void) getData {
-    
+-(BOOL) getData {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +87,10 @@
     [activityIndicator addSubview:label];
     
     //[self activateActivityIndicator];
+    
+}
+
+-(void) createErrorMessage {
     
 }
 

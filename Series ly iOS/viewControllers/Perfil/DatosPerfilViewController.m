@@ -47,7 +47,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) getData {
+-(BOOL) getData {
     
     //[self loadUserInfo];
     User * usuario = [User getInstance];
@@ -62,12 +62,14 @@
         [NSThread exit];
     }
     if (!userInfo || userInfo.error != 0) {
+        return NO;
         //NSLog(@"error descargando la info del usuario");
     } else {
         usuario.userInfo = userInfo;
         [self configureUserInfo];
     }
     [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:nil waitUntilDone:YES];
+    return YES;
     //[self stopActivityIndicator];
     
 }

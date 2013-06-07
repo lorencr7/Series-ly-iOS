@@ -44,14 +44,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*-(void) getData {
-    [self createCapitulosFromFullInfo:self.fullInfo];
-}*/
 
 -(void) createCapitulosFromFullInfo: (FullInfo *) fullInfo {
     //[self iniciarTableView];
     //NSMutableArray * sections = [self createSectionsFromFullInfo:fullInfo];
     //[self performSelectorOnMainThread:@selector(reloadTableViewWithSections:) withObject:sections waitUntilDone:YES];
+}
+
+-(NSMutableArray *) getSourceData {
+    return [NSMutableArray array];
 }
 
 

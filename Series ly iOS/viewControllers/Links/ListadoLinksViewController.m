@@ -82,12 +82,13 @@
     [self.view addSubview:self.tableViewController.view];
 }
 
--(void) getData {
-    [super getData];
+-(BOOL) getData {
+    BOOL hayData = [super getData];
     if ([[NSThread currentThread] isCancelled]) {
         [NSThread exit];
     }
     self.parentNavigationItem.titleView = self.segmentedControl;
+    return hayData;
 }
 
 -(NSMutableArray *) getSourceData {

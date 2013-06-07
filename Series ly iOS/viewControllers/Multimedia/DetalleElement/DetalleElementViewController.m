@@ -75,8 +75,15 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
     [self performSelectorInBackground:@selector(downloadFullInfoFromMediaElement:) withObject:mediaElementUser];
 }
 
--(void) getData {
+-(BOOL) getData {
     [self downloadFullInfoFromMediaElement:self.mediaElement];
+    if (self.fullInfo) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+    
 }
 
 -(void) downloadFullInfoFromMediaElement: (MediaElement *) mediaElementUser {
@@ -99,8 +106,8 @@ static NSString * kMarcarComoFavorita = @"Marcar como favorita";
         
         
     }
-    
     [self stopActivityIndicator];
+    
 }
 
 -(void) createContent {

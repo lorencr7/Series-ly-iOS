@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		45019FD5173166FF0002DA29 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45019FD4173166FF0002DA29 /* iAd.framework */; };
 		4506634617627DAD009B850A /* CustomCellSeguir.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506634517627DAD009B850A /* CustomCellSeguir.m */; };
+		4506634917628980009B850A /* LoadableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506634817628980009B850A /* LoadableViewController.m */; };
 		4508CDFD16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */; };
 		45091CA616EC0A7A006517A4 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 45091CA516EC0A7A006517A4 /* UserInfo.m */; };
 		450F852D172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F8526172D8C9F008523A5 /* ListadoCapitulosPendientesViewController.m */; };
@@ -82,7 +83,6 @@
 		453829F216E00EB500B2F04A /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453829F116E00EB500B2F04A /* CustomSplitViewController.m */; };
 		453C401B1742C4D8007CE06C /* LoadableWithTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */; };
 		453C401E1742C586007CE06C /* RefreshableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C401D1742C586007CE06C /* RefreshableViewController.m */; };
-		453C40241742DF86007CE06C /* LoadableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C40231742DF85007CE06C /* LoadableViewController.m */; };
 		453C40261742E12A007CE06C /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 453C40251742E12A007CE06C /* backButton.png */; };
 		453C402C1742E246007CE06C /* ListadoLinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C40291742E246007CE06C /* ListadoLinksViewController.m */; };
 		453C402D1742E246007CE06C /* VerLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C402B1742E246007CE06C /* VerLinkViewController.m */; };
@@ -210,6 +210,8 @@
 		45019FD4173166FF0002DA29 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4506634417627DAD009B850A /* CustomCellSeguir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellSeguir.h; sourceTree = "<group>"; };
 		4506634517627DAD009B850A /* CustomCellSeguir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellSeguir.m; sourceTree = "<group>"; };
+		4506634717628980009B850A /* LoadableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableViewController.h; sourceTree = "<group>"; };
+		4506634817628980009B850A /* LoadableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableViewController.m; sourceTree = "<group>"; };
 		4508CDFB16ED0CB100495CBD /* CustomCellSeriesListadoSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellSeriesListadoSeries.h; sourceTree = "<group>"; };
 		4508CDFC16ED0CB100495CBD /* CustomCellSeriesListadoSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellSeriesListadoSeries.m; sourceTree = "<group>"; };
 		45091CA416EC0A7A006517A4 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -350,8 +352,6 @@
 		453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableWithTableViewController.m; sourceTree = "<group>"; };
 		453C401C1742C586007CE06C /* RefreshableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableViewController.h; sourceTree = "<group>"; };
 		453C401D1742C586007CE06C /* RefreshableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableViewController.m; sourceTree = "<group>"; };
-		453C40221742DF85007CE06C /* LoadableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableViewController.h; sourceTree = "<group>"; };
-		453C40231742DF85007CE06C /* LoadableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableViewController.m; sourceTree = "<group>"; };
 		453C40251742E12A007CE06C /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		453C40281742E246007CE06C /* ListadoLinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListadoLinksViewController.h; sourceTree = "<group>"; };
 		453C40291742E246007CE06C /* ListadoLinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListadoLinksViewController.m; sourceTree = "<group>"; };
@@ -815,16 +815,16 @@
 		453C40181742C4D8007CE06C /* MetaViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				453C402E1742E24E007CE06C /* RootViewController.h */,
-				453C402F1742E24E007CE06C /* RootViewController.m */,
-				453C40221742DF85007CE06C /* LoadableViewController.h */,
-				453C40231742DF85007CE06C /* LoadableViewController.m */,
+				4506634717628980009B850A /* LoadableViewController.h */,
+				4506634817628980009B850A /* LoadableViewController.m */,
 				453C40191742C4D8007CE06C /* LoadableWithTableViewController.h */,
 				453C401A1742C4D8007CE06C /* LoadableWithTableViewController.m */,
-				453C401C1742C586007CE06C /* RefreshableViewController.h */,
-				453C401D1742C586007CE06C /* RefreshableViewController.m */,
 				453EBFB8174AD461004F6CF8 /* ParentViewController.h */,
 				453EBFB9174AD461004F6CF8 /* ParentViewController.m */,
+				453C401C1742C586007CE06C /* RefreshableViewController.h */,
+				453C401D1742C586007CE06C /* RefreshableViewController.m */,
+				453C402E1742E24E007CE06C /* RootViewController.h */,
+				453C402F1742E24E007CE06C /* RootViewController.m */,
 			);
 			path = MetaViewControllers;
 			sourceTree = "<group>";
@@ -1420,7 +1420,6 @@
 				45CE93AE173BC14B0078E617 /* SVProgressHUD.m in Sources */,
 				453C401B1742C4D8007CE06C /* LoadableWithTableViewController.m in Sources */,
 				453C401E1742C586007CE06C /* RefreshableViewController.m in Sources */,
-				453C40241742DF86007CE06C /* LoadableViewController.m in Sources */,
 				453C402C1742E246007CE06C /* ListadoLinksViewController.m in Sources */,
 				453C402D1742E246007CE06C /* VerLinkViewController.m in Sources */,
 				453C40301742E250007CE06C /* RootViewController.m in Sources */,
@@ -1463,6 +1462,7 @@
 				4535228C175B8CCA008F5DE5 /* CustomCellCompartirTwitter.m in Sources */,
 				4535228F175B8CD9008F5DE5 /* CustomCellCompartirFacebook.m in Sources */,
 				4506634617627DAD009B850A /* CustomCellSeguir.m in Sources */,
+				4506634917628980009B850A /* LoadableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

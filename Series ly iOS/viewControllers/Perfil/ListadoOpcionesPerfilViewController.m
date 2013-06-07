@@ -42,9 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*-(NSMutableArray *) getSourceData {
-    return nil;
-}*/
+-(NSMutableArray *) getSourceData {
+    return [NSMutableArray array];
+}
 
 -(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
     NSMutableArray * sections = [NSMutableArray array];

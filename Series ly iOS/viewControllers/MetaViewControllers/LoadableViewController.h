@@ -15,6 +15,10 @@
 @property(strong, nonatomic) NSMutableArray * requests;
 @property(strong, nonatomic) NSMutableArray * threads;
 
+@property(strong, nonatomic) NSString * mensajeSinConexion;
+@property(strong, nonatomic) NSString * mensajeErrorDescarga;
+@property(strong, nonatomic) NSString * mensajeDatosVacios;
+
 -(void) iniciarActivityIndicator;
 -(void) activateActivityIndicator;
 -(void) stopActivityIndicator;
@@ -22,8 +26,9 @@
 -(void) configureImageView: (NSMutableDictionary *) arguments;
 
 -(void) loadData;
--(void) getData;
+-(BOOL) getData;
 
 -(void) cancelThreadsAndRequests;
+-(void) createErrorMessage;
 
 @end
