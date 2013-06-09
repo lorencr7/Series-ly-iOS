@@ -1,0 +1,44 @@
+
+// *********************** strings of all the pictures and icons ***********************
+//NSLocalizedString(@"ImageWriteMessageMultimediaTabHighlighted", nil)
+"LogoSeriesly375x375" = "logoSeriesly375x375.png";
+
+
+// *********************** strings in login page ***********************
+"LabelLogoText" = "Series ly";
+"LabelTitleText" = "Inicio de Sesión";
+"UserTextFieldPlaceHolder" = "Usuario o Email";
+"PasswordTextFieldPlaceHolder" = "Contraseña";
+"LoggInButtonTitle" = "Iniciar sesión";
+"LoadBarPreviousButtonTitle" = "Anterior";
+"LoadBarNextButtonTitle" = "Siguiente";
+"LoadBarDoneButtonTitle" = "OK";
+
+//*********************** string in master view ***********************
+"NavigationBarTitle" = "Series ly";
+"TableViewSection1Text" = "Tv social";
+"TableViewPerfilCellText" = "Perfil";
+"TableViewAmigosCellText" = "Amigos";
+"TableViewSeriesCellText" = "Series";
+"TableViewProgramasCellText" = "Programas";
+"TableViewPeliculasCellText" = "Peliculas";
+"TableViewDocumentalesCellText" = "Documentales";
+"TableViewAjustesCellText" = "Ajustes";
+
+//
+
+"BarButtonLogout" = "Salir";
+
+"TableViewPerfilCellText" = "Perfil";
+"TableViewSettingsCellText" = "Acerca de";
+
+"TextHeaderSettingsRate" = "Seriesly App";
+"TextCellRate" = "Votar";
+"TextCellFeedback" = "Feedback";
+
+"TextHeaderSettingsAbout" = "Acerca de";
+"TextCellVersion" = "Versión 0.1";
+"TextCellAutores" = "Autores";
+
+"TextHeaderEpisodes" = "Capítulos para ver hoy";
+"TextCellEpisodes" = "Dos Hombres y Medio 10x06";
