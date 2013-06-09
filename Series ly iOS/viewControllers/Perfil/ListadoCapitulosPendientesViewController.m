@@ -57,7 +57,7 @@
 
 -(NSMutableArray *) getSourceData {
     ManejadorServicioWebSeriesly * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesly getInstance];
-    //User * usuario = [User getInstance];
+    User * usuario = [User getInstance];
     UserCredentials * userCredentials = [UserCredentials getInstance];
     //Descargamos los capitulos de las series pendientes del usuario
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nil];
@@ -89,6 +89,10 @@
             default:
                 break;
         }
+        usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];
+        usuario.peliculasPendientes = [userPendingInfo objectForKey:@"movies"];
+        usuario.documentalesPendientes = [userPendingInfo objectForKey:@"documentaries"];
+        usuario.tvShowsPendientes = [userPendingInfo objectForKey:@"tvshows"];
     }
     /*else {
         usuario.seriesPendientes = [userPendingInfo objectForKey:@"series"];

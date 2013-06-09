@@ -65,7 +65,7 @@
     
     
     CustomCell * customCell = [[CustomCell alloc] init];
-    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMENSAJEERROR cellText:cellErrorText selectionType:YES customCell:customCell];
+    [[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMENSAJEERROR cellText:cellErrorText selectionType:NO customCell:customCell];
 
     //[[FabricaCeldas getInstance] createNewCustomCellWithAppearance:APARIENCIAMENSAJEERROR cellText:@"" selectionType:YES customCell:customCell];
     [cells addObject:customCell];

@@ -37,6 +37,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSMutableArray *) getSourceData {
+    return [NSMutableArray array];
+}
+
 -(NSMutableArray *) getSectionsFromSourceData: (NSMutableArray *) sourceData {
     NSMutableArray *sections = [NSMutableArray array];
     SectionElement *sectionElement;
@@ -49,7 +53,7 @@
     CustomCell *customCell;
     
     customCell = [[CustomCell alloc] init];
-    [cells addObject:[self createCellAcercaDe:customCell CellText:@"Series.ly Versión 1.0 - 20 de Mayo de 2013"]];
+    [cells addObject:[self createCellAcercaDe:customCell CellText:@"Series.ly Versión 1.0 - 9 de Junio de 2013"]];
     
     customCell = [[CustomCell alloc] init];
     [cells addObject:[self createCellAcercaDe:customCell CellText:@"Autor: Lorenzo Villarroel"]];
