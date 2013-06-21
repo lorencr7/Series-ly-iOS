@@ -313,10 +313,10 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
 }
 
 
--(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType {
+-(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (int) mediaType {
     
     AuthToken * newAuthToken = [self checkAuthToken:authToken];
-    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/full_info/?idm=%@&mediaType=%@&auth_token=%@&user_token=%@",idm ,mediaType ,newAuthToken.authToken,userToken.userToken];
+    NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/media/full_info/?idm=%@&mediaType=%d&auth_token=%@&user_token=%@",idm ,mediaType ,newAuthToken.authToken,userToken.userToken];
     //NSLog(@"%@",urlString);
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
     [request startSynchronous];
@@ -364,8 +364,9 @@ static NSString * appSecret = @"n6RDtC2qVTAfDPyWUppu";
     NSString * urlString = [NSString stringWithFormat:@"http://api.series.ly/v2/user/media/status/update?auth_token=%@&user_token=%@",newAuthToken.authToken, userToken.userToken];
     NSURL * url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *dataRequest = [ASIFormDataRequest requestWithURL:url];
+    NSNumber * mediaType = [NSNumber numberWithInt:mediaElement.mediaType];
     [dataRequest setPostValue:mediaElement.idm forKey:@"idm"];
-    [dataRequest setPostValue:mediaElement.mediaType forKey:@"mediaType"];
+    [dataRequest setPostValue:mediaType forKey:@"mediaType"];
     [dataRequest setPostValue:[NSNumber numberWithInt:status] forKey:@"status"];
     [dataRequest startSynchronous];
     

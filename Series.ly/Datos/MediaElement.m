@@ -16,11 +16,14 @@
     self = [super initWithDictionary:dictionary];
     if (self) {
         self.idm = [dictionary objectForKey:@"idm"];
-        self.idMedia = [dictionary objectForKey:@"id_media"];
-        self.mediaType = [dictionary objectForKey:@"mediaType"];
+        NSString * idMedia2 = [dictionary objectForKey:@"id_media"];
+        self.idMedia = [idMedia2 intValue];
+        NSString * mediaType2 = [dictionary objectForKey:@"mediaType"];
+        self.mediaType = [mediaType2 intValue];
         self.name = [dictionary objectForKey:@"name"];
         self.mainGenre = [dictionary objectForKey:@"maingenre"];
-        self.year = [dictionary objectForKey:@"year"];
+        NSString * year2 = [dictionary objectForKey:@"year"];
+        self.year = [year2 intValue];
         NSString * seasons2 = [dictionary objectForKey:@"seasons"];
         self.seasons = [seasons2 intValue];
         NSString * episodes2 = [dictionary objectForKey:@"episodes"];
@@ -43,7 +46,7 @@
         return NO;
     }
     MediaElement * mediaElementUser = (MediaElement *) object;
-    if ([self.idm isEqualToString:mediaElementUser.idm] && [self.idMedia isEqualToString:mediaElementUser.idMedia]) {
+    if (self.idm == mediaElementUser.idm && self.idMedia == mediaElementUser.idMedia) {
         return YES;
     }
     

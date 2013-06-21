@@ -72,6 +72,13 @@ static CustomSplitViewController * controller;
     
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:1];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHideReceived:) name:@"hideDrawer" object:nil];
+}
+
+-(void) notificationHideReceived: (NSNotification *) notification {
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        [self hideMaster];
+    }
 }
 
 - (void)viewDidUnload {

@@ -113,7 +113,7 @@
     if ([[NSThread currentThread] isCancelled]) {
         [NSThread exit];
     }
-    switch ([self.fullInfo.mediaType intValue]) {
+    switch (self.fullInfo.mediaType ) {
         case 1:
             [self cargarLinksSeries];
             break;
@@ -272,7 +272,7 @@
                                               ProgressView:nil
                                                  AuthToken:userCredentials.authToken
                                                        Idm:self.fullInfo.idm
-                                                 MediaType:[NSString stringWithFormat:@"%d",[self.fullInfo.mediaType intValue]]];
+                                                 MediaType:[NSString stringWithFormat:@"%d",self.fullInfo.mediaType]];
     [self.requests removeObject:request];
 
     if ([[NSThread currentThread] isCancelled]) {

@@ -32,7 +32,7 @@
 
 
 -(Links *) getLinksWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
--(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (NSString *) mediaType;
+-(FullInfo *) getMediaFullInfoWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken UserToken: (UserToken *) userToken Idm: (NSString *) idm MediaType: (int) mediaType;
 
 -(NSMutableArray *) getSearchResultsWithRequest: (ASIHTTPRequest *) request ProgressView: (UIProgressView *) progressView AuthToken: (AuthToken *) authToken Query: (NSString *) query;
 

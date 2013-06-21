@@ -79,7 +79,8 @@
     }
     int origenY = poster.frame.origin.y;
     int margenEntreEtiquetas = 13;
-    if (fullInfo.year && ![fullInfo.year isEqualToString:@""]) {
+    //if (fullInfo.year && ![fullInfo.year isEqualToString:@""]) {
+    if (fullInfo.year) {
         UILabel * labelEtiquetaAno = [[UILabel alloc] initWithFrame:CGRectMake(origenXEtiquetas, origenY, widthEtiquetas, 0)];
         labelEtiquetaAno.backgroundColor = [UIColor clearColor];
         labelEtiquetaAno.font = [UIFont boldSystemFontOfSize:14];
@@ -91,7 +92,8 @@
         UILabel * labelContenidoAno = [[UILabel alloc] initWithFrame:CGRectMake(origenXContenidos, origenY, widthContenidos, 0)];
         labelContenidoAno.backgroundColor = [UIColor clearColor];
         labelContenidoAno.font = [UIFont systemFontOfSize:13];
-        labelContenidoAno.text = fullInfo.year;
+        //labelContenidoAno.text = fullInfo.year;
+        labelContenidoAno.text = [NSString stringWithFormat:@"%d",fullInfo.year];
         labelContenidoAno.numberOfLines = 0;
         labelContenidoAno.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [labelContenidoAno sizeToFit];

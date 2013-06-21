@@ -70,6 +70,11 @@
     
     [self.view addSubview:self.drawerView];
     [self.view addSubview:self.mainView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHideReceived:) name:@"hideDrawer" object:nil];
+}
+
+-(void) notificationHideReceived: (NSNotification *) notification {
+    [self hideDrawer];
 }
 
 -(void) ponerBotonesOpenDrawer {

@@ -11,11 +11,11 @@
 @interface MediaElement : Serializable
 
 @property (strong, nonatomic) NSString * idm;
-@property (strong, nonatomic) NSString * idMedia;
-@property (strong, nonatomic) NSString * mediaType;
+@property (assign, nonatomic) int idMedia;
+@property (assign, nonatomic) int mediaType;
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * mainGenre;
-@property (strong, nonatomic) NSString * year;
+@property (assign, nonatomic) int year;
 @property (assign, nonatomic) int seasons;
 @property (assign, nonatomic) int episodes;
 @property (strong, nonatomic) NSString * url;

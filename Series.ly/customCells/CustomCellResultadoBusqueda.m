@@ -33,6 +33,7 @@
             [detalleElementViewController reloadInfoFromMediaElement:self.mediaElement];
         }*/
         [detailViewController.navigationController pushViewController:verDetalleElementViewController animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideDrawer" object:nil];
     }
 }
 
