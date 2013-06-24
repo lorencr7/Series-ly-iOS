@@ -53,7 +53,7 @@
     CustomCell *customCell;
     
     customCell = [[CustomCell alloc] init];
-    [cells addObject:[self createCellAcercaDe:customCell CellText:@"Series.ly Versión 1.0 - 9 de Junio de 2013"]];
+    [cells addObject:[self createCellAcercaDe:customCell CellText:@"Series.ly Versión 1.0 - 24 de Junio de 2013"]];
     
     customCell = [[CustomCell alloc] init];
     [cells addObject:[self createCellAcercaDe:customCell CellText:@"Autor: Lorenzo Villarroel"]];
