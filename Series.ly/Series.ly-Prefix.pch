@@ -14,4 +14,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "TemaSeriesLy.h"
+
+    #define BASESTRING @"http://api.series.ly/v2/"
+    #define APPID @"1040"
+    #define APPSECRET @"n6RDtC2qVTAfDPyWUppu"
+
 #endif

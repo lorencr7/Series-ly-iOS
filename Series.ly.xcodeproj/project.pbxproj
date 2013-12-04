@@ -18,6 +18,13 @@
 		4538BA6C184F633400D32205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA54184F633400D32205 /* UIKit.framework */; };
 		4538BA74184F633400D32205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4538BA72184F633400D32205 /* InfoPlist.strings */; };
 		4538BA76184F633400D32205 /* Series_lyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4538BA75184F633400D32205 /* Series_lyTests.m */; };
+		4556078E184F8A4100CA7E10 /* logo256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 4556078C184F8A4100CA7E10 /* logo256x256.png */; };
+		4556078F184F8A4100CA7E10 /* logoSeriesly375x375.png in Resources */ = {isa = PBXBuildFile; fileRef = 4556078D184F8A4100CA7E10 /* logoSeriesly375x375.png */; };
+		45560793184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45560792184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.m */; };
+		4556079B184F8CE100CA7E10 /* AuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 45560796184F8CE100CA7E10 /* AuthToken.m */; };
+		4556079C184F8CE100CA7E10 /* UserCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 45560798184F8CE100CA7E10 /* UserCredentials.m */; };
+		4556079D184F8CE100CA7E10 /* UserToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4556079A184F8CE100CA7E10 /* UserToken.m */; };
+		455607A0184F8D4200CA7E10 /* MetaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4556079F184F8D4100CA7E10 /* MetaModel.m */; };
 		4573B2F8184F6B98006ECA31 /* LoadableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B2DB184F6B98006ECA31 /* LoadableViewController.m */; };
 		4573B2F9184F6B98006ECA31 /* LoadableWithSegmentedControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B2DD184F6B98006ECA31 /* LoadableWithSegmentedControlViewController.m */; };
 		4573B2FA184F6B98006ECA31 /* LoadableWithTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B2DF184F6B98006ECA31 /* LoadableWithTableViewController.m */; };
@@ -91,6 +98,18 @@
 		4538BA71184F633400D32205 /* Series.lyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Series.lyTests-Info.plist"; sourceTree = "<group>"; };
 		4538BA73184F633400D32205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4538BA75184F633400D32205 /* Series_lyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Series_lyTests.m; sourceTree = "<group>"; };
+		4556078C184F8A4100CA7E10 /* logo256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo256x256.png; sourceTree = "<group>"; };
+		4556078D184F8A4100CA7E10 /* logoSeriesly375x375.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoSeriesly375x375.png; sourceTree = "<group>"; };
+		45560791184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManejadorServicioWebSeriesLy.h; sourceTree = "<group>"; };
+		45560792184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManejadorServicioWebSeriesLy.m; sourceTree = "<group>"; };
+		45560795184F8CE100CA7E10 /* AuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthToken.h; sourceTree = "<group>"; };
+		45560796184F8CE100CA7E10 /* AuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthToken.m; sourceTree = "<group>"; };
+		45560797184F8CE100CA7E10 /* UserCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCredentials.h; sourceTree = "<group>"; };
+		45560798184F8CE100CA7E10 /* UserCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCredentials.m; sourceTree = "<group>"; };
+		45560799184F8CE100CA7E10 /* UserToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserToken.h; sourceTree = "<group>"; };
+		4556079A184F8CE100CA7E10 /* UserToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserToken.m; sourceTree = "<group>"; };
+		4556079E184F8D4100CA7E10 /* MetaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaModel.h; sourceTree = "<group>"; };
+		4556079F184F8D4100CA7E10 /* MetaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaModel.m; sourceTree = "<group>"; };
 		4573B2D6184F69A4006ECA31 /* TemaSeriesLy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemaSeriesLy.h; sourceTree = "<group>"; };
 		4573B2DA184F6B98006ECA31 /* LoadableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableViewController.h; sourceTree = "<group>"; };
 		4573B2DB184F6B98006ECA31 /* LoadableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadableViewController.m; sourceTree = "<group>"; };
@@ -288,9 +307,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		45560790184F8A7800CA7E10 /* ManejadorServicioWeb */ = {
+			isa = PBXGroup;
+			children = (
+				45560791184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.h */,
+				45560792184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.m */,
+			);
+			path = ManejadorServicioWeb;
+			sourceTree = "<group>";
+		};
+		45560794184F8CE100CA7E10 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				45560795184F8CE100CA7E10 /* AuthToken.h */,
+				45560796184F8CE100CA7E10 /* AuthToken.m */,
+				45560797184F8CE100CA7E10 /* UserCredentials.h */,
+				45560798184F8CE100CA7E10 /* UserCredentials.m */,
+				45560799184F8CE100CA7E10 /* UserToken.h */,
+				4556079A184F8CE100CA7E10 /* UserToken.m */,
+			);
+			path = Credentials;
+			sourceTree = "<group>";
+		};
 		4573B2CF184F67CD006ECA31 /* Clases */ = {
 			isa = PBXGroup;
 			children = (
+				45560790184F8A7800CA7E10 /* ManejadorServicioWeb */,
 				4573B34B184F6E8E006ECA31 /* Login */,
 				4573B2D4184F6992006ECA31 /* DataModel */,
 				4573B2D5184F6992006ECA31 /* Tema */,
@@ -312,6 +354,8 @@
 		4573B2D1184F67CD006ECA31 /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				4556078C184F8A4100CA7E10 /* logo256x256.png */,
+				4556078D184F8A4100CA7E10 /* logoSeriesly375x375.png */,
 			);
 			path = Imagenes;
 			sourceTree = "<group>";
@@ -319,6 +363,9 @@
 		4573B2D4184F6992006ECA31 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				4556079E184F8D4100CA7E10 /* MetaModel.h */,
+				4556079F184F8D4100CA7E10 /* MetaModel.m */,
+				45560794184F8CE100CA7E10 /* Credentials */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -550,9 +597,11 @@
 			files = (
 				4573B377184F7E4C006ECA31 /* Localizable.strings in Resources */,
 				4538BA63184F633400D32205 /* Images.xcassets in Resources */,
+				4556078F184F8A4100CA7E10 /* logoSeriesly375x375.png in Resources */,
 				4573B376184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
 				4573B375184F7E4C006ECA31 /* Localizable.strings in Resources */,
 				4573B374184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
+				4556078E184F8A4100CA7E10 /* logo256x256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +623,7 @@
 				4573B369184F7996006ECA31 /* LoginiPadViewController.m in Sources */,
 				4573B2FD184F6B98006ECA31 /* RefreshableViewController.m in Sources */,
 				4573B31E184F6BEF006ECA31 /* CustomTableViewController.m in Sources */,
+				4556079C184F8CE100CA7E10 /* UserCredentials.m in Sources */,
 				4573B363184F7972006ECA31 /* LoginViewController.m in Sources */,
 				4538BA61184F633400D32205 /* AppDelegate.m in Sources */,
 				4573B31B184F6BEF006ECA31 /* CustomCellAppearance.m in Sources */,
@@ -591,16 +641,19 @@
 				4573B2FF184F6B98006ECA31 /* GeolocationManager.m in Sources */,
 				4573B305184F6B98006ECA31 /* TratadorImagenes.m in Sources */,
 				4573B2FB184F6B98006ECA31 /* LoadableWithTextFieldsForLoginViewController.m in Sources */,
+				45560793184F8A9400CA7E10 /* ManejadorServicioWebSeriesLy.m in Sources */,
 				4573B33F184F6CF6006ECA31 /* ASIFormDataRequest.m in Sources */,
 				4573B35E184F7810006ECA31 /* HTAutocompleteManager.m in Sources */,
 				4573B340184F6CF6006ECA31 /* ASIHTTPRequest.m in Sources */,
 				4573B2FE184F6B98006ECA31 /* RootViewController.m in Sources */,
+				4556079D184F8CE100CA7E10 /* UserToken.m in Sources */,
 				4573B304184F6B98006ECA31 /* ScreenSizeManager.m in Sources */,
 				4573B2FA184F6B98006ECA31 /* LoadableWithTableViewController.m in Sources */,
 				4573B35F184F7810006ECA31 /* HTAutocompleteTextField.m in Sources */,
 				4573B320184F6BEF006ECA31 /* FabricaCeldas.m in Sources */,
 				4573B303184F6B98006ECA31 /* Reachability.m in Sources */,
 				4573B342184F6CF6006ECA31 /* ASINetworkQueue.m in Sources */,
+				4556079B184F8CE100CA7E10 /* AuthToken.m in Sources */,
 				4573B2F8184F6B98006ECA31 /* LoadableViewController.m in Sources */,
 				4573B322184F6BEF006ECA31 /* SectionElement.m in Sources */,
 				4573B300184F6B98006ECA31 /* ImagenGrandeViewController.m in Sources */,
@@ -609,6 +662,7 @@
 				4573B33B184F6CF6006ECA31 /* ASIAuthenticationDialog.m in Sources */,
 				4573B360184F7810006ECA31 /* HTEmailAutocompleteTextField.m in Sources */,
 				4573B2F9184F6B98006ECA31 /* LoadableWithSegmentedControlViewController.m in Sources */,
+				455607A0184F8D4200CA7E10 /* MetaModel.m in Sources */,
 				4573B31A184F6BEF006ECA31 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
