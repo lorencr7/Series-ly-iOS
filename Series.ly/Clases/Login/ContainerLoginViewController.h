@@ -8,6 +8,9 @@
 
 #import "RootViewController.h"
 
+@class LoginViewController;
 @interface ContainerLoginViewController : RootViewController
+
+@property(strong, nonatomic) LoginViewController * loginViewController;
 
 @end

@@ -1,0 +1,21 @@
+// *********************** strings in login page ***********************
+
+// Loging and Sign up
+"LabelLogoText" = "Hooola";
+"LabelTitleText" = "Inicio de Sesión";
+"UserTextFieldPlaceHolder" = "Usuario o Email";
+"PasswordTextFieldPlaceHolder" = "Contraseña";
+"LoginButtonTitle" = "Iniciar sesión";
+"LoadBarPreviousButtonTitle" = "Anterior";
+"LoadBarNextButtonTitle" = "Siguiente";
+"LoadBarDoneButtonTitle" = "Aceptar";
+"RegistrateButtonTitle" = "Regístrate";
+"RememberPasswordButtonTitle" = "Recordar contraseña";
+"PersonalInfoWindowTitle" = "Información personal";
+"ImageSelectionInfoWindowTitle" = "Selección de imagen";
+"CancelButtonText" = "Cancelar";
+"NextButtonText" = "Siguiente";
+
+"ProblemLoginTitle" = "Error al entrar";
+"ProblemLoginDescription" = "El usuario o contraseña introducidos son erróneos o no dispones de conexión a internet";
+"ProblemLoginAction" = "Aceptar";

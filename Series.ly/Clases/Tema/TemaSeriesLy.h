@@ -9,6 +9,9 @@
 #define PURPLECOLOR [UIColor colorWithRed:(255/255.0) green:(134/255.0) blue:(169/255.0) alpha:1.0]//
 #define ORANGECOLOR [UIColor colorWithRed:(236/255.0) green:(90/255.0) blue:(29/255.0) alpha:1.0]
 
+#define TOPCOLOR [UIColor whiteColor]
+#define BOTTOMCOLOR [UIColor colorWithRed:(52/255.0) green:(193/255.0) blue:(255/255.0) alpha:1.0]
+
 //#define ORANGEEXPANDEDBAR [UIColor colorWithRed:(241/255.0) green:(159/255.0) blue:(105/255.0) alpha:0.95]
 #define ORANGEEXPANDEDBAR [UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:0.97]
 

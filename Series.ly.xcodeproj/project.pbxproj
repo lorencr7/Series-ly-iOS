@@ -10,7 +10,6 @@
 		4538BA51184F633400D32205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA50184F633400D32205 /* Foundation.framework */; };
 		4538BA53184F633400D32205 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA52184F633400D32205 /* CoreGraphics.framework */; };
 		4538BA55184F633400D32205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA54184F633400D32205 /* UIKit.framework */; };
-		4538BA5B184F633400D32205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4538BA59184F633400D32205 /* InfoPlist.strings */; };
 		4538BA5D184F633400D32205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4538BA5C184F633400D32205 /* main.m */; };
 		4538BA61184F633400D32205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4538BA60184F633400D32205 /* AppDelegate.m */; };
 		4538BA63184F633400D32205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4538BA62184F633400D32205 /* Images.xcassets */; };
@@ -54,11 +53,16 @@
 		4573B348184F6D97006ECA31 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4573B347184F6D97006ECA31 /* SystemConfiguration.framework */; };
 		4573B34A184F6DA0006ECA31 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4573B349184F6DA0006ECA31 /* MobileCoreServices.framework */; };
 		4573B34E184F6EB4006ECA31 /* ContainerLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B34D184F6EB4006ECA31 /* ContainerLoginViewController.m */; };
-		4573B351184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B350184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.m */; };
-		4573B354184F6EDB006ECA31 /* ContainerLoginiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B353184F6EDB006ECA31 /* ContainerLoginiPadViewController.m */; };
 		4573B35E184F7810006ECA31 /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B359184F7810006ECA31 /* HTAutocompleteManager.m */; };
 		4573B35F184F7810006ECA31 /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B35B184F7810006ECA31 /* HTAutocompleteTextField.m */; };
 		4573B360184F7810006ECA31 /* HTEmailAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B35D184F7810006ECA31 /* HTEmailAutocompleteTextField.m */; };
+		4573B363184F7972006ECA31 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B362184F7972006ECA31 /* LoginViewController.m */; };
+		4573B366184F798B006ECA31 /* LoginiPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B365184F798B006ECA31 /* LoginiPhoneViewController.m */; };
+		4573B369184F7996006ECA31 /* LoginiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4573B368184F7996006ECA31 /* LoginiPadViewController.m */; };
+		4573B374184F7E4C006ECA31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B36B184F7E4C006ECA31 /* InfoPlist.strings */; };
+		4573B375184F7E4C006ECA31 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B36D184F7E4C006ECA31 /* Localizable.strings */; };
+		4573B376184F7E4C006ECA31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B370184F7E4C006ECA31 /* InfoPlist.strings */; };
+		4573B377184F7E4C006ECA31 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B372184F7E4C006ECA31 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +81,6 @@
 		4538BA52184F633400D32205 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4538BA54184F633400D32205 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4538BA58184F633400D32205 /* Series.ly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Series.ly-Info.plist"; sourceTree = "<group>"; };
-		4538BA5A184F633400D32205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4538BA5C184F633400D32205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4538BA5E184F633400D32205 /* Series.ly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Series.ly-Prefix.pch"; sourceTree = "<group>"; };
 		4538BA5F184F633400D32205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -161,16 +164,22 @@
 		4573B349184F6DA0006ECA31 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4573B34C184F6EB4006ECA31 /* ContainerLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerLoginViewController.h; sourceTree = "<group>"; };
 		4573B34D184F6EB4006ECA31 /* ContainerLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerLoginViewController.m; sourceTree = "<group>"; };
-		4573B34F184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerLoginiPhoneViewController.h; sourceTree = "<group>"; };
-		4573B350184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerLoginiPhoneViewController.m; sourceTree = "<group>"; };
-		4573B352184F6EDB006ECA31 /* ContainerLoginiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerLoginiPadViewController.h; sourceTree = "<group>"; };
-		4573B353184F6EDB006ECA31 /* ContainerLoginiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerLoginiPadViewController.m; sourceTree = "<group>"; };
 		4573B358184F7810006ECA31 /* HTAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAutocompleteManager.h; sourceTree = "<group>"; };
 		4573B359184F7810006ECA31 /* HTAutocompleteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAutocompleteManager.m; sourceTree = "<group>"; };
 		4573B35A184F7810006ECA31 /* HTAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAutocompleteTextField.h; sourceTree = "<group>"; };
 		4573B35B184F7810006ECA31 /* HTAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAutocompleteTextField.m; sourceTree = "<group>"; };
 		4573B35C184F7810006ECA31 /* HTEmailAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTEmailAutocompleteTextField.h; sourceTree = "<group>"; };
 		4573B35D184F7810006ECA31 /* HTEmailAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTEmailAutocompleteTextField.m; sourceTree = "<group>"; };
+		4573B361184F7972006ECA31 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4573B362184F7972006ECA31 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4573B364184F798B006ECA31 /* LoginiPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginiPhoneViewController.h; sourceTree = "<group>"; };
+		4573B365184F798B006ECA31 /* LoginiPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginiPhoneViewController.m; sourceTree = "<group>"; };
+		4573B367184F7996006ECA31 /* LoginiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginiPadViewController.h; sourceTree = "<group>"; };
+		4573B368184F7996006ECA31 /* LoginiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginiPadViewController.m; sourceTree = "<group>"; };
+		4573B36C184F7E4C006ECA31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		4573B36E184F7E4C006ECA31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		4573B371184F7E4C006ECA31 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = InfoPlist.strings; sourceTree = "<group>"; };
+		4573B373184F7E4C006ECA31 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,8 +261,9 @@
 		4538BA57184F633400D32205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4573B36A184F7E4C006ECA31 /* en.lproj */,
+				4573B36F184F7E4C006ECA31 /* es.lproj */,
 				4538BA58184F633400D32205 /* Series.ly-Info.plist */,
-				4538BA59184F633400D32205 /* InfoPlist.strings */,
 				4538BA5C184F633400D32205 /* main.m */,
 				4538BA5E184F633400D32205 /* Series.ly-Prefix.pch */,
 			);
@@ -421,10 +431,12 @@
 			children = (
 				4573B34C184F6EB4006ECA31 /* ContainerLoginViewController.h */,
 				4573B34D184F6EB4006ECA31 /* ContainerLoginViewController.m */,
-				4573B34F184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.h */,
-				4573B350184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.m */,
-				4573B352184F6EDB006ECA31 /* ContainerLoginiPadViewController.h */,
-				4573B353184F6EDB006ECA31 /* ContainerLoginiPadViewController.m */,
+				4573B361184F7972006ECA31 /* LoginViewController.h */,
+				4573B362184F7972006ECA31 /* LoginViewController.m */,
+				4573B364184F798B006ECA31 /* LoginiPhoneViewController.h */,
+				4573B365184F798B006ECA31 /* LoginiPhoneViewController.m */,
+				4573B367184F7996006ECA31 /* LoginiPadViewController.h */,
+				4573B368184F7996006ECA31 /* LoginiPadViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -440,6 +452,24 @@
 				4573B35D184F7810006ECA31 /* HTEmailAutocompleteTextField.m */,
 			);
 			path = HTAutocompleteTextField;
+			sourceTree = "<group>";
+		};
+		4573B36A184F7E4C006ECA31 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				4573B36B184F7E4C006ECA31 /* InfoPlist.strings */,
+				4573B36D184F7E4C006ECA31 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		4573B36F184F7E4C006ECA31 /* es.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				4573B370184F7E4C006ECA31 /* InfoPlist.strings */,
+				4573B372184F7E4C006ECA31 /* Localizable.strings */,
+			);
+			path = es.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,6 +530,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 4538BA44184F633300D32205;
 			productRefGroup = 4538BA4E184F633400D32205 /* Products */;
@@ -517,8 +548,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4538BA5B184F633400D32205 /* InfoPlist.strings in Resources */,
+				4573B377184F7E4C006ECA31 /* Localizable.strings in Resources */,
 				4538BA63184F633400D32205 /* Images.xcassets in Resources */,
+				4573B376184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
+				4573B375184F7E4C006ECA31 /* Localizable.strings in Resources */,
+				4573B374184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,8 +571,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4573B369184F7996006ECA31 /* LoginiPadViewController.m in Sources */,
 				4573B2FD184F6B98006ECA31 /* RefreshableViewController.m in Sources */,
 				4573B31E184F6BEF006ECA31 /* CustomTableViewController.m in Sources */,
+				4573B363184F7972006ECA31 /* LoginViewController.m in Sources */,
 				4538BA61184F633400D32205 /* AppDelegate.m in Sources */,
 				4573B31B184F6BEF006ECA31 /* CustomCellAppearance.m in Sources */,
 				4573B31F184F6BEF006ECA31 /* CustomTableViewEditController.m in Sources */,
@@ -561,7 +597,6 @@
 				4573B2FE184F6B98006ECA31 /* RootViewController.m in Sources */,
 				4573B304184F6B98006ECA31 /* ScreenSizeManager.m in Sources */,
 				4573B2FA184F6B98006ECA31 /* LoadableWithTableViewController.m in Sources */,
-				4573B351184F6ECB006ECA31 /* ContainerLoginiPhoneViewController.m in Sources */,
 				4573B35F184F7810006ECA31 /* HTAutocompleteTextField.m in Sources */,
 				4573B320184F6BEF006ECA31 /* FabricaCeldas.m in Sources */,
 				4573B303184F6B98006ECA31 /* Reachability.m in Sources */,
@@ -569,10 +604,10 @@
 				4573B2F8184F6B98006ECA31 /* LoadableViewController.m in Sources */,
 				4573B322184F6BEF006ECA31 /* SectionElement.m in Sources */,
 				4573B300184F6B98006ECA31 /* ImagenGrandeViewController.m in Sources */,
+				4573B366184F798B006ECA31 /* LoginiPhoneViewController.m in Sources */,
 				4573B321184F6BEF006ECA31 /* FabricaHeaderFooterSecciones.m in Sources */,
 				4573B33B184F6CF6006ECA31 /* ASIAuthenticationDialog.m in Sources */,
 				4573B360184F7810006ECA31 /* HTEmailAutocompleteTextField.m in Sources */,
-				4573B354184F6EDB006ECA31 /* ContainerLoginiPadViewController.m in Sources */,
 				4573B2F9184F6B98006ECA31 /* LoadableWithSegmentedControlViewController.m in Sources */,
 				4573B31A184F6BEF006ECA31 /* CustomCell.m in Sources */,
 			);
@@ -597,20 +632,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4538BA59184F633400D32205 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4538BA5A184F633400D32205 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		4538BA72184F633400D32205 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4538BA73184F633400D32205 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4573B36B184F7E4C006ECA31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4573B36C184F7E4C006ECA31 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4573B36D184F7E4C006ECA31 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4573B36E184F7E4C006ECA31 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4573B370184F7E4C006ECA31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4573B371184F7E4C006ECA31 /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4573B372184F7E4C006ECA31 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4573B373184F7E4C006ECA31 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

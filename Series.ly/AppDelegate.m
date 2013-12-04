@@ -8,14 +8,14 @@
 
 #import "AppDelegate.h"
 #import "ContainerLoginViewController.h"
-#import "ContainerLoginiPhoneViewController.h"
-#import "ContainerLoginiPadViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
+    [self setAppAppearance];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString * userToken = [defaults objectForKey:@"userToken"];
     
@@ -58,12 +58,12 @@
 }
 
 -(void) loadLoginController {
-    ContainerLoginViewController * loginViewController;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    ContainerLoginViewController * loginViewController = [[ContainerLoginViewController alloc] init];;
+    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         loginViewController = [[ContainerLoginiPhoneViewController alloc] init];
     } else {
         loginViewController = [[ContainerLoginiPadViewController alloc] init];
-    }
+    }*/
     self.window.rootViewController = loginViewController;
     //[self.window makeKeyAndVisible];
     
@@ -100,7 +100,7 @@
     [[UINavigationBar appearance] setBackgroundImage:NAVIGATIONBARIMAGE forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     
-    [[UIToolbar appearance] setBarTintColor:PURPLECOLOR];
+    [[UIToolbar appearance] setBarTintColor:BOTTOMCOLOR];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     
     NSMutableDictionary * mutableDictionaryNormal = [[NSMutableDictionary alloc] init];

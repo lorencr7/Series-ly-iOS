@@ -38,8 +38,8 @@
 -(void) setBackgroundColor {
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
-    UIColor * topColor = [UIColor whiteColor];
-    UIColor * bottomColor = [UIColor colorWithRed:(52/255.0) green:(193/255.0) blue:(255/255.0) alpha:1.0];
+    UIColor * topColor = TOPCOLOR;
+    UIColor * bottomColor = BOTTOMCOLOR;
     gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
     gradient.startPoint = CGPointMake(0.5,0.2);
     [self.view.layer insertSublayer:gradient atIndex:0];
