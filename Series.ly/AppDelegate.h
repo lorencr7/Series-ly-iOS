@@ -1,24 +1,15 @@
 //
 //  AppDelegate.h
-//  Series ly iOS
+//  Series.ly
 //
-//  Created by Lorenzo Villarroel Pérez on 27/02/13.
-//  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
+//  Created by Lorenzo Villarroel Pérez on 04/12/13.
+//  Copyright (c) 2013 Lorenzov. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class CustomSplitViewController, DrawerViewController;
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-//@property (strong, nonatomic) UISplitViewController *splitViewController;
-@property (strong, nonatomic) CustomSplitViewController *splitViewController;
-@property (strong, nonatomic) UITabBarController *tabBarController;
-@property (strong, nonatomic) DrawerViewController *drawerViewController;
-
--(void) loadContentControllers;
--(void) loadLogInController;
 
 @end

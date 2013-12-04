@@ -22,7 +22,7 @@
 @synthesize labelFooter = _labelFooter;
 
 
-- (id)initWithHeightHeader: (double) heightHeader labelHeader: (UILabel*) labelHeader heightFooter: (double) heightFooter labelFooter: (UILabel*) labelFooter cells:(NSArray*) cells {
+- (id)initWithHeightHeader: (double) heightHeader labelHeader: (UILabel*) labelHeader heightFooter: (double) heightFooter labelFooter: (UILabel*) labelFooter cells:(NSMutableArray*) cells {
     self = [super init];
     if (self) {
         //self.labelHeader = [[UILabel alloc] init];

@@ -13,15 +13,12 @@
 @class CustomCell,Section;
 @interface CustomTableViewController : UITableView <UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic,readwrite) Section * section;
-@property (strong,nonatomic,readwrite) UIViewController * viewController;
+@property (weak,nonatomic,readwrite) UIViewController * viewController;
 @property (strong,nonatomic,readwrite) CustomCell * lastCellPressed;
 @property (assign,nonatomic,readwrite) BOOL tableViewBeingPressed;
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style backgroundView: (UIView*) backgroundView backgroundColor: (UIColor*) backgroundColor sections:(NSArray*)sections viewController: (UIViewController*) viewController title: (NSString *) title;
+- (float) groupedCellMarginWithTableWidth:(float)tableViewWidth;
 @end
-
-
-
-
 
 @interface Section: NSObject
 @property (assign,nonatomic,readwrite) int numberOfSections;

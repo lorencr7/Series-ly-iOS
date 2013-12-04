@@ -19,16 +19,16 @@
 @property (strong,nonatomic) UIColor * borderColor;
 @property (assign,nonatomic) double borderWidth;
 @property (assign,nonatomic) double cornerRadius;
-@property (assign,nonatomic) UITextAlignment textAlignment;
+@property (assign,nonatomic) NSTextAlignment textAlignment;
 @property (assign,nonatomic) UITableViewCellAccessoryType accesoryType;
-@property (assign,nonatomic) UILineBreakMode lineBreakMode;
+@property (assign,nonatomic) NSLineBreakMode lineBreakMode;
 @property (assign,nonatomic) int numberOfLines;
 @property (strong,nonatomic) UIView * accesoryView;
 @property (strong,nonatomic) UIView * backgroundView;
 @property (assign,nonatomic) double heightCell;
 
-- (id)initWithAppearanceWithUnselectedColor: (UIColor * ) unselectedColor selectedColor: (UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont borderColor: (UIColor * ) borderColor borderWidth: (double) borderWidth cornerRadius: (double) cornerRadius textAlignment: (UITextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (UILineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView heightCell: (double) heightCell;
+- (id)initWithAppearanceWithUnselectedColor: (UIColor * ) unselectedColor selectedColor: (UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont borderColor: (UIColor * ) borderColor borderWidth: (double) borderWidth cornerRadius: (double) cornerRadius textAlignment: (NSTextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (NSLineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView heightCell: (double) heightCell;
 
-- (id)initWithAppearanceWithCustomBackgroundViewWithSelectedColor:(UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont textAlignment: (UITextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (UILineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView backgroundView:(UIView *) backgroundView heightCell: (double) heightCell;
+- (id)initWithAppearanceWithCustomBackgroundViewWithSelectedColor:(UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont textAlignment: (NSTextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (NSLineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView backgroundView:(UIView *) backgroundView heightCell: (double) heightCell;
 
 @end

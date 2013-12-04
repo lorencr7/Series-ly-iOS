@@ -27,7 +27,7 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize heightCell = _heightCell;
 
-- (id)initWithAppearanceWithUnselectedColor: (UIColor * ) unselectedColor selectedColor: (UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont borderColor: (UIColor * ) borderColor borderWidth: (double) borderWidth cornerRadius: (double) cornerRadius textAlignment: (UITextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (UILineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView heightCell: (double) heightCell{
+- (id)initWithAppearanceWithUnselectedColor: (UIColor * ) unselectedColor selectedColor: (UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont borderColor: (UIColor * ) borderColor borderWidth: (double) borderWidth cornerRadius: (double) cornerRadius textAlignment: (NSTextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (NSLineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView heightCell: (double) heightCell{
     self = [super init];
     if (self) {
         self.selectedColor = selectedColor;
@@ -50,7 +50,7 @@
     return self;
 }
 
-- (id)initWithAppearanceWithCustomBackgroundViewWithSelectedColor:(UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont textAlignment: (UITextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (UILineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView backgroundView:(UIView *) backgroundView heightCell: (double) heightCell {
+- (id)initWithAppearanceWithCustomBackgroundViewWithSelectedColor:(UIColor*) selectedColor unselectedTextColor: (UIColor*) unselectedTextColor selectedTextColor: (UIColor*) selectedTextColor unselectedTextFont: (UIFont *) unselectedTextFont selectedTextFont: (UIFont *) selectedTextFont textAlignment: (NSTextAlignment) textAlignment accesoryType: (UITableViewCellAccessoryType) accesoryType lineBreakMode: (NSLineBreakMode) lineBreakMode numberOfLines: (int) numberOfLines accesoryView: (UIView *) accesoryView backgroundView:(UIView *) backgroundView heightCell: (double) heightCell {
     self = [super init];
     if (self) {
         self.selectedColor = selectedColor;

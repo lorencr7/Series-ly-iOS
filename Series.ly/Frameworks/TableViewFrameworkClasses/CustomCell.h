@@ -20,5 +20,6 @@
 -(id)initWithSelectionType: (BOOL) selectionType;
 -(void)customSelect;
 -(void)customDeselect;
+-(void) deleteCell:(UIViewController *) viewController;
 
 @end

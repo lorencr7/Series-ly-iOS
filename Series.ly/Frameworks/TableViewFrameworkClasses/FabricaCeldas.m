@@ -50,6 +50,12 @@ static FabricaCeldas * instance;
     customCell.cell.textLabel.lineBreakMode = appearance.lineBreakMode;
     customCell.cell.textLabel.numberOfLines = appearance.numberOfLines;
     
+    if (appearance.accesoryView) {
+        customCell.cell.accessoryView = appearance.accesoryView;
+    }
+    
+    customCell.cell.backgroundColor = [UIColor clearColor];
+    
     
     if (!appearance.backgroundView) {
         if (appearance.borderWidth != -57) {
@@ -62,6 +68,7 @@ static FabricaCeldas * instance;
             [customCell.cell setBackgroundView:appearance.backgroundView];
         }
     } else {
+        [appearance.backgroundView setAutoresizesSubviews:NO]; // Linea añadida para cuando estamos en editMode
         appearance.unselectedColor = appearance.backgroundView.backgroundColor;
         [customCell.cell setBackgroundView:appearance.backgroundView];
     }

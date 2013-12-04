@@ -10,7 +10,7 @@
  labelBackgroundColor:[UIColor colorWithRed:(152.0/255.0) green:(151.0/255.0) blue:(149.0/255.0) alpha:1]
  labelTextColor:[UIColor blackColor]
  labelTextFont:[UIFont boldSystemFontOfSize:15]
- labelTextAlignment:UITextAlignmentCenter
+ labelTextAlignment:NSTextAlignmentCenter
  labelBorderColor:[UIColor blackColor]
  labelBorderWidth:0.8
  labelBorderRadius:LABELBORDERRADIUSAULATITULO1];*/

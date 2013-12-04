@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CustomTableViewController.h"
+#import "CustomTableViewEditController.h"
 #import "SectionElement.h"
 #import "FabricaCeldas.h"
 #import "FabricaHeaderFooterSecciones.h"
@@ -15,5 +16,6 @@
 #import "CustomHeaderFooter.h"
 #import "CustomCellAppearance.h"
 #import "CustomCell.h"
+
 
 

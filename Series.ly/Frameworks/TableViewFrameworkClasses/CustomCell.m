@@ -41,5 +41,9 @@
     self.cell.textLabel.font = self.customCellAppearance.unselectedTextFont;
 }
 
+-(void) deleteCell:(UIViewController *) viewController {
+    
+}
+
 
 @end

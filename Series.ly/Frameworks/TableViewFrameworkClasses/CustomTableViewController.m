@@ -32,13 +32,62 @@
         self.tableViewBeingPressed = NO;
         //[self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         //[self reloadData];
+        
+        //UILongPressGestureRecognizer* longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+        //[self addGestureRecognizer:longPressRecognizer];
     }
     return self;
 }
 
+// Long Press over cell
+/*-(void)onLongPress:(UILongPressGestureRecognizer*)pGesture
+ {
+ if (pGesture.state == UIGestureRecognizerStateBegan) {
+ //Do something to tell the user!
+ UITableView* tableView = (UITableView*)self;
+ CGPoint touchPoint = [pGesture locationInView:self];
+ NSIndexPath* row = [tableView indexPathForRowAtPoint:touchPoint];
+ if (row != nil) {
+ //Handle the long press on row
+ }
+ NSLog(@"%d", row.row);
+ }
+ if (pGesture.state == UIGestureRecognizerStateEnded) {
+ }
+ }*/
+
+
+// Edit Cell with Swipe
+/*- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+    }
+}*/
+
+
 /*******************************************************************************
  TableView
  ******************************************************************************/
+
+- (float) groupedCellMarginWithTableWidth:(float)tableViewWidth {
+    float marginWidth;
+    if(tableViewWidth > 20) {
+        if(tableViewWidth < 400) {
+            marginWidth = 10;
+        } else {
+            marginWidth = MAX(31, MIN(45, tableViewWidth*0.06));
+        }
+    } else {
+        marginWidth = tableViewWidth - 10;
+    }
+    return marginWidth;
+}
 
 // Nº de Secciones de la tabla
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -159,7 +208,7 @@
 
 -(int) getNumberOfCells:(int) section {
     SectionElement * sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];//Nos metemos dentro de la seccion
+    sectionElement = (self.sections)[section];//Nos metemos dentro de la seccion
     return [sectionElement.cells count];//Devolvemos el numero de celdas de esa seccion
 }
 
@@ -170,8 +219,8 @@
 -(CustomCell *) getCellFromSection: (int) section Row: (int) row {
     SectionElement * sectionElement;
     CustomCell * customCell;
-    sectionElement = [self.sections objectAtIndex:section];//Buscamos la seccion que sea
-    customCell = [sectionElement.cells objectAtIndex:row];//Dentro de la seccion, buscamos la celda correspondiente
+    sectionElement = (self.sections)[section];//Buscamos la seccion que sea
+    customCell = (sectionElement.cells)[row];//Dentro de la seccion, buscamos la celda correspondiente
     return customCell;
 }
 
@@ -184,21 +233,21 @@
 
 -(NSString *) getSectionSubtitle: (NSInteger)section {
     SectionElement * sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];//Nos metemos dentro de la seccion
+    sectionElement = (self.sections)[section];//Nos metemos dentro de la seccion
     return sectionElement.sectionSubtitle;//Devolvemos el subtitulo de la seccion
 }
 
 
 -(CGFloat) getSectionTitleSize: (NSInteger) section {
     SectionElement * sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];
+    sectionElement = (self.sections)[section];
     return sectionElement.heightHeader;
 }
 
 
 -(CGFloat) getSectionSubtitleSize: (NSInteger) section {
     SectionElement *sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];
+    sectionElement = (self.sections)[section];
     return sectionElement.heightFooter;
 }
 
@@ -206,21 +255,21 @@
 -(CGFloat) getCellHeightFromSection: (int) section Row: (int) row {
     CustomCell * customCell;
     SectionElement *sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];
-    customCell = [sectionElement.cells objectAtIndex:row];
+    sectionElement = (self.sections)[section];
+    customCell = (sectionElement.cells)[row];
     return customCell.customCellAppearance.heightCell;
 }
 
 
 -(UIView *) getSectionTitleAspect: (NSInteger)section {
     SectionElement *sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];
+    sectionElement = (self.sections)[section];
     return [sectionElement getHeader];
 }
 
 -(UIView *) getSectionFooterAspect: (NSInteger)section {
     SectionElement *sectionElement;
-    sectionElement = [self.sections objectAtIndex:section];
+    sectionElement = (self.sections)[section];
     return [sectionElement getFooter];
 }
 
