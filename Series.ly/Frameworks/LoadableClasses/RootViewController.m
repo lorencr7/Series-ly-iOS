@@ -36,16 +36,20 @@
 
 
 -(void) setBackgroundColor {
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
+    self.gradient = [CAGradientLayer layer];
+    self.gradient.frame = self.view.bounds;
     UIColor * topColor = TOPCOLOR;
     UIColor * bottomColor = BOTTOMCOLOR;
-    gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
-    gradient.startPoint = CGPointMake(0.5,0.2);
-    [self.view.layer insertSublayer:gradient atIndex:0];
+    self.gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
+    self.gradient.startPoint = CGPointMake(0.5,0.2);
+    [self.view.layer insertSublayer:self.gradient atIndex:0];
     /*UIImage * image = BACKGROUNDIMAGE;
     image = [self imageWithImage:image scaledToSize:self.view.frame.size];
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];*/
+}
+
+- (void)layoutSubviews {
+    self.gradient.frame = self.view.bounds;
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -85,11 +89,20 @@
         
         self.view.frame = viewFrame;
     } else {
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-            self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+        if (self.navigationController.navigationBar) {
+            if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
+                self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
+            } else {
+                self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+            }
         } else {
-            self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
+            if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
+                self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape + 20);
+            } else {
+                self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait + 20);
+            }
         }
+        
     }
 }
 
@@ -101,6 +114,7 @@
             self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
         }
     }
+    [self layoutSubviews];
     
 }
 

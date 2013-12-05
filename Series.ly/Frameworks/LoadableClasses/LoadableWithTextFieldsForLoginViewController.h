@@ -15,13 +15,7 @@
 
 @property(assign, nonatomic) CGFloat texFieldWidth;
 @property(strong, nonatomic) UITextField * textFieldActual;
-@property(assign, nonatomic) BOOL keyboardShown;
 
-@property(strong, nonatomic) UIScrollView * scrollView;
-
-
-
--(void) loadScroll;
 -(void) inputBoxTapped: (InputBox *) inputBox;
 
 @end

@@ -70,6 +70,9 @@
 		4573B375184F7E4C006ECA31 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B36D184F7E4C006ECA31 /* Localizable.strings */; };
 		4573B376184F7E4C006ECA31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B370184F7E4C006ECA31 /* InfoPlist.strings */; };
 		4573B377184F7E4C006ECA31 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4573B372184F7E4C006ECA31 /* Localizable.strings */; };
+		45C050F31850DB4B00A46B75 /* LoginInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C050F21850DB4B00A46B75 /* LoginInputViewController.m */; };
+		45C050F61850E83300A46B75 /* LoginLogoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C050F51850E83300A46B75 /* LoginLogoViewController.m */; };
+		45C050F81850EBE800A46B75 /* logoSeriesly375x375@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C050F71850EBE800A46B75 /* logoSeriesly375x375@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +202,11 @@
 		4573B36E184F7E4C006ECA31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		4573B371184F7E4C006ECA31 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = InfoPlist.strings; sourceTree = "<group>"; };
 		4573B373184F7E4C006ECA31 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		45C050F11850DB4B00A46B75 /* LoginInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInputViewController.h; sourceTree = "<group>"; };
+		45C050F21850DB4B00A46B75 /* LoginInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInputViewController.m; sourceTree = "<group>"; };
+		45C050F41850E83300A46B75 /* LoginLogoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginLogoViewController.h; sourceTree = "<group>"; };
+		45C050F51850E83300A46B75 /* LoginLogoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginLogoViewController.m; sourceTree = "<group>"; };
+		45C050F71850EBE800A46B75 /* logoSeriesly375x375@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoSeriesly375x375@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +362,7 @@
 		4573B2D1184F67CD006ECA31 /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				45C050F71850EBE800A46B75 /* logoSeriesly375x375@2x.png */,
 				4556078C184F8A4100CA7E10 /* logo256x256.png */,
 				4556078D184F8A4100CA7E10 /* logoSeriesly375x375.png */,
 			);
@@ -484,6 +493,10 @@
 				4573B365184F798B006ECA31 /* LoginiPhoneViewController.m */,
 				4573B367184F7996006ECA31 /* LoginiPadViewController.h */,
 				4573B368184F7996006ECA31 /* LoginiPadViewController.m */,
+				45C050F11850DB4B00A46B75 /* LoginInputViewController.h */,
+				45C050F21850DB4B00A46B75 /* LoginInputViewController.m */,
+				45C050F41850E83300A46B75 /* LoginLogoViewController.h */,
+				45C050F51850E83300A46B75 /* LoginLogoViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -601,6 +614,7 @@
 				4573B376184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
 				4573B375184F7E4C006ECA31 /* Localizable.strings in Resources */,
 				4573B374184F7E4C006ECA31 /* InfoPlist.strings in Resources */,
+				45C050F81850EBE800A46B75 /* logoSeriesly375x375@2x.png in Resources */,
 				4556078E184F8A4100CA7E10 /* logo256x256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +635,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4573B369184F7996006ECA31 /* LoginiPadViewController.m in Sources */,
+				45C050F61850E83300A46B75 /* LoginLogoViewController.m in Sources */,
+				45C050F31850DB4B00A46B75 /* LoginInputViewController.m in Sources */,
 				4573B2FD184F6B98006ECA31 /* RefreshableViewController.m in Sources */,
 				4573B31E184F6BEF006ECA31 /* CustomTableViewController.m in Sources */,
 				4556079C184F8CE100CA7E10 /* UserCredentials.m in Sources */,

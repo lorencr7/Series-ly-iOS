@@ -22,9 +22,9 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    /*[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];*/
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -37,19 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) loadScroll {
-    CGRect scrollViewFrame = CGRectMake(0,
-                                        0,
-                                        self.view.frame.size.width,
-                                        self.view.frame.size.height);
-    self.scrollView = [[UIScrollView alloc] initWithFrame:scrollViewFrame];
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,
-                                             self.view.frame.size.height);
-    //self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.scrollView];
-}
 
-- (void)keyboardWillShow:(NSNotification*)notification {
+
+/*- (void)keyboardWillShow:(NSNotification*)notification {
     
 }
 
@@ -59,7 +49,7 @@
 
 - (void)keyboardDidShow:(NSNotification*)notification {
 
-}
+}*/
 
 -(void) inputBoxTapped: (InputBox *) inputBox {
     

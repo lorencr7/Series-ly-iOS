@@ -9,6 +9,8 @@
 #import "ParentViewController.h"
 @interface RootViewController : ParentViewController
 
+@property (strong, nonatomic) CAGradientLayer *gradient;
+
 @property (strong, nonatomic) UIBarButtonItem * backButton;
 
 -(void) stopTasks;

@@ -7,8 +7,8 @@
 //
 
 #import "LoginiPhoneViewController.h"
-#import "HTAutocompleteTextField.h"
-#import "HTAutocompleteManager.h"
+#import "LoginInputViewController.h"
+#import "LoginLogoViewController.h"
 
 @interface LoginiPhoneViewController ()
 
@@ -27,24 +27,29 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) createEmailTextfield {
-    [super createEmailTextfield];
-    [self configureTextFieldAppareanceWith:(UITextField *)self.emailTextField placeholder:NSLocalizedString(@"UserTextFieldPlaceHolder", nil) originY:280 returnKey:UIReturnKeyGo];
+-(void) createLoginLogo {
+    int margin = 20;
+    CGRect frame = CGRectMake(margin,
+                              45,
+                              self.view.frame.size.width - 2*margin,
+                              150);
+    self.loginLogoViewController = [[LoginLogoViewController alloc] initWithFrame:frame];
+    [self addChildViewController:self.loginLogoViewController];
+    [self.scrollView addSubview:self.loginLogoViewController.view];
     
 }
 
--(void) createPasswordTextField {
-    [super createPasswordTextField];
-    [self configureTextFieldAppareanceWith:self.passwordTextField placeholder:NSLocalizedString(@"PasswordTextFieldPlaceHolder", nil) originY:self.emailTextField.frame.origin.y + self.emailTextField.frame.size.height + 10 returnKey:UIReturnKeyGo];
-}
-
--(void) createLoginButton {
-    [super createLoginButton];
-    int buttonWidth = 160;
-    self.loginButton.frame = CGRectMake(self.view.frame.size.width/2 - buttonWidth/2,
-                                        self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10,
-                                        buttonWidth,
-                                        40);
+-(void) createLoginInput {
+    int margin = 20;
+    CGRect frame = CGRectMake(margin,
+                              self.view.frame.size.height*0.5,
+                              self.view.frame.size.width - 2*margin,
+                              150);
+    self.loginInputViewController = [[LoginInputViewController alloc] initWithFrame:frame];
+    self.loginInputViewController.delegate = self;
+    [self addChildViewController:self.loginInputViewController];
+    [self.scrollView addSubview:self.loginInputViewController.view];
+    
 }
 
 @end
