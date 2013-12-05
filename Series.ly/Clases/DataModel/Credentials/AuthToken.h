@@ -11,9 +11,9 @@
 @interface AuthToken : MetaModel
 
 @property (strong, nonatomic) NSString * authToken;
-@property (assign, nonatomic) long authExpiresDate;
-@property (assign, nonatomic) int error;
+@property (strong, nonatomic) NSNumber * authExpiresDate;
+@property (strong, nonatomic) NSNumber * error;
 
-- (id)initWithAuthToken: (NSString *) authToken AuthExpiresDate: (long) authExpiresDate Error: (int) error;
+- (id)initWithAuthToken: (NSString *) authToken AuthExpiresDate: (NSNumber *) authExpiresDate Error: (NSNumber *) error;
 
 @end

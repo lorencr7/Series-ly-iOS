@@ -10,7 +10,7 @@
 
 @implementation AuthToken
 
-- (id)initWithAuthToken: (NSString *) authToken AuthExpiresDate: (long) authExpiresDate Error: (int) error {
+- (id)initWithAuthToken: (NSString *) authToken AuthExpiresDate: (NSNumber *) authExpiresDate Error: (NSNumber *) error {
     self = [super init];
     if (self) {
         self.authToken = authToken;
@@ -25,17 +25,50 @@
     if (self) {
         self.authToken = [dictionary objectForKey:@"auth_token"];
         
-        NSString * authExpiresDateString = [dictionary objectForKey:@"auth_expires_date"];
-        self.authExpiresDate = [authExpiresDateString longLongValue];
-        
-        NSString * authErrorString = [dictionary objectForKey:@"error"];
-        self.error = [authErrorString intValue];
+        //NSString * extireDate = [dictionary objectForKey:@"auth_expires_date"];
+        //NSLog(@"%@",extireDate.class);
+        self.authExpiresDate = [dictionary objectForKey:@"auth_expires_date"];
+        //self.authExpiresDate = [dictionary objectForKey:@"auth_expires_date"];
+        //NSLog(@"expire date: %ld",self.authExpiresDate.longValue);
+        NSString * error = [dictionary objectForKey:@"error"];
+        self.error = [NSNumber numberWithLongLong:[error intValue]];
     }
     return self;
 }
 
+-(NSMutableDictionary *) getDictionary {
+    NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
+    dictionary[@"auth_token"] = self.authToken;
+    dictionary[@"auth_expires_date"] = self.authExpiresDate;
+    dictionary[@"error"] = self.error;
+    return dictionary;
+}
+
 -(NSString *) description {
-    return [NSString stringWithFormat:@"AuthToken = %@, AuthExpiresDate = %ld, AuthError = %d",self.authToken,self.authExpiresDate,self.error];
+    return [NSString stringWithFormat:@"AuthToken = %@, AuthExpiresDate = %ld, AuthError = %d",self.authToken,self.authExpiresDate.longValue,self.error.intValue];
+    //return @"";
+}
+
+- (id)initWithCoder: (NSCoder *)coder {
+    AuthToken * authToken = [[AuthToken alloc] init];
+    authToken.authToken = [coder decodeObjectForKey:@"authToken"];
+    authToken.authExpiresDate = [coder decodeObjectForKey:@"authExpiresDate"];
+    authToken.error = [coder decodeObjectForKey:@"error"];
+    return authToken;
+    
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    if (self.authToken) {
+        [coder encodeObject:self.authToken forKey:@"authToken"];
+    }
+    if (self.authExpiresDate) {
+        [coder encodeObject:self.authExpiresDate forKey:@"authExpiresDate"];
+    }
+    if (self.error) {
+        [coder encodeObject:self.error forKey:@"error"];
+    }
+    
 }
 
 @end

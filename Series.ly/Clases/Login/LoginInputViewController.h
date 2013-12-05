@@ -21,4 +21,7 @@
 @property(strong, nonatomic) UITextField *passwordTextField;
 @property(strong, nonatomic) UIButton * loginButton;
 
+-(NSString *) getEmailText;
+-(NSString *) getPasswordText;
+
 @end

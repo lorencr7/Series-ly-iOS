@@ -42,6 +42,7 @@
     UIColor * bottomColor = BOTTOMCOLOR;
     self.gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
     self.gradient.startPoint = CGPointMake(0.5,0.2);
+    self.gradient.endPoint = CGPointMake(0.5, 0.8);
     [self.view.layer insertSublayer:self.gradient atIndex:0];
     /*UIImage * image = BACKGROUNDIMAGE;
     image = [self imageWithImage:image scaledToSize:self.view.frame.size];

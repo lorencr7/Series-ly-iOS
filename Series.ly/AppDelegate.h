@@ -12,4 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (strong, nonatomic) UITabBarController *tabBarController;
+
+-(void) saveData;
+-(void) loadContentControllers;
+
 @end

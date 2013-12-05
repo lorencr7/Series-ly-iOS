@@ -7,6 +7,8 @@
 //
 
 #import "UserCredentials.h"
+#import "AuthToken.h"
+#import "UserToken.h"
 
 UserCredentials * instance;
 
@@ -22,6 +24,22 @@ UserCredentials * instance;
 
 +(void) resetInstance {
     instance = nil;
+}
+
+- (id)initWithDictionary: (NSDictionary *) dictionary {
+    self = [super init];
+    if (self) {
+        self.authToken = [[AuthToken alloc] initWithDictionary:dictionary[@"authToken"]];
+        self.userToken = [[UserToken alloc] initWithDictionary:dictionary[@"userToken"]];
+    }
+    return self;
+}
+
+-(NSMutableDictionary *) getDictionary {
+    NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
+    dictionary[@"authToken"] = [self.authToken getDictionary];
+    dictionary[@"userToken"] = [self.userToken getDictionary];
+    return dictionary;
 }
 
 

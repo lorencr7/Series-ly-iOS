@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ContainerLoginViewController.h"
+#import "UserCredentials.h"
+#import "ContainerPerfilViewController.h"
 
 @implementation AppDelegate
 
@@ -15,6 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self setAppAppearance];
+    [self restoreData];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString * userToken = [defaults objectForKey:@"userToken"];
@@ -22,12 +25,78 @@
     if (!userToken) {
         [self loadLoginController];
     } else {
-        
+        [self loadContentControllers];
     }
     
     //self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void) loadContentControllers {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [self loadTabBarViewController];
+    } else {
+        [self loadSplitViewController];
+    }
+    [self.window makeKeyAndVisible];
+}
+
+-(void) loadLoginController {
+    ContainerLoginViewController * loginViewController = [[ContainerLoginViewController alloc] init];;
+    self.window.rootViewController = loginViewController;
+    
+}
+
+-(void) loadTabBarViewController {
+    
+    ContainerPerfilViewController * containerPeopleViewController = [[ContainerPerfilViewController alloc] init];
+    ContainerPerfilViewController * containerProfileViewController = [[ContainerPerfilViewController alloc] init];
+    ContainerPerfilViewController * containerChatsViewController = [[ContainerPerfilViewController alloc] init];
+    
+    UINavigationController * navigationControllerGente = [[UINavigationController alloc] initWithRootViewController:containerPeopleViewController];
+    UINavigationController * navigationControllerPerfil = [[UINavigationController alloc] initWithRootViewController:containerProfileViewController];
+    UINavigationController * navigationControllerChats = [[UINavigationController alloc] initWithRootViewController:containerChatsViewController];
+    
+    
+    
+    [navigationControllerGente.tabBarItem setImage:TABBARPERFILTABUNSELECTED];
+    [navigationControllerGente.tabBarItem setSelectedImage:TABBARPERFILTABSELECTED];
+    
+    [navigationControllerPerfil.tabBarItem setImage:TABBARPERFILTABUNSELECTED];
+    [navigationControllerPerfil.tabBarItem setSelectedImage:TABBARPERFILTABSELECTED];
+    
+    [navigationControllerChats.tabBarItem setImage:TABBARPERFILTABUNSELECTED];
+    [navigationControllerChats.tabBarItem setSelectedImage:TABBARPERFILTABSELECTED];
+    
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[navigationControllerGente, navigationControllerChats, navigationControllerPerfil];
+    //self.tabBarController.tabBar.translucent = NO;
+    
+    //[self customizeInterface];
+    
+    self.window.rootViewController = self.tabBarController;
+    
+    //[self.tabBarController setDelegate:self];
+    
+}
+
+-(void) loadSplitViewController {
+    /*MasterViewController *masterViewController = [[MasterViewController alloc] init];
+    UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+    masterNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    detailNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
+    
+    masterViewController.detailViewController = detailViewController;
+    
+    self.splitViewController = [[CustomSplitViewController alloc] init];
+    self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
+    
+    self.window.rootViewController = self.splitViewController;*/
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -40,11 +109,13 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self saveData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self restoreData];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -57,37 +128,40 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
--(void) loadLoginController {
-    ContainerLoginViewController * loginViewController = [[ContainerLoginViewController alloc] init];;
-    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        loginViewController = [[ContainerLoginiPhoneViewController alloc] init];
-    } else {
-        loginViewController = [[ContainerLoginiPadViewController alloc] init];
-    }*/
-    self.window.rootViewController = loginViewController;
-    //[self.window makeKeyAndVisible];
-    
-}
+
 
 -(void) restoreData {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString * authToken = [defaults objectForKey:@"authToken"];
-    NSString * userToken = [defaults objectForKey:@"userToken"];
-    NSLog(@"%@,%@",authToken,userToken);
-    /*NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSData *userEncoded = [prefs objectForKey:@"user"];
-    User * user = [NSKeyedUnarchiver unarchiveObjectWithData:userEncoded];
-    NSLog(@"token = %@, email = %@",user.credential.token,user.credential.email);
-    [User setInstance:user];*/
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    /*NSDictionary * dict = [prefs objectForKey:@"userCredentials"];
+    UserCredentials * cred = [[UserCredentials alloc] initWithDictionary:dict];
+    userCredentials.authToken = cred.authToken;
+    userCredentials.userToken = cred.userToken;*/
+
+    
+    NSData * authTokenEncoded = [prefs objectForKey:@"authToken"];
+    NSData * userTokenEncoded = [prefs objectForKey:@"userToken"];
+    
+    userCredentials.authToken = [NSKeyedUnarchiver unarchiveObjectWithData:authTokenEncoded];
+    userCredentials.userToken = [NSKeyedUnarchiver unarchiveObjectWithData:userTokenEncoded];
+    
+    //NSLog(@"RestoreData: %@",userCredentials.authToken);
 }
 
 -(void) saveData {
-    /*User * user = [User getInstance];
-    NSData *userEncoded = [NSKeyedArchiver archivedDataWithRootObject:user];
-    
+    UserCredentials * userCredentials = [UserCredentials getInstance];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:userEncoded forKey:@"user"];
-    [prefs synchronize];*/
+    //[prefs setObject:[userCredentials getDictionary] forKey:@"userCredentials"];
+    
+    NSData * authTokenEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials.authToken];
+    NSData * userTokenEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials.userToken];
+    
+    
+    [prefs setObject:authTokenEncoded forKey:@"authToken"];
+    [prefs setObject:userTokenEncoded forKey:@"userToken"];
+    [prefs synchronize];
 }
 
 -(void) setAppAppearance {
@@ -95,13 +169,13 @@
     [mutableDictionaryNavigation setObject:NAVIGATIONBARFONTCOLOR forKey:NSForegroundColorAttributeName];
     [mutableDictionaryNavigation setObject:NAVIGATIONBARFONT forKey:NSFontAttributeName];
     [[UINavigationBar appearance] setTitleTextAttributes:mutableDictionaryNavigation];
-    [[UINavigationBar appearance] setTintColor:NAVIGATIONTINTCOLOR];
-    [[UINavigationBar appearance] setBarTintColor:NAVIGATIONBARCOLOR];
+    [[UINavigationBar appearance] setTintColor:TOPCOLOR];
+    [[UINavigationBar appearance] setBarTintColor:TOPCOLOR];
     [[UINavigationBar appearance] setBackgroundImage:NAVIGATIONBARIMAGE forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     
     [[UIToolbar appearance] setBarTintColor:BOTTOMCOLOR];
-    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setTintColor:BOTTOMCOLOR];
     
     NSMutableDictionary * mutableDictionaryNormal = [[NSMutableDictionary alloc] init];
     [mutableDictionaryNormal setObject:TABBARFONTCOLORUNSELECTED forKey:NSForegroundColorAttributeName];
@@ -113,9 +187,10 @@
     [[UITabBarItem appearance] setTitleTextAttributes:mutableDictionaryPressed forState:UIControlStateSelected];
     
     
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:PURPLECOLOR];
+    [[UITabBar appearance] setTintColor:BOTTOMCOLOR];
+    [[UITabBar appearance] setBarTintColor:BOTTOMCOLOR];
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setBackgroundImage:TABBARIMAGE];
     
     [[UIButton appearance] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     

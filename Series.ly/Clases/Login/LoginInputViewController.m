@@ -34,6 +34,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSString *) getEmailText {
+    return self.emailTextField.text;
+}
+
+-(NSString *) getPasswordText {
+    return self.passwordTextField.text;
+}
+
 -(BOOL) getData {
     return YES;
 }
@@ -135,6 +143,7 @@
 }
 
 -(void) handlerLogin:(id) sender {
+    [self doneEditing];
     if ([self.delegate respondsToSelector:@selector(loginPressed:)]) {
         [self.delegate loginPressed:sender];
     }

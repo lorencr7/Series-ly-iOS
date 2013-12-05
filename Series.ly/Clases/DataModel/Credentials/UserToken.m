@@ -10,7 +10,7 @@
 
 @implementation UserToken
 
-- (id)initWithUserToken: (NSString *) userToken UserExpiresDate: (long) userExpiresDate Error: (int) error {
+- (id)initWithUserToken: (NSString *) userToken UserExpiresDate: (NSNumber *) userExpiresDate Error: (NSNumber *) error {
     self = [super init];
     if (self) {
         self.userToken = userToken;
@@ -25,17 +25,47 @@
     if (self) {
         self.userToken = [dictionary objectForKey:@"user_token"];
         
-        NSString * userExpiresDateString = [dictionary objectForKey:@"user_expires_date"];
-        self.userExpiresDate = [userExpiresDateString longLongValue];
+        NSString * extireDate = [dictionary objectForKey:@"user_expires_date"];
+        self.userExpiresDate = [NSNumber numberWithLongLong:[extireDate longLongValue]];
         
-        NSString * userErrorString = [dictionary objectForKey:@"error"];
-        self.error = [userErrorString intValue];
+        NSString * error = [dictionary objectForKey:@"error"];
+        self.error = [NSNumber numberWithLongLong:[error intValue]];
     }
     return self;
 }
 
+-(NSMutableDictionary *) getDictionary {
+    NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
+    dictionary[@"user_token"] = self.userToken;
+    dictionary[@"user_expires_date"] = self.userExpiresDate;
+    dictionary[@"error"] = self.error;
+    return dictionary;
+}
+
 -(NSString *) description {
-    return [NSString stringWithFormat:@"UserToken = %@, UserExpiresDate = %ld",self.userToken,self.userExpiresDate];
+    return [NSString stringWithFormat:@"UserToken = %@, UserExpiresDate = %ld",self.userToken,self.userExpiresDate.longValue];
+}
+
+- (id)initWithCoder: (NSCoder *)coder {
+    UserToken * userToken = [[UserToken alloc] init];
+    userToken.userToken = [coder decodeObjectForKey:@"userToken"];
+    userToken.userExpiresDate = [coder decodeObjectForKey:@"userExpiresDate"];
+    userToken.error = [coder decodeObjectForKey:@"error"];
+    return userToken;
+    
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    if (self.userToken) {
+        [coder encodeObject:self.userToken forKey:@"userToken"];
+    }
+    if (self.userExpiresDate) {
+        [coder encodeObject:self.userExpiresDate forKey:@"userExpiresDate"];
+    }
+    if (self.error) {
+        [coder encodeObject:self.error forKey:@"error"];
+    }
+    
 }
 
 

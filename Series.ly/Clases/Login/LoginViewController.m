@@ -7,7 +7,12 @@
 //
 
 #import "LoginViewController.h"
-
+#import "ManejadorServicioWebSeriesLy.h"
+#import "AuthToken.h"
+#import "UserToken.h"
+#import "UserCredentials.h"
+#import "AppDelegate.h"
+#import "LoginInputViewController.h"
 
 @interface LoginViewController ()
 
@@ -77,7 +82,32 @@
 }
 
 -(void) loginPressed:(id)sender {
-    NSLog(@"hola");
+    [self performSelectorInBackground:@selector(login) withObject:nil];
+}
+
+-(void) login {
+    [self performSelectorOnMainThread:@selector(activateActivityIndicatorForeGround) withObject:nil waitUntilDone:YES];
+    ManejadorServicioWebSeriesLy * manejadorServicioWebSeriesly = [ManejadorServicioWebSeriesLy getInstance];
+    UserCredentials * userCredentials = [UserCredentials getInstance];
+    userCredentials.authToken = [manejadorServicioWebSeriesly getAuthTokenWithRequest:nil ProgressView:nil];
+    userCredentials.userToken = [manejadorServicioWebSeriesly getUserTokenWithRequest:nil ProgressView:nil  AuthToken:userCredentials.authToken UserName:[self.loginInputViewController getEmailText] Password:[self.loginInputViewController getPasswordText] Remember:@"1"];
+    if (userCredentials.userToken.userToken) {
+        //UserCredentials * userCredentials = [[UserCredentials alloc] initWithAuthToken:authToken UserToken:userToken];
+        
+        //userCredentials.authToken = authToken;
+        //userCredentials.userToken = userToken;
+        NSLog(@"1 %@",userCredentials.authToken);
+        NSLog(@"2 %@",userCredentials.userToken);
+        AppDelegate * appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+        [appDelegate saveData];
+        [appDelegate loadContentControllers];
+    } else {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Usuario, Email o contraseña incorrectos" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        NSLog(@"Login incorrecto");
+    }
+    
+    [self performSelectorOnMainThread:@selector(stopActivityIndicatorForeGround) withObject:nil waitUntilDone:YES];
 }
 
 /**

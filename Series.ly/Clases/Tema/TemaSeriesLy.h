@@ -24,6 +24,7 @@
 #define NAVIGATIONBARFONT [UIFont fontWithName:@"HelveticaNeue" size:19]//
 #define NAVIGATIONBARFONTCOLOR [UIColor blackColor]//
 #define NAVIGATIONBARIMAGE [UIImage imageNamed:@"navBar.png"]//
+#define TABBARIMAGE [UIImage imageNamed:@"tabBar.png"]
 
 
 /**********************************************************
@@ -54,11 +55,13 @@
 
 // font
 #define TABBARFONTUNSELECTED [UIFont fontWithName:@"HelveticaNeue-Light" size:10]//
-#define TABBARFONTCOLORUNSELECTED [UIColor blackColor]//
+#define TABBARFONTCOLORUNSELECTED [UIColor grayColor]//
 
 #define TABBARFONTSELECTED [UIFont fontWithName:@"HelveticaNeue-Light" size:10]//
 #define TABBARFONTCOLORSELECTED [UIColor blackColor]//
 
+#define TABBARPERFILTABUNSELECTED [[UIImage imageNamed:@"perfilUnselected.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+#define TABBARPERFILTABSELECTED [[UIImage imageNamed:@"perfil.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
 
 /*//icons
 #define TABBARGENTETABUNSELECTED [[UIImage imageNamed:@"people.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]

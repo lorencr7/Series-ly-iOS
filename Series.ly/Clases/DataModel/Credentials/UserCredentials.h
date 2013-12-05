@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 lorenzo villarroel perez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MetaModel.h"
 
 @class AuthToken, UserToken;
-@interface UserCredentials : NSObject
+@interface UserCredentials : MetaModel
 
 @property(strong, nonatomic) AuthToken * authToken;
 @property(strong, nonatomic) UserToken * userToken;

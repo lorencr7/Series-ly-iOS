@@ -11,10 +11,10 @@
 @interface UserToken : MetaModel
 
 @property (strong, nonatomic) NSString * userToken;
-@property (assign, nonatomic) long userExpiresDate;
-@property (assign, nonatomic) int error;
+@property (strong, nonatomic) NSNumber * userExpiresDate;
+@property (strong, nonatomic) NSNumber * error;
 
-- (id)initWithUserToken: (NSString *) userToken UserExpiresDate: (long) userExpiresDate Error: (int) error;
+- (id)initWithUserToken: (NSString *) userToken UserExpiresDate: (NSNumber *) userExpiresDate Error: (NSNumber *) error;
 
 
 @end
