@@ -8,10 +8,9 @@
 
 #import "RootViewController.h"
 
-@class PerfilViewController;
+@class AvatarViewController;
 @interface ContainerPerfilViewController : RootViewController
 
-@property(strong, nonatomic) PerfilViewController * perfilViewController;
-
+@property(strong, nonatomic) AvatarViewController * avatarViewController;
 
 @end

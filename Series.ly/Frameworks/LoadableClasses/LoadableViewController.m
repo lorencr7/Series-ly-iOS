@@ -56,6 +56,7 @@
     [self iniciarActivityIndicatorForeGround];
     [self activateActivityIndicator];
     [self performSelectorInBackground:@selector(loadData) withObject:nil];
+    //[self loadData];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -69,6 +70,7 @@
         [self createErrorMessage];
         [self stopActivityIndicator];
     } else {
+        
         [self performSelectorOnMainThread:@selector(createData) withObject:nil waitUntilDone:YES];
         //[self createData];
     }
@@ -208,7 +210,7 @@
     if ([[NSThread currentThread] isCancelled]) {
         [NSThread exit];
     }
-    
+
     NSError *error = [request error];
     if (!error) {
         NSData * imageData = [request responseData];

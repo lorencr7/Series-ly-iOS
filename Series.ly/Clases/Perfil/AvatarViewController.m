@@ -9,6 +9,7 @@
 #import "AvatarViewController.h"
 #import "User.h"
 #import "UIImage+StackBlur.h"
+#import "ManejadorServicioWebSeriesLy.h"
 
 
 @interface AvatarViewController ()
@@ -17,10 +18,18 @@
 
 @implementation AvatarViewController
 
-- (id)initWithFrame:(CGRect)frame User: (User *) user {
+/*- (id)initWithFrame:(CGRect)frame User: (User *) user {
     self = [super initWithFrame:frame];
     if (self) {
         self.user = user;
+        self.title = @"perfil";
+    }
+    return self;
+}*/
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
         self.title = @"perfil";
     }
     return self;
@@ -28,27 +37,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        //NSLog(@"%.2f",self.view.frame.size.height);
     self.view.backgroundColor = [UIColor yellowColor];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 -(BOOL) getData {
-    return YES;
+    ManejadorServicioWebSeriesLy * manejadorServicioWebSeriesLy = [ManejadorServicioWebSeriesLy getInstance];
+    self.user = [manejadorServicioWebSeriesLy getUserInfoWithRequest:nil ProgressView:nil];
+    
+    if (self.user) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 -(void) createData {
-    self.view.layer.masksToBounds = YES;
     [self createBlurPhoto];
     [self createNameView];
     [self createProfilePhoto];
     [self stopActivityIndicator];
+    self.view.layer.masksToBounds = YES;
 }
 
 -(void) createBlurPhoto {

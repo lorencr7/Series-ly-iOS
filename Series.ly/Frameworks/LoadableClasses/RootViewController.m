@@ -72,6 +72,7 @@
 -(void) configureFrame {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         int altoNavigationBar = -20;
+        int altoTabBar = 0;
         if (self.navigationController.navigationBar) {
             if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
                 altoNavigationBar = 32;
@@ -79,13 +80,16 @@
                 altoNavigationBar = 44;
             }
         }
+        if (self.tabBarController.tabBar) {
+            altoTabBar = self.tabBarController.tabBar.frame.size.height;
+        }
         self.edgesForExtendedLayout = UIRectEdgeNone;
         CGSize screenSize = [ScreenSizeManager currentSize];
         
         CGRect viewFrame = self.view.frame;
         //viewFrame.origin.y = 0;
         viewFrame.origin.x = 0;
-        viewFrame.size.height = screenSize.height - altoNavigationBar;
+        viewFrame.size.height = screenSize.height - altoNavigationBar - altoTabBar;
         viewFrame.size.width = screenSize.width;
         
         self.view.frame = viewFrame;

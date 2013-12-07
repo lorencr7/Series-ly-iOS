@@ -70,7 +70,7 @@ static ManejadorServicioWebSeriesLy * instance;
     long currentDate =  [fecha timeIntervalSince1970];
     long expireDate = authToken.authExpiresDate.longValue;
     currentDate += 1000;
-    NSLog(@"%ld,%ld",authToken.authExpiresDate.longValue, currentDate);
+    //NSLog(@"%ld,%ld",authToken.authExpiresDate.longValue, currentDate);
     if (currentDate > expireDate) {
         NSLog(@"authToken invalido, pidiendo nuevo authToken");
         
@@ -142,7 +142,11 @@ static ManejadorServicioWebSeriesLy * instance;
     NSString * urlString = [self configureUrlWithPath:@"user"];
     
     request = [self configureRequest:request URL:urlString ProgressView:progressView];
+    request = [self setGETHeadersToRequest:request];
+    request = [self setCacheToRequest:request];
+    
     [request startSynchronous];
+    
     NSError *error = [request error];
     if (error) {
         return nil;

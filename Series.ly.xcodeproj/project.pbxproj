@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4505F78218538C2100A01CB2 /* AvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4505F78118538C2100A01CB2 /* AvatarViewController.m */; };
-		4505F78518538CDA00A01CB2 /* PerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4505F78418538CDA00A01CB2 /* PerfilViewController.m */; };
 		4505F78C18538FE800A01CB2 /* UIImage+StackBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4505F78B18538FE800A01CB2 /* UIImage+StackBlur.m */; };
 		4505F78E185396D700A01CB2 /* photomissing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4505F78D185396D700A01CB2 /* photomissing.png */; };
+		4505F7911853991600A01CB2 /* ContainerPerfiliPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4505F7901853991600A01CB2 /* ContainerPerfiliPhoneViewController.m */; };
+		4505F7941853992300A01CB2 /* ContainerPerfiliPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4505F7931853992300A01CB2 /* ContainerPerfiliPadViewController.m */; };
 		4538BA51184F633400D32205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA50184F633400D32205 /* Foundation.framework */; };
 		4538BA53184F633400D32205 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA52184F633400D32205 /* CoreGraphics.framework */; };
 		4538BA55184F633400D32205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538BA54184F633400D32205 /* UIKit.framework */; };
@@ -104,11 +105,13 @@
 /* Begin PBXFileReference section */
 		4505F78018538C2100A01CB2 /* AvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarViewController.h; sourceTree = "<group>"; };
 		4505F78118538C2100A01CB2 /* AvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarViewController.m; sourceTree = "<group>"; };
-		4505F78318538CDA00A01CB2 /* PerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilViewController.h; sourceTree = "<group>"; };
-		4505F78418538CDA00A01CB2 /* PerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilViewController.m; sourceTree = "<group>"; };
 		4505F78A18538FE800A01CB2 /* UIImage+StackBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+StackBlur.h"; sourceTree = "<group>"; };
 		4505F78B18538FE800A01CB2 /* UIImage+StackBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+StackBlur.m"; sourceTree = "<group>"; };
 		4505F78D185396D700A01CB2 /* photomissing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photomissing.png; sourceTree = "<group>"; };
+		4505F78F1853991600A01CB2 /* ContainerPerfiliPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerPerfiliPhoneViewController.h; sourceTree = "<group>"; };
+		4505F7901853991600A01CB2 /* ContainerPerfiliPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerPerfiliPhoneViewController.m; sourceTree = "<group>"; };
+		4505F7921853992300A01CB2 /* ContainerPerfiliPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerPerfiliPadViewController.h; sourceTree = "<group>"; };
+		4505F7931853992300A01CB2 /* ContainerPerfiliPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerPerfiliPadViewController.m; sourceTree = "<group>"; };
 		4538BA4D184F633400D32205 /* Series.ly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Series.ly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4538BA50184F633400D32205 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4538BA52184F633400D32205 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -600,8 +603,10 @@
 			children = (
 				45C050FA1850F5BD00A46B75 /* ContainerPerfilViewController.h */,
 				45C050FB1850F5BD00A46B75 /* ContainerPerfilViewController.m */,
-				4505F78318538CDA00A01CB2 /* PerfilViewController.h */,
-				4505F78418538CDA00A01CB2 /* PerfilViewController.m */,
+				4505F78F1853991600A01CB2 /* ContainerPerfiliPhoneViewController.h */,
+				4505F7901853991600A01CB2 /* ContainerPerfiliPhoneViewController.m */,
+				4505F7921853992300A01CB2 /* ContainerPerfiliPadViewController.h */,
+				4505F7931853992300A01CB2 /* ContainerPerfiliPadViewController.m */,
 				4505F78018538C2100A01CB2 /* AvatarViewController.h */,
 				4505F78118538C2100A01CB2 /* AvatarViewController.m */,
 			);
@@ -766,6 +771,7 @@
 				4538BA5D184F633400D32205 /* main.m in Sources */,
 				4573B302184F6B98006ECA31 /* MemoryPrinter.m in Sources */,
 				4573B34E184F6EB4006ECA31 /* ContainerLoginViewController.m in Sources */,
+				4505F7941853992300A01CB2 /* ContainerPerfiliPadViewController.m in Sources */,
 				4573B31C184F6BEF006ECA31 /* CustomHeaderFooter.m in Sources */,
 				4573B341184F6CF6006ECA31 /* ASIInputStream.m in Sources */,
 				4573B33C184F6CF6006ECA31 /* ASIDataCompressor.m in Sources */,
@@ -782,13 +788,13 @@
 				4505F78218538C2100A01CB2 /* AvatarViewController.m in Sources */,
 				4573B2FE184F6B98006ECA31 /* RootViewController.m in Sources */,
 				4556079D184F8CE100CA7E10 /* UserToken.m in Sources */,
+				4505F7911853991600A01CB2 /* ContainerPerfiliPhoneViewController.m in Sources */,
 				4573B304184F6B98006ECA31 /* ScreenSizeManager.m in Sources */,
 				4573B2FA184F6B98006ECA31 /* LoadableWithTableViewController.m in Sources */,
 				4573B35F184F7810006ECA31 /* HTAutocompleteTextField.m in Sources */,
 				45C051171851008800A46B75 /* User.m in Sources */,
 				4573B320184F6BEF006ECA31 /* FabricaCeldas.m in Sources */,
 				4573B303184F6B98006ECA31 /* Reachability.m in Sources */,
-				4505F78518538CDA00A01CB2 /* PerfilViewController.m in Sources */,
 				4573B342184F6CF6006ECA31 /* ASINetworkQueue.m in Sources */,
 				4556079B184F8CE100CA7E10 /* AuthToken.m in Sources */,
 				4573B2F8184F6B98006ECA31 /* LoadableViewController.m in Sources */,

@@ -15,6 +15,6 @@
 @property(strong, nonatomic) UIImageView * blurImageView;
 @property(strong, nonatomic) UIImageView * avatarImageView;
 
-- (id)initWithFrame:(CGRect)frame User: (User *) user;
+//- (id)initWithFrame:(CGRect)frame User: (User *) user;
 
 @end

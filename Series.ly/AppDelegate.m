@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "ContainerLoginViewController.h"
 #import "UserCredentials.h"
-#import "ContainerPerfilViewController.h"
+#import "ContainerPerfiliPhoneViewController.h"
+#import "ContainerPerfiliPadViewController.h"
 
 @implementation AppDelegate
 
@@ -50,9 +51,9 @@
 
 -(void) loadTabBarViewController {
     
-    ContainerPerfilViewController * containerPeopleViewController = [[ContainerPerfilViewController alloc] init];
-    ContainerPerfilViewController * containerProfileViewController = [[ContainerPerfilViewController alloc] init];
-    ContainerPerfilViewController * containerChatsViewController = [[ContainerPerfilViewController alloc] init];
+    ContainerPerfiliPhoneViewController * containerPeopleViewController = [[ContainerPerfiliPhoneViewController alloc] init];
+    ContainerPerfiliPhoneViewController * containerProfileViewController = [[ContainerPerfiliPhoneViewController alloc] init];
+    ContainerPerfiliPhoneViewController * containerChatsViewController = [[ContainerPerfiliPhoneViewController alloc] init];
     
     UINavigationController * navigationControllerGente = [[UINavigationController alloc] initWithRootViewController:containerPeopleViewController];
     UINavigationController * navigationControllerPerfil = [[UINavigationController alloc] initWithRootViewController:containerProfileViewController];
