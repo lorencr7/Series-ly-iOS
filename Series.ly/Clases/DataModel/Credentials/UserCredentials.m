@@ -22,6 +22,11 @@ UserCredentials * instance;
     return instance;
 }
 
++(void) setInstance: (id) newInstance {
+    instance = newInstance;
+}
+
+
 +(void) resetInstance {
     instance = nil;
 }
@@ -50,6 +55,23 @@ UserCredentials * instance;
         self.userToken = userToken;
     }
     return self;
+}
+
+- (id)initWithCoder: (NSCoder *)coder {
+    UserCredentials * credentials = [[UserCredentials alloc] init];
+    credentials.authToken = [coder decodeObjectForKey:@"authToken"];
+    credentials.userToken = [coder decodeObjectForKey:@"userToken"];
+    return credentials;
+    
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    if (self.authToken) {
+        [coder encodeObject:self.authToken forKey:@"authToken"];
+    }
+    if (self.userToken) {
+        [coder encodeObject:self.userToken forKey:@"userToken"];
+    }
 }
 
 @end

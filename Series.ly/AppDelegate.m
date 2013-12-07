@@ -18,11 +18,11 @@
     
     [self setAppAppearance];
     [self restoreData];
+    UserCredentials * credentials = [UserCredentials getInstance];
+    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSString * userToken = [defaults objectForKey:@"userToken"];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString * userToken = [defaults objectForKey:@"userToken"];
-    
-    if (!userToken) {
+    if (!credentials.userToken) {
         [self loadLoginController];
     } else {
         [self loadContentControllers];
@@ -131,36 +131,36 @@
 
 
 -(void) restoreData {
-    UserCredentials * userCredentials = [UserCredentials getInstance];
+    //UserCredentials * userCredentials = [UserCredentials getInstance];
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    /*NSDictionary * dict = [prefs objectForKey:@"userCredentials"];
-    UserCredentials * cred = [[UserCredentials alloc] initWithDictionary:dict];
-    userCredentials.authToken = cred.authToken;
-    userCredentials.userToken = cred.userToken;*/
+    NSData * credentialsEncoded = [prefs objectForKey:@"userCredentials"];
+    UserCredentials * credentials = [NSKeyedUnarchiver unarchiveObjectWithData:credentialsEncoded];
+    [UserCredentials setInstance:credentials];
 
+    NSLog(@"restoring: %@",credentials.userToken);
     
-    NSData * authTokenEncoded = [prefs objectForKey:@"authToken"];
+    /*NSData * authTokenEncoded = [prefs objectForKey:@"authToken"];
     NSData * userTokenEncoded = [prefs objectForKey:@"userToken"];
     
     userCredentials.authToken = [NSKeyedUnarchiver unarchiveObjectWithData:authTokenEncoded];
-    userCredentials.userToken = [NSKeyedUnarchiver unarchiveObjectWithData:userTokenEncoded];
+    userCredentials.userToken = [NSKeyedUnarchiver unarchiveObjectWithData:userTokenEncoded];*/
     
-    //NSLog(@"RestoreData: %@",userCredentials.authToken);
 }
 
 -(void) saveData {
     UserCredentials * userCredentials = [UserCredentials getInstance];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    //[prefs setObject:[userCredentials getDictionary] forKey:@"userCredentials"];
+    NSData * credentialsEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials];
+    [prefs setObject:credentialsEncoded forKey:@"userCredentials"];
     
-    NSData * authTokenEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials.authToken];
+    NSLog(@"saving: %@",userCredentials.userToken);
+    /*NSData * authTokenEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials.authToken];
     NSData * userTokenEncoded = [NSKeyedArchiver archivedDataWithRootObject:userCredentials.userToken];
     
     
     [prefs setObject:authTokenEncoded forKey:@"authToken"];
-    [prefs setObject:userTokenEncoded forKey:@"userToken"];
+    [prefs setObject:userTokenEncoded forKey:@"userToken"];*/
     [prefs synchronize];
 }
 
