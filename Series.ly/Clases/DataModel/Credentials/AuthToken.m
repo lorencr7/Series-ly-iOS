@@ -38,9 +38,9 @@
 
 -(NSMutableDictionary *) getDictionary {
     NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-    dictionary[@"auth_token"] = self.authToken;
-    dictionary[@"auth_expires_date"] = self.authExpiresDate;
-    dictionary[@"error"] = self.error;
+    [self addObject:self.authToken ToDictionary:dictionary Key:@"auth_token"];
+    [self addObject:self.authExpiresDate ToDictionary:dictionary Key:@"auth_expires_date"];
+    [self addObject:self.error ToDictionary:dictionary Key:@"error"];
     return dictionary;
 }
 

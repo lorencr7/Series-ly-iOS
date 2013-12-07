@@ -13,6 +13,7 @@
 #import "UserCredentials.h"
 #import "UserToken.h"
 #import "User.h"
+#import "AppDelegate.h"
 
 static ManejadorServicioWebSeriesLy * instance;
 
@@ -68,6 +69,7 @@ static ManejadorServicioWebSeriesLy * instance;
     NSDate * fecha = [NSDate date];
     long currentDate =  [fecha timeIntervalSince1970];
     long expireDate = authToken.authExpiresDate.longValue;
+    currentDate += 1000;
     NSLog(@"%ld,%ld",authToken.authExpiresDate.longValue, currentDate);
     if (currentDate > expireDate) {
         NSLog(@"authToken invalido, pidiendo nuevo authToken");
@@ -76,9 +78,12 @@ static ManejadorServicioWebSeriesLy * instance;
         AuthToken * newAuthToken = [self getAuthTokenWithRequest:nil ProgressView:nil];
         userCredentials.authToken = newAuthToken;
         
-        NSData *objectEncoded = [NSKeyedArchiver archivedDataWithRootObject:newAuthToken];
+        
+        AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate saveData];
+        /*NSData *objectEncoded = [NSKeyedArchiver archivedDataWithRootObject:newAuthToken];
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setObject:objectEncoded forKey:@"authToken"];
+        [prefs setObject:objectEncoded forKey:@"authToken"];*/
         
         //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         //[defaults setObject:newAuthToken.authToken forKey:@"authToken"];
@@ -144,8 +149,9 @@ static ManejadorServicioWebSeriesLy * instance;
     } else {
         NSData *responseData = [request responseData];
         NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@",response);
-        return [[User alloc] initWithDictionary:response];
+        NSDictionary * userDictionary = response[@"result"];
+        //NSLog(@"%@",response);
+        return [[User alloc] initWithDictionary:userDictionary];
     }
     
 }

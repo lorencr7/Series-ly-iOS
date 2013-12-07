@@ -7,7 +7,7 @@
 //
 
 #import "ContainerPerfilViewController.h"
-#import "ManejadorServicioWebSeriesLy.h"
+#import "PerfilViewController.h"
 
 @interface ContainerPerfilViewController ()
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setBackgroundColor];
-    [[ManejadorServicioWebSeriesLy getInstance] getUserInfoWithRequest:nil ProgressView:nil];
+    [self createPerfilView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,5 +34,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) createPerfilView {
+    CGRect frame = CGRectMake(0,
+                              0,
+                              self.view.frame.size.width,
+                              self.view.frame.size.height);
+    self.perfilViewController = [[PerfilViewController alloc] initWithFrame:frame];
+    [self addChildViewController:self.perfilViewController];
+    [self.view addSubview:self.perfilViewController.view];
+}
+
 
 @end

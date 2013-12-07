@@ -181,6 +181,9 @@
     NSNumber * maxHeight = arguments[@"maxHeight"];
     NSNumber * maxWidth = arguments[@"maxWidth"];
     UIImage * imagen;
+    
+    url = [url stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    //NSLog(@"url: %@",url);
     NSURL * imageURL = [NSURL URLWithString:url];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:imageURL];
@@ -213,6 +216,8 @@
         [imageView performSelectorOnMainThread:@selector(setImage:) withObject:imagen waitUntilDone:NO];
         //NSLog(@"poniendo imagen");
         //imageView.image = imagen;
+    } else {
+        NSLog(@"%@",error);
     }
 }
 
