@@ -12,8 +12,8 @@
 #define altoPortrait 1024-20
 
 #define baseMaster 255
-//#define baseDetailLandscape baseLandscape - baseMaster - 1
-#define baseDetailLandscape baseLandscape
+#define baseDetailLandscape baseLandscape - baseMaster - 1
+//#define baseDetailLandscape baseLandscape
 #define baseDetailPortrait basePortrait
 #define altoMasterLandscape altoLandscape
 #define altoMasterPortrait altoPortrait

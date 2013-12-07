@@ -83,7 +83,9 @@
         if (self.tabBarController.tabBar) {
             altoTabBar = self.tabBarController.tabBar.frame.size.height;
         }
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+        //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+        //}
         CGSize screenSize = [ScreenSizeManager currentSize];
         
         CGRect viewFrame = self.view.frame;
@@ -102,9 +104,9 @@
             }
         } else {
             if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {//Asignamos el tamaño al view dependiendo de nuestra orientacion
-                self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape + 20);
+                self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscape);
             } else {
-                self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait + 20);
+                self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortrait);
             }
         }
         
@@ -112,13 +114,13 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         if (UIInterfaceOrientationIsPortrait(orientation)) {
             self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
         } else {
             self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
         }
-    }
+    }*/
     [self layoutSubviews];
     
 }

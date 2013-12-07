@@ -11,6 +11,9 @@
 #import "UserCredentials.h"
 #import "ContainerPerfiliPhoneViewController.h"
 #import "ContainerPerfiliPadViewController.h"
+#import "MasterViewController.h"
+#import "DetailViewController.h"
+#import "CustomSplitViewController.h"
 
 @implementation AppDelegate
 
@@ -84,9 +87,9 @@
 }
 
 -(void) loadSplitViewController {
-    /*MasterViewController *masterViewController = [[MasterViewController alloc] init];
+    MasterViewController *masterViewController = [[MasterViewController alloc] init];
     UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-    masterNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
+    //masterNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
     
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
@@ -97,7 +100,7 @@
     self.splitViewController = [[CustomSplitViewController alloc] init];
     self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
     
-    self.window.rootViewController = self.splitViewController;*/
+    self.window.rootViewController = self.splitViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
