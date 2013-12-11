@@ -7,9 +7,9 @@
 //
 
 #define baseLandscape 1024
-#define altoLandscape 768-20
+#define altoLandscape 768
 #define basePortrait 768
-#define altoPortrait 1024-20
+#define altoPortrait 1024
 
 #define baseMaster 255
 #define baseDetailLandscape baseLandscape - baseMaster - 1

@@ -8,6 +8,9 @@
 
 #import "RootViewController.h"
 
-@interface DetailViewController : RootViewController
+@interface DetailViewController : UIViewController
+
+@property (strong, nonatomic) UIViewController * detailItem;
+
 
 @end

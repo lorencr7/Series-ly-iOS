@@ -36,17 +36,23 @@
 
 
 -(void) setBackgroundColor {
-    self.gradient = [CAGradientLayer layer];
-    self.gradient.frame = self.view.bounds;
-    UIColor * topColor = TOPCOLOR;
-    UIColor * bottomColor = BOTTOMCOLOR;
-    self.gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
-    self.gradient.startPoint = CGPointMake(0.5,0.2);
-    self.gradient.endPoint = CGPointMake(0.5, 0.8);
-    [self.view.layer insertSublayer:self.gradient atIndex:0];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.gradient = [CAGradientLayer layer];
+        self.gradient.frame = self.view.bounds;
+        UIColor * topColor = TOPCOLOR;
+        UIColor * bottomColor = BOTTOMCOLOR;
+        self.gradient.colors = [NSArray arrayWithObjects:(id)[topColor CGColor], (id)[bottomColor CGColor], nil];
+        self.gradient.startPoint = CGPointMake(0.5,0.2);
+        self.gradient.endPoint = CGPointMake(0.5, 0.8);
+        [self.view.layer insertSublayer:self.gradient atIndex:0];
+    } else {
+        self.view.backgroundColor = TOPCOLOR;
+    }
+    
     /*UIImage * image = BACKGROUNDIMAGE;
-    image = [self imageWithImage:image scaledToSize:self.view.frame.size];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];*/
+     image = [self imageWithImage:image scaledToSize:self.view.frame.size];
+     self.view.backgroundColor = [UIColor colorWithPatternImage:image];*/
 }
 
 - (void)layoutSubviews {
@@ -84,7 +90,7 @@
             altoTabBar = self.tabBarController.tabBar.frame.size.height;
         }
         //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
         //}
         CGSize screenSize = [ScreenSizeManager currentSize];
         
@@ -114,13 +120,13 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
-    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         if (UIInterfaceOrientationIsPortrait(orientation)) {
             self.view.frame = CGRectMake(0, 0, baseDetailPortrait, altoDetailPortraitConNavigationBar);
         } else {
             self.view.frame = CGRectMake(0, 0, baseDetailLandscape, altoDetailLandscapeConNavigationBar);
         }
-    }*/
+    }
     [self layoutSubviews];
     
 }

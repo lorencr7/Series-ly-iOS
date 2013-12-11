@@ -8,9 +8,14 @@
 
 #import "RootViewController.h"
 
-@class DetailViewController;
-@interface MasterViewController : RootViewController
+@class DetailViewController,MasterTableViewController;
+@interface MasterViewController : UIViewController
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) DetailViewController * detailViewController;
+
+@property (strong, nonatomic) MasterTableViewController * masterTableViewController;
+
+- (id)initWithDetailViewController: (DetailViewController *) detailViewController;
+
 
 @end

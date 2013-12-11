@@ -87,15 +87,17 @@
 }
 
 -(void) loadSplitViewController {
-    MasterViewController *masterViewController = [[MasterViewController alloc] init];
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    
+    MasterViewController *masterViewController = [[MasterViewController alloc] initWithDetailViewController:detailViewController];
     UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
     //masterNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(40.0/255.0) green:(101.0/255.0) blue:(144/255.0) alpha:1];
     
-    DetailViewController *detailViewController = [[DetailViewController alloc] init];
-    UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-    detailNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
     
-    masterViewController.detailViewController = detailViewController;
+    //detailNavigationController.navigationBar.tintColor = [UIColor colorWithRed:(56/255.0) green:(115/255.0) blue:(194/255.0) alpha:1.0];
+    
+    //masterViewController.detailViewController = detailViewController;
     
     self.splitViewController = [[CustomSplitViewController alloc] init];
     self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];

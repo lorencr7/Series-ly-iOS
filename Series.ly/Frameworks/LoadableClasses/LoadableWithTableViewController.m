@@ -35,14 +35,16 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     if (!self.customTableView || !self.customTableViewEdit) {
         //[self performSelectorOnMainThread:@selector(iniciarTableView) withObject:nil waitUntilDone:YES];
         [self iniciarTableView];
     }
+    [super viewDidLoad];
+    
 }
 
 -(BOOL) getData {
+    
     BOOL hayData = NO;
     
     NSMutableArray * previousSourceData = self.sourceData;
@@ -160,6 +162,7 @@
         self.customTableViewEdit.section.sections = sections;
         [self.customTableViewEdit performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     } else {
+        
         self.customTableView.section.sections = sections;
         [self.customTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }

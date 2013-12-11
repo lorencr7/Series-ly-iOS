@@ -48,15 +48,15 @@
 }
 
 -(BOOL) shouldAutorotate {
-    return NO;
+    return YES;
 }
 
-/*-(NSUInteger) supportedInterfaceOrientations {
+-(NSUInteger) supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 
 -(UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
-}*/
+}
 
 @end

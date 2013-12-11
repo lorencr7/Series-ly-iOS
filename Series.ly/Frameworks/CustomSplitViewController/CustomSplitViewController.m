@@ -54,7 +54,6 @@ static CustomSplitViewController * controller;
 
     self.view.backgroundColor = [UIColor whiteColor];
     //self.view.backgroundColor = [UIColor redColor];
-    NSLog(@"%.2f,%.2f",self.view.frame.origin.y, self.view.frame.size.height);
     
     self.masterView = [[UIView alloc] init];
     self.detailView = [[UIView alloc] init];
@@ -119,7 +118,6 @@ static CustomSplitViewController * controller;
 }
 
 -(void) cargarPortrait {//carga el detail
-    NSLog(@"%.2f",self.view.frame.size.height);
     CGRect masterFrame = CGRectMake(0, 20, baseMaster, altoMasterPortrait);
     CGRect detailFrame = CGRectMake(0, 20, baseDetailPortrait, altoDetailPortrait);
     

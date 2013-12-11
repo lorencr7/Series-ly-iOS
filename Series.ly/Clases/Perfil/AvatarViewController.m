@@ -38,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         //NSLog(@"%.2f",self.view.frame.size.height);
-    self.view.backgroundColor = [UIColor yellowColor];
 	// Do any additional setup after loading the view.
 }
 
